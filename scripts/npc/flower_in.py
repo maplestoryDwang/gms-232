@@ -1,0 +1,8 @@
+# Mysterious Statue, Sleepywood (105000000)
+from net.swordie.ms.client.character.skills.temp import CharacterTemporaryStat
+response = sm.sendAskYesNo("Once I lay my hand on the statue, a strange light covers me and it feels like I'm being sucked "
+                           + "into somewhere else. Is it okay to be moved to somewhere else randomly just like that?")
+
+if response:
+    sm.removeBuff(CharacterTemporaryStat.DarkSight)
+    sm.warp(910530000)

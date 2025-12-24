@@ -1,0 +1,1 @@
+alter table trade_transaction add column mapId int default 0;

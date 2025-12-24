@@ -1,0 +1,1 @@
+ALTER TABLE items MODIFY imaxhp int;

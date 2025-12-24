@@ -1,0 +1,1 @@
+alter table accounts add column powercrystals int default -1;

@@ -1,0 +1,5 @@
+from net.swordie.ms.constants.questlineconstants import LionHeartQuestlineConstants
+
+# Lionheart Questline | Field Clear Script
+sm.setQRValue(LionHeartQuestlineConstants.SECOND_SPELL_BREAKER_QUEST_ID, LionHeartQuestlineConstants.SECOND_SPELL_BREAKER_QUEST_KEY)
+sm.warpInstanceOut(LionHeartQuestlineConstants.TOWER_2_FIELD_ID, 4)

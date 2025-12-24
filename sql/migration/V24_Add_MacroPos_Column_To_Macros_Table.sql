@@ -1,0 +1,2 @@
+ALTER TABLE `macros`
+  ADD COLUMN `macroPos` INT NULL DEFAULT 0 AFTER `name`;

@@ -1,0 +1,1 @@
+alter table unionraid add column totaldamagedoneatlastclaim bigint;

@@ -1,0 +1,1 @@
+update unionraid SET totaldamagedoneatlastclaim=null;

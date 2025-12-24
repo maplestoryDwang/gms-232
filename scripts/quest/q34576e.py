@@ -1,0 +1,22 @@
+#34230 [Esfera]  The Strangers
+sm.setSpeakerType(3)
+sm.setColor(1)
+sm.setParam(36)
+sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
+sm.sendSay("#face0#That wasn't pleasant, but the staff is charged now.")
+if sm.sendAskYesNo("#face0#Are you ready to use it?"):
+    sm.setParam(56)
+    sm.sendSay("The Transcendent of Light has the power of creation and destruction...")
+    sm.setParam(36)
+    sm.sendSay("#face0#Ahhh... I think I'm starting to get it.")
+    sm.setParam(56)
+    sm.sendSay("hmm..?")
+    sm.setParam(36)
+    sm.sendSay("#face0#I'm starting to get what Commander Will said. \r\n#rThe ultimate light can be found in the ultimate darkness.")
+    sm.sendSay("#face0#If you think about it, creation and destruction exists in a cycle. If the goal is the ultimate light... If light is creation and darkness is destruction...")
+    sm.setParam(56)
+    sm.sendSay("....Oh!")
+    sm.setParam(36)
+    sm.sendSay("#face0#Destruction is not the purpose. If my guess is right, the #bBlack Mage#k is...")
+    sm.sendSay("#face0#...going to #rcreate a new world#k.")
+    sm.completeQuest(parentID)

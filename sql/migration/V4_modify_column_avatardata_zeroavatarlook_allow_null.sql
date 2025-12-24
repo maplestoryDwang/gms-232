@@ -1,0 +1,1 @@
+alter table avatardata modify zeroavatarlook int null;

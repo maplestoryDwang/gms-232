@@ -1,0 +1,1 @@
+create index ai_enddate_index on auction_items (endDate);

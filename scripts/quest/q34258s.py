@@ -1,0 +1,16 @@
+# id 34258 ([Morass] Truth behind the Rumor), field 450006240
+sm.setSpeakerType(3)
+sm.setParam(36)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(3003400) # Tana
+sm.sendNext("#face0#Do you know who I am?")
+sm.setParam(56)
+sm.sendSay("What do you mean?")
+sm.setParam(36)
+sm.sendSay("#face0#No one remembers me. I remember no one. \r\nAll I have is my name.")
+sm.setParam(56)
+sm.sendSay("Wh-")
+sm.setParam(36)
+sm.sendSay("#face0#But you... I know you.")
+sm.sendSay("#face5#Aaagh!")
+sm.startQuest(parentID)

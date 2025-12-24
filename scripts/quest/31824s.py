@@ -1,0 +1,17 @@
+# id 31824 (Enter Romero), field 401020300
+sm.setSpeakerType(3)
+sm.setParam(16)
+res = sm.sendAskAccept("The D-03 transmitter is ringing. Wonder who it is...?")
+sm.setParam(4)
+sm.setInnerOverrideSpeakerTemplateID(3001005) # Romero
+sm.sendNext("Testing, testing. Hey! You hear me?")
+sm.setParam(16)
+sm.sendSay("#bWho is this? #p3001004#?")
+sm.setParam(4)
+sm.sendSay("I'm #p3001005#. I'm the top trader and wilderness guide for the Shadowdealers. Meet me over at the #m401020300#!")
+sm.setParam(16)
+sm.sendSay("#bUh... I guess I'll come meet you then.")
+sm.startQuest(parentID)
+sm.completeQuestNoCheck(parentID)
+sm.startQuest(31576)
+sm.warp(401020000)

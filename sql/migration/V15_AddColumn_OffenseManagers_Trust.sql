@@ -1,0 +1,1 @@
+alter table offense_managers add column trust int null;

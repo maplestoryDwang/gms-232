@@ -1,0 +1,15 @@
+# id 34264 ([Morass] The Prince and the Princess 3), field 450006300
+sm.setSpeakerType(3)
+sm.setParam(37)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(3003406) # Jean
+sm.sendNext("#face0#Let's get moving. The next place we need to go is in the #bAbandoned Area#k.")
+sm.closeUI(1128)
+sm.sendSay("#face0#I'll go first.")
+sm.startQuest(parentID)
+sm.createQuestWithQRValue(34271, "20=h0;30=h0;21=h0;31=h0;32=h0;23=h0;33=h0;34=h0;52=h0;53=h1;35=h0;54=h1;36=h0;18=h0;28=h1;29=h1")
+sm.createQuestWithQRValue(34271, "20=h0;30=h0;21=h0;31=h1;32=h0;23=h0;33=h0;34=h0;52=h0;53=h1;35=h0;54=h1;36=h0;18=h0;28=h1;29=h1")
+sm.closeUI(1128)
+sm.closeUI(1128)
+sm.closeUI(1128)
+sm.warp(450006320)

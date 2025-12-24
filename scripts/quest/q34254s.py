@@ -1,0 +1,17 @@
+# id 34254 ([Morass] Hailing the Chief), field 993017200
+sm.setSpeakerType(3)
+sm.setParam(36)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(3003408) # Researcher
+sm.sendNext("#face0#A soldier said that#b merchant#k will arrive soon.")
+sm.setParam(56)
+sm.sendSay("#b(Merchant?)#k")
+sm.setParam(36)
+sm.sendSay("#face0#One of the deliveries for the reception is late. \r\nCould you go get it?")
+sm.setParam(56)
+sm.sendSay("Oh... Uh, sure. I'll go get it.")
+sm.setParam(36)
+sm.sendSay("#face0#Just head to the right. You can't miss it.")
+sm.setParam(56)
+sm.sendSay("#b(May as well gather information until the Flying Fish contacts me again.)#k")
+sm.startQuest(parentID)

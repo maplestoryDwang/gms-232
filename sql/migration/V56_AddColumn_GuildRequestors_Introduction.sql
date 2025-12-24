@@ -1,0 +1,1 @@
+ALTER TABLE guildrequestors ADD COLUMN introduction varchar(255);

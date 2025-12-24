@@ -1,0 +1,61 @@
+# id 940011060 (Pantheon : Pantheon Clinic), field 940011060
+sm.lockInGameUI(True, True)
+sm.forcedInput(0)
+sm.forcedInput(1)
+sm.sendDelay(60)
+sm.forcedInput(0)
+sm.spawnNpc(3000106, 160, 50)
+sm.showNpcSpecialActionByTemplateId(3000106, "summon", 0)
+sm.spawnNpc(3000107, 10, 50)
+sm.showNpcSpecialActionByTemplateId(3000107, "summon", 0)
+sm.spawnNpc(3000152, 90, 50)
+sm.showNpcSpecialActionByTemplateId(3000152, "summon", 0)
+sm.setSpeakerType(3)
+sm.setSpeakerID(3000152) # Kylan
+sm.setParam(1)
+sm.sendNext("AnjellyBustt, you have finally come to.")
+sm.setParam(17)
+sm.sendSay("Umm, where am I?")
+sm.setSpeakerID(3000106) # Fenelle
+sm.setParam(1)
+sm.sendSay("Pantheon. How do you feel?")
+sm.setParam(17)
+sm.sendSay("My head feels like a ripe watermelon, but I think I'm okay otherwise.")
+sm.showEffect("Effect/Direction10.img/effect/story/BalloonMsg1/0", 1200, 0, -120, 0, 0, 0, 0)
+sm.sendDelay(600)
+sm.sendNext("Huh? Why is there a pink thing on my arm?")
+sm.setParam(1)
+sm.sendSay("I wish I had better news, child, but I fear you have been cursed by the East Sanctum relic. In fact, it is quite stuck to your arm.")
+sm.setParam(17)
+sm.sendSay("What?! What do I do?! How do I get it off?!")
+sm.setSpeakerID(3000107) # Cartalion
+sm.setParam(1)
+sm.sendSay("The security threat of having a young, defenseless girl wandering around with one of our relics strapped to her arm has not escaped me.")
+sm.setSpeakerID(3000106) # Fenelle
+sm.sendSay("Do not scold the girl, Cartalion. That relic would be entirely gone if it were not for Kaiser and AnjellyBustt.")
+sm.setSpeakerID(3000107) # Cartalion
+sm.sendSay("I suppose you are right, as usual.")
+sm.setParam(17)
+sm.sendSay("Ha... hahaha... what? I don't remember anything...")
+sm.sendSay("Are you saying that the relic grabbed me and turned into a bracelet when I touched it? Who the heck is Kaiser? What is going on?!")
+sm.setSpeakerID(3000152) # Kylan
+sm.setParam(1)
+sm.sendSay("Hey, it's going to be okay. We don't have a way to remove that relic from your arm, but it won't cause you any harm. Think of it like a nice accessory.")
+sm.setParam(17)
+sm.sendSay("I-I didn't mean to take it! I don't even like pink!")
+sm.setSpeakerID(3000106) # Fenelle
+sm.setParam(1)
+sm.sendSay("#h0#, no one is blaming you for this. Three relics remain in Pantheon. We are quite safe.")
+sm.setParam(17)
+sm.sendSay("B-but, I...")
+sm.setSpeakerID(3000107) # Cartalion
+sm.setParam(1)
+sm.sendSay("#h0#, please don't start crying. I'm a very sensitive sympathy-weeper.")
+sm.setParam(17)
+sm.sendSay("Ugh...")
+sm.setSpeakerID(3000106) # Fenelle
+sm.setParam(1)
+sm.sendSay("Cartalion!")
+sm.setSpeakerID(3000107) # Cartalion
+sm.sendSay("I'm sorry. I have very little control over my tearducts.")
+sm.forcedInput(1)

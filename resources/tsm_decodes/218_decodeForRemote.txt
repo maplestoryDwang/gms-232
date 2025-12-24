@@ -1,0 +1,2662 @@
+int __thiscall CSecondaryStat::DecodeForRemote(char *this, int a2, _DWORD *a3)
+{
+  char v3; // al
+  unsigned __int8 v4; // al
+  unsigned __int8 v5; // al
+  unsigned __int16 v6; // ax
+  int v7; // eax
+  unsigned __int16 v8; // ax
+  int v9; // eax
+  unsigned __int16 v10; // ax
+  unsigned __int16 v11; // ax
+  int v12; // eax
+  char v13; // al
+  unsigned __int16 v14; // ax
+  int v15; // eax
+  unsigned __int16 v16; // ax
+  int v17; // eax
+  unsigned __int16 v18; // ax
+  int v19; // eax
+  unsigned __int16 v20; // ax
+  int v21; // eax
+  unsigned __int16 v22; // ax
+  int v23; // eax
+  __int16 v24; // ax
+  int v25; // eax
+  unsigned __int16 v26; // ax
+  int v27; // eax
+  unsigned __int16 v28; // ax
+  int v29; // eax
+  unsigned __int8 v30; // al
+  unsigned __int16 v31; // ax
+  int v32; // eax
+  unsigned __int16 v33; // ax
+  int v34; // eax
+  unsigned __int16 v35; // ax
+  unsigned __int16 v36; // ax
+  int v37; // eax
+  unsigned __int16 v38; // ax
+  int v39; // eax
+  unsigned __int16 v40; // ax
+  int v41; // eax
+  unsigned __int16 v42; // ax
+  unsigned __int16 v43; // ax
+  int v44; // eax
+  unsigned __int16 v45; // ax
+  int v46; // eax
+  unsigned __int16 v47; // ax
+  int v48; // eax
+  int v49; // eax
+  unsigned __int16 v50; // ax
+  int v51; // eax
+  unsigned __int16 v52; // ax
+  int v53; // eax
+  unsigned __int16 v54; // ax
+  int v55; // eax
+  unsigned __int16 v56; // ax
+  int v57; // eax
+  int v58; // eax
+  int v59; // eax
+  int v60; // eax
+  int v61; // eax
+  unsigned __int16 v62; // ax
+  int v63; // eax
+  unsigned __int16 v64; // ax
+  int v65; // eax
+  unsigned __int16 v66; // ax
+  int v67; // eax
+  unsigned __int16 v68; // ax
+  int v69; // eax
+  unsigned __int16 v70; // ax
+  int v71; // eax
+  unsigned __int16 v72; // ax
+  int v73; // eax
+  int v74; // eax
+  unsigned __int16 v75; // ax
+  int v76; // eax
+  unsigned __int16 v77; // ax
+  int v78; // eax
+  unsigned __int16 v79; // ax
+  int v80; // eax
+  unsigned __int16 v81; // ax
+  int v82; // eax
+  unsigned __int16 v83; // ax
+  int v84; // eax
+  unsigned __int8 v85; // al
+  unsigned __int16 v86; // ax
+  int v87; // eax
+  unsigned __int16 v88; // ax
+  int v89; // eax
+  unsigned __int16 v90; // ax
+  int v91; // eax
+  unsigned __int16 v92; // ax
+  int v93; // eax
+  unsigned __int16 v94; // ax
+  int v95; // eax
+  unsigned __int16 v96; // ax
+  int v97; // eax
+  unsigned __int16 v98; // ax
+  int v99; // eax
+  unsigned __int16 v100; // ax
+  int v101; // eax
+  unsigned __int16 v102; // ax
+  int v103; // eax
+  unsigned __int16 v104; // ax
+  int v105; // eax
+  unsigned __int16 v106; // ax
+  int v107; // eax
+  unsigned __int16 v108; // ax
+  int v109; // eax
+  unsigned __int16 v110; // ax
+  int v111; // eax
+  unsigned __int16 v112; // ax
+  int v113; // eax
+  unsigned __int16 v114; // ax
+  int v115; // eax
+  unsigned __int16 v116; // ax
+  int v117; // eax
+  int v118; // eax
+  unsigned __int8 v119; // al
+  unsigned __int8 v120; // al
+  unsigned __int16 v121; // ax
+  int v122; // eax
+  unsigned __int16 v123; // ax
+  int v124; // eax
+  unsigned __int16 v125; // ax
+  int v126; // eax
+  unsigned __int16 v127; // ax
+  int v128; // eax
+  __int16 v129; // ax
+  int v130; // eax
+  unsigned __int16 v131; // ax
+  int v132; // eax
+  unsigned __int16 v133; // ax
+  int v134; // eax
+  unsigned __int16 v135; // ax
+  int v136; // eax
+  unsigned __int16 v137; // ax
+  int v138; // eax
+  unsigned __int16 v139; // ax
+  int v140; // eax
+  unsigned __int16 v141; // ax
+  int v142; // eax
+  unsigned __int16 v143; // ax
+  int v144; // eax
+  unsigned __int16 v145; // ax
+  int v146; // eax
+  unsigned __int16 v147; // ax
+  int v148; // eax
+  unsigned __int16 v149; // ax
+  int v150; // eax
+  unsigned __int16 v151; // ax
+  int v152; // eax
+  unsigned __int16 v153; // ax
+  int v154; // eax
+  unsigned __int16 v155; // ax
+  int v156; // eax
+  unsigned __int16 v157; // ax
+  int v158; // eax
+  unsigned __int16 v159; // ax
+  int v160; // eax
+  int v161; // esi
+  int v162; // eax
+  unsigned __int16 v163; // ax
+  int v164; // eax
+  unsigned __int16 v165; // ax
+  int v166; // eax
+  unsigned __int16 v167; // ax
+  int v168; // eax
+  unsigned __int16 v169; // ax
+  int v170; // eax
+  unsigned __int16 v171; // ax
+  int v172; // eax
+  unsigned __int16 v173; // ax
+  int v174; // eax
+  unsigned __int16 v175; // ax
+  int v176; // eax
+  unsigned __int16 v177; // ax
+  int v178; // eax
+  unsigned __int16 v179; // ax
+  int v180; // eax
+  unsigned __int16 v181; // ax
+  int v182; // eax
+  unsigned __int16 v183; // ax
+  int v184; // eax
+  unsigned __int16 v185; // ax
+  int v186; // eax
+  unsigned __int16 v187; // ax
+  int v188; // eax
+  unsigned __int16 v189; // ax
+  int v190; // eax
+  unsigned __int16 v191; // ax
+  int v192; // eax
+  int v193; // eax
+  int v194; // eax
+  int v195; // esi
+  int v196; // eax
+  unsigned __int16 v197; // ax
+  int v198; // eax
+  unsigned __int16 v199; // ax
+  int v200; // eax
+  unsigned __int8 v201; // al
+  int v202; // eax
+  unsigned __int16 v203; // ax
+  int v204; // eax
+  unsigned __int16 v205; // ax
+  int v206; // eax
+  unsigned __int8 v207; // al
+  int v208; // eax
+  unsigned __int8 v209; // al
+  unsigned __int16 v210; // ax
+  int v211; // eax
+  unsigned __int16 v212; // ax
+  int v213; // eax
+  unsigned __int16 v214; // ax
+  int v215; // eax
+  unsigned __int16 v216; // ax
+  int v217; // eax
+  unsigned __int16 v218; // ax
+  int v219; // eax
+  unsigned __int16 v220; // ax
+  int v221; // eax
+  unsigned __int16 v222; // ax
+  int v223; // eax
+  unsigned __int16 v224; // ax
+  int v225; // eax
+  unsigned __int16 v226; // ax
+  int v227; // eax
+  unsigned __int16 v228; // ax
+  int v229; // eax
+  unsigned __int16 v230; // ax
+  int v231; // eax
+  unsigned __int16 v232; // ax
+  int v233; // eax
+  unsigned __int16 v234; // ax
+  int v235; // eax
+  unsigned __int16 v236; // ax
+  int v237; // eax
+  unsigned __int16 v238; // ax
+  int v239; // eax
+  unsigned __int16 v240; // ax
+  int v241; // eax
+  unsigned __int16 v242; // ax
+  int v243; // eax
+  int v244; // eax
+  int v245; // eax
+  int v246; // eax
+  int v247; // esi
+  int v248; // eax
+  int v249; // edx
+  int v250; // eax
+  int v251; // esi
+  int v252; // eax
+  int v253; // eax
+  int v254; // eax
+  int v255; // eax
+  int v256; // eax
+  int v257; // eax
+  int v258; // eax
+  unsigned __int16 v259; // ax
+  int v260; // eax
+  unsigned __int16 v261; // ax
+  int v262; // eax
+  unsigned __int16 v263; // ax
+  int v264; // eax
+  unsigned __int16 v265; // ax
+  int v266; // eax
+  unsigned __int16 v267; // ax
+  int v268; // eax
+  unsigned __int16 v269; // ax
+  int v270; // eax
+  unsigned __int16 v271; // ax
+  int v272; // eax
+  unsigned __int16 v273; // ax
+  int v274; // eax
+  unsigned __int16 v275; // ax
+  int v276; // eax
+  unsigned __int16 v277; // ax
+  int v278; // eax
+  unsigned __int16 v279; // ax
+  int v280; // eax
+  unsigned __int16 v281; // ax
+  int v282; // eax
+  unsigned __int16 v283; // ax
+  int v284; // eax
+  unsigned __int16 v285; // ax
+  int v286; // eax
+  unsigned __int16 v287; // ax
+  int v288; // eax
+  unsigned __int16 v289; // ax
+  int v290; // eax
+  int v291; // eax
+  int v292; // eax
+  unsigned __int16 v293; // ax
+  int v294; // eax
+  int v295; // eax
+  unsigned __int16 v296; // ax
+  int v297; // eax
+  int v298; // eax
+  int v299; // eax
+  int v300; // eax
+  int v301; // eax
+  unsigned __int16 v302; // ax
+  int v303; // eax
+  unsigned __int16 v304; // ax
+  int v305; // eax
+  unsigned __int16 v306; // ax
+  int v307; // eax
+  unsigned __int16 v308; // ax
+  int v309; // eax
+  unsigned __int16 v310; // ax
+  int v311; // eax
+  unsigned __int16 v312; // ax
+  int v313; // eax
+  int v314; // eax
+  int v315; // eax
+  int v316; // eax
+  int v317; // eax
+  int v318; // eax
+  int v319; // eax
+  int v320; // eax
+  unsigned __int16 v321; // ax
+  int v322; // eax
+  unsigned __int16 v323; // ax
+  int v324; // eax
+  unsigned __int16 v325; // ax
+  int v326; // eax
+  unsigned __int16 v327; // ax
+  int v328; // eax
+  unsigned __int16 v329; // ax
+  int v330; // eax
+  unsigned __int16 v331; // ax
+  int v332; // eax
+  unsigned __int16 v333; // ax
+  int v334; // eax
+  unsigned __int16 v335; // ax
+  int v336; // eax
+  unsigned __int16 v337; // ax
+  int v338; // eax
+  unsigned __int16 v339; // ax
+  int v340; // eax
+  unsigned __int16 v341; // ax
+  int v342; // eax
+  unsigned __int16 v343; // ax
+  int v344; // eax
+  unsigned __int16 v345; // ax
+  int v346; // eax
+  unsigned __int16 v347; // ax
+  int v348; // eax
+  unsigned __int16 v349; // ax
+  int v350; // eax
+  unsigned __int16 v351; // ax
+  int v352; // eax
+  int v353; // esi
+  int v354; // eax
+  int v355; // eax
+  int v356; // eax
+  unsigned __int16 v357; // ax
+  int v358; // eax
+  unsigned __int16 v359; // ax
+  int v360; // eax
+  unsigned __int16 v361; // ax
+  int v362; // eax
+  unsigned __int16 v363; // ax
+  int v364; // eax
+  unsigned __int16 v365; // ax
+  int v366; // eax
+  int v367; // esi
+  int v368; // eax
+  unsigned __int16 v369; // ax
+  int v370; // eax
+  unsigned __int16 v371; // ax
+  int v372; // eax
+  unsigned __int16 v373; // ax
+  int v374; // eax
+  unsigned __int16 v375; // ax
+  int v376; // eax
+  unsigned __int16 v377; // ax
+  int v378; // eax
+  unsigned __int16 v379; // ax
+  int v380; // eax
+  unsigned __int16 v381; // ax
+  int v382; // eax
+  unsigned __int16 v383; // ax
+  int v384; // eax
+  unsigned __int16 v385; // ax
+  int v386; // eax
+  unsigned __int16 v387; // ax
+  int v388; // eax
+  unsigned __int16 v389; // ax
+  int v390; // eax
+  unsigned __int16 v391; // ax
+  int v392; // eax
+  unsigned __int16 v393; // ax
+  int v394; // eax
+  unsigned __int16 v395; // ax
+  int v396; // eax
+  unsigned __int16 v397; // ax
+  int v398; // eax
+  unsigned __int16 v399; // ax
+  int v400; // eax
+  unsigned __int16 v401; // ax
+  int v402; // eax
+  unsigned __int16 v403; // ax
+  int v404; // eax
+  unsigned __int16 v405; // ax
+  int v406; // eax
+  unsigned __int16 v407; // ax
+  int v408; // eax
+  unsigned __int16 v409; // ax
+  int v410; // eax
+  unsigned __int16 v411; // ax
+  int v412; // eax
+  unsigned __int16 v413; // ax
+  int v414; // eax
+  unsigned __int16 v415; // ax
+  int v416; // eax
+  unsigned __int16 v417; // ax
+  int v418; // eax
+  unsigned __int16 v419; // ax
+  int v420; // eax
+  unsigned __int16 v421; // ax
+  int v422; // eax
+  unsigned __int16 v423; // ax
+  int v424; // eax
+  unsigned __int16 v425; // ax
+  int v426; // eax
+  unsigned __int16 v427; // ax
+  int v428; // eax
+  unsigned __int16 v429; // ax
+  int v430; // eax
+  unsigned __int16 v431; // ax
+  int v432; // eax
+  unsigned __int16 v433; // ax
+  int v434; // eax
+  unsigned __int16 v435; // ax
+  int v436; // eax
+  unsigned __int16 v437; // ax
+  int v438; // eax
+  unsigned __int16 v439; // ax
+  int v440; // eax
+  int v441; // eax
+  unsigned __int16 v442; // ax
+  int v443; // eax
+  unsigned __int16 v444; // ax
+  int v445; // eax
+  unsigned __int16 v446; // ax
+  int v447; // eax
+  unsigned __int16 v448; // ax
+  int v449; // eax
+  unsigned __int16 v450; // ax
+  int v451; // eax
+  unsigned __int16 v452; // ax
+  int v453; // eax
+  unsigned __int16 v454; // ax
+  int v455; // eax
+  unsigned __int16 v456; // ax
+  int v457; // eax
+  unsigned __int16 v458; // ax
+  int v459; // eax
+  unsigned __int16 v460; // ax
+  int v461; // eax
+  unsigned __int16 v462; // ax
+  int v463; // eax
+  unsigned __int16 v464; // ax
+  int v465; // eax
+  unsigned __int16 v466; // ax
+  int v467; // eax
+  int v468; // eax
+  int v469; // eax
+  int v470; // eax
+  int v471; // eax
+  unsigned __int16 v472; // ax
+  int v473; // eax
+  int v474; // eax
+  int v475; // eax
+  unsigned __int8 v476; // al
+  int v477; // eax
+  unsigned __int16 v478; // ax
+  int v479; // eax
+  unsigned __int16 v480; // ax
+  int v481; // eax
+  unsigned __int16 v482; // ax
+  int v483; // eax
+  unsigned __int16 v484; // ax
+  int v485; // eax
+  unsigned __int16 v486; // ax
+  int v487; // eax
+  unsigned __int16 v488; // ax
+  int v489; // eax
+  int v490; // edx
+  int v491; // edx
+  unsigned __int8 v492; // al
+  int v493; // eax
+  int v494; // eax
+  int v495; // eax
+  int v496; // eax
+  unsigned __int8 v497; // al
+  int v498; // eax
+  int v499; // eax
+  int v500; // eax
+  int v501; // eax
+  int v502; // eax
+  int v503; // eax
+  unsigned __int8 v504; // al
+  int v505; // eax
+  int v506; // eax
+  unsigned __int8 v507; // al
+  int v508; // eax
+  unsigned __int16 v509; // ax
+  unsigned __int16 v510; // ax
+  unsigned __int16 v511; // ax
+  int v512; // eax
+  int v513; // eax
+  int v514; // eax
+  int v515; // eax
+  int v516; // eax
+  int v517; // eax
+  int v518; // eax
+  int v519; // eax
+  int v520; // eax
+  int v521; // eax
+  int v522; // eax
+  int v523; // eax
+  int v524; // eax
+  int v525; // eax
+  int v526; // eax
+  int v527; // eax
+  int v528; // eax
+  int v529; // eax
+  int v530; // eax
+  int v531; // eax
+  int v532; // eax
+  int v533; // eax
+  int v534; // eax
+  int v535; // eax
+  int v536; // eax
+  int v537; // eax
+  int v538; // eax
+  int v539; // eax
+  int v540; // eax
+  int v541; // eax
+  int v542; // eax
+  unsigned __int8 v543; // al
+  int v544; // eax
+  int v545; // eax
+  int v546; // eax
+  int v547; // eax
+  int v548; // eax
+  int v549; // eax
+  int v550; // eax
+  int v551; // eax
+  int v552; // eax
+  int v553; // eax
+  int v554; // eax
+  int v555; // eax
+  int v556; // eax
+  int v557; // eax
+  int v558; // eax
+  int v559; // eax
+  int v560; // eax
+  int v561; // eax
+  int v562; // eax
+  int v563; // eax
+  int v564; // eax
+  int v565; // eax
+  int v566; // eax
+  int v567; // eax
+  int v568; // eax
+  int v569; // eax
+  int v570; // eax
+  int v571; // eax
+  int i; // [esp+8h] [ebp-118h]
+  char v575[132]; // [esp+14h] [ebp-10Ch] BYREF
+  char v576[132]; // [esp+98h] [ebp-88h] BYREF
+
+  sub_948AF0(v576);
+  CInPacket::DecodeBuffer(a3, v576, 132);
+  if ( sub_9488F0(v576, 83) )
+  {
+    v3 = CInPacket::Decode1(a3);
+    sub_F33340(this, v3);
+  }
+  if ( sub_9488F0(v576, 97) )
+  {
+    v4 = CInPacket::Decode1(a3);
+    sub_CFF150(this, v4);
+  }
+  if ( sub_9488F0(v576, 98) )
+  {
+    v5 = CInPacket::Decode1(a3);
+    sub_F31FC0(this, v5);
+  }
+  if ( sub_9488F0(v576, 99) )
+  {
+    v6 = CInPacket::Decode2(a3);
+    sub_F314E0(this, v6);
+    v7 = CInPacket::Decode4(a3);
+    sub_F33DE0(this, v7);
+  }
+  if ( sub_9488F0(v576, 101) )
+  {
+    v8 = CInPacket::Decode2(a3);
+    sub_F337C0(this, v8);
+    v9 = CInPacket::Decode4(a3);
+    sub_F36080(this, v9);
+  }
+  if ( sub_9488F0(v576, 353) )
+  {
+    v10 = CInPacket::Decode2(a3);
+    sub_CFF5B0(this, v10);
+  }
+  if ( sub_9488F0(v576, 93) )
+  {
+    v11 = CInPacket::Decode2(a3);
+    sub_F334A0(this, v11);
+    v12 = CInPacket::Decode4(a3);
+    sub_F35D60(this, v12);
+  }
+  if ( sub_9488F0(v576, 211) )
+  {
+    v13 = CInPacket::Decode1(a3);
+    sub_F331A0(this, v13);
+  }
+  if ( sub_9488F0(v576, 96) )
+  {
+    v14 = CInPacket::Decode2(a3);
+    sub_F31A20(this, v14);
+    v15 = CInPacket::Decode4(a3);
+    sub_F34320(this, v15);
+  }
+  if ( sub_9488F0(v576, 95) )
+  {
+    v16 = CInPacket::Decode2(a3);
+    sub_F330C0(this, v16);
+    v17 = CInPacket::Decode4(a3);
+    sub_F35980(this, v17);
+  }
+  if ( sub_9488F0(v576, 108) )
+  {
+    v18 = CInPacket::Decode2(a3);
+    sub_F337A0(this, v18);
+    v19 = CInPacket::Decode4(a3);
+    sub_F36060(this, v19);
+  }
+  if ( sub_9488F0(v576, 207) )
+  {
+    v20 = CInPacket::Decode2(a3);
+    sub_F33780(this, v20);
+    v21 = CInPacket::Decode4(a3);
+    sub_F36040(this, v21);
+  }
+  if ( sub_9488F0(v576, 109) )
+  {
+    v22 = CInPacket::Decode2(a3);
+    sub_F31880(this, v22);
+    v23 = CInPacket::Decode4(a3);
+    sub_F34180(this, v23);
+  }
+  if ( sub_9488F0(v576, 110) )
+  {
+    v24 = CInPacket::Decode2(a3);
+    sub_D00E50(this, v24);
+    v25 = CInPacket::Decode4(a3);
+    sub_D033D0(this, v25);
+  }
+  if ( sub_9488F0(v576, 206) )
+  {
+    v26 = CInPacket::Decode2(a3);
+    sub_F32EE0(this, v26);
+    v27 = CInPacket::Decode4(a3);
+    sub_F357A0(this, v27);
+  }
+  if ( sub_9488F0(v576, 191) )
+  {
+    v28 = CInPacket::Decode2(a3);
+    sub_F335C0(this, v28);
+    v29 = CInPacket::Decode4(a3);
+    sub_F35E80(this, v29);
+  }
+  if ( sub_9488F0(v576, 194) )
+  {
+    v30 = CInPacket::Decode1(a3);
+    sub_F33500(this, v30);
+  }
+  if ( sub_9488F0(v576, 192) )
+  {
+    v31 = CInPacket::Decode2(a3);
+    sub_F31B40(this, v31);
+    v32 = CInPacket::Decode4(a3);
+    sub_F34440(this, v32);
+  }
+  if ( sub_9488F0(v576, 193) )
+  {
+    v33 = CInPacket::Decode2(a3);
+    sub_F33580(this, v33);
+    v34 = CInPacket::Decode4(a3);
+    sub_F35E40(this, v34);
+  }
+  if ( sub_9488F0(v576, 94) )
+  {
+    v35 = CInPacket::Decode2(a3);
+    sub_F32E20(this, v35);
+  }
+  if ( sub_9488F0(v576, 94) )
+  {
+    v36 = CInPacket::Decode2(a3);
+    sub_F32E20(this, v36);
+    v37 = CInPacket::Decode4(a3);
+    sub_F356E0(this, v37);
+  }
+  if ( sub_9488F0(v576, 104) )
+  {
+    v38 = CInPacket::Decode2(a3);
+    sub_F33160(this, v38);
+    v39 = CInPacket::Decode4(a3);
+    sub_F35A20(this, v39);
+  }
+  if ( sub_9488F0(v576, 86) )
+    sub_CFF390(this, 1);
+  if ( sub_9488F0(v576, 92) )
+    sub_F33220(this, 1);
+  if ( sub_9488F0(v576, 111) )
+  {
+    v40 = CInPacket::Decode2(a3);
+    sub_F32B40(this, v40);
+    v41 = CInPacket::Decode4(a3);
+    sub_F35440(this, v41);
+  }
+  if ( sub_9488F0(v576, 129) )
+  {
+    v42 = CInPacket::Decode2(a3);
+    sub_F321C0(this, v42);
+  }
+  if ( sub_9488F0(v576, 117) )
+  {
+    v43 = CInPacket::Decode2(a3);
+    sub_F31240(this, v43);
+    v44 = CInPacket::Decode4(a3);
+    sub_F33B40(this, v44);
+  }
+  if ( sub_9488F0(v576, 259) )
+  {
+    v45 = CInPacket::Decode2(a3);
+    sub_F32940(this, v45);
+    v46 = CInPacket::Decode4(a3);
+    sub_F35240(this, v46);
+  }
+  if ( sub_9488F0(v576, 260) )
+  {
+    v47 = CInPacket::Decode2(a3);
+    sub_F32920(this, v47);
+    v48 = CInPacket::Decode4(a3);
+    sub_F35220(this, v48);
+  }
+  if ( sub_9488F0(v576, 118) )
+  {
+    v49 = CInPacket::Decode4(a3);
+    sub_D00550(this, v49);
+  }
+  if ( sub_9488F0(v576, 124) )
+  {
+    v50 = CInPacket::Decode2(a3);
+    sub_CFEC70(this, v50);
+    v51 = CInPacket::Decode4(a3);
+    sub_D01770(this, v51);
+  }
+  if ( sub_9488F0(v576, 130) )
+  {
+    v52 = CInPacket::Decode2(a3);
+    sub_F31280(this, v52);
+    v53 = CInPacket::Decode4(a3);
+    sub_F33B80(this, v53);
+  }
+  if ( sub_9488F0(v576, 139) )
+  {
+    v54 = CInPacket::Decode2(a3);
+    sub_F31C00(this, v54);
+    v55 = CInPacket::Decode4(a3);
+    sub_F34500(this, v55);
+  }
+  if ( sub_9488F0(v576, 131) )
+  {
+    v56 = CInPacket::Decode2(a3);
+    sub_F33040(this, v56);
+    v57 = CInPacket::Decode4(a3);
+    sub_F35900(this, v57);
+  }
+  if ( sub_9488F0(v576, 133) )
+  {
+    v58 = CInPacket::Decode4(a3);
+    sub_D00AB0(this, v58);
+  }
+  if ( sub_9488F0(v576, 134) )
+  {
+    v59 = CInPacket::Decode4(a3);
+    sub_D00A70(this, v59);
+  }
+  if ( sub_9488F0(v576, 135) )
+  {
+    v60 = CInPacket::Decode4(a3);
+    sub_CFF430(this, v60);
+  }
+  if ( sub_9488F0(v576, 136) )
+  {
+    v61 = CInPacket::Decode4(a3);
+    sub_CFF470(this, v61);
+  }
+  if ( sub_9488F0(v576, 137) )
+  {
+    v62 = CInPacket::Decode2(a3);
+    sub_F31BA0(this, v62);
+    v63 = CInPacket::Decode4(a3);
+    sub_F344A0(this, v63);
+  }
+  if ( sub_9488F0(v576, 138) )
+    sub_F31BC0(this, 1);
+  if ( sub_9488F0(v576, 149) )
+  {
+    v64 = CInPacket::Decode2(a3);
+    sub_F32FA0(this, v64);
+    v65 = CInPacket::Decode4(a3);
+    sub_F35860(this, v65);
+  }
+  if ( sub_9488F0(v576, 675) )
+  {
+    v66 = CInPacket::Decode2(a3);
+    sub_D009F0(this, v66);
+    v67 = CInPacket::Decode4(a3);
+    sub_D02FF0(this, v67);
+  }
+  if ( sub_9488F0(v576, 151) )
+  {
+    v68 = CInPacket::Decode2(a3);
+    sub_F33420(this, v68);
+    v69 = CInPacket::Decode4(a3);
+    sub_F35CE0(this, v69);
+  }
+  if ( sub_9488F0(v576, 152) )
+  {
+    v70 = CInPacket::Decode2(a3);
+    sub_F33400(this, v70);
+    v71 = CInPacket::Decode4(a3);
+    sub_F35CC0(this, v71);
+  }
+  if ( sub_9488F0(v576, 153) )
+  {
+    v72 = CInPacket::Decode2(a3);
+    sub_F31FA0(this, v72);
+    v73 = CInPacket::Decode4(a3);
+    sub_F348A0(this, v73);
+  }
+  if ( sub_9488F0(v576, 155) )
+  {
+    v74 = CInPacket::Decode4(a3);
+    sub_D002B0(this, v74);
+  }
+  if ( sub_9488F0(v576, 158) )
+    sub_F32140(this, 1);
+  if ( sub_9488F0(v576, 159) )
+  {
+    v75 = CInPacket::Decode2(a3);
+    sub_F32180(this, v75);
+    v76 = CInPacket::Decode4(a3);
+    sub_F34A80(this, v76);
+  }
+  if ( sub_9488F0(v576, 208) )
+  {
+    v77 = CInPacket::Decode2(a3);
+    sub_F32160(this, v77);
+    v78 = CInPacket::Decode4(a3);
+    sub_F34A60(this, v78);
+  }
+  if ( sub_9488F0(v576, 189) )
+  {
+    v79 = CInPacket::Decode2(a3);
+    sub_F337E0(this, v79);
+    v80 = CInPacket::Decode4(a3);
+    sub_F360A0(this, v80);
+  }
+  if ( sub_9488F0(v576, 162) )
+  {
+    v81 = CInPacket::Decode2(a3);
+    sub_F31C60(this, v81);
+    v82 = CInPacket::Decode4(a3);
+    sub_F34560(this, v82);
+  }
+  if ( sub_9488F0(v576, 164) )
+  {
+    v83 = CInPacket::Decode2(a3);
+    sub_F32040(this, v83);
+    v84 = CInPacket::Decode4(a3);
+    sub_F34940(this, v84);
+  }
+  if ( sub_9488F0(v576, 334) )
+  {
+    v85 = CInPacket::Decode1(a3);
+    sub_F32C60(this, v85);
+  }
+  if ( sub_9488F0(v576, 334) )
+    sub_F32C60(this, 1);
+  if ( sub_9488F0(v576, 177) )
+    sub_F33200(this, 1);
+  if ( sub_9488F0(v576, 166) )
+    sub_F31400(this, 1);
+  if ( sub_9488F0(v576, 178) )
+  {
+    v86 = CInPacket::Decode2(a3);
+    sub_F32A20(this, v86);
+    v87 = CInPacket::Decode4(a3);
+    sub_F35320(this, v87);
+  }
+  if ( sub_9488F0(v576, 181) )
+    sub_CFEF50(this, 1);
+  if ( sub_9488F0(v576, 270) )
+    sub_CFEF30(this, 1);
+  if ( sub_9488F0(v576, 187) )
+  {
+    v88 = CInPacket::Decode2(a3);
+    sub_F32540(this, v88);
+    v89 = CInPacket::Decode4(a3);
+    sub_F34E40(this, v89);
+  }
+  if ( sub_9488F0(v576, 195) )
+  {
+    v90 = CInPacket::Decode2(a3);
+    sub_F31F80(this, v90);
+    v91 = CInPacket::Decode4(a3);
+    sub_F34880(this, v91);
+  }
+  if ( sub_9488F0(v576, 202) )
+  {
+    v92 = CInPacket::Decode2(a3);
+    sub_F319E0(this, v92);
+    v93 = CInPacket::Decode4(a3);
+    sub_F342E0(this, v93);
+  }
+  if ( sub_9488F0(v576, 210) )
+  {
+    v94 = CInPacket::Decode2(a3);
+    sub_F310A0(this, v94);
+    v95 = CInPacket::Decode4(a3);
+    sub_F339A0(this, v95);
+  }
+  if ( sub_9488F0(v576, 143) )
+  {
+    v96 = CInPacket::Decode2(a3);
+    sub_F322E0(this, v96);
+    v97 = CInPacket::Decode4(a3);
+    sub_F34BE0(this, v97);
+  }
+  if ( sub_9488F0(v576, 215) )
+    sub_CFF9D0(this, 1);
+  if ( sub_9488F0(v576, 222) )
+  {
+    v98 = CInPacket::Decode2(a3);
+    sub_F31B00(this, v98);
+    v99 = CInPacket::Decode4(a3);
+    sub_F34400(this, v99);
+  }
+  if ( sub_9488F0(v576, 224) )
+  {
+    v100 = CInPacket::Decode2(a3);
+    sub_F33380(this, v100);
+    v101 = CInPacket::Decode4(a3);
+    sub_F35C40(this, v101);
+  }
+  if ( sub_9488F0(v576, 226) )
+  {
+    v102 = CInPacket::Decode2(a3);
+    sub_F31F20(this, v102);
+    v103 = CInPacket::Decode4(a3);
+    sub_F34820(this, v103);
+  }
+  if ( sub_9488F0(v576, 234) )
+  {
+    v104 = CInPacket::Decode2(a3);
+    sub_F31EA0(this, v104);
+    v105 = CInPacket::Decode4(a3);
+    sub_F347A0(this, v105);
+  }
+  if ( sub_9488F0(v576, 239) )
+  {
+    v106 = CInPacket::Decode2(a3);
+    sub_F31A40(this, v106);
+    v107 = CInPacket::Decode4(a3);
+    sub_F34340(this, v107);
+  }
+  if ( sub_9488F0(v576, 258) )
+  {
+    v108 = CInPacket::Decode2(a3);
+    sub_F32D20(this, v108);
+    v109 = CInPacket::Decode4(a3);
+    sub_F355E0(this, v109);
+  }
+  if ( sub_9488F0(v576, 241) )
+  {
+    v110 = CInPacket::Decode2(a3);
+    sub_F32780(this, v110);
+    v111 = CInPacket::Decode4(a3);
+    sub_F35080(this, v111);
+  }
+  if ( sub_9488F0(v576, 269) )
+  {
+    v112 = CInPacket::Decode2(a3);
+    sub_D011B0(this, v112);
+    v113 = CInPacket::Decode4(a3);
+    sub_D036F0(this, v113);
+  }
+  if ( sub_9488F0(v576, 282) )
+  {
+    v114 = CInPacket::Decode2(a3);
+    sub_F336E0(this, v114);
+    v115 = CInPacket::Decode4(a3);
+    sub_F35FA0(this, v115);
+  }
+  if ( sub_9488F0(v576, 242) )
+  {
+    v116 = CInPacket::Decode2(a3);
+    sub_F33720(this, v116);
+    v117 = CInPacket::Decode4(a3);
+    sub_F35FE0(this, v117);
+  }
+  if ( sub_9488F0(v576, 247) )
+  {
+    v118 = CInPacket::Decode4(a3);
+    sub_D00790(this, v118);
+  }
+  if ( sub_9488F0(v576, 248) )
+  {
+    v119 = CInPacket::Decode1(a3);
+    sub_CFFEB0(this, v119);
+  }
+  if ( sub_9488F0(v576, 441) )
+  {
+    v120 = CInPacket::Decode1(a3);
+    sub_D006F0(this, v120);
+  }
+  if ( sub_9488F0(v576, 251) )
+  {
+    v121 = CInPacket::Decode2(a3);
+    sub_CFFAB0(this, v121);
+    v122 = CInPacket::Decode4(a3);
+    sub_D02430(this, v122);
+  }
+  if ( sub_9488F0(v576, 253) )
+  {
+    v123 = CInPacket::Decode2(a3);
+    sub_F32580(this, v123);
+    v124 = CInPacket::Decode4(a3);
+    sub_F34E80(this, v124);
+  }
+  if ( sub_9488F0(v576, 256) )
+  {
+    v125 = CInPacket::Decode2(a3);
+    sub_CFFDB0(this, v125);
+    v126 = CInPacket::Decode4(a3);
+    sub_D02550(this, v126);
+  }
+  if ( sub_9488F0(v576, 271) )
+  {
+    v127 = CInPacket::Decode2(a3);
+    sub_F32660(this, v127);
+    v128 = CInPacket::Decode4(a3);
+    sub_F34F60(this, v128);
+  }
+  if ( sub_9488F0(v576, 273) )
+  {
+    v129 = CInPacket::Decode2(a3);
+    sub_D00FD0(this, v129);
+  }
+  if ( sub_9488F0(v576, 274) )
+  {
+    v130 = CInPacket::Decode4(a3);
+    sub_F31480(this, v130);
+  }
+  if ( sub_9488F0(v576, 272) )
+  {
+    v131 = CInPacket::Decode2(a3);
+    sub_F327A0(this, v131);
+    v132 = CInPacket::Decode4(a3);
+    sub_F350A0(this, v132);
+  }
+  if ( sub_9488F0(v576, 280) )
+  {
+    v133 = CInPacket::Decode2(a3);
+    sub_F32FE0(this, v133);
+    v134 = CInPacket::Decode4(a3);
+    sub_F358A0(this, v134);
+  }
+  if ( sub_9488F0(v576, 281) )
+  {
+    v135 = CInPacket::Decode2(a3);
+    sub_F332E0(this, v135);
+    v136 = CInPacket::Decode4(a3);
+    sub_F35BA0(this, v136);
+  }
+  if ( sub_9488F0(v576, 283) )
+  {
+    v137 = CInPacket::Decode2(a3);
+    sub_D00FF0(this, v137);
+    v138 = CInPacket::Decode4(a3);
+    sub_D03550(this, v138);
+  }
+  if ( sub_9488F0(v576, 284) )
+  {
+    v139 = CInPacket::Decode2(a3);
+    sub_F33260(this, v139);
+    v140 = CInPacket::Decode4(a3);
+    sub_F35B20(this, v140);
+  }
+  if ( sub_9488F0(v576, 286) )
+  {
+    v141 = CInPacket::Decode2(a3);
+    sub_F32E60(this, v141);
+    v142 = CInPacket::Decode4(a3);
+    sub_F35720(this, v142);
+  }
+  if ( sub_9488F0(v576, 511) )
+  {
+    v143 = CInPacket::Decode2(a3);
+    sub_CFF730(this, v143);
+    v144 = CInPacket::Decode4(a3);
+    sub_D02150(this, v144);
+  }
+  if ( sub_9488F0(v576, 287) )
+  {
+    v145 = CInPacket::Decode2(a3);
+    sub_F31020(this, v145);
+    v146 = CInPacket::Decode4(a3);
+    sub_F33920(this, v146);
+  }
+  if ( sub_9488F0(v576, 296) )
+  {
+    v147 = CInPacket::Decode2(a3);
+    sub_F33240(this, v147);
+    v148 = CInPacket::Decode4(a3);
+    sub_F35B00(this, v148);
+  }
+  if ( sub_9488F0(v576, 154) )
+  {
+    v149 = CInPacket::Decode2(a3);
+    sub_F322A0(this, v149);
+    v150 = CInPacket::Decode4(a3);
+    sub_F34BA0(this, v150);
+  }
+  if ( sub_9488F0(v576, 278) )
+  {
+    v151 = CInPacket::Decode2(a3);
+    sub_D00E70(this, v151);
+    v152 = CInPacket::Decode4(a3);
+    sub_D033F0(this, v152);
+  }
+  if ( sub_9488F0(v576, 291) )
+  {
+    v153 = CInPacket::Decode2(a3);
+    sub_D00450(this, v153);
+    v154 = CInPacket::Decode4(a3);
+    sub_D02AF0(this, v154);
+  }
+  if ( sub_9488F0(v576, 292) )
+  {
+    v155 = CInPacket::Decode2(a3);
+    sub_F321E0(this, v155);
+    v156 = CInPacket::Decode4(a3);
+    sub_F34AE0(this, v156);
+  }
+  if ( sub_9488F0(v576, 293) )
+  {
+    v157 = CInPacket::Decode2(a3);
+    sub_F33620(this, v157);
+    v158 = CInPacket::Decode4(a3);
+    sub_F35EE0(this, v158);
+  }
+  if ( sub_9488F0(v576, 294) )
+  {
+    v159 = CInPacket::Decode2(a3);
+    sub_F31840(this, v159);
+    v160 = CInPacket::Decode4(a3);
+    sub_F34140(this, v160);
+  }
+  if ( sub_9488F0(v576, 294) )
+  {
+    v161 = MEMORY[0x6F3847A0]();
+    v162 = CInPacket::Decode4(a3);
+    sub_F36A00(this, v162 + v161);
+  }
+  if ( sub_9488F0(v576, 295) )
+  {
+    v163 = CInPacket::Decode2(a3);
+    sub_F317E0(this, v163);
+    v164 = CInPacket::Decode4(a3);
+    sub_F340E0(this, v164);
+  }
+  if ( sub_9488F0(v576, 297) )
+  {
+    v165 = CInPacket::Decode2(a3);
+    sub_F323C0(this, v165);
+    v166 = CInPacket::Decode4(a3);
+    sub_F34CC0(this, v166);
+  }
+  if ( sub_9488F0(v576, 298) )
+  {
+    v167 = CInPacket::Decode2(a3);
+    sub_F32440(this, v167);
+    v168 = CInPacket::Decode4(a3);
+    sub_F34D40(this, v168);
+  }
+  if ( sub_9488F0(v576, 299) )
+  {
+    v169 = CInPacket::Decode2(a3);
+    sub_F323E0(this, v169);
+    v170 = CInPacket::Decode4(a3);
+    sub_F34CE0(this, v170);
+  }
+  if ( sub_9488F0(v576, 300) )
+  {
+    v171 = CInPacket::Decode2(a3);
+    sub_F323A0(this, v171);
+    v172 = CInPacket::Decode4(a3);
+    sub_F34CA0(this, v172);
+  }
+  if ( sub_9488F0(v576, 301) )
+  {
+    v173 = CInPacket::Decode2(a3);
+    sub_F32060(this, v173);
+    v174 = CInPacket::Decode4(a3);
+    sub_F34960(this, v174);
+  }
+  if ( sub_9488F0(v576, 302) )
+  {
+    v175 = CInPacket::Decode2(a3);
+    sub_F32080(this, v175);
+    v176 = CInPacket::Decode4(a3);
+    sub_F34980(this, v176);
+  }
+  if ( sub_9488F0(v576, 303) )
+    sub_F33700(this, 1);
+  if ( sub_9488F0(v576, 304) )
+  {
+    v177 = CInPacket::Decode2(a3);
+    sub_F32280(this, v177);
+    v178 = CInPacket::Decode4(a3);
+    sub_F34B80(this, v178);
+  }
+  if ( sub_9488F0(v576, 221) )
+  {
+    v179 = CInPacket::Decode2(a3);
+    sub_F31940(this, v179);
+    v180 = CInPacket::Decode4(a3);
+    sub_F34240(this, v180);
+  }
+  if ( sub_9488F0(v576, 275) )
+  {
+    v181 = CInPacket::Decode2(a3);
+    sub_CFEA90(this, v181);
+    v182 = CInPacket::Decode4(a3);
+    sub_D015B0(this, v182);
+  }
+  if ( sub_9488F0(v576, 163) )
+  {
+    v183 = CInPacket::Decode2(a3);
+    sub_F32C20(this, v183);
+    v184 = CInPacket::Decode4(a3);
+    sub_F35500(this, v184);
+  }
+  if ( sub_9488F0(v576, 309) )
+  {
+    v185 = CInPacket::Decode2(a3);
+    sub_F31440(this, v185);
+    v186 = CInPacket::Decode4(a3);
+    sub_F33D40(this, v186);
+  }
+  if ( sub_9488F0(v576, 141) )
+  {
+    v187 = CInPacket::Decode2(a3);
+    sub_F33820(this, v187);
+    v188 = CInPacket::Decode4(a3);
+    sub_F360E0(this, v188);
+  }
+  if ( sub_9488F0(v576, 310) )
+  {
+    v189 = CInPacket::Decode2(a3);
+    sub_F32400(this, v189);
+    v190 = CInPacket::Decode4(a3);
+    sub_F34D00(this, v190);
+  }
+  if ( sub_9488F0(v576, 311) )
+  {
+    v191 = CInPacket::Decode2(a3);
+    sub_F31200(this, v191);
+    v192 = CInPacket::Decode4(a3);
+    sub_F33B00(this, v192);
+  }
+  if ( sub_9488F0(v576, 312) )
+  {
+    v193 = CInPacket::Decode4(a3);
+    sub_F32A40(this, v193);
+    v194 = CInPacket::Decode4(a3);
+    sub_F35340(this, v194);
+  }
+  if ( sub_9488F0(v576, 312) )
+  {
+    v195 = MEMORY[0x6F3847A0]();
+    v196 = CInPacket::Decode4(a3);
+    sub_F37C40(this, v196 + v195);
+  }
+  if ( sub_9488F0(v576, 314) )
+  {
+    v197 = CInPacket::Decode2(a3);
+    sub_F336A0(this, v197);
+    v198 = CInPacket::Decode4(a3);
+    sub_F35F60(this, v198);
+  }
+  if ( sub_9488F0(v576, 315) )
+  {
+    v199 = CInPacket::Decode2(a3);
+    sub_F333E0(this, v199);
+    v200 = CInPacket::Decode4(a3);
+    sub_F35CA0(this, v200);
+  }
+  if ( sub_9488F0(v576, 316) )
+  {
+    v201 = CInPacket::Decode1(a3);
+    sub_F33020(this, v201);
+    v202 = CInPacket::Decode4(a3);
+    sub_F358E0(this, v202);
+  }
+  if ( sub_9488F0(v576, 320) )
+  {
+    v203 = CInPacket::Decode2(a3);
+    sub_CFF050(this, v203);
+    v204 = CInPacket::Decode4(a3);
+    sub_D01B50(this, v204);
+  }
+  if ( sub_9488F0(v576, 325) )
+  {
+    v205 = CInPacket::Decode2(a3);
+    sub_F32CA0(this, v205);
+    v206 = CInPacket::Decode4(a3);
+    sub_F35580(this, v206);
+  }
+  if ( sub_9488F0(v576, 327) )
+  {
+    v207 = CInPacket::Decode1(a3);
+    sub_F320A0(this, v207);
+    v208 = CInPacket::Decode4(a3);
+    sub_F349A0(this, v208);
+  }
+  if ( sub_9488F0(v576, 329) )
+  {
+    v209 = CInPacket::Decode1(a3);
+    sub_F334C0(this, v209);
+  }
+  if ( sub_9488F0(v576, 332) )
+  {
+    v210 = CInPacket::Decode2(a3);
+    sub_D004B0(this, v210);
+    v211 = CInPacket::Decode4(a3);
+    sub_D02B50(this, v211);
+  }
+  if ( sub_9488F0(v576, 363) )
+  {
+    v212 = CInPacket::Decode2(a3);
+    sub_F32B60(this, v212);
+    v213 = CInPacket::Decode4(a3);
+    sub_F35460(this, v213);
+  }
+  if ( sub_9488F0(v576, 333) )
+  {
+    v214 = CInPacket::Decode2(a3);
+    sub_F31080(this, v214);
+    v215 = CInPacket::Decode4(a3);
+    sub_F33980(this, v215);
+  }
+  if ( sub_9488F0(v576, 335) )
+  {
+    v216 = CInPacket::Decode2(a3);
+    sub_F318C0(this, v216);
+    v217 = CInPacket::Decode4(a3);
+    sub_F341C0(this, v217);
+  }
+  if ( sub_9488F0(v576, 336) )
+  {
+    v218 = CInPacket::Decode2(a3);
+    sub_F33480(this, v218);
+    v219 = CInPacket::Decode4(a3);
+    sub_F35D40(this, v219);
+  }
+  if ( sub_9488F0(v576, 337) )
+  {
+    v220 = CInPacket::Decode2(a3);
+    sub_F31EE0(this, v220);
+    v221 = CInPacket::Decode4(a3);
+    sub_F347E0(this, v221);
+  }
+  if ( sub_9488F0(v576, 338) )
+  {
+    v222 = CInPacket::Decode2(a3);
+    sub_F31EC0(this, v222);
+    v223 = CInPacket::Decode4(a3);
+    sub_F347C0(this, v223);
+  }
+  if ( sub_9488F0(v576, 342) )
+  {
+    v224 = CInPacket::Decode2(a3);
+    sub_F31060(this, v224);
+    v225 = CInPacket::Decode4(a3);
+    sub_F33960(this, v225);
+  }
+  if ( sub_9488F0(v576, 343) )
+  {
+    v226 = CInPacket::Decode2(a3);
+    sub_F33640(this, v226);
+    v227 = CInPacket::Decode4(a3);
+    sub_F35F00(this, v227);
+  }
+  if ( sub_9488F0(v576, 344) )
+  {
+    v228 = CInPacket::Decode2(a3);
+    sub_D00710(this, v228);
+    v229 = CInPacket::Decode4(a3);
+    sub_D02D50(this, v229);
+  }
+  if ( sub_9488F0(v576, 345) )
+  {
+    v230 = CInPacket::Decode2(a3);
+    sub_F32800(this, v230);
+    v231 = CInPacket::Decode4(a3);
+    sub_F35100(this, v231);
+  }
+  if ( sub_9488F0(v576, 346) )
+  {
+    v232 = CInPacket::Decode2(a3);
+    sub_F31DA0(this, v232);
+    v233 = CInPacket::Decode4(a3);
+    sub_F346A0(this, v233);
+  }
+  if ( sub_9488F0(v576, 347) )
+  {
+    v234 = CInPacket::Decode2(a3);
+    sub_F32200(this, v234);
+    v235 = CInPacket::Decode4(a3);
+    sub_F34B00(this, v235);
+  }
+  if ( sub_9488F0(v576, 357) )
+  {
+    v236 = CInPacket::Decode2(a3);
+    sub_D009B0(this, v236);
+    v237 = CInPacket::Decode4(a3);
+    sub_D02FB0(this, v237);
+  }
+  if ( sub_9488F0(v576, 185) )
+  {
+    v238 = CInPacket::Decode2(a3);
+    sub_CFEDB0(this, v238);
+    v239 = CInPacket::Decode4(a3);
+    sub_D018B0(this, v239);
+  }
+  if ( sub_9488F0(v576, 364) )
+  {
+    v240 = CInPacket::Decode2(a3);
+    sub_D007B0(this, v240);
+    v241 = CInPacket::Decode4(a3);
+    sub_D02DD0(this, v241);
+  }
+  if ( sub_9488F0(v576, 368) )
+  {
+    v242 = CInPacket::Decode2(a3);
+    sub_CFEB30(this, v242);
+    v243 = CInPacket::Decode4(a3);
+    sub_D01650(this, v243);
+  }
+  if ( sub_9488F0(v576, 366) )
+    sub_D01170(this, 1);
+  if ( sub_9488F0(v576, 367) )
+  {
+    v244 = CInPacket::Decode4(a3);
+    sub_CFFAD0(this, v244);
+  }
+  if ( sub_9488F0(v576, 367) )
+  {
+    v245 = CInPacket::Decode4(a3);
+    sub_D06490(this, v245);
+  }
+  if ( sub_9488F0(v576, 351) )
+  {
+    v246 = CInPacket::Decode4(a3);
+    sub_D02230(this, v246);
+    v247 = MEMORY[0x6F3847A0]();
+    v248 = CInPacket::Decode4(a3);
+    sub_D063B0(this, v248 + v247);
+  }
+  if ( sub_9488F0(v576, 275) )
+  {
+    LOBYTE(v249) = CInPacket::Decode1(a3) != 0;
+    sub_CFE050(this, v249);
+    v250 = CInPacket::Decode4(a3);
+    sub_D03AD0(this, v250);
+    if ( sub_F2C3B0(this) )
+    {
+      v251 = sub_F2C3B0(this);
+      v252 = MEMORY[0x6F3847A0]();
+      sub_D03AD0(this, v252 + v251);
+    }
+  }
+  if ( sub_9488F0(v576, 167) )
+  {
+    v253 = CInPacket::Decode4(a3);
+    sub_CFF370(this, v253);
+    v254 = CInPacket::Decode4(a3);
+    sub_D01DF0(this, v254);
+  }
+  if ( sub_9488F0(v576, 382) )
+  {
+    v255 = CInPacket::Decode4(a3);
+    sub_F33360(this, v255);
+    v256 = CInPacket::Decode4(a3);
+    sub_F35C20(this, v256);
+  }
+  if ( sub_9488F0(v576, 427) )
+  {
+    v257 = CInPacket::Decode4(a3);
+    sub_F32980(this, v257);
+    v258 = CInPacket::Decode4(a3);
+    sub_F35280(this, v258);
+  }
+  if ( sub_9488F0(v576, 387) )
+  {
+    v259 = CInPacket::Decode2(a3);
+    sub_F317C0(this, v259);
+    v260 = CInPacket::Decode4(a3);
+    sub_F340C0(this, v260);
+  }
+  if ( sub_9488F0(v576, 328) )
+  {
+    v261 = CInPacket::Decode2(a3);
+    sub_F32260(this, v261);
+    v262 = CInPacket::Decode4(a3);
+    sub_F34B60(this, v262);
+  }
+  if ( sub_9488F0(v576, 403) )
+  {
+    v263 = CInPacket::Decode2(a3);
+    sub_F31800(this, v263);
+    v264 = CInPacket::Decode4(a3);
+    sub_F34100(this, v264);
+  }
+  if ( sub_9488F0(v576, 404) )
+  {
+    v265 = CInPacket::Decode2(a3);
+    sub_F32620(this, v265);
+    v266 = CInPacket::Decode4(a3);
+    sub_F34F20(this, v266);
+  }
+  if ( sub_9488F0(v576, 412) )
+  {
+    v267 = CInPacket::Decode2(a3);
+    sub_F31560(this, v267);
+    v268 = CInPacket::Decode4(a3);
+    sub_F33E60(this, v268);
+  }
+  if ( sub_9488F0(v576, 491) )
+  {
+    v269 = CInPacket::Decode2(a3);
+    sub_D01130(this, v269);
+    v270 = CInPacket::Decode4(a3);
+    sub_D03690(this, v270);
+  }
+  if ( sub_9488F0(v576, 492) )
+  {
+    v271 = CInPacket::Decode2(a3);
+    sub_CFF5F0(this, v271);
+    v272 = CInPacket::Decode4(a3);
+    sub_D02010(this, v272);
+  }
+  if ( sub_9488F0(v576, 493) )
+  {
+    v273 = CInPacket::Decode2(a3);
+    sub_D001B0(this, v273);
+    v274 = CInPacket::Decode4(a3);
+    sub_D028F0(this, v274);
+  }
+  if ( sub_9488F0(v576, 494) )
+  {
+    v275 = CInPacket::Decode2(a3);
+    sub_CFF030(this, v275);
+    v276 = CInPacket::Decode4(a3);
+    sub_D01B30(this, v276);
+  }
+  if ( sub_9488F0(v576, 495) )
+  {
+    v277 = CInPacket::Decode2(a3);
+    sub_D001F0(this, v277);
+    v278 = CInPacket::Decode4(a3);
+    sub_D02930(this, v278);
+  }
+  if ( sub_9488F0(v576, 496) )
+  {
+    v279 = CInPacket::Decode2(a3);
+    sub_CFEDD0(this, v279);
+    v280 = CInPacket::Decode4(a3);
+    sub_D018D0(this, v280);
+  }
+  if ( sub_9488F0(v576, 409) )
+  {
+    v281 = CInPacket::Decode2(a3);
+    sub_F319C0(this, v281);
+    v282 = CInPacket::Decode4(a3);
+    sub_F342C0(this, v282);
+  }
+  if ( sub_9488F0(v576, 410) )
+  {
+    v283 = CInPacket::Decode2(a3);
+    sub_F31220(this, v283);
+    v284 = CInPacket::Decode4(a3);
+    sub_F33B20(this, v284);
+  }
+  if ( sub_9488F0(v576, 422) )
+  {
+    v285 = CInPacket::Decode2(a3);
+    sub_CFF750(this, v285);
+    v286 = CInPacket::Decode4(a3);
+    sub_D02170(this, v286);
+  }
+  if ( sub_9488F0(v576, 250) )
+  {
+    v287 = CInPacket::Decode2(a3);
+    sub_CFFE90(this, v287);
+    v288 = CInPacket::Decode4(a3);
+    sub_D02610(this, v288);
+  }
+  if ( sub_9488F0(v576, 451) )
+  {
+    v289 = CInPacket::Decode2(a3);
+    sub_D003B0(this, v289);
+    v290 = CInPacket::Decode4(a3);
+    sub_D02A50(this, v290);
+  }
+  if ( sub_9488F0(v576, 459) )
+  {
+    v291 = CInPacket::Decode4(a3);
+    sub_CFFEF0(this, v291);
+    v292 = CInPacket::Decode4(a3);
+    sub_D02650(this, v292);
+  }
+  if ( sub_9488F0(v576, 460) )
+  {
+    v293 = CInPacket::Decode2(a3);
+    sub_CFEF10(this, v293);
+    v294 = CInPacket::Decode4(a3);
+    sub_D01A10(this, v294);
+  }
+  if ( sub_9488F0(v576, 460) )
+  {
+    v295 = CInPacket::Decode4(a3);
+    sub_D061D0(this, v295);
+  }
+  if ( sub_9488F0(v576, 465) )
+  {
+    v296 = CInPacket::Decode2(a3);
+    sub_CFF6F0(this, v296);
+    v297 = CInPacket::Decode4(a3);
+    sub_D02110(this, v297);
+  }
+  if ( sub_9488F0(v576, 470) )
+  {
+    v298 = CInPacket::Decode4(a3);
+    sub_CFE970(this, v298);
+  }
+  if ( sub_9488F0(v576, 479) )
+  {
+    v299 = CInPacket::Decode4(a3);
+    sub_D00810(this, v299);
+  }
+  if ( sub_9488F0(v576, 477) )
+  {
+    v300 = CInPacket::Decode4(a3);
+    sub_D008F0(this, v300);
+  }
+  if ( sub_9488F0(v576, 478) )
+  {
+    v301 = CInPacket::Decode4(a3);
+    sub_D00870(this, v301);
+  }
+  if ( sub_9488F0(v576, 261) )
+  {
+    v302 = CInPacket::Decode2(a3);
+    sub_F32240(this, v302);
+    v303 = CInPacket::Decode4(a3);
+    sub_F34B40(this, v303);
+  }
+  if ( sub_9488F0(v576, 262) )
+  {
+    v304 = CInPacket::Decode2(a3);
+    sub_F33460(this, v304);
+    v305 = CInPacket::Decode4(a3);
+    sub_F35D20(this, v305);
+  }
+  if ( sub_9488F0(v576, 263) )
+  {
+    v306 = CInPacket::Decode2(a3);
+    sub_D000D0(this, v306);
+    v307 = CInPacket::Decode4(a3);
+    sub_D02810(this, v307);
+  }
+  if ( sub_9488F0(v576, 264) )
+  {
+    v308 = CInPacket::Decode2(a3);
+    sub_D010F0(this, v308);
+    v309 = CInPacket::Decode4(a3);
+    sub_D03650(this, v309);
+  }
+  if ( sub_9488F0(v576, 265) )
+  {
+    v310 = CInPacket::Decode2(a3);
+    sub_CFF0F0(this, v310);
+    v311 = CInPacket::Decode4(a3);
+    sub_D01BF0(this, v311);
+  }
+  if ( sub_9488F0(v576, 485) )
+  {
+    v312 = CInPacket::Decode2(a3);
+    sub_F333C0(this, v312);
+    v313 = CInPacket::Decode4(a3);
+    sub_F35C80(this, v313);
+  }
+  if ( sub_9488F0(v576, 424) )
+  {
+    v314 = CInPacket::Decode4(a3);
+    sub_D00630(this, v314);
+    v315 = CInPacket::Decode4(a3);
+    sub_D02C90(this, v315);
+  }
+  if ( sub_9488F0(v576, 502) )
+  {
+    v316 = CInPacket::Decode4(a3);
+    sub_D003F0(this, v316);
+    v317 = CInPacket::Decode4(a3);
+    sub_D02A90(this, v317);
+  }
+  if ( sub_9488F0(v576, 503) )
+  {
+    v318 = CInPacket::Decode4(a3);
+    sub_CFFF30(this, v318);
+  }
+  if ( sub_9488F0(v576, 486) )
+  {
+    v319 = CInPacket::Decode4(a3);
+    sub_D002D0(this, v319);
+  }
+  if ( sub_9488F0(v576, 501) )
+  {
+    v320 = CInPacket::Decode4(a3);
+    sub_D01310(this, v320);
+  }
+  if ( sub_9488F0(v576, 377) )
+  {
+    v321 = CInPacket::Decode2(a3);
+    sub_F318A0(this, v321);
+    v322 = CInPacket::Decode4(a3);
+    sub_F341A0(this, v322);
+  }
+  if ( sub_9488F0(v576, 516) )
+  {
+    v323 = CInPacket::Decode2(a3);
+    sub_D00570(this, v323);
+    v324 = CInPacket::Decode4(a3);
+    sub_D02C10(this, v324);
+  }
+  if ( sub_9488F0(v576, 515) )
+  {
+    v325 = CInPacket::Decode2(a3);
+    sub_F32000(this, v325);
+    v326 = CInPacket::Decode4(a3);
+    sub_F34900(this, v326);
+  }
+  if ( sub_9488F0(v576, 514) )
+  {
+    v327 = CInPacket::Decode2(a3);
+    sub_D00590(this, v327);
+    v328 = CInPacket::Decode4(a3);
+    sub_D02C30(this, v328);
+  }
+  if ( sub_9488F0(v576, 513) )
+  {
+    v329 = CInPacket::Decode2(a3);
+    sub_CFF810(this, v329);
+    v330 = CInPacket::Decode4(a3);
+    sub_D02210(this, v330);
+  }
+  if ( sub_9488F0(v576, 100) )
+  {
+    v331 = CInPacket::Decode2(a3);
+    sub_F314C0(this, v331);
+    v332 = CInPacket::Decode4(a3);
+    sub_F33DC0(this, v332);
+  }
+  if ( sub_9488F0(v576, 520) )
+  {
+    v333 = CInPacket::Decode2(a3);
+    sub_CFF190(this, v333);
+    v334 = CInPacket::Decode4(a3);
+    sub_D01C90(this, v334);
+  }
+  if ( sub_9488F0(v576, 521) )
+  {
+    v335 = CInPacket::Decode2(a3);
+    sub_CFF610(this, v335);
+    v336 = CInPacket::Decode4(a3);
+    sub_D02030(this, v336);
+  }
+  if ( sub_9488F0(v576, 522) )
+  {
+    v337 = CInPacket::Decode2(a3);
+    sub_D00950(this, v337);
+    v338 = CInPacket::Decode4(a3);
+    sub_D02F70(this, v338);
+  }
+  if ( sub_9488F0(v576, 523) )
+  {
+    v339 = CInPacket::Decode2(a3);
+    sub_CFF1D0(this, v339);
+    v340 = CInPacket::Decode4(a3);
+    sub_D01CD0(this, v340);
+  }
+  if ( sub_9488F0(v576, 524) )
+  {
+    v341 = CInPacket::Decode2(a3);
+    sub_CFEDF0(this, v341);
+    v342 = CInPacket::Decode4(a3);
+    sub_D018F0(this, v342);
+  }
+  if ( sub_9488F0(v576, 525) )
+  {
+    v343 = CInPacket::Decode2(a3);
+    sub_CFEE10(this, v343);
+    v344 = CInPacket::Decode4(a3);
+    sub_D01910(this, v344);
+  }
+  if ( sub_9488F0(v576, 526) )
+  {
+    v345 = CInPacket::Decode2(a3);
+    sub_CFEE30(this, v345);
+    v346 = CInPacket::Decode4(a3);
+    sub_D01930(this, v346);
+  }
+  if ( sub_9488F0(v576, 527) )
+  {
+    v347 = CInPacket::Decode2(a3);
+    sub_CFF990(this, v347);
+    v348 = CInPacket::Decode4(a3);
+    sub_D02350(this, v348);
+  }
+  if ( sub_9488F0(v576, 518) )
+  {
+    v349 = CInPacket::Decode2(a3);
+    sub_F327E0(this, v349);
+    v350 = CInPacket::Decode4(a3);
+    sub_F350E0(this, v350);
+  }
+  if ( sub_9488F0(v576, 528) )
+  {
+    v351 = CInPacket::Decode2(a3);
+    sub_CFEFF0(this, v351);
+    v352 = CInPacket::Decode4(a3);
+    sub_D01AF0(this, v352);
+  }
+  if ( sub_9488F0(v576, 528) )
+  {
+    v353 = MEMORY[0x6F3847A0]();
+    v354 = CInPacket::Decode4(a3);
+    sub_D04010(this, v354 + v353);
+  }
+  if ( sub_9488F0(v576, 529) )
+  {
+    v355 = CInPacket::Decode4(a3);
+    sub_CFF4D0(this, v355);
+    v356 = CInPacket::Decode4(a3);
+    sub_D01F10(this, v356);
+  }
+  if ( sub_9488F0(v576, 530) )
+  {
+    v357 = CInPacket::Decode2(a3);
+    sub_CFF910(this, v357);
+    v358 = CInPacket::Decode4(a3);
+    sub_D022D0(this, v358);
+  }
+  if ( sub_9488F0(v576, 531) )
+  {
+    v359 = CInPacket::Decode2(a3);
+    sub_D000F0(this, v359);
+    v360 = CInPacket::Decode4(a3);
+    sub_D02830(this, v360);
+  }
+  if ( sub_9488F0(v576, 541) )
+  {
+    v361 = CInPacket::Decode2(a3);
+    sub_D00EF0(this, v361);
+    v362 = CInPacket::Decode4(a3);
+    sub_D03470(this, v362);
+  }
+  if ( sub_9488F0(v576, 546) )
+  {
+    v363 = CInPacket::Decode2(a3);
+    sub_CFF170(this, v363);
+    v364 = CInPacket::Decode4(a3);
+    sub_D01C70(this, v364);
+  }
+  if ( sub_9488F0(v576, 554) )
+  {
+    v365 = CInPacket::Decode2(a3);
+    sub_CFEFB0(this, v365);
+    v366 = CInPacket::Decode4(a3);
+    sub_D01AB0(this, v366);
+  }
+  if ( sub_9488F0(v576, 529) )
+  {
+    v367 = MEMORY[0x6F3847A0]();
+    v368 = CInPacket::Decode4(a3);
+    sub_D04430(this, v368 + v367);
+  }
+  if ( sub_9488F0(v576, 562) )
+    sub_D003D0(this, 1);
+  if ( sub_9488F0(v576, 267) )
+  {
+    v369 = CInPacket::Decode2(a3);
+    sub_CFF8B0(this, v369);
+    v370 = CInPacket::Decode4(a3);
+    sub_D022B0(this, v370);
+  }
+  if ( sub_9488F0(v576, 579) )
+  {
+    v371 = CInPacket::Decode2(a3);
+    sub_D00E10(this, v371);
+    v372 = CInPacket::Decode4(a3);
+    sub_D03390(this, v372);
+  }
+  if ( sub_9488F0(v576, 580) )
+  {
+    v373 = CInPacket::Decode2(a3);
+    sub_CFEF70(this, v373);
+    v374 = CInPacket::Decode4(a3);
+    sub_D01A70(this, v374);
+  }
+  if ( sub_9488F0(v576, 583) )
+  {
+    v375 = CInPacket::Decode2(a3);
+    sub_CFED70(this, v375);
+    v376 = CInPacket::Decode4(a3);
+    sub_D01870(this, v376);
+  }
+  if ( sub_9488F0(v576, 584) )
+  {
+    v377 = CInPacket::Decode2(a3);
+    sub_CFED50(this, v377);
+    v378 = CInPacket::Decode4(a3);
+    sub_D01850(this, v378);
+  }
+  if ( sub_9488F0(v576, 585) )
+  {
+    v379 = CInPacket::Decode2(a3);
+    sub_CFED90(this, v379);
+    v380 = CInPacket::Decode4(a3);
+    sub_D01890(this, v380);
+  }
+  if ( sub_9488F0(v576, 586) )
+    sub_F313A0(this, 1);
+  if ( sub_9488F0(v576, 589) )
+  {
+    v381 = CInPacket::Decode2(a3);
+    sub_D006D0(this, v381);
+    v382 = CInPacket::Decode4(a3);
+    sub_D02D30(this, v382);
+  }
+  if ( sub_9488F0(v576, 594) )
+  {
+    v383 = CInPacket::Decode2(a3);
+    sub_D00410(this, v383);
+    v384 = CInPacket::Decode4(a3);
+    sub_D02AB0(this, v384);
+  }
+  if ( sub_9488F0(v576, 599) )
+  {
+    v385 = CInPacket::Decode2(a3);
+    sub_CFEA10(this, v385);
+    v386 = CInPacket::Decode4(a3);
+    sub_D01530(this, v386);
+  }
+  if ( sub_9488F0(v576, 574) )
+  {
+    v387 = CInPacket::Decode2(a3);
+    sub_CFEE90(this, v387);
+    v388 = CInPacket::Decode4(a3);
+    sub_D01990(this, v388);
+  }
+  if ( sub_9488F0(v576, 575) )
+  {
+    v389 = CInPacket::Decode2(a3);
+    sub_CFEE50(this, v389);
+    v390 = CInPacket::Decode4(a3);
+    sub_D01950(this, v390);
+  }
+  if ( sub_9488F0(v576, 605) )
+  {
+    v391 = CInPacket::Decode2(a3);
+    sub_D00170(this, v391);
+    v392 = CInPacket::Decode4(a3);
+    sub_D028B0(this, v392);
+  }
+  if ( sub_9488F0(v576, 606) )
+  {
+    v393 = CInPacket::Decode2(a3);
+    sub_D01390(this, v393);
+    v394 = CInPacket::Decode4(a3);
+    sub_D038B0(this, v394);
+  }
+  if ( sub_9488F0(v576, 614) )
+  {
+    v395 = CInPacket::Decode2(a3);
+    sub_D00150(this, v395);
+    v396 = CInPacket::Decode4(a3);
+    sub_D02890(this, v396);
+  }
+  if ( sub_9488F0(v576, 617) )
+  {
+    v397 = CInPacket::Decode2(a3);
+    sub_D00B70(this, v397);
+    v398 = CInPacket::Decode4(a3);
+    sub_D03130(this, v398);
+  }
+  if ( sub_9488F0(v576, 618) )
+  {
+    v399 = CInPacket::Decode2(a3);
+    sub_D00B50(this, v399);
+    v400 = CInPacket::Decode4(a3);
+    sub_D03110(this, v400);
+  }
+  if ( sub_9488F0(v576, 619) )
+  {
+    v401 = CInPacket::Decode2(a3);
+    sub_F31A60(this, v401);
+    v402 = CInPacket::Decode4(a3);
+    sub_F34360(this, v402);
+  }
+  if ( sub_9488F0(v576, 620) )
+  {
+    v403 = CInPacket::Decode2(a3);
+    sub_CFEC30(this, v403);
+    v404 = CInPacket::Decode4(a3);
+    sub_D01730(this, v404);
+  }
+  if ( sub_9488F0(v576, 621) )
+  {
+    v405 = CInPacket::Decode2(a3);
+    sub_CFEBF0(this, v405);
+    v406 = CInPacket::Decode4(a3);
+    sub_D016F0(this, v406);
+  }
+  if ( sub_9488F0(v576, 622) )
+  {
+    v407 = CInPacket::Decode2(a3);
+    sub_CFEB90(this, v407);
+    v408 = CInPacket::Decode4(a3);
+    sub_D01690(this, v408);
+  }
+  if ( sub_9488F0(v576, 623) )
+  {
+    v409 = CInPacket::Decode2(a3);
+    sub_CFEBB0(this, v409);
+    v410 = CInPacket::Decode4(a3);
+    sub_D016B0(this, v410);
+  }
+  if ( sub_9488F0(v576, 624) )
+  {
+    v411 = CInPacket::Decode2(a3);
+    sub_CFEBD0(this, v411);
+    v412 = CInPacket::Decode4(a3);
+    sub_D016D0(this, v412);
+  }
+  if ( sub_9488F0(v576, 625) )
+  {
+    v413 = CInPacket::Decode2(a3);
+    sub_CFEC10(this, v413);
+    v414 = CInPacket::Decode4(a3);
+    sub_D01710(this, v414);
+  }
+  if ( sub_9488F0(v576, 626) )
+  {
+    v415 = CInPacket::Decode2(a3);
+    sub_CFFA90(this, v415);
+    v416 = CInPacket::Decode4(a3);
+    sub_D02410(this, v416);
+  }
+  if ( sub_9488F0(v576, 627) )
+  {
+    v417 = CInPacket::Decode2(a3);
+    sub_CFFF50(this, v417);
+    v418 = CInPacket::Decode4(a3);
+    sub_D026B0(this, v418);
+  }
+  if ( sub_9488F0(v576, 628) )
+  {
+    v419 = CInPacket::Decode2(a3);
+    sub_D013F0(this, v419);
+    v420 = CInPacket::Decode4(a3);
+    sub_D03910(this, v420);
+  }
+  if ( sub_9488F0(v576, 629) )
+  {
+    v421 = CInPacket::Decode2(a3);
+    sub_D013D0(this, v421);
+    v422 = CInPacket::Decode4(a3);
+    sub_D038F0(this, v422);
+  }
+  if ( sub_9488F0(v576, 634) )
+  {
+    v423 = CInPacket::Decode2(a3);
+    sub_CFEAD0(this, v423);
+    v424 = CInPacket::Decode4(a3);
+    sub_D015F0(this, v424);
+  }
+  if ( sub_9488F0(v576, 635) )
+  {
+    v425 = CInPacket::Decode2(a3);
+    sub_D01370(this, v425);
+    v426 = CInPacket::Decode4(a3);
+    sub_D03890(this, v426);
+  }
+  if ( sub_9488F0(v576, 645) )
+  {
+    v427 = CInPacket::Decode2(a3);
+    sub_CFF3B0(this, v427);
+    v428 = CInPacket::Decode4(a3);
+    sub_D01E30(this, v428);
+  }
+  if ( sub_9488F0(v576, 633) )
+  {
+    v429 = CInPacket::Decode2(a3);
+    sub_D00C70(this, v429);
+    v430 = CInPacket::Decode4(a3);
+    sub_D031F0(this, v430);
+  }
+  if ( sub_9488F0(v576, 648) )
+  {
+    v431 = CInPacket::Decode2(a3);
+    sub_F31E60(this, v431);
+    v432 = CInPacket::Decode4(a3);
+    sub_F34760(this, v432);
+  }
+  if ( sub_9488F0(v576, 654) )
+  {
+    v433 = CInPacket::Decode2(a3);
+    sub_CFF870(this, v433);
+    v434 = CInPacket::Decode4(a3);
+    sub_D02270(this, v434);
+  }
+  if ( sub_9488F0(v576, 678) )
+  {
+    v435 = CInPacket::Decode2(a3);
+    sub_D00D50(this, v435);
+    v436 = CInPacket::Decode4(a3);
+    sub_D032D0(this, v436);
+  }
+  if ( sub_9488F0(v576, 679) )
+  {
+    v437 = CInPacket::Decode2(a3);
+    sub_CFF070(this, v437);
+    v438 = CInPacket::Decode4(a3);
+    sub_D01B70(this, v438);
+  }
+  if ( sub_9488F0(v576, 659) )
+  {
+    v439 = CInPacket::Decode2(a3);
+    sub_CFEED0(this, v439);
+    v440 = CInPacket::Decode4(a3);
+    sub_D019D0(this, v440);
+  }
+  if ( sub_9488F0(v576, 659) )
+  {
+    v441 = CInPacket::Decode4(a3);
+    sub_D061B0(this, v441);
+  }
+  if ( sub_9488F0(v576, 667) )
+  {
+    v442 = CInPacket::Decode2(a3);
+    sub_CFEEB0(this, v442);
+    v443 = CInPacket::Decode4(a3);
+    sub_D019B0(this, v443);
+  }
+  if ( sub_9488F0(v576, 660) )
+  {
+    v444 = CInPacket::Decode2(a3);
+    sub_CFEEF0(this, v444);
+    v445 = CInPacket::Decode4(a3);
+    sub_D019F0(this, v445);
+  }
+  if ( sub_9488F0(v576, 664) )
+  {
+    v446 = CInPacket::Decode2(a3);
+    sub_D00BF0(this, v446);
+    v447 = CInPacket::Decode4(a3);
+    sub_D03190(this, v447);
+  }
+  if ( sub_9488F0(v576, 665) )
+  {
+    v448 = CInPacket::Decode2(a3);
+    sub_D00C10(this, v448);
+    v449 = CInPacket::Decode4(a3);
+    sub_D031B0(this, v449);
+  }
+  if ( sub_9488F0(v576, 666) )
+  {
+    v450 = CInPacket::Decode2(a3);
+    sub_D00C30(this, v450);
+    v451 = CInPacket::Decode4(a3);
+    sub_D031D0(this, v451);
+  }
+  if ( sub_9488F0(v576, 671) )
+  {
+    v452 = CInPacket::Decode2(a3);
+    sub_CFF250(this, v452);
+    v453 = CInPacket::Decode4(a3);
+    sub_D01D30(this, v453);
+  }
+  if ( sub_9488F0(v576, 673) )
+  {
+    v454 = CInPacket::Decode2(a3);
+    sub_CFEF90(this, v454);
+    v455 = CInPacket::Decode4(a3);
+    sub_D01A90(this, v455);
+  }
+  if ( sub_9488F0(v576, 114) )
+  {
+    v456 = CInPacket::Decode2(a3);
+    sub_F333A0(this, v456);
+    v457 = CInPacket::Decode4(a3);
+    sub_F35C60(this, v457);
+  }
+  if ( sub_9488F0(v576, 674) )
+  {
+    v458 = CInPacket::Decode2(a3);
+    sub_D00E30(this, v458);
+    v459 = CInPacket::Decode4(a3);
+    sub_D033B0(this, v459);
+  }
+  if ( sub_9488F0(v576, 676) )
+  {
+    v460 = CInPacket::Decode2(a3);
+    sub_D004D0(this, v460);
+    v461 = CInPacket::Decode4(a3);
+    sub_D02B70(this, v461);
+  }
+  if ( sub_9488F0(v576, 677) )
+  {
+    v462 = CInPacket::Decode2(a3);
+    sub_CFEA50(this, v462);
+    v463 = CInPacket::Decode4(a3);
+    sub_D01570(this, v463);
+  }
+  if ( sub_9488F0(v576, 661) )
+  {
+    v464 = CInPacket::Decode2(a3);
+    sub_CFFE30(this, v464);
+    v465 = CInPacket::Decode4(a3);
+    sub_D025B0(this, v465);
+  }
+  if ( sub_9488F0(v576, 681) )
+  {
+    v466 = CInPacket::Decode2(a3);
+    sub_D012D0(this, v466);
+    v467 = CInPacket::Decode4(a3);
+    sub_D037F0(this, v467);
+  }
+  if ( sub_9488F0(v576, 685) )
+  {
+    v468 = CInPacket::Decode4(a3);
+    sub_CFF890(this, v468);
+    v469 = CInPacket::Decode4(a3);
+    sub_D02290(this, v469);
+  }
+  if ( sub_9488F0(v576, 686) )
+  {
+    v470 = CInPacket::Decode4(a3);
+    sub_F33760(this, v470);
+  }
+  if ( sub_9488F0(v576, 687) )
+  {
+    v471 = CInPacket::Decode4(a3);
+    sub_F33740(this, v471);
+  }
+  if ( sub_9488F0(v576, 689) )
+  {
+    v472 = CInPacket::Decode2(a3);
+    sub_D01250(this, v472);
+    v473 = CInPacket::Decode4(a3);
+    sub_D03770(this, v473);
+  }
+  if ( sub_9488F0(v576, 690) )
+  {
+    v474 = CInPacket::Decode4(a3);
+    sub_F33300(this, v474);
+  }
+  if ( sub_9488F0(v576, 691) )
+  {
+    v475 = CInPacket::Decode4(a3);
+    sub_D00990(this, v475);
+  }
+  if ( sub_9488F0(v576, 658) )
+  {
+    v476 = CInPacket::Decode1(a3);
+    sub_CFF0D0(this, v476);
+  }
+  if ( sub_9488F0(v576, 658) )
+  {
+    v477 = CInPacket::Decode4(a3);
+    sub_D061F0(this, v477);
+  }
+  if ( sub_9488F0(v576, 512) )
+  {
+    v478 = CInPacket::Decode2(a3);
+    sub_D00FB0(this, v478);
+    v479 = CInPacket::Decode4(a3);
+    sub_D03510(this, v479);
+  }
+  if ( sub_9488F0(v576, 510) )
+  {
+    v480 = CInPacket::Decode2(a3);
+    sub_CFF1B0(this, v480);
+    v481 = CInPacket::Decode4(a3);
+    sub_D01CB0(this, v481);
+  }
+  if ( sub_9488F0(v576, 703) )
+  {
+    v482 = CInPacket::Decode2(a3);
+    sub_F32B00(this, v482);
+    v483 = CInPacket::Decode4(a3);
+    sub_F35400(this, v483);
+  }
+  if ( sub_9488F0(v576, 704) )
+  {
+    v484 = CInPacket::Decode2(a3);
+    sub_F32B20(this, v484);
+    v485 = CInPacket::Decode4(a3);
+    sub_F35420(this, v485);
+  }
+  if ( sub_9488F0(v576, 705) )
+  {
+    v486 = CInPacket::Decode2(a3);
+    sub_D00CF0(this, v486);
+    v487 = CInPacket::Decode4(a3);
+    sub_D03270(this, v487);
+  }
+  if ( sub_9488F0(v576, 709) )
+  {
+    v488 = CInPacket::Decode2(a3);
+    sub_CFFA50(this, v488);
+    v489 = CInPacket::Decode4(a3);
+    sub_D023F0(this, v489);
+  }
+
+  // END OF ORDER
+
+  LOBYTE(v490) = CInPacket::Decode1(a3);
+  sub_CFF410(this, v490);
+  LOBYTE(v491) = CInPacket::Decode1(a3);
+  sub_CFF450(this, v491);
+  v492 = CInPacket::Decode1(a3);
+  sub_F32CC0(this, v492);
+  v493 = CInPacket::Decode4(a3);
+  sub_D06330(this, v493);
+  v494 = CInPacket::Decode4(a3);
+  sub_D011F0(this, v494);
+  if ( sub_9488F0(v576, 524) )
+  {
+    v495 = CInPacket::Decode4(a3);
+    sub_D06150(this, v495);
+  }
+  if ( sub_9488F0(v576, 525) )
+  {
+    v496 = CInPacket::Decode4(a3);
+    sub_D06170(this, v496);
+  }
+  if ( sub_9488F0(v576, 344) )
+  {
+    v497 = CInPacket::Decode1(a3);
+    sub_CFE350(this, v497);
+  }
+  if ( sub_9488F0(v576, 434) )
+  {
+    v498 = CInPacket::Decode4(a3);
+    sub_CFECB0(this, v498);
+    v499 = CInPacket::Decode4(a3);
+    sub_D017B0(this, v499);
+    v500 = CInPacket::Decode4(a3);
+    sub_CFE4F0(this, v500);
+  }
+  if ( sub_9488F0(v576, 436) )
+  {
+    v501 = CInPacket::Decode4(a3);
+    sub_F312E0(this, v501);
+    v502 = CInPacket::Decode4(a3);
+    sub_F33BE0(this, v502);
+  }
+  if ( sub_9488F0(v576, 451) )
+  {
+    v503 = CInPacket::Decode4(a3);
+    sub_D065B0(this, v503);
+    v504 = CInPacket::Decode1(a3);
+    sub_CFE270(this, v504);
+    v505 = CInPacket::Decode4(a3);
+    sub_CFE590(this, v505);
+    v506 = CInPacket::Decode4(a3);
+    sub_D06A30(this, v506);
+  }
+  if ( sub_9488F0(v576, 470) )
+  {
+    v507 = CInPacket::Decode1(a3);
+    sub_F30F20(this, v507);
+  }
+  if ( sub_9488F0(v576, 485) )
+  {
+    v508 = CInPacket::Decode4(a3);
+    sub_F30F00(this, v508);
+  }
+  if ( sub_9488F0(v576, 424) )
+  {
+    v509 = CInPacket::Decode2(a3);
+    sub_D06690(this, v509);
+  }
+  if ( sub_9488F0(v576, 425) )
+  {
+    v510 = CInPacket::Decode2(a3);
+    sub_D06390(this, v510);
+  }
+  if ( sub_9488F0(v576, 426) )
+  {
+    v511 = CInPacket::Decode2(a3);
+    sub_D06870(this, v511);
+  }
+  if ( sub_9488F0(v576, 502) )
+  {
+    v512 = CInPacket::Decode4(a3);
+    sub_CFE5B0(this, v512);
+    v513 = CInPacket::Decode4(a3);
+    sub_CFE290(this, v513);
+    v514 = CInPacket::Decode4(a3);
+    sub_D065D0(this, v514);
+    v515 = CInPacket::Decode4(a3);
+    sub_D06A50(this, v515);
+  }
+  if ( sub_9488F0(v576, 269) )
+  {
+    v516 = CInPacket::Decode4(a3);
+    sub_CFE490(this, v516);
+  }
+  if ( sub_9488F0(v576, 518) )
+  {
+    v517 = CInPacket::Decode4(a3);
+    sub_F38C40(this, v517);
+    v518 = CInPacket::Decode4(a3);
+    sub_F30EA0(this, v518);
+  }
+  if ( sub_9488F0(v576, 263) )
+  {
+    v519 = CInPacket::Decode4(a3);
+    sub_D06550(this, v519);
+    v520 = CInPacket::Decode4(a3);
+    sub_CFE250(this, v520);
+  }
+  if ( sub_9488F0(v576, 536) )
+  {
+    v521 = CInPacket::Decode4(a3);
+    sub_CFED30(this, v521);
+    v522 = CInPacket::Decode4(a3);
+    sub_D01830(this, v522);
+    v523 = CInPacket::Decode4(a3);
+    sub_CFE530(this, v523);
+  }
+  if ( sub_9488F0(v576, 577) )
+  {
+    v524 = CInPacket::Decode4(a3);
+    sub_CFECF0(this, v524);
+    v525 = CInPacket::Decode4(a3);
+    sub_D017F0(this, v525);
+    v526 = CInPacket::Decode4(a3);
+    sub_CFE510(this, v526);
+  }
+  if ( sub_9488F0(v576, 582) )
+  {
+    v527 = CInPacket::Decode4(a3);
+    sub_CFECD0(this, v527);
+    v528 = CInPacket::Decode4(a3);
+    sub_D017D0(this, v528);
+    v529 = CInPacket::Decode4(a3);
+    sub_D060D0(this, v529);
+  }
+  if ( sub_9488F0(v576, 584) )
+  {
+    v530 = CInPacket::Decode4(a3);
+    sub_D060F0(this, v530);
+  }
+  sub_CCFFA0(this + 2741, a3);
+  sub_D06B30(this + 11024);
+  for ( i = 0; i < 10; ++i )
+  {
+    v531 = sub_948910(i);
+    v532 = sub_C8C930(v575, v531);
+    if ( sub_ACE1A0(v532) )
+    {
+      v533 = sub_CE9ED0(i);
+      (*(*v533 + 24))(v533, a3);
+    }
+  }
+  sub_CED150(this, v576, a3, 1);
+  if ( sub_9488F0(v576, 332) )
+  {
+    v534 = CInPacket::Decode4(a3);
+    sub_D06610(this, v534);
+  }
+  if ( sub_9488F0(v576, 516) )
+  {
+    v535 = CInPacket::Decode4(a3);
+    sub_D06650(this, v535);
+  }
+  if ( sub_9488F0(v576, 250) )
+  {
+    v536 = CInPacket::Decode4(a3);
+    sub_D06510(this, v536);
+  }
+  if ( sub_9488F0(v576, 554) )
+  {
+    v537 = CInPacket::Decode4(a3);
+    sub_F38B20(this, v537);
+  }
+  if ( sub_9488F0(v576, 97) )
+  {
+    v538 = CInPacket::Decode4(a3);
+    sub_F38B40(this, v538);
+  }
+  if ( sub_9488F0(v576, 594) )
+  {
+    v539 = CInPacket::Decode4(a3);
+    sub_D065F0(this, v539);
+    v540 = CInPacket::Decode4(a3);
+    sub_CFE2B0(this, v540);
+    v541 = CInPacket::Decode4(a3);
+    sub_CFE5D0(this, v541);
+  }
+  if ( sub_9488F0(v576, 606) )
+  {
+    v542 = CInPacket::Decode4(a3);
+    sub_CFE910(this, v542);
+  }
+  v543 = CInPacket::Decode1(a3);
+  sub_D00F10(this, v543);
+  if ( sub_9488F0(v576, 614) )
+  {
+    v544 = CInPacket::Decode4(a3);
+    sub_F30F40(this, v544);
+  }
+  if ( sub_9488F0(v576, 620) )
+  {
+    v545 = CInPacket::Decode4(a3);
+    sub_D06090(this, v545);
+    v546 = CInPacket::Decode4(a3);
+    sub_CFE150(this, v546);
+  }
+  if ( sub_9488F0(v576, 621) )
+  {
+    v547 = CInPacket::Decode4(a3);
+    sub_D06050(this, v547);
+    v548 = CInPacket::Decode4(a3);
+    sub_CFE110(this, v548);
+  }
+  if ( sub_9488F0(v576, 622) )
+  {
+    v549 = CInPacket::Decode4(a3);
+    sub_D05FF0(this, v549);
+    v550 = CInPacket::Decode4(a3);
+    sub_CFE0B0(this, v550);
+    v551 = CInPacket::Decode4(a3);
+    sub_F38DA0(this, v551);
+  }
+  if ( sub_9488F0(v576, 623) )
+  {
+    v552 = CInPacket::Decode4(a3);
+    sub_D06010(this, v552);
+    v553 = CInPacket::Decode4(a3);
+    sub_CFE0D0(this, v553);
+  }
+  if ( sub_9488F0(v576, 624) )
+  {
+    v554 = CInPacket::Decode4(a3);
+    sub_D06030(this, v554);
+    v555 = CInPacket::Decode4(a3);
+    sub_CFE0F0(this, v555);
+  }
+  if ( sub_9488F0(v576, 625) )
+  {
+    v556 = CInPacket::Decode4(a3);
+    sub_D06070(this, v556);
+    v557 = CInPacket::Decode4(a3);
+    sub_CFE130(this, v557);
+  }
+  if ( sub_9488F0(v576, 626) )
+  {
+    v558 = CInPacket::Decode4(a3);
+    sub_D06470(this, v558);
+    v559 = CInPacket::Decode4(a3);
+    sub_CFE1F0(this, v559);
+  }
+  if ( sub_9488F0(v576, 627) )
+  {
+    v560 = CInPacket::Decode4(a3);
+    sub_D06530(this, v560);
+    v561 = CInPacket::Decode4(a3);
+    sub_CFE210(this, v561);
+  }
+  if ( sub_9488F0(v576, 628) )
+  {
+    v562 = CInPacket::Decode4(a3);
+    sub_D069F0(this, v562);
+    v563 = CInPacket::Decode4(a3);
+    sub_CFE4D0(this, v563);
+  }
+  if ( sub_9488F0(v576, 629) )
+  {
+    v564 = CInPacket::Decode4(a3);
+    sub_D069D0(this, v564);
+    v565 = CInPacket::Decode4(a3);
+    sub_CFE4B0(this, v565);
+  }
+  if ( sub_9488F0(v576, 634) )
+  {
+    v566 = CInPacket::Decode4(a3);
+    sub_D05FD0(this, v566);
+    v567 = CInPacket::Decode4(a3);
+    sub_CFE070(this, v567);
+  }
+  if ( sub_9488F0(v576, 635) )
+  {
+    v568 = CInPacket::Decode4(a3);
+    sub_D069B0(this, v568);
+  }
+  if ( sub_9488F0(v576, 633) )
+  {
+    v569 = CInPacket::Decode4(a3);
+    sub_D06850(this, v569);
+  }
+  if ( sub_9488F0(v576, 703) )
+  {
+    v570 = CInPacket::Decode4(a3);
+    sub_F38CA0(this, v570);
+  }
+  if ( sub_9488F0(v576, 704) )
+  {
+    v571 = CInPacket::Decode4(a3);
+    sub_F38CC0(this, v571);
+  }
+  sub_948A60(v576, 1056);
+  return a2;
+}

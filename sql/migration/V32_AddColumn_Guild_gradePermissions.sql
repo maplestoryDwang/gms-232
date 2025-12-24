@@ -1,0 +1,1 @@
+ALTER TABLE guilds ADD COLUMN gradePermissions varchar(255) default '-1,0,0,0,0'

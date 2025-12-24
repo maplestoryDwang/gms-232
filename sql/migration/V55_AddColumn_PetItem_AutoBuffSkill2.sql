@@ -1,0 +1,1 @@
+ALTER TABLE items ADD COLUMN autobuffskill2 int NOT NULL DEFAULT 0;

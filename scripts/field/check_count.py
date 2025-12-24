@@ -1,0 +1,1 @@
+# Golden Temple | Ravana's Golden Altar (252030100)

@@ -1,0 +1,67 @@
+from net.swordie.ms.constants import OzConstants
+from net.swordie.ms.enums import WeatherEffNoticeType
+
+sm.showWeatherNotice("Eliminate {} of each monster".format(OzConstants.F37_KILL_COUNT), WeatherEffNoticeType.Oz_Alicia, 5000)
+instance = chr.getInstance()
+if instance is not None:
+    if not instance.hasProperty("F37_Inited"):
+        instance.addProperty("F37_Inited", True)
+        instance.addProperty(OzConstants.F37_MEERKAT_KILLS, 0)
+        instance.addProperty(OzConstants.F37_KIYO_KILLS, 0)
+        instance.addProperty(OzConstants.F37_SAND_RAT_KILLS, 0)
+        instance.addProperty(OzConstants.F37_SCORPION_KILLS, 0)
+        sm.spawnMob(OzConstants.MEERKAT, -1653, -445, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1553, -445, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1453, -445, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1353, -445, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1253, -445, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1173, -445, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1554, -25, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1453, -25, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1393, -25, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1293, -25, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -1193, -25, True, 200000000)
+        sm.spawnMob(OzConstants.MEERKAT, -893, -25, True, 200000000)
+
+
+        sm.spawnMob(OzConstants.KIYO, -1093, -25, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -993, -25, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -913, -445, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -822, -445, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -722, -445, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -622, -445, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -522, -445, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -422, -445, True, 200000000)
+        sm.spawnMob(OzConstants.KIYO, -322, -445, True, 200000000)
+
+
+        sm.spawnMob(OzConstants.SAND_RAT, -716, -25, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -605, -25, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -505, -25, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -405, -25, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -305, -25, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -205, -25, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -476, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -376, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -276, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -176, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, -76, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SAND_RAT, 76, 395, True, 200000000)
+
+
+        sm.spawnMob(OzConstants.SCORPION, -1876, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1776, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1676, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1576, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1476, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1376, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1276, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1176, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -1076, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -976, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -876, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -776, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -676, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, -576, 395, True, 200000000)
+        sm.spawnMob(OzConstants.SCORPION, 170, 395, True, 200000000)
+

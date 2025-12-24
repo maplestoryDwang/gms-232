@@ -1,0 +1,1 @@
+sm.createQuestWithQRValue(34560, "30=h0;40=h0;41=h0")

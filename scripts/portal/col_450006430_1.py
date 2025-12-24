@@ -1,0 +1,1 @@
+sm.teleportToPortal(0)

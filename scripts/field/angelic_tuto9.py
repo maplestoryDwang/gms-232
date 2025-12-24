@@ -1,0 +1,11 @@
+# id 940011090 (Eastern Region of Pantheon : Near East Sanctum), field 940011090
+sm.lockInGameUI(True, True)
+sm.forcedInput(0)
+sm.forcedInput(2)
+sm.sendDelay(60)
+sm.forcedInput(0)
+sm.setSpeakerType(3)
+sm.setParam(17)
+sm.sendNext("Stupid. You can't just sit here and cry.")
+sm.sendSay("Maybe I can just put this dumb thing back at the East Sanctum. Then this will all go away!")
+sm.forcedInput(2)

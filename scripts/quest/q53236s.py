@@ -1,0 +1,18 @@
+# Jett 2nd job adv
+sm.setSpeakerID(10204)
+sm.sendNext("How are things, #b#h ##k? Got any lingering effects from getting your noggin jostled?")
+sm.setPlayerAsSpeaker()
+sm.sendNext("I'm in good shape, thanks to you and the crew. but I'm aching to move on to something bigger.")
+sm.setSpeakerID(10204)
+sm.sendNext("You space folk bounce back quick! Lucky for you, I've got just the thing to clear the cobwebs out of that melon of yours.")
+sm.sendNext("When you first woke up, Bark ahd a small chunk of rock from you. Looked like it was pretty important, judging by that sparkle in your eye.")
+sm.setPlayerAsSpeaker()
+sm.sendNext("My dad passed that on to me. I don't reckon he's too happy if he saw the state it was in now.")
+sm.setSpeakerID(10204)
+sm.sendNext("I thought that might be the case. I called you here because I met a blacksmith that I think could help you out. He fixed my gun up, and now it can shoot trough a steel hull. They say there ain't nothing he can't fix...")
+sm.setPlayerAsSpeaker()
+sm.sendNext("#b(She thinks a simple blacksmith can fix my core? I guess it's worth taking a look.)")
+sm.setSpeakerID(10204)
+if sm.sendAskYesNo("I know a shortcut to the #bMaster Forge#k. I'll send you there if you want."):
+    sm.startQuest(parentID)
+    sm.warp(552000071)

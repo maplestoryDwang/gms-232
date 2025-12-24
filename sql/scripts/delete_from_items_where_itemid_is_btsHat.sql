@@ -1,0 +1,1 @@
+DELETE from items where itemid = 1005650;

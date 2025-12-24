@@ -1,0 +1,21 @@
+# id 34561 ([Esfera] The Strangers), field 993017200
+sm.setSpeakerType(3)
+sm.setParam(36)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(3003480) # Jean
+sm.sendNext("#face0#Yo!")
+sm.setParam(56)
+sm.sendSay("Huh?")
+sm.setParam(36)
+sm.sendSay("#face0#It's me. It's Jean. #h0#, I need your help.")
+sm.setParam(56)
+sm.sendSay("Oh, hey Jean! Did something happen?")
+sm.setSpeakerType(4)
+sm.setSpeakerID(3003432) # Jean
+sm.setParam(36)
+res = sm.sendAskAccept("#face0#Yeah, and it could be big. I'll fill you in when you get here. Can you meet me in Trueffet Square? Like, now?\r\n#b(Accept to be moved right away.)#k")
+sm.setSpeakerType(3)
+sm.setParam(57)
+sm.sendNext("Okay, I'm on my way!")
+sm.startQuest(parentID)
+sm.completeQuestNoCheck(34593)

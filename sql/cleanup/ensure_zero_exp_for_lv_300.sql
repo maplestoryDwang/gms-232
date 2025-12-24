@@ -1,0 +1,1 @@
+update characterstats set exp = 0 where level >= 300

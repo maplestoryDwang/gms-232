@@ -1,0 +1,5 @@
+sm.setPlayerAsSpeaker()
+sm.sendNext("You found the dragon egg!")
+chr.addPolloFritto(2)
+sm.stopEvents()
+sm.warpInstanceOut(993000601, 0)  # Hidden Street : Secluded Forest)

@@ -1,0 +1,1 @@
+sm.stopFieldEvents() # Stop magnus Atoms from dropping after boss kill

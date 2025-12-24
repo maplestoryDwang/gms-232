@@ -1,0 +1,21 @@
+# id 17618 ([Commerci Republic] The Lady in Robes), field 865020001
+sm.setSpeakerID(9390204) # Robed Lady
+sm.setParam(37)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(9390204) # Robed Lady
+sm.sendNext("I can't believe it. The last of my money, down the drain. I don't suppose they'll give me a refund.")
+sm.setParam(57)
+sm.sendSay("Now hand over those goods!")
+sm.setParam(33)
+sm.sendSay("Sigh. Why are you getting in my way? ")
+sm.setParam(57)
+sm.sendSay("I have my reasons. Besides, stealing is bad!")
+sm.sendSay("So what'll it be? Are you going to hand over the goods, or will we have to do this the hard way?")
+sm.setParam(33)
+sm.sendSay("Hmph. Stealing is bad, but bullying is okay? Fine, take your stupid trade goods. I'm out of here.")
+sm.hideNpcByTemplateIdhi(9390204, True, True)
+sm.setParam(57)
+sm.sendSay("That was easy. Sorta. Better get these back to town.")
+sm.sendSay("Who was it that lost these items? Was his name... Tepes?")
+sm.completeQuestNoCheck(parentID)
+sm.startQuest(17619)

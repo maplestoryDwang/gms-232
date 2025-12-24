@@ -1,0 +1,17 @@
+# Jett 4th job adv
+sm.setSpeakerID(2040050)
+sm.sendNext("Huh? Are you some sort of homunculus I forgot I'd summoned?")
+sm.setPlayerAsSpeaker()
+sm.sendNext("No, I'm a bounty hunter, and I'm looking for the person who gave you this letter.")
+sm.setSpeakerID(2040050)
+sm.sendNext("Oh, the letter! That was the easiest 1000 mesos I ever made! I didn't know the gentleman, but he did have the most awe-inspiring crimson hair. It was almost as red as the inside of an AdonisCauldron, if you could believe it, hahahaha! Oh, I am HILARIOUS today...")
+sm.setPlayerAsSpeaker()
+sm.sendNext("Would you stop with the lame jokes and tell me where you saw him?")
+sm.setSpeakerID(2040050)
+sm.sendNext("You're no fun, I don't know that I want to help someone with no sense of humor")
+sm.setPlayerAsSpeaker()
+sm.sendNext("L-look, I'm sorry, I just... I got a lot on my plate right now, ya know? Like a buffet of badness just staring me in the face...")
+sm.setSpeakerID(2040050)
+if sm.sendAskYesNo("Ha! Hahahahahaha! 'A buffet of badness!' Whwat a cleverly ignorant colloqualism! Okay, I'll take you where you need to go."):
+    sm.startQuest(parentID)
+    sm.warpInstanceIn(552000074)

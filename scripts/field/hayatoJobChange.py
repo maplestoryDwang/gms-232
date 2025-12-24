@@ -1,0 +1,28 @@
+# Hayato Tutorial Clipsence | Momijigaoka : Unfamiliar Hillside (807040000)
+# Author: Tiger
+
+if chr.getJob() == 4001:
+    sm.setJob(4100)
+    sm.addMaxHP(350)
+    sm.addMaxMP(200)
+    sm.addSP(6)
+    sm.setSTR(4)
+    sm.setINT(4)
+    sm.setDEX(4)
+    sm.setLUK(4)
+    sm.setAP(4 + chr.getLevel() * 5)
+    sm.lockInGameUI(True)
+    #sm.playVideoByScript("JPHayato.avi")
+    sm.lockInGameUI(False)
+elif chr.getJob() == 4002:
+    sm.addMaxHP(10)
+    sm.lockInGameUI(False)
+    sm.setJob(4200)
+    sm.addMaxMP(95)
+    sm.addSP(5)
+    sm.setSTR(4)
+    sm.setINT(4)
+    sm.setDEX(4)
+    sm.setLUK(4)
+    sm.setAP(4 + chr.getLevel() * 5)
+    sm.startQuestNoCheck(57400)

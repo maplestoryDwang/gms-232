@@ -1,0 +1,2 @@
+CREATE TABLE migration_history (`version` INT NOT NULL DEFAULT 0, `script_name` VARCHAR(255) NULL, `executed_at` DATETIME NULL);
+INSERT INTO migration_history(version, script_name, executed_at) values (79, 'V79_Add_AR_To_DailyEntries.sql', 210602172722);

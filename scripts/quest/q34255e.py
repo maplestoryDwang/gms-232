@@ -1,0 +1,18 @@
+# id 34255 ([Morass] A Frightening Rumor 1), field 993017200
+sm.setSpeakerType(3)
+sm.setParam(36)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(3003413) # Man
+sm.sendNext("#face0#Thank you so much! Now I can get this food delivered.")
+sm.setParam(56)
+sm.sendSay("I'm glad I could help!")
+sm.sendSay("Also, do you know anything about that crystal disaster?")
+sm.setParam(36)
+sm.sendSay("#face0#Disaster? Well, it's been quite a while... \r\nDidn't it happen before you left for your studies?")
+sm.setParam(56)
+sm.sendSay("I heard there was a survivor.")
+sm.setParam(36)
+sm.sendSay("#face0#I-I don't know anything about that. I'm sorry. \r\nYou should try asking someone else. ")
+sm.sendSay("#face0#Maybe the pottery shop lady over there?")
+sm.consumeItem(4036310, 20)
+sm.completeQuestNoCheck(parentID)

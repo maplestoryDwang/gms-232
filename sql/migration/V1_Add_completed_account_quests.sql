@@ -1,0 +1,1 @@
+alter table accounts add completedAccountQuests varchar(1000) default ""

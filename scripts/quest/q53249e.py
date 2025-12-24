@@ -1,0 +1,12 @@
+# Jett 4th job adv
+sm.setSpeakerID(1094000)
+sm.sendNext("are you gonna go to ground and fnid Burk--- I mean the fella who sent the letter that I haven't read?")
+sm.setPlayerAsSpeaker()
+sm.sendNext("Do you think you can find him if I let you read it?")
+sm.setSpeakerID(1094000)
+sm.sendNext("Me? Nah, I'm about useless! But that roaming alchemist who left it here might know.")
+sm.setPlayerAsSpeaker()
+sm.sendNext("#b(#p2040050##k? I'm right on your tail, #r#p9201287#)")
+sm.setSpeakerID(1094000)
+sm.sendNext("#b#p2040050##k said he was settin' sail for #r#m240000000##k or whatever ou landlubbers call it when you wnder over to a place.")
+sm.completeQuest(parentID)

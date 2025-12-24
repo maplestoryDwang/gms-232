@@ -1,0 +1,15 @@
+# id 101070001 (null), field 101070001
+sm.lockInGameUI(True, True)
+sm.setSpeakerType(3)
+sm.setParam(17)
+sm.sendNext("#bBleh! I almost drowned!#k")
+sm.setSpeakerID(1500010) # Fanzy
+sm.setParam(1)
+sm.sendSay("There must be some kind of enchantment to keep people from swimming across.")
+sm.setParam(17)
+sm.sendSay("#bYou could have told me that in advance!#k")
+sm.setParam(1)
+sm.sendSay("I'm not omniscient, and you make a good test subject. We'll have to find another way.")
+sm.completeQuest(32102)
+sm.lockInGameUI(False, True)
+sm.warp(101070000)

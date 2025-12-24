@@ -1,0 +1,12 @@
+# id 331002300 (School for the Gifted : 1-1 Classroom), field 331002300
+sm.lockInGameUI(False, True)
+sm.createQuestWithQRValue(16700, "count=20;date=20190716")
+sm.createQuestWithQRValue(16700, "count=21;date=20190716")
+sm.createQuestWithQRValue(16700, "count=22;date=20190716")
+sm.createQuestWithQRValue(16700, "count=23;date=20190716")
+sm.createQuestWithQRValue(16700, "count=24;date=20190716")
+sm.createQuestWithQRValue(16700, "count=25;date=20190716")
+sm.createQuestWithQRValue(16700, "count=26;date=20190716")
+sm.createQuestWithQRValue(16700, "count=27;date=20190716")
+sm.createQuestWithQRValue(16700, "count=28;date=20190716")
+sm.createQuestWithQRValue(16700, "count=29;date=20190716")

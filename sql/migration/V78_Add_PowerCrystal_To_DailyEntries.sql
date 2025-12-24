@@ -1,0 +1,1 @@
+alter table accountdailyentries add column powercrystal int default -1;

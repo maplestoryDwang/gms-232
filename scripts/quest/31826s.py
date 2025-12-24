@@ -1,0 +1,17 @@
+# id 31826 (Tonero's Call), field 401020300
+sm.setSpeakerType(3)
+sm.setParam(16)
+res = sm.sendAskAccept("The transmitter started ringing right when #b#p3001005##k disappeared. Maybe it's #b#p3001004##k?")
+sm.setParam(4)
+sm.setInnerOverrideSpeakerTemplateID(3001004) # Tonero
+sm.sendNext("Hello there my non-native friend!  It's me, #b#p3001004##k. I'll be at the #b#m401020300##k if you want to meet.")
+sm.setParam(16)
+sm.sendSay("You can't just come out here!")
+sm.setParam(4)
+sm.sendSay("Oh, but I can, my displaced compadre! I'll see you soon!")
+sm.setParam(16)
+sm.sendSay("#b#m401020300##k? Guess I know where to go.")
+sm.startQuest(parentID)
+sm.completeQuestNoCheck(parentID)
+sm.startQuest(31575)
+sm.warp(401020200)

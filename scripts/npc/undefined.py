@@ -1,0 +1,1 @@
+sm.chat("(Npc) Not coded. ID: {}, Field: {}".format(parentID, sm.getFieldID()))

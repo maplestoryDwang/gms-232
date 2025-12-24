@@ -1,0 +1,28 @@
+# id 22711 (Check Yourself 1), field 331001110
+sm.startQuest(parentID)
+sm.setSpeakerType(3)
+sm.setParam(37)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
+sm.sendNext("#face9#Let me see... got it. Perfect. Now that you've suffered through the boring yet EXTREMELY IMPORTANT part, we can cut you loose. Start with those 5 Training Robot Bs.")
+sm.playSound("Sound/SoundEff.img/blackHeaven/metaldrop", 100)
+sm.sendSay("#face9#Pick up anything you want with the Z key. Don't worry, I've got plenty of parts to rebuild these with. When you're done, take the door on the left to come meet me.")
+sm.progressMessageFont(3, 20, 20, 0, "Pick up items by pressing the Z key.")
+sm.playExclSoundWithDownBGM("Voice3.img/Kinesis/guide_12", 100)
+sm.avatarOriented("UI/tutorial.img/kinesis/1")
+sm.createQuestWithQRValue(16700, "count=2;date=20190716")
+sm.createQuestWithQRValue(16700, "count=3;date=20190716")
+sm.createQuestWithQRValue(16700, "count=4;date=20190716")
+sm.createQuestWithQRValue(16700, "count=5;date=20190716")
+sm.setParam(36)
+sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
+sm.sendNext("Jay, I feel so slow walking around like this. I'm going to switch to my speedier moves.")
+sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
+sm.sendSay("#face9#Fine, whatever! Just ignore the test plan I spent hours on... Okay, I updated my database with your #bTriple Jump#k and #bAttack Skills#k for the final stage. Go nuts, dude.")
+sm.lockInGameUI(True, False)
+sm.playSound("Sound/Field.img/masteryBook/EnchantSuccess", 100)
+sm.createQuestWithQRValue(22700, "V01=1;V02=1;kinetuto=1;E1=1;E2=1")
+sm.sendDelay(2500)
+sm.playExclSoundWithDownBGM("Voice3.img/Kinesis/guide_04", 100)
+sm.lockInGameUI(False, True)
+sm.warp(331001130)

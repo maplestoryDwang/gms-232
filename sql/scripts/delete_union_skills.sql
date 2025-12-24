@@ -1,0 +1,2 @@
+DELETE FROM skills
+WHERE skillid BETWEEN 71000000 AND 71009005; /* Union Skills */

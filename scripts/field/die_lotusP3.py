@@ -1,0 +1,1 @@
+sm.showFieldEffect("Map/Effect2.img/blackHeavenBossDie3", 4700) # Shows the Boss Death effect

@@ -1,0 +1,4 @@
+# Crayon Damage Skin
+success = sm.addDamageSkin(2437168)
+if success:
+	sm.chat("The Crayon Damage Skin has been added to your account's damage skin collection.")

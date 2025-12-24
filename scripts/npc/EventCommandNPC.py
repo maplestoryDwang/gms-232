@@ -1,0 +1,1 @@
+sm.sendNext("Henlo Am Event npc")

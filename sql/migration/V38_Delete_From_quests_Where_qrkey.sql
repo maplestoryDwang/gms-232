@@ -1,0 +1,1 @@
+DELETE FROM quests WHERE qrkey = 16014;

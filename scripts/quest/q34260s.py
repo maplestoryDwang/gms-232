@@ -1,0 +1,17 @@
+# id 34260 ([Morass] The Reunion), field 450006240
+sm.setSpeakerType(3)
+sm.setColor(1)
+sm.setParam(56)
+sm.sendSay("H-hi... Are you... okay? Are you in pain?")
+sm.setParam(36)
+sm.setColor(1)
+sm.setInnerOverrideSpeakerTemplateID(3003400) # Tana
+sm.sendSay("#face0#It is... unbearable.")
+sm.setParam(56)
+sm.sendSay("How can you stand it? Don't you want to escape? Don't you hate the people doing this to you?")
+sm.setParam(36)
+sm.sendSay("#face0#Hate? I don't know... hate.")
+sm.setParam(56)
+sm.sendSay("What do you mean? How is that possible?")
+sm.startQuest(parentID)
+sm.completeQuest(parentID)

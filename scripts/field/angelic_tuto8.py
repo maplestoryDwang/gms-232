@@ -1,0 +1,11 @@
+# id 940011080 (Western Region of Pantheon : Heliseum Hideout), field 940011080
+sm.lockInGameUI(True, True)
+sm.forcedInput(0)
+sm.forcedInput(2)
+sm.sendDelay(60)
+sm.forcedInput(0)
+sm.setSpeakerType(3)
+sm.setParam(17)
+sm.sendNext("What am I gonna do?! Maybe I can just hide in here until I die of old age.")
+sm.sendDelay(300)
+sm.forcedInput(2)

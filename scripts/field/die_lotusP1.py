@@ -1,0 +1,1 @@
+sm.invokeAfterDelay(7000, "warpField", sm.getFieldID() + 100, 0) # Warp player(s) into the next map after 7000ms delay

@@ -1,0 +1,1 @@
+ALTER TABLE avatarlook ADD COLUMN earstyle int NOT NULL DEFAULT 0;
