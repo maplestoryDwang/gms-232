@@ -38,7 +38,6 @@ import net.swordie.ms.constants.*;
 import net.swordie.ms.constants.JobConstants.JobEnum;
 import net.swordie.ms.enums.*;
 import net.swordie.ms.handlers.header.OutHeader;
-import net.swordie.ms.handlers.life.modules.MobModule;
 import net.swordie.ms.life.AffectedArea;
 import net.swordie.ms.life.Life;
 import net.swordie.ms.life.RandomPortal;
@@ -47,14 +46,9 @@ import net.swordie.ms.life.drop.Drop;
 import net.swordie.ms.life.mob.Mob;
 import net.swordie.ms.life.mob.MobStat;
 import net.swordie.ms.life.mob.MobTemporaryStat;
-import net.swordie.ms.life.mob.skill.MobSkill;
 import net.swordie.ms.life.mob.skill.MobSkillID;
-import net.swordie.ms.life.mob.skill.MobSkillStat;
 import net.swordie.ms.life.npc.Npc;
-import net.swordie.ms.life.pet.Pet;
 import net.swordie.ms.loaders.*;
-import net.swordie.ms.loaders.containerclasses.MobSkillInfo;
-import net.swordie.ms.loaders.containerclasses.PetInfo;
 import net.swordie.ms.loaders.containerclasses.SkillStringInfo;
 import net.swordie.ms.scripts.ScriptManagerImpl;
 import net.swordie.ms.scripts.ScriptType;
@@ -74,9 +68,6 @@ import net.swordie.orm.dao.SworDaoFactory;
 import net.swordie.orm.dao.UserDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.io.File;
 import java.io.IOException;
@@ -2347,7 +2338,7 @@ public class AdminCommands {
 
     @Command(names = {"dc"}, requiredType = GameMaster)
     public static class dc extends AdminCommand {
-        public static void execute (Char chr, String[] args) {
+        public static void execute(Char chr, String[] args) {
             if (args.length < 2) {
                 chr.chatMessage(SpeakerChannel, "Not enough args! Use !dc <name>");
                 return;
@@ -3314,24 +3305,15 @@ public class AdminCommands {
             field.spawnLife(npc, null);
             log.debug("npc has id " + npc.getObjectId());
 
-            try (Session session = DatabaseManager.getSession()) {
-                Transaction transaction = session.beginTransaction();
-
-                Query npcQuery = session.createNativeQuery("INSERT INTO npc (npcid,mapid,x,y,cy,rx0,rx1,fh) VALUES (:npcid,:mapid,:x,:y,:cy,:rx0,:rx1,:fh)");
-                npcQuery.setParameter("npcid", id);
-                npcQuery.setParameter("mapid", field.getId());
-                npcQuery.setParameter("x", pos.getX());
-                npcQuery.setParameter("y", pos.getY());
-                npcQuery.setParameter("cy", npc.getCy());
-                npcQuery.setParameter("rx0", npc.getRx0());
-                npcQuery.setParameter("rx1", npc.getRx1());
-                npcQuery.setParameter("fh", npc.getFh());
-
-
-                npcQuery.executeUpdate();
-
-                transaction.commit();
-            }
+            DatabaseManager.executeInsert("INSERT INTO npc (npcid,mapid,x,y,cy,rx0,rx1,fh) VALUES (?,?,?,?,?,?,?,?)",
+                    id,
+                    field.getId(),
+                    pos.getX(),
+                    pos.getY(),
+                    npc.getCy(),
+                    npc.getRx0(),
+                    npc.getRx1(),
+                    npc.getFh());
         }
     }
 

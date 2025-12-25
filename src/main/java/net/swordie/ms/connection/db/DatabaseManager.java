@@ -44,7 +44,6 @@ import net.swordie.ms.client.guild.GuildSkill;
 import net.swordie.ms.client.guild.bbs.BBSRecord;
 import net.swordie.ms.client.guild.bbs.BBSReply;
 import net.swordie.ms.client.trunk.Trunk;
-import net.swordie.ms.connection.db.managers.HibernateDatabaseManager;
 import net.swordie.ms.connection.db.managers.IDatabaseManager;
 import net.swordie.ms.connection.db.managers.SwordieSqlDatabaseManager;
 import net.swordie.ms.life.Familiar;
@@ -63,7 +62,6 @@ import net.swordie.ms.world.shop.cashshop.CashShopItem;
 import net.swordie.orm.dao.SworDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
 
 import java.io.File;
 import java.util.List;
@@ -152,13 +150,6 @@ public class DatabaseManager {
 
     public static void init() {
         databaseManager.init(dbClasses);
-    }
-
-    public static Session getSession() {
-        if (databaseManager instanceof HibernateDatabaseManager) {
-            return ((HibernateDatabaseManager) databaseManager).getSession();
-        }
-        throw new IllegalArgumentException("Cannot make session from type " + databaseManager.getClass());
     }
 
     /**

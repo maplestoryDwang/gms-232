@@ -30,7 +30,7 @@ import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Rect;
 import net.swordie.ms.util.Util;
 import net.swordie.ms.util.container.Tuple;
-import org.hibernate.cfg.NotYetImplementedException;
+import org.jboss.resteasy.spi.NotImplementedYetException;
 
 import java.util.*;
 
@@ -1036,7 +1036,7 @@ public class UserLocal {
 
     public static OutPacket lightOfCourage(boolean active, Position position, List<Integer> mobObjIdList) {
         // OutHeader.LIGHT_OF_COURAGE
-        throw new NotYetImplementedException("LightOfCourage");
+        throw new NotImplementedYetException("LightOfCourage");
 
 //        OutPacket outPacket = new OutPacket(0);
 //
