@@ -1,5 +1,7 @@
 package net.swordie.ms;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import net.swordie.ms.client.AuthInfo;
 import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.Char;
@@ -37,7 +39,6 @@ import net.swordie.orm.dao.UserDao;
 import net.swordie.orm.migration.MigrationManager;
 import net.swordie.webapi.WebApi;
 import net.swordie.webapi.routes.TradeLogRoute;
-import org.apache.logging.log4j.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,6 +56,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created on 2/18/2017.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Server extends Properties {
 	private static final UserDao userDao = (UserDao) SworDaoFactory.getByClass(User.class);
 
@@ -64,7 +67,7 @@ public class Server extends Properties {
 	public static final boolean SHOW_EXCEPTIONS = true;
 	public static boolean DEBUG = true;
 	public static boolean DEBUG_MOVEMENT = false;
-	public static boolean DEBUG_PACKETTIMES = true;
+	public static boolean DEBUG_PACKET_TIMES = true;
 	public static boolean OPCODE_ENCRYPTION = true; // false = either removed or client hook for double opcodes
 
 	// Shutdown fields
@@ -76,19 +79,19 @@ public class Server extends Properties {
 	private static Map<String, AuthInfo> authTokens = new ConcurrentHashMap<>();
 	private Map<Integer, User> users = new HashMap<>();
 	private CashShop cashShop;
-	private Set<ScheduledFuture> shutdownFutures = new HashSet<>();
+	private Set<ScheduledFuture<?>> shutdownFutures = new HashSet<>();
 	private boolean opcodeEnc = false;
 	private WebApi webApi;
-	private ScheduledFuture itemExpiryFuture;
-	private ScheduledFuture clearCacheFuture;
-	private ScheduledFuture burningFieldsFuture;
-	private ScheduledFuture fieldUpdateFuture;
-	private ScheduledFuture fieldGenerateMobFuture;
-	private ScheduledFuture fieldSpawnHarvestFuture;
-	private ScheduledFuture charUpdateFuture;
-	private ScheduledFuture serverNewDayFuture;
-	private ScheduledFuture rankingRefreshFuture;
-	private ScheduledFuture surpriseMissionFuture;
+	private ScheduledFuture<?> itemExpiryFuture;
+	private ScheduledFuture<?> clearCacheFuture;
+	private ScheduledFuture<?> burningFieldsFuture;
+	private ScheduledFuture<?> fieldUpdateFuture;
+	private ScheduledFuture<?> fieldGenerateMobFuture;
+	private ScheduledFuture<?> fieldSpawnHarvestFuture;
+	private ScheduledFuture<?> charUpdateFuture;
+	private ScheduledFuture<?> serverNewDayFuture;
+	private ScheduledFuture<?> rankingRefreshFuture;
+	private ScheduledFuture<?> surpriseMissionFuture;
 	private LocalDateTime startedTime;
 	private DailiesManager dailiesManager = new DailiesManager();
 
@@ -106,26 +109,25 @@ public class Server extends Properties {
 	}
 
 	private void init(String[] args) {
-		log.info(String.format("Starting server. Version: %s.%s", ServerConstants.VERSION, ServerConstants.MINOR_VERSION));
+		log.info("Starting server. Version: {}.{}", ServerConstants.VERSION, ServerConstants.MINOR_VERSION);
 		long startNow = System.currentTimeMillis();
 		DatabaseManager.init();
 
 		initIdAssigners();
 
-		log.info("Initialized database in " + (System.currentTimeMillis() - startNow) + "ms.");
+        log.info("Initialized database in {}ms.", System.currentTimeMillis() - startNow);
 
 		// Migration
 		if (!MigrationManager.start()) {
 			log.error("Stopped Server start due to Migration Failure.");
 			return;
 		}
-		//
 
 		try {
 			checkAndCreateDat();
 			loadWzData();
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			e.printStackTrace();
+			log.error("Failed to init WZ loading / Dat file creation! ", e);
 		}
 		StringData.load();
 		FieldData.loadWorldMap();
@@ -138,15 +140,15 @@ public class Server extends Properties {
 		loadAndAddWorlds();
         long start = System.currentTimeMillis();
         VCoreData.loadVCoreData();
-        log.info("Loaded VCore data in " + (System.currentTimeMillis() - start) + "ms");
+        log.info("Loaded VCore data in {}ms", System.currentTimeMillis() - start);
 
         long startCashShop = System.currentTimeMillis();
 		initCashShop();
-		log.info("Loaded Cash Shop in " + (System.currentTimeMillis() - startCashShop) + "ms");
+        log.info("Loaded Cash Shop in {}ms", System.currentTimeMillis() - startCashShop);
 
 		long startFamData = System.currentTimeMillis();
 		FamiliarData.loadFamiliarDataInfo();
-		log.info("Loaded Familiar Data in " + (System.currentTimeMillis() - startFamData) + "ms");
+        log.info("Loaded Familiar Data in {}ms", System.currentTimeMillis() - startFamData);
 
 		for (World world : getWorlds()) {
 			for (Channel channel : world.getChannels()) {
@@ -160,12 +162,12 @@ public class Server extends Properties {
 		initTimers();
 		new Thread(() -> {
 			// inits the script engine
-			log.info(String.format("Starting %s script engine.", ScriptManagerImpl.SCRIPT_ENGINE_NAME));
+			log.info("Starting {} script engine.", ScriptManagerImpl.SCRIPT_ENGINE_NAME);
 		}).start();
 
 		dailiesManager.initialize();
 		log.info("Initialized Dailies Manager");
-		log.info(String.format("Finished loading server in %dms. Version: %s.%s", System.currentTimeMillis() - startNow, ServerConstants.VERSION, ServerConstants.MINOR_VERSION));
+		log.info("Finished loading server in {}ms. Version: {}.{}", System.currentTimeMillis() - startNow, ServerConstants.VERSION, ServerConstants.MINOR_VERSION);
 
 		setStartedTime(LocalDateTime.now());
 
@@ -310,9 +312,9 @@ public class Server extends Properties {
 					method.invoke(c, file, exists);
 					long total = System.currentTimeMillis() - start;
 					if (exists) {
-						log.info(String.format("Took %dms to load from %s", total, file.getName()));
+						log.info("Took {}ms to load from {}", total, file.getName());
 					} else {
-						log.info(String.format("Took %dms to load using %s", total, method.getName()));
+						log.info("Took {}ms to load using {}", total, method.getName());
 					}
 				}
 			}
@@ -368,10 +370,6 @@ public class Server extends Properties {
 		cashShop = new CashShop();
 	}
 
-	public CashShop getCashShop() {
-		return this.cashShop;
-	}
-
 	public void addUser(User user) {
 		users.put(user.getId(), user);
 	}
@@ -391,38 +389,6 @@ public class Server extends Properties {
 
 	public boolean isUserLoggedIn(User user) {
 		return users.containsKey(user.getId()) || isInTransfer(user);
-	}
-
-	public boolean isInShutdown() {
-		return isInShutdown;
-	}
-
-	public void setInShutdown(boolean inShutdown) {
-		isInShutdown = inShutdown;
-	}
-
-	public int getMinutesRemaining() {
-		return minutesRemaining;
-	}
-
-	public void setMinutesRemaining(int minutesRemaining) {
-		this.minutesRemaining = minutesRemaining;
-	}
-
-	public int getShutdownScheduledMinutes() {
-		return shutdownScheduledMinutes;
-	}
-
-	public void setShutdownScheduledMinutes(int shutdownScheduledMinutes) {
-		this.shutdownScheduledMinutes = shutdownScheduledMinutes;
-	}
-
-	public LocalDateTime getStartedTime() {
-		return startedTime;
-	}
-
-	public void setStartedTime(LocalDateTime startedTime) {
-		this.startedTime = startedTime;
 	}
 
 	private Map<String, AuthInfo> getAuthTokens() {
@@ -447,11 +413,7 @@ public class Server extends Properties {
 
 		AuthInfo authInfo = getAuthTokens().getOrDefault(token, null);
 
-		if (authInfo == null || authInfo.getExpiryTime() == null) {
-			return 0;
-		}
-
-		if (authInfo.getExpiryTime().isExpired()) {
+		if (isAuthInfoNotValid(authInfo) || authInfo.getExpiryTime().isExpired()) {
 			removeUserFromAuthToken(token);
 			return 0;
 		}
@@ -462,6 +424,10 @@ public class Server extends Properties {
 		}
 
 		return userId;
+	}
+
+	private static boolean isAuthInfoNotValid(AuthInfo authInfo) {
+		return authInfo == null || authInfo.getExpiryTime() == null;
 	}
 
 	public User getUserFromAuthToken(String token) {
@@ -497,27 +463,12 @@ public class Server extends Properties {
 										setMinutesRemaining(minsLeft);
 										world.broadcastPacket(UserLocal.chatMsg(ChatType.Notice2, msg));
 										log.warn(msg);
-									}
-									, i, TimeUnit.MINUTES));
+									}, i, TimeUnit.MINUTES));
 				}
 			}
-			shutdownFutures.add(EventManager.addEvent(() -> {
-				log.warn("Starting shutdown.");
-				var start = System.currentTimeMillis();
-				for (World world : getWorlds()) {
-					world.shutdown();
-				}
-				log.warn(String.format("Shutdown complete, took %dms", System.currentTimeMillis() - start));
-				System.exit(0);
-			}, minutes, TimeUnit.MINUTES));
+			shutdownFutures.add(EventManager.addEvent(this::startWorldsShutdown, minutes, TimeUnit.MINUTES));
 		} else {
-			log.warn("Starting shutdown.");
-			var start = System.currentTimeMillis();
-			for (World world : getWorlds()) {
-				world.shutdown();
-			}
-			log.warn(String.format("Shutdown complete, took %dms", System.currentTimeMillis() - start));
-			System.exit(0);
+			startWorldsShutdown();
 		}
 	}
 
@@ -530,15 +481,15 @@ public class Server extends Properties {
 				writer.write("\r\n");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+            log.error("Error writing timeinfo.csv", e);
 		}
 		log.info("Wrote time info");
 	}
 
 	public void cancelShutdown() {
 		setInShutdown(false);
-		if (shutdownFutures.size() > 0) {
-			for (ScheduledFuture sf : shutdownFutures) {
+		if (!shutdownFutures.isEmpty()) {
+			for (ScheduledFuture<?> sf : shutdownFutures) {
 				sf.cancel(false);
 			}
 			for (World world : getWorlds()) {
@@ -602,10 +553,6 @@ public class Server extends Properties {
 		return null;
 	}
 
-	public DailiesManager getDailiesManager() {
-		return dailiesManager;
-	}
-
 	public Set<Char> getAllOnlineCharacters() {
 		var chars = new HashSet<Char>();
 		for (var world : getWorlds()) {
@@ -613,4 +560,14 @@ public class Server extends Properties {
 		}
 		return chars;
 	}
+
+    private void startWorldsShutdown() {
+        log.warn("Starting shutdown.");
+        var start = System.currentTimeMillis();
+        for (World world : getWorlds()) {
+            world.shutdown();
+        }
+        log.warn("Shutdown complete, took {}ms", System.currentTimeMillis() - start);
+        System.exit(0);
+    }
 }
