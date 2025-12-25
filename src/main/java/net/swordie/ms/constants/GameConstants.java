@@ -19,10 +19,10 @@ import java.util.*;
 public class GameConstants {
     public static final int CHANNELS_PER_WORLD = 10;
     public static final int BUFFED_CHANNELS = CHANNELS_PER_WORLD;
-    public static final int MOB_EXP_RATE = 4000;
-    public static final int MOB_NX_RATE = 1000;
-    public static final int MOB_DROP_RATE = 1000;
-    public static final int MOB_MESO_RATE = 1000;
+    public static final int MOB_EXP_RATE = 4;
+    public static final int MOB_NX_RATE = 1;
+    public static final int MOB_DROP_RATE = 1;
+    public static final int MOB_MESO_RATE = 2;
     public static final long MAX_MONEY = 99_999_999_999L;
     public static final short DAMAGE_SKIN_MAX_SIZE = 100;
     public static final int MAX_PET_AMOUNT = 3;
