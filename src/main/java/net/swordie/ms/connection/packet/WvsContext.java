@@ -913,7 +913,7 @@ public class WvsContext {
         return outPacket;
     }
 
-    public static OutPacket requestEventList(int levelReq, boolean show) {
+    public static OutPacket requestEventList(int levelReq, boolean show, List<EventListData.EventListDataRecord> eventList) {
         OutPacket outPacket = new OutPacket(OutHeader.REQUEST_EVENT_LIST);
 
         outPacket.encodeInt(levelReq);
@@ -923,7 +923,7 @@ public class WvsContext {
             outPacket.encodeByte(0);
             outPacket.encodeInt(0);
 
-            EventListData.encode(outPacket);
+            EventListData.encode(outPacket, eventList);
 
             outPacket.encodeInt(0);
             outPacket.encodeInt(0);

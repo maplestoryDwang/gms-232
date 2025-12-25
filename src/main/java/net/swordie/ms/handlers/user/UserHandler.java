@@ -633,7 +633,8 @@ public class UserHandler {
     @Handler(op = InHeader.REQUEST_EVENT_LIST)
     public static void handleEventListRequest(Client c, InPacket inPacket) {
         boolean show = true;
-        c.write(WvsContext.requestEventList(c.getChr().getLevel(), show));
+        var eventList = EventListData.getActiveEvents();
+        c.write(WvsContext.requestEventList(c.getChr().getLevel(), show, eventList));
     }
 
     @Handler(op = InHeader.ACHIEVEMENT_REQUEST)

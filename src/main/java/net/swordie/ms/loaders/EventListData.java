@@ -133,9 +133,10 @@ public final class EventListData {
         return List.copyOf(EVENTS);
     }
 
-    public static void encode(OutPacket out) {
-        var events = getActiveEvents();
-        out.encodeInt(events.size());
-        events.forEach(e -> e.encode(out));
+    public static void encode(OutPacket outPacket, List<EventListDataRecord> events) {
+        outPacket.encodeInt(events.size());
+        for (EventListDataRecord e : events) {
+            e.encode(outPacket);
+        }
     }
 }
