@@ -51,6 +51,8 @@ public class QuestHandler {
                     break;
                 case QuestReq_ResignQuest: //Quest forfeit
                     questID = inPacket.decodeInt();
+                    chr.getQuestManager().removeQuest(questID);
+
                     break;
                 case QuestReq_LaterStep:
                     questID = inPacket.decodeInt();
