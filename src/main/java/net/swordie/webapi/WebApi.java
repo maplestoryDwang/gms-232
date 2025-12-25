@@ -47,7 +47,7 @@ public class WebApi {
             contextBuilder.setPath("/api");
             initRoutes(contextBuilder);
             initProviders(contextBuilder);
-            contextBuilder.bind(httpServer); // disabled as it crashes on some jboss-logging stuff
+            contextBuilder.bind(httpServer);
         } catch (Exception e) {
             System.out.println("Failed to create HTTPS server on port " + ServerConstants.WEB_API_PORT + " of localhost");
             e.printStackTrace();
