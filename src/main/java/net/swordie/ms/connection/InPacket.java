@@ -2,6 +2,7 @@ package net.swordie.ms.connection;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import net.swordie.ms.ServerConstants;
 import net.swordie.ms.util.FileTime;
 import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Rect;
@@ -102,13 +103,18 @@ public class InPacket extends Packet {
      * @param amount The length of the char array
      * @return The char array as a String
      */
+//    public String decodeString(int amount) {
+//        byte[] bytes = decodeArr(amount);
+//        char[] chars = new char[amount];
+//        for(int i = 0; i < amount; i++) {
+//            chars[i] = (char) bytes[i];
+//        }
+//        return String.valueOf(chars);
+//    }
+
     public String decodeString(int amount) {
         byte[] bytes = decodeArr(amount);
-        char[] chars = new char[amount];
-        for(int i = 0; i < amount; i++) {
-            chars[i] = (char) bytes[i];
-        }
-        return String.valueOf(chars);
+        return new String(bytes, ServerConstants.ENCODING);
     }
 
     /**

@@ -12,6 +12,7 @@ if sm.getChr().getLevel() >= 10 and sm.getChr().getJob() == 0:
         sm.setAP(4 + chr.getLevel() * 5)
         sm.addSP(3)
         sm.completeQuest(1400)
-
+else:
+    sm.sendSay("你好旅行者")
 
 

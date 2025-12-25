@@ -8,6 +8,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import net.swordie.ms.Server;
 import net.swordie.ms.ServerConstants;
 import net.swordie.ms.client.Client;
@@ -23,9 +25,9 @@ import static net.swordie.ms.connection.netty.NettyClient.CLIENT_KEY;
 /**
  * Created by Sjonnie on 2/18/2017.
  */
+@Log4j2
 public class LoginAcceptor implements Runnable{
 
-    private static final Logger log = LogManager.getRootLogger();
     @Override
     public void run() {
         // Taken from http://netty.io/wiki/user-guide-for-4.x.html

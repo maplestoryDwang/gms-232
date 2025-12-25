@@ -88,6 +88,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -263,8 +264,8 @@ public class ScriptManagerImpl implements ScriptManager {
         setLastActiveScriptType(scriptType);
 
         if (!isField()) {
-            getChr().chatMessage(Mob, String.format("Starting script %s, scriptType %s.", scriptName, scriptType));
-            log.debug(String.format("Starting script %s, scriptType %s.", scriptName, scriptType));
+            getChr().chatMessage(Mob, String.format("Starting script [%s] , scriptType [%s].", scriptName, scriptType));
+            log.debug(String.format("Starting script [%s], scriptType [%s].", scriptName, scriptType));
         }
 
         resetParam();
@@ -345,7 +346,8 @@ public class ScriptManagerImpl implements ScriptManager {
             if (getChr() != null) {
                 getChr().chatMessage(Mob, String.format("[Script] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
             }
-            scriptCache.put(dir, null);
+            // 不存在就不保存
+//            scriptCache.put(dir, null);
             dir = String.format("%s/%s/%s%s", ServerConstants.SCRIPT_DIR,
                     scriptType.getDir().toLowerCase(), DEFAULT_SCRIPT, SCRIPT_ENGINE_EXTENSION);
         }
@@ -361,13 +363,17 @@ public class ScriptManagerImpl implements ScriptManager {
 
         getScriptInfoByType(scriptType).setFileDir(dir);
         StringBuilder script = new StringBuilder();
+        script.append("from __future__ import unicode_literals\n\n");
+        script.append("# -*- coding: utf-8 -*-\n");
+
+
         ScriptEngine se = scriptEngine;
         Bindings bindings = getBindingsByType(scriptType);
         si.setInvocable((Invocable) se);
         if (!scriptCache.containsKey(dir)) {
             try {
                 fileReadLock.lock();
-                script.append(Util.readFile(dir, Charset.defaultCharset()));
+                script.append(Util.readFile(dir, StandardCharsets.UTF_8));
             } catch (IOException e) {
                 e.printStackTrace();
                 lockInGameUI(false); // so players don't get stuck if a script fails
@@ -379,12 +385,15 @@ public class ScriptManagerImpl implements ScriptManager {
             var cs = scriptCache.getOrDefault(dir, null);
             if (cs == null) {
                 cs = ((Compilable) se).compile(script.toString());
-                scriptCache.put(dir, cs);
+//                scriptCache.put(dir, cs);
             }
             cs.eval(bindings);
         } catch (ScriptException e) {
             if (!e.getMessage().contains(INTENDED_NPE_MSG) && Server.DEBUG) {
                 log.error(String.format("Unable to compile script %s!", name));
+                log.error("script path:{}", dir);
+                log.error("script:\n{}", script.toString());
+
                 e.printStackTrace();
                 if (getChr() != null) {
                     getChr().chatMessage(Mob, String.format("Unable to compile script %s!", name));

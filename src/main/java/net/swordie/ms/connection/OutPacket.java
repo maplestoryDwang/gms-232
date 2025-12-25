@@ -1,12 +1,14 @@
 package net.swordie.ms.connection;
 
 import io.netty.util.internal.OutOfDirectMemoryError;
+import net.swordie.ms.ServerConstants;
 import net.swordie.ms.connection.api.ApiOutHeader;
 import net.swordie.ms.handlers.header.OutHeader;
 import net.swordie.ms.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -218,9 +220,31 @@ public class OutPacket extends Packet {
             log.error("Tried to encode a string that is too big.");
             return;
         }
-        encodeShort((short) s.length());
-        encodeString(s, (short) s.length());
+
+
+        byte[] data;
+        try {
+            data = s.getBytes(ServerConstants.ENCODING); // 如 "GBK" / "UTF-8" / "EUC-KR" 等
+        } catch (Exception e) {
+            data = s.getBytes();
+        }
+        int length = data.length;
+
+        encodeShort((short) length);
+//        encodeString(s, (short) s.length());
+        encodeString(data, (short) length);
+
     }
+
+//    public void encodeString(String s) {
+//        byte[] data = s != null ? s.getBytes(ServerConstants.ENCODING) : new byte[]{};
+//        if (data.length > Short.MAX_VALUE) {
+//            log.error("Tried to encode a string that is too big.");
+//            return;
+//        }
+//        encodeShort((short) data.length);
+//        encodeArr(data);
+//    }
 
     /**
      * Writes a String as a character array to this OutPacket.
@@ -240,6 +264,20 @@ public class OutPacket extends Packet {
         }
         for (int i = s.length(); i < length; i++) {
             encodeByte((byte) 0);
+        }
+    }
+
+    public void encodeString(byte[] data, short length) {
+
+        int writeLen = Math.min(data.length, length);
+//        int writeLen = data.length;
+        for (int i = 0; i < writeLen; i++) {
+            encodeByte(data[i]);
+        }
+
+        // 填充剩余部分
+        for (int i = writeLen; i < length; i++) {
+            encodeByte(0);
         }
     }
 

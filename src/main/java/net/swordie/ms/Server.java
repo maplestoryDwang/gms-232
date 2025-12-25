@@ -457,7 +457,9 @@ public class Server extends Properties {
 		}
 
 		int userId = 0;
-		if (!needsWzVerified || authInfo.isWzVerified() || !authInfo.isNeedsWzVerified()) {
+		// todo 自定义登陆
+//		if (!needsWzVerified || authInfo.isWzVerified() || !authInfo.isNeedsWzVerified()) {
+		if (!needsWzVerified || authInfo.isWzVerified() || !authInfo.isExpired()) {
 			userId = authInfo.getUserId();
 		}
 

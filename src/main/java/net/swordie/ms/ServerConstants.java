@@ -1,5 +1,8 @@
 package net.swordie.ms;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 /**
  * Created on 2/18/2017.
  */
@@ -27,6 +30,8 @@ public class ServerConstants {
 	public static final int BCRYPT_ITERATIONS = 5;
 	public static final long TOKEN_EXPIRY_TIME = 60 * 24; // 24h
 	public static final long CLEAR_CACHE_RATE = 4; // 24h
+	public static final Charset ENCODING = Charset.forName("gbk");
+//	public static final Charset ENCODING = StandardCharsets.UTF_8;
 
 	// Tespia
 	public static final boolean IS_TESPIA = false; // set true if Tespia instance of server.
