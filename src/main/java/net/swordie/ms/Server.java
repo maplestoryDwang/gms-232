@@ -62,7 +62,7 @@ public class Server extends Properties {
 	private static final Server server = new Server();
 
 	public static final boolean SHOW_EXCEPTIONS = true;
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 	public static boolean DEBUG_MOVEMENT = false;
 	public static boolean DEBUG_PACKETTIMES = true;
 	public static boolean OPCODE_ENCRYPTION = true; // false = either removed or client hook for double opcodes
