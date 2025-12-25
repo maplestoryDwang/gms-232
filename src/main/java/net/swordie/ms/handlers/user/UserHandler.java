@@ -630,6 +630,12 @@ public class UserHandler {
         }
     }
 
+    @Handler(op = InHeader.REQUEST_EVENT_LIST)
+    public static void handleEventListRequest(Client c, InPacket inPacket) {
+        boolean show = true;
+        c.write(WvsContext.requestEventList(c.getChr().getLevel(), show));
+    }
+
     @Handler(op = InHeader.ACHIEVEMENT_REQUEST)
     public static void handleAchievementRequest(Char chr, InPacket inPacket) {
         int type = inPacket.decodeInt();

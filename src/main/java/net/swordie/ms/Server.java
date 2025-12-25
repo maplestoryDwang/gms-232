@@ -128,6 +128,7 @@ public class Server extends Properties {
 			e.printStackTrace();
 		}
 		StringData.load();
+        EventListData.load();
 		FieldData.loadWorldMap();
 		ChannelHandler.initHandlers(false);
 
