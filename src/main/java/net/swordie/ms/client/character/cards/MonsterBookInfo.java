@@ -1,8 +1,6 @@
 package net.swordie.ms.client.character.cards;
 
 import net.swordie.ms.constants.ItemConstants;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -22,7 +20,6 @@ public class MonsterBookInfo {
     @ElementCollection
     @CollectionTable(name = "monsterbookcards", joinColumns = @JoinColumn(name = "bookID"))
     @Column(name = "cardID")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Integer> cards = new HashSet<>();
 
     private int setID;

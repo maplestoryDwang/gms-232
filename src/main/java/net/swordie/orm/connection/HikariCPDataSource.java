@@ -27,6 +27,7 @@ public class HikariCPDataSource {
         config.addDataSourceProperty("useSSL", "false");
         config.addDataSourceProperty("rewriteBatchedStatements", "true");
         config.addDataSourceProperty("autoReconnect", "false");
+        config.addDataSourceProperty("allowPublicKeyRetrieval", "true");
         config.setAutoCommit(false);
         ds = new HikariDataSource(config);
     }

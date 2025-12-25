@@ -26,7 +26,6 @@ public class WebApi {
 
     public void init() {
         log.info("Initializing web API.");
-        log.info("SKIPPING: Have to fix jboss-logging and resteasy not working nicely together after a dependency update.");
         long start = System.currentTimeMillis();
 
         HttpServer server = createHttpServer();
@@ -48,7 +47,7 @@ public class WebApi {
             contextBuilder.setPath("/api");
             initRoutes(contextBuilder);
             initProviders(contextBuilder);
-//            contextBuilder.bind(httpServer); // disabled as it crashes on some jboss-logging stuff
+            contextBuilder.bind(httpServer); // disabled as it crashes on some jboss-logging stuff
         } catch (Exception e) {
             System.out.println("Failed to create HTTPS server on port " + ServerConstants.WEB_API_PORT + " of localhost");
             e.printStackTrace();
@@ -58,15 +57,12 @@ public class WebApi {
     }
 
     private void initProviders(HttpContextBuilder contextBuilder) {
-        // gives a java.lang.NoSuchMethodError: 'java.lang.Object org.jboss.logging.Logger.getMessageLogger
-        /*
         contextBuilder.getDeployment().setDispatcher(new AsynchronousDispatcher(new ResteasyProviderFactoryImpl()));
         var providerFactory = contextBuilder.getDeployment().getDispatcher().getProviderFactory();
         providerFactory.registerProvider(ExceptionHandler.class);
         providerFactory.registerProvider(CorsExceptionHandler.class);
         providerFactory.registerProvider(ResteasyJackson2Provider.class);
         providerFactory.registerProvider(RequestInterceptor.class);
-         */
     }
 
     private void initRoutes(HttpContextBuilder contextBuilder) {

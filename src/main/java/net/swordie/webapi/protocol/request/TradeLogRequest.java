@@ -1,7 +1,7 @@
 package net.swordie.webapi.protocol.request;
 
-import com.sun.xml.fastinfoset.stax.events.Util;
 import jakarta.ws.rs.BadRequestException;
+import net.swordie.ms.util.Util;
 
 public class TradeLogRequest extends ValidatedApiRequest {
 
@@ -22,7 +22,7 @@ public class TradeLogRequest extends ValidatedApiRequest {
 
     @Override
     public void validate() {
-        if (Util.isEmptyString(name)) {
+        if (Util.isNullOrEmpty(name)) {
             throw new BadRequestException("Name cannot be empty.");
         }
     }
