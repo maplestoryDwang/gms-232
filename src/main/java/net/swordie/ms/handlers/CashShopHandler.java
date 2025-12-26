@@ -59,52 +59,34 @@ public class CashShopHandler {
         byte type = inPacket.decodeByte();
         CashItemType cit = CashItemType.getRequestTypeByVal(type);
         if (cit == null) {
-            log.warn("Unknown cash shop cash item request " + type);
+            log.warn("Unknown cash shop cash item request {}", type);
             c.write(CCashShop.error());
             return;
         }
 
         switch (cit) {
-            case Req_Buy:
-                handleBuy(c, inPacket, chr, user, account, trunk);
-                break;
-            case Req_MoveLtoS:
-                handleMoveLtoS(c, inPacket, chr, trunk);
-                break;
-            case Req_MoveStoL:
-                handleMoveStoL(c, inPacket, chr, trunk);
-                break;
-            case Req_SetWish:
+            case Req_Buy -> handleBuy(c, inPacket, chr, user, account, trunk);
+            case Req_MoveLtoS -> handleMoveLtoS(c, inPacket, chr, trunk);
+            case Req_MoveStoL -> handleMoveStoL(c, inPacket, chr, trunk);
+            case Req_SetWish -> {
                 c.write(WvsContext.broadcastMsg(BroadcastMsg.popUpMessage("Wishlist is currently not implemented.")));
                 c.write(CCashShop.queryCashResult(chr));
-                break;
-            case Req_IncSlotCount:
-                handleIncSlotCount(c, inPacket, chr, user, account, trunk);
-                break;
-            case Req_IncTrunkCount:
-                handleIncTrunkCount(c, inPacket, user, account, trunk);
-                break;
-            case Req_IncCharSlotCount:
-                handleIncCharSlotCount(c, inPacket, user, account);
-                break;
-            case Req_IncBuyCharCount:
-                handleBuyCharCount(c, inPacket, user, account, chr);
-                break;
-            case Req_Rebate:
-                handleRebate(chr, inPacket, trunk);
-                break;
-            case Req_BuyPackage:
-                handleBuyPackage(c, inPacket, user, account, chr);
-                break;
-            case Req_ExtraInfo:
+            }
+            case Req_IncSlotCount -> handleIncSlotCount(c, inPacket, chr, user, account, trunk);
+            case Req_IncTrunkCount -> handleIncTrunkCount(c, inPacket, user, account, trunk);
+            case Req_IncCharSlotCount -> handleIncCharSlotCount(c, inPacket, user, account);
+            case Req_IncBuyCharCount -> handleBuyCharCount(c, inPacket, user, account, chr);
+            case Req_Rebate -> handleRebate(chr, inPacket, trunk);
+            case Req_BuyPackage -> handleBuyPackage(c, inPacket, user, account, chr);
+            case Req_ExtraInfo -> {
                 int sn = inPacket.decodeInt();
                 c.write(CCashShop.extraInfoResult(sn, 13));
-                break;
-            default:
+            }
+            default -> {
                 c.write(CCashShop.error());
-                log.warn("Unhandled cash shop cash item request " + cit);
+                log.warn("Unhandled cash shop cash item request {}", cit);
                 chr.dispose();
-                break;
+            }
         }
     }
 
@@ -271,17 +253,15 @@ public class CashShopHandler {
         Map<InvType, Integer> toExpand = new HashMap<>();
 
         switch (invTypeVal) {
-            case 0: // Storage
+            case 0 -> {
                 trunk.addSlotCount(delta);
                 slots = trunk.getSlotCount();
-                break;
-            case 6: // All
+            }
+            case 6 -> {
                 toExpand.put(InvType.EQUIP, Inventory.MAX_SLOTS);
                 slots = Inventory.MAX_SLOTS;
-                break;
-            default:
-                toExpand.put(InvType.getInvTypeByVal(invTypeVal), delta);
-                break;
+            }
+            default -> toExpand.put(InvType.getInvTypeByVal(invTypeVal), delta);
         }
 
         boolean showMessage = true;
@@ -410,24 +390,24 @@ public class CashShopHandler {
 
         boolean notEnoughMoney = true;
         switch (paymentMethod) {
-            case 1: // Credit
+            case 1 -> {
                 if (account.getNxCredit() >= cost) {
                     account.deductNXCredit((int) cost);
                     notEnoughMoney = false;
                 }
-                break;
-            case 2: // Maple points
+            }
+            case 2 -> {
                 if (user.getMaplePoints() >= cost) {
                     user.deductMaplePoints((int) cost);
                     notEnoughMoney = false;
                 }
-                break;
-            case 0x20: // Prepaid
+            }
+            case 0x20 -> {
                 if (account.getNxPrepaid() >= cost) {
                     account.deductNXPrepaid((int) cost);
                     notEnoughMoney = false;
                 }
-                break;
+            }
         }
         if (notEnoughMoney) {
             c.write(CCashShop.message(CashItemType.FailReason_NotEnoughMaplePoint));
@@ -443,24 +423,22 @@ public class CashShopHandler {
         byte type = inPacket.decodeByte();
         CashShopActionType csat = CashShopActionType.getByVal(type);
         if (csat == null) {
-            log.warn("Unhandled cash shop cash action request " + type);
+            log.warn("Unhandled cash shop cash action request {}", type);
             chr.write(CCashShop.error());
             return;
         }
         switch (csat) {
-            case Req_OpenCategory:
+            case Req_OpenCategory -> {
                 int categoryIdx = inPacket.decodeInt();
 //                chr.write(CCashShop.openCategoryResult(cashShop, categoryIdx));
-                break;
-            case Req_Favorite:
-            case Req_Leave:
-                break;
-
-            default:
+            }
+            case Req_Favorite, Req_Leave -> {
+            }
+            default -> {
                 chr.write(CCashShop.error());
-                log.warn("Unhandled cash shop cash action request " + csat);
+                log.warn("Unhandled cash shop cash action request {}", csat);
                 chr.dispose();
-                break;
+            }
         }
     }
 
@@ -486,18 +464,18 @@ public class CashShopHandler {
             return;
         }
 
-        switch (item.getItemId()) {
-            case ItemConstants.SURPRISE_STYLE_BOX:
-                Set<DropInfo> dropInfos = SSBConstants.getCurrentSSBInfo(); // Current SSB Pool
+        if (item.getItemId() == ItemConstants.SURPRISE_STYLE_BOX) {
+            Set<DropInfo> dropInfos = SSBConstants.getCurrentSSBInfo(); // Current SSB Pool
+            if (dropInfos != null) {
                 var randomItemId = Util.getRandomDropInfoByChance(dropInfos);
-                var randomItem = CashItemInfo.fromNewItem(chr, randomItemId.getItemID(), 1);
-                trunk.addCashItem(randomItem);
-                trunk.removeQuantity(item, 1);
-                chr.write(CCashShop.surpriseItemResult(166, item, randomItem));
-                break;
+                if (randomItemId != null) {
+                    var randomItem = CashItemInfo.fromNewItem(chr, randomItemId.getItemID(), 1);
+                    trunk.addCashItem(randomItem);
+                    trunk.removeQuantity(item, 1);
+                    chr.write(CCashShop.surpriseItemResult(166, item, randomItem));
+                }
+            }
         }
-
-
     }
 
 }

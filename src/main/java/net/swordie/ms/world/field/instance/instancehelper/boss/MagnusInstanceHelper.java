@@ -28,15 +28,15 @@ public class MagnusInstanceHelper extends InstanceHelper {
     public void setup(Instance instance) {
         super.setup(instance);
         if(getField().getId() == BossConstants.HARD_MAGNUS_MAPID){
-            addTimer(EventManager.addFixedRateEvent(() -> hardMagPoisonEmitterTick(), 10000, 10000));
-            addTimer(EventManager.addFixedRateEvent(() -> outOfZoneDMG(), 5000, 1000));
+            addTimer(EventManager.addFixedRateEvent(this::hardMagPoisonEmitterTick, 10000, 10000));
+            addTimer(EventManager.addFixedRateEvent(this::outOfZoneDMG, 5000, 1000));
         }
         if(getField().getId() == BossConstants.NORMAL_MAGNUS_MAPID){
-            addTimer(EventManager.addFixedRateEvent(() -> normalMagPoisonEmitterTick(), 10000, 15000));
-            addTimer(EventManager.addFixedRateEvent(() -> outOfZoneDMG(), 10000, 3000));
+            addTimer(EventManager.addFixedRateEvent(this::normalMagPoisonEmitterTick, 10000, 15000));
+            addTimer(EventManager.addFixedRateEvent(this::outOfZoneDMG, 10000, 3000));
         }
         if(getField().getId() == BossConstants.EASY_MAGNUS_MAPID){
-            addTimer(EventManager.addFixedRateEvent(() -> outOfZoneDMG(), 10000, 5000));
+            addTimer(EventManager.addFixedRateEvent(this::outOfZoneDMG, 10000, 5000));
         }
     }
 
@@ -50,11 +50,10 @@ public class MagnusInstanceHelper extends InstanceHelper {
 
     @Override
     public void onMobDamaged(Char attacker, Mob mob, long damage, long oldHp, long newHp) {
-        switch (mob.getTemplateId()) {
-            case 8880000: // Hard magnus
-            case 8880002: // Normal magnus
-            case 8880010: // Easy magnus
-               var zoneId = 0;
+        switch (mob.getTemplateId()) { // Hard magnus
+            // Normal magnus
+            case 8880000, 8880002, 8880010 -> {
+                var zoneId = 0;
                 double perc = mob.getHp() / (double) mob.getMaxHp();
                 if (perc <= 0.25) {
                     zoneId = 4;
@@ -70,7 +69,7 @@ public class MagnusInstanceHelper extends InstanceHelper {
                     mob.changeZoneId(zoneId);
                     mob.changePhase(zoneId);
                 }
-                break;
+            }
         }
         super.onMobDamaged(attacker, mob, damage, oldHp, newHp);
     }
