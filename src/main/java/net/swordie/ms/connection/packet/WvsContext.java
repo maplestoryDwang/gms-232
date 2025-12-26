@@ -41,6 +41,7 @@ import net.swordie.ms.enums.*;
 import net.swordie.ms.handlers.header.OutHeader;
 import net.swordie.ms.life.RandomPortal;
 import net.swordie.ms.life.mob.Mob;
+import net.swordie.ms.loaders.EventListData;
 import net.swordie.ms.util.AntiMacro;
 import net.swordie.ms.util.FileTime;
 import net.swordie.ms.util.Position;
@@ -907,6 +908,25 @@ public class WvsContext {
                 outPacket.encodeString(targetChr.getName());
                 outPacket.encodeByte(inc); // true = fame  |  false = defame
                 break;
+        }
+
+        return outPacket;
+    }
+
+    public static OutPacket requestEventList(int levelReq, boolean show, List<EventListData.EventListDataRecord> eventList) {
+        OutPacket outPacket = new OutPacket(OutHeader.REQUEST_EVENT_LIST);
+
+        outPacket.encodeInt(levelReq);
+        outPacket.encodeByte(show);
+        if (show) {
+            outPacket.encodeString("");
+            outPacket.encodeByte(0);
+            outPacket.encodeInt(0);
+
+            EventListData.encode(outPacket, eventList);
+
+            outPacket.encodeInt(0);
+            outPacket.encodeInt(0);
         }
 
         return outPacket;
