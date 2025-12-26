@@ -42,6 +42,8 @@ public class MigrationManager {
 
     /**
      * Updates database by checking for new Migration files in sql/migration folder.
+     *
+     * @return
      */
     private boolean migrate() {
         var startTime = Util.getCurrentTime(); // for Time
@@ -60,14 +62,14 @@ public class MigrationManager {
 
         if (success) {
             if (executedScripts > 0) {
-                log.info("Migrated database in {}ms", Util.getCurrentTime() - startTime);
-                log.info("[Migration] Successfully migrated. Executed {} files.", executedScripts);
+                log.info(String.format("Migrated database in %dms", Util.getCurrentTime() - startTime));
+                log.info(String.format("[Migration] Successfully migrated. Executed %d files.", executedScripts));
             } else {
                 log.info("[Migration] Database is up-to-date.");
             }
         } else {
-            log.error("[Migration] Failed to Migrate!");
-            log.error("[Migration] Ran {} Successful scripts. Failed at {}", executedScripts, failureScript);
+            log.error(String.format("[Migration] Failed to Migrate!"));
+            log.error(String.format("[Migration] Ran %d Successful scripts. Failed at %s", executedScripts, failureScript));
         }
 
         return success;
@@ -78,6 +80,7 @@ public class MigrationManager {
      * Checking what the latest migration file is. and working it's way up to it.
      *
      * @param latestMigrationVersion latest Migration Version the database is currently on.
+     * @return
      */
     private MigrationResult executeMigrationScripts(int latestMigrationVersion) {
         var nextMigrationVersion = latestMigrationVersion + 1;
@@ -113,7 +116,7 @@ public class MigrationManager {
 
                 // If Failed to execute. Break the loop as we do not want to continue with other script files.
                 if (!success) {
-                    log.error("[Migration] Failed to execute {}", filename); // Print the errors
+                    log.error(String.format("[Migration] Failed to execute %s", filename)); // Print the errors
                     failureScript = filename;
                     scriptRunFailure = true;
                     break;
@@ -130,6 +133,10 @@ public class MigrationManager {
 
     /**
      * Executes a File's queries and if successful, updates the Migration History table to show that this migration file has been run.
+     *
+     * @param version
+     * @param file
+     * @return
      */
     private boolean executeMigrationScript(int version, File file) {
         // log.info(String.format("[Migration] Executing %s", filename));
@@ -147,6 +154,9 @@ public class MigrationManager {
     /**
      * Add Migration File Details into the 'migration_history' table.
      * Allowing us to track which files have been executed on the database.
+     *
+     * @param version
+     * @param filename
      */
     private void addMigrationHistory(int version, String filename) {
         var query = "INSERT INTO migration_history(version, script_name, executed_at) values (?, ?, ?);";
@@ -155,6 +165,9 @@ public class MigrationManager {
 
     /**
      * Find all the SQL files corresponding to the version given.
+     *
+     * @param version
+     * @return
      */
     private List<File> findMigrationFileNames(int version) {
         var versionString = String.format(FILE_VERSION_FORMAT, version); // Assuming file name goes along V{number}_{description}.sql structure
@@ -187,6 +200,9 @@ public class MigrationManager {
 
     /**
      * Obtain all the Successfully Executed Migration File Details by version.
+     *
+     * @param version
+     * @return
      */
     private List<MigrationVersion> getMigrationByVersion(int version) {
         return versions.stream().filter(mv -> mv.getVersion() == version).collect(Collectors.toList());
@@ -196,9 +212,11 @@ public class MigrationManager {
      * Gets the Latest version according to the database.
      * Checks if there are more files in the sql/migration/ folder than have been executed.
      * If there are more. return previous version.
+     *
+     * @return
      */
     private int getLatestVersion() {
-        int latestVersion = versions.stream().map(MigrationVersion::getVersion).max(Integer::compare).orElse(0);
+        var latestVersion = versions.stream().map(MigrationVersion::getVersion).max(Integer::compare).orElse(0);
         
         // Compare Successfully Executed Migration Files of the latest version  with  All Files of the latest version.
         if (findMigrationFileNames(latestVersion).size() > getMigrationByVersion(latestVersion).size()) {

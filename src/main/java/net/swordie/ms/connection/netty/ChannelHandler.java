@@ -178,9 +178,9 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
                     } else if (clazz == Char.class) {
                         method.invoke(this, chr, inPacket);
                     } else {
-                        log.error("Unhandled first param type of handler {}, type = {}", method.getName(), clazz);
+                        log.error("Unhandled first param type of handler " + method.getName() + ", type = " + clazz);
                     }
-                } catch (Exception e) {
+                } catch (IllegalAccessException | InvocationTargetException e) {
                     if (Server.DEBUG || inHeader.isAlwaysShowExceptions()
                             || (Server.SHOW_EXCEPTIONS && !inHeader.isIgnoreShowExceptions())
                     ) {
@@ -198,7 +198,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
             }
         } finally {
             inPacket.release();
-            if (Server.DEBUG_PACKET_TIMES) {
+            if (Server.DEBUG_PACKETTIMES) {
                 addTimeInfo(inHeader, start);
             }
         }
@@ -206,7 +206,11 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
 
     private void addTimeInfo(InHeader header, long start) {
         long timeTaken = System.currentTimeMillis() - start;
-        var info = timeInfo.computeIfAbsent(header, HandleTimeInfo::new);
+        var info = timeInfo.get(header);
+        if (info == null) {
+            info = new HandleTimeInfo(header);
+            timeInfo.put(header, info);
+        }
         info.addInfo(timeTaken);
     }
 
