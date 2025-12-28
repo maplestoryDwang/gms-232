@@ -70,7 +70,7 @@ public class NpcHandler {
         String script = npc.getScripts().get(0);
         if (npc.isShop()) {
             NpcShopDlg nsd = NpcData.getShopById(templateID);
-            if (nsd != null && nsd.getItems().size() > 0) {
+            if (nsd != null && !nsd.getItems().isEmpty()) {
                 chr.getScriptManager().stop(ScriptType.Npc); // reset contents before opening shop?
                 if (chr.getShop() == null) {
                     chr.chatMessage(ChatType.Mob, "Shop: " + templateID);

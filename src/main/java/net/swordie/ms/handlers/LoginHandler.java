@@ -650,7 +650,7 @@ public class LoginHandler {
 
         if (user.getBanExpireDate() != null && !user.getBanExpireDate().isExpired())
         {
-            log.error(String.format("[CharId: %d] Logged in while being banned.", characterId));
+            log.error("[CharId: {}] Logged in while being banned.", characterId);
             c.write(WvsContext.returnToTitle());
             c.close();
             return;
@@ -686,7 +686,7 @@ public class LoginHandler {
 
         if (user.getBanExpireDate() != null && !user.getBanExpireDate().isExpired())
         {
-            log.error(String.format("[CharId: %d] Logged in while being banned.", charId));
+            log.error("[CharId: {}] Logged in while being banned.", charId);
             c.write(WvsContext.returnToTitle());
             c.close();
             return;
@@ -769,7 +769,7 @@ public class LoginHandler {
                 inPacket.decodeInt();
                 inPacket.decodeInt();
             }
-            else if (header == OutHeader.USER_ENTER_FIELD) {
+            else { // USER_ENTER_FIELD
                 inPacket.decodeInt();
                 inPacket.decodeInt();
                 inPacket.decodeString();
@@ -792,7 +792,7 @@ public class LoginHandler {
                 int mask = inPacket.decodeInt();
                 for (CharacterTemporaryStat cts : CharacterTemporaryStat.values()) {
                     if (cts.getPos() == i && (cts.getVal() & mask) != 0) {
-                        log.error(String.format("Contained stat %s", cts.toString()));
+                        log.error("Contained stat {}", cts.toString());
                     }
                 }
             }

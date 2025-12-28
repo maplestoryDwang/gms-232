@@ -37,7 +37,6 @@ import net.swordie.orm.dao.UserDao;
 import net.swordie.orm.migration.MigrationManager;
 import net.swordie.webapi.WebApi;
 import net.swordie.webapi.routes.TradeLogRoute;
-import org.apache.logging.log4j.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -64,7 +63,7 @@ public class Server extends Properties {
 	public static final boolean SHOW_EXCEPTIONS = true;
 	public static boolean DEBUG = true;
 	public static boolean DEBUG_MOVEMENT = false;
-	public static boolean DEBUG_PACKETTIMES = true;
+	public static boolean DEBUG_PACKET_TIMES = true;
 	public static boolean OPCODE_ENCRYPTION = true; // false = either removed or client hook for double opcodes
 
 	// Shutdown fields
@@ -448,11 +447,7 @@ public class Server extends Properties {
 
 		AuthInfo authInfo = getAuthTokens().getOrDefault(token, null);
 
-		if (authInfo == null || authInfo.getExpiryTime() == null) {
-			return 0;
-		}
-
-		if (authInfo.getExpiryTime().isExpired()) {
+		if (isAuthInfoNotValid(authInfo) || authInfo.getExpiryTime().isExpired()) {
 			removeUserFromAuthToken(token);
 			return 0;
 		}
@@ -463,6 +458,10 @@ public class Server extends Properties {
 		}
 
 		return userId;
+	}
+
+	private static boolean isAuthInfoNotValid(AuthInfo authInfo) {
+		return authInfo == null || authInfo.getExpiryTime() == null;
 	}
 
 	public User getUserFromAuthToken(String token) {
@@ -502,23 +501,9 @@ public class Server extends Properties {
 									, i, TimeUnit.MINUTES));
 				}
 			}
-			shutdownFutures.add(EventManager.addEvent(() -> {
-				log.warn("Starting shutdown.");
-				var start = System.currentTimeMillis();
-				for (World world : getWorlds()) {
-					world.shutdown();
-				}
-				log.warn(String.format("Shutdown complete, took %dms", System.currentTimeMillis() - start));
-				System.exit(0);
-			}, minutes, TimeUnit.MINUTES));
+			shutdownFutures.add(EventManager.addEvent(this::startWorldShutdown, minutes, TimeUnit.MINUTES));
 		} else {
-			log.warn("Starting shutdown.");
-			var start = System.currentTimeMillis();
-			for (World world : getWorlds()) {
-				world.shutdown();
-			}
-			log.warn(String.format("Shutdown complete, took %dms", System.currentTimeMillis() - start));
-			System.exit(0);
+			startWorldShutdown();
 		}
 	}
 
@@ -538,7 +523,7 @@ public class Server extends Properties {
 
 	public void cancelShutdown() {
 		setInShutdown(false);
-		if (shutdownFutures.size() > 0) {
+		if (!shutdownFutures.isEmpty()) {
 			for (ScheduledFuture sf : shutdownFutures) {
 				sf.cancel(false);
 			}
@@ -613,5 +598,15 @@ public class Server extends Properties {
 			chars.addAll(world.getChars());
 		}
 		return chars;
+	}
+
+	private void startWorldShutdown() {
+		log.warn("Starting shutdown.");
+		var start = System.currentTimeMillis();
+		for (World world : getWorlds()) {
+			world.shutdown();
+		}
+		log.warn(String.format("Shutdown complete, took %dms", System.currentTimeMillis() - start));
+		System.exit(0);
 	}
 }

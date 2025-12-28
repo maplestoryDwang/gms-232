@@ -78,16 +78,16 @@ public class PierreInstanceHelper extends InstanceHelper {
         super.onMobSpawn(field, mob);
         if (mob.getTemplateId() == 8900100 && startedTimers == false) {
             startedTimers = true;
-            hatDropTimer = addTimer(EventManager.addFixedRateEvent(() -> createDroppingHats(), 5000, HAT_DROP_TIMER));
-            hatAttachTimer = addTimer(EventManager.addFixedRateEvent(() -> attachHats(), 5000, HAT_ATTACH_TIMER));
-            transformAttemptTimer = addTimer(EventManager.addFixedRateEvent(() -> transformTimer(), 5000, TRANSFORM_ATTEMPT_TIMER));
+            hatDropTimer = addTimer(EventManager.addFixedRateEvent(this::createDroppingHats, 5000, HAT_DROP_TIMER));
+            hatAttachTimer = addTimer(EventManager.addFixedRateEvent(this::attachHats, 5000, HAT_ATTACH_TIMER));
+            transformAttemptTimer = addTimer(EventManager.addFixedRateEvent(this::transformTimer, 5000, TRANSFORM_ATTEMPT_TIMER));
 
         }
         if (mob.getTemplateId() == 8900000 && startedTimers == false) {
             startedTimers = true;
-            hatDropTimer = addTimer(EventManager.addFixedRateEvent(() -> createDroppingHats(), 5000, HAT_DROP_TIMER));
-            hatAttachTimer = addTimer(EventManager.addFixedRateEvent(() -> attachHats(), 5000, HAT_ATTACH_TIMER));
-            transformAttemptTimer = addTimer(EventManager.addFixedRateEvent(() -> transformTimer(), 5000, TRANSFORM_ATTEMPT_TIMER));
+            hatDropTimer = addTimer(EventManager.addFixedRateEvent(this::createDroppingHats, 5000, HAT_DROP_TIMER));
+            hatAttachTimer = addTimer(EventManager.addFixedRateEvent(this::attachHats, 5000, HAT_ATTACH_TIMER));
+            transformAttemptTimer = addTimer(EventManager.addFixedRateEvent(this::transformTimer, 5000, TRANSFORM_ATTEMPT_TIMER));
             isChaos = true;
         }
 
@@ -128,7 +128,7 @@ public class PierreInstanceHelper extends InstanceHelper {
                     if (splitBothKilledTimer != null) {
                         EventManager.stopTimer(splitBothKilledTimer);
                     }
-                    splitBothKilledTimer = addTimer(EventManager.addEvent(() -> isSplitBothKilled(), LINK_KILL_WINDOW));
+                    splitBothKilledTimer = addTimer(EventManager.addEvent(this::isSplitBothKilled, LINK_KILL_WINDOW));
                 }
             }
         }
@@ -223,7 +223,7 @@ public class PierreInstanceHelper extends InstanceHelper {
 
     private void attemptTransform(Mob mob) {
         List<Integer> transformTargets = getTransformTargets(mob.getTemplateId(), mob.getHpPerc());
-        if (transformTargets.size() == 0) return;
+        if (transformTargets.isEmpty()) return;
         int transformTarget = Util.getRandomFromCollection(transformTargets);
         if (mob.getField().getLifeByTemplateId(transformTarget) != null)
             return; //Already a mob of type for this target. Do this to ensure there's no duplicates
@@ -323,32 +323,30 @@ public class PierreInstanceHelper extends InstanceHelper {
     private List<Integer> getTransformTargets(int templateID, double hpPerc) {
         List<Integer> transformTargets = new ArrayList<>();
         switch (templateID) {
-            case BossConstants.PIERRE_CHAOS_PURPLE: //Purple
+            case BossConstants.PIERRE_CHAOS_PURPLE -> {
                 transformTargets.add(BossConstants.PIERRE_CHAOS_RED);
                 transformTargets.add(BossConstants.PIERRE_CHAOS_BLUE);
-                break;
-            case BossConstants.PIERRE_CHAOS_RED: //Red
+            }
+            case BossConstants.PIERRE_CHAOS_RED -> {
                 if (!isSplit) {
                     transformTargets.add(BossConstants.PIERRE_CHAOS_PURPLE);
                 } else {
                     transformTargets.add(BossConstants.PIERRE_CHAOS_BLUE);
                 }
-                break;
-            case BossConstants.PIERRE_CHAOS_BLUE: //Blue
+            }
+            case BossConstants.PIERRE_CHAOS_BLUE -> {
                 if (!isSplit) {
                     transformTargets.add(BossConstants.PIERRE_CHAOS_PURPLE);
                 } else {
                     transformTargets.add(BossConstants.PIERRE_CHAOS_RED);
                 }
-                break;
-            case BossConstants.PIERRE_NORMAL_PURPLE:
+            }
+            case BossConstants.PIERRE_NORMAL_PURPLE -> {
                 transformTargets.add(BossConstants.PIERRE_NORMAL_RED);
                 transformTargets.add(BossConstants.PIERRE_NORMAL_BLUE);
-                break;
-            case BossConstants.PIERRE_NORMAL_RED:
-            case BossConstants.PIERRE_NORMAL_BLUE:
-                transformTargets.add(BossConstants.PIERRE_NORMAL_PURPLE);
-                break;
+            }
+            case BossConstants.PIERRE_NORMAL_RED, BossConstants.PIERRE_NORMAL_BLUE ->
+                    transformTargets.add(BossConstants.PIERRE_NORMAL_PURPLE);
         }
         return transformTargets;
     }
