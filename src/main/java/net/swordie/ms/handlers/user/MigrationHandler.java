@@ -302,7 +302,8 @@ public class MigrationHandler {
                     if (returnMap >= 999999999) {
                         returnMap = fieldInfo.getReturnMap();
                     }
-                    chr.warp(chr.getOrCreateFieldByCurrentInstanceType(returnMap));
+                    Field targetFieldInstance = chr.getOrCreateFieldByCurrentInstanceType(returnMap);
+                    chr.warp(targetFieldInstance != null ? targetFieldInstance : chr.getField());
                 }
             }
             chr.heal(chr.getMaxHP(), false, true);

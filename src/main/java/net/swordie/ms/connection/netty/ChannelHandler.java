@@ -144,7 +144,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
         Char chr = c.getChr();
         short op = inPacket.decodeShort();
         if (op >= InHeader.BEGIN_USER.getValue()
-                && c.getEncryptedHeaderToNormalHeaders().size() != 0) {
+                && !c.getEncryptedHeaderToNormalHeaders().isEmpty()) {
             op = c.getEncryptedHeaderToNormalHeaders().getOrDefault(op, (short) -1);
         }
         if (op == -1 || !Server.OPCODE_ENCRYPTION) {
@@ -178,7 +178,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
                     } else if (clazz == Char.class) {
                         method.invoke(this, chr, inPacket);
                     } else {
-                        log.error("Unhandled first param type of handler " + method.getName() + ", type = " + clazz);
+                        log.error("Unhandled first param type of handler {}, type = {}", method.getName(), clazz);
                     }
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     if (Server.DEBUG || inHeader.isAlwaysShowExceptions()
@@ -198,7 +198,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
             }
         } finally {
             inPacket.release();
-            if (Server.DEBUG_PACKETTIMES) {
+            if (Server.DEBUG_PACKET_TIMES) {
                 addTimeInfo(inHeader, start);
             }
         }
@@ -206,11 +206,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
 
     private void addTimeInfo(InHeader header, long start) {
         long timeTaken = System.currentTimeMillis() - start;
-        var info = timeInfo.get(header);
-        if (info == null) {
-            info = new HandleTimeInfo(header);
-            timeInfo.put(header, info);
-        }
+        var info = timeInfo.computeIfAbsent(header, HandleTimeInfo::new);
         info.addInfo(timeTaken);
     }
 

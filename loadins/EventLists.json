@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "[Swordie] Thanks to Sjonnie",
+    "description": "Thank you to the SwordieMS team. I learned a lot from your work.",
+    "startTime": 1,
+    "endTime": 235999,
+    "startDate": 20251225,
+    "endDate": 20251231,
+    "rewardItems": [5211048, 1202236, 2435301, 5069100, 5222060]
+  },
+  {
+    "id": 2,
+    "title": "[Swordie] Thanks to Asura",
+    "description": "Thank you to the SwordieMS team. I learned a lot from your work.",
+    "startTime": 0,
+    "endTime": 235959,
+    "startDate": 20251225,
+    "endDate": 20260105,
+    "rewardItems": [5062009, 5062010, 5062024]
+  },
+  {
+    "id": 3,
+    "title": "[Swordie] Thanks to Dice",
+    "description": "Thank you to the SwordieMS team. I learned a lot from your work.",
+    "startTime": 0,
+    "endTime": 235959,
+    "startDate": 20251225,
+    "endDate": 20260105,
+    "rewardItems": [4001713, 4001714, 4001715, 4001716]
+  }
+]
