@@ -5,6 +5,8 @@ import net.swordie.ms.ServerConstants;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.FirstEnterReward;
+import net.swordie.ms.client.character.items.BodyPart;
 import net.swordie.ms.client.character.items.Equip;
 import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.client.character.items.ItemOption;
@@ -52,10 +54,7 @@ import net.swordie.ms.loaders.*;
 import net.swordie.ms.loaders.containerclasses.SkillStringInfo;
 import net.swordie.ms.scripts.ScriptManagerImpl;
 import net.swordie.ms.scripts.ScriptType;
-import net.swordie.ms.util.FileTime;
-import net.swordie.ms.util.Position;
-import net.swordie.ms.util.Rect;
-import net.swordie.ms.util.Util;
+import net.swordie.ms.util.*;
 import net.swordie.ms.world.Channel;
 import net.swordie.ms.world.World;
 import net.swordie.ms.world.field.*;
@@ -75,6 +74,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
 import static net.swordie.ms.enums.AccountType.*;
@@ -972,7 +972,7 @@ public class AdminCommands {
         }
     }
 
-    @Command(names = {"getitem"}, requiredType = Tester)
+    @Command(names = {"getitem", "item"}, requiredType = Tester)
     public static class GetItem extends AdminCommand {
         public static void execute(Char chr, String[] args) {
             short quant = 1;
@@ -3985,5 +3985,56 @@ public class AdminCommands {
             chr.getScriptManager().setActionBar(true, ActionBarType.getByVal(Integer.parseInt(args[1])));
         }
 
+    }
+
+    @Command(names = {"gift"}, requiredType = Admin)
+    public static class GiftBox extends AdminCommand {
+
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 4) {
+                chr.chatMessage("Usage: !gift <player> <itemID> <quantity> <message>");
+                return;
+            }
+            String targetName = args[1];
+            int itemid = Integer.parseInt(args[2]);
+            int quantity = Integer.parseInt(args[3]);
+            String message = args.length >= 5 ? args[4] : String.format("Gifted by admin %s", chr.getName());
+            int worldID = chr.getClient().getChannelInstance().getWorldId().getVal();
+            World world = Server.getInstance().getWorldById(worldID);
+            Char targetChr = world.getCharByName(targetName);
+
+            if (targetChr == null) {
+                chr.chatMessage(String.format("%s is not online.", targetName));
+                chr.dispose();
+                return;
+            }
+
+            int targetId = targetChr.getId();
+
+            FirstEnterReward reward = new FirstEnterReward();
+            reward.setCharId(targetId);
+            reward.setExpireTime(FileTime.fromEpochMillis(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(30)));
+            reward.setRewardType(FirstEnterRewardType.GAME_ITEM);
+            reward.setItemId(itemid);
+            reward.setQuantity(quantity);
+            reward.setDescription(message);
+
+            targetChr.addFirstEnterReward(reward);
+            targetChr.checkFirstEnterReward();
+        }
+    }
+
+    @Command(names = {"checkgift"}, requiredType = Player)
+    public static class CheckGift extends AdminCommand {
+
+        public static void execute(Char chr, String[] args) {
+            Set<FirstEnterReward> rewards = chr.getFirstEnterRewards();
+            if (!rewards.isEmpty()) {
+                chr.chatMessage("You have %d hot time rewards available!", rewards.size());
+                chr.checkFirstEnterReward();
+            } else {
+                chr.chatMessage("No hot time rewards available!");
+            }
+        }
     }
 }

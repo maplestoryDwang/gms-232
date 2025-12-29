@@ -788,7 +788,7 @@ public class UserHandler {
         }
 
         if(refused){ //Refused reward
-            chr.getFirstEnterRewards().remove(claimTarget);
+            chr.removeFirstEnterReward(claimTarget);
             chr.write(WvsContext.firstEnterReward(chr.getFirstEnterRewards(), FirstEnterRewardPacketType.Load_Items, 0));
             return;
         }
@@ -803,7 +803,8 @@ public class UserHandler {
         boolean claimed = false;
         switch(claimTarget.getRewardType())
         {
-            case Item:
+            case GAME_ITEM:
+            case CASH_ITEM:
                 if(chr.canHold(claimTarget.getItemId(), claimTarget.getQuantity())){
                     chr.addItemToInventory(claimTarget.getItemId(), claimTarget.getQuantity());
                     chr.write(WvsContext.firstEnterReward(chr.getFirstEnterRewards(), FirstEnterRewardPacketType.Item_Claimed, claimTarget.getQuantity()));
@@ -827,6 +828,8 @@ public class UserHandler {
                 chr.write(WvsContext.firstEnterReward(chr.getFirstEnterRewards(), FirstEnterRewardPacketType.Exp_Claimed, claimTarget.getQuantity()));
                 claimed = true;
                 break;
+            default:
+                chr.chatMessage("UNKNOWN REWARD TYPE");
         }
         if(claimed){
             chr.removeFirstEnterReward(claimTarget);

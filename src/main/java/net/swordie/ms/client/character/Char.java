@@ -129,6 +129,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -7312,9 +7313,25 @@ public class Char {
         return transferLifes;
     }
 
+    public void addFirstEnterReward(int itemID, FirstEnterRewardType type, int quantity, String description) {
+        FirstEnterReward reward = new FirstEnterReward();
+        reward.setCharId(getId());
+        reward.setItemId(itemID);
+        reward.setQuantity(quantity);
+        reward.setRewardType(type);
+        reward.setExpireTime(FileTime.fromEpochMillis(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365)));
+        reward.setDescription(description);
+
+        addFirstEnterReward(reward);
+    }
+
     public void addFirstEnterReward(FirstEnterReward firstEnterReward) {
         getFirstEnterRewards().add(firstEnterReward);
         firstEnterRewardDao.saveOrUpdate(getAccount(), getFirstEnterRewards());
+    }
+
+    public void checkFirstEnterReward() {
+        write(WvsContext.firstEnterReward(getFirstEnterRewards(), FirstEnterRewardPacketType.Load_Items, 0));
     }
 
     public void removeFirstEnterReward(FirstEnterReward firstEnterReward) {

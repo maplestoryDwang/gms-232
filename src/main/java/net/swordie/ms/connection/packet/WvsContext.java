@@ -1217,7 +1217,7 @@ public class WvsContext {
                     outPacket.encodeInt(firstEnterReward.getRewardType().getVal()); // nRewardType: 1 = Item, 2 = Item, 3 = Maple Points, 4 = Meso, 5 = EXP
                     int itemId = 0;
                     int quantity = 0;
-                    if(firstEnterReward.getRewardType() == FirstEnterRewardType.Item){
+                    if(firstEnterReward.getRewardType() == FirstEnterRewardType.CASH_ITEM || firstEnterReward.getRewardType() == FirstEnterRewardType.GAME_ITEM){
                         itemId = firstEnterReward.getItemId();
                         quantity = firstEnterReward.getQuantity();
                     }

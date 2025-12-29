@@ -2705,6 +2705,7 @@ public abstract class Job {
                 message += "You've reached level 10, and are ready for your #b[1st Job Advancement]#k!\r\n\r\n";
                 message += "Complete the #r[Job Advancement]#k quest and unlock your 1st job advancement!\r\n";
                 chr.write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
+                chr.addFirstEnterReward(2436226, FirstEnterRewardType.GAME_ITEM, 1, "Thanks to Swordie team and community"); // Maple Admin's Heartfelt Gift
                 break;
             }
             case 20: {
@@ -2731,6 +2732,9 @@ public abstract class Job {
                 message += "You've reached level 30 and can now unlock #b[Abilities]#k!\r\n\r\n";
                 message += "Accept the quest #bFirst Ability - The Eye Opener#k from the Quest Notifier!\r\n";
                 chr.write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
+                
+                chr.addFirstEnterReward(2438907, FirstEnterRewardType.GAME_ITEM, 1, "Gift for reaching level 30."); // Pearl Weapon
+                chr.addFirstEnterReward(2435851, FirstEnterRewardType.GAME_ITEM, 1, "Gift for reaching level 30."); // Pearl Armor
                 break;
             }
             case 31: {
