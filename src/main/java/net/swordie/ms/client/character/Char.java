@@ -7313,18 +7313,6 @@ public class Char {
         return transferLifes;
     }
 
-    public void addFirstEnterReward(int itemID, FirstEnterRewardType type, int quantity, String description) {
-        FirstEnterReward reward = new FirstEnterReward();
-        reward.setCharId(getId());
-        reward.setItemId(itemID);
-        reward.setQuantity(quantity);
-        reward.setRewardType(type);
-        reward.setExpireTime(FileTime.fromEpochMillis(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365)));
-        reward.setDescription(description);
-
-        addFirstEnterReward(reward);
-    }
-
     public void addFirstEnterReward(FirstEnterReward firstEnterReward) {
         getFirstEnterRewards().add(firstEnterReward);
         firstEnterRewardDao.saveOrUpdate(getAccount(), getFirstEnterRewards());

@@ -6,7 +6,6 @@ import net.swordie.ms.client.Account;
 import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.character.FirstEnterReward;
-import net.swordie.ms.client.character.items.BodyPart;
 import net.swordie.ms.client.character.items.Equip;
 import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.client.character.items.ItemOption;
@@ -74,7 +73,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
 import static net.swordie.ms.enums.AccountType.*;
@@ -4016,35 +4014,13 @@ public class AdminCommands {
 
             int targetId = targetChr.getId();
 
-            FirstEnterReward reward = new FirstEnterReward();
-            reward.setCharId(targetId);
-            reward.setExpireTime(FileTime.fromEpochMillis(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(30)));
-            reward.setRewardType(FirstEnterRewardType.GAME_ITEM);
-            reward.setItemId(itemid);
-            reward.setQuantity(quantity);
-            reward.setDescription(message);
+            FirstEnterReward reward = new FirstEnterReward(targetId, itemid, quantity, FirstEnterRewardType.GameItem, message);
 
             targetChr.addFirstEnterReward(reward);
             if (online) {
                 targetChr.checkFirstEnterReward();
             }
             chr.chatMessage("Gift Sent!, target is online: " + online);
-        }
-    }
-
-    @Command(names = {"checkgift"}, requiredType = Player)
-    public static class CheckGift extends AdminCommand {
-
-        public static void execute(Char chr, String[] args) {
-            Set<FirstEnterReward> rewards = chr.getFirstEnterRewards();
-            if (!rewards.isEmpty()) {
-                chr.chatMessage("You have %d hot time rewards available!", rewards.size());
-                chr.checkFirstEnterReward();
-            } else {
-                chr.chatMessage("No hot time rewards available!");
-            }
-
-            chr.checkFirstEnterReward();
         }
     }
 }

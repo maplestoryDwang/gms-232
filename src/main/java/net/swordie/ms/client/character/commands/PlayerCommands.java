@@ -3,6 +3,7 @@ package net.swordie.ms.client.character.commands;
 import net.swordie.ms.Server;
 import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.FirstEnterReward;
 import net.swordie.ms.constants.JobConstants;
 import net.swordie.ms.constants.QuestConstants;
 import net.swordie.ms.enums.AccountType;
@@ -261,6 +262,22 @@ public class PlayerCommands {
             }
 
             chr.chatMessage(chars.substring(0, chars.length() - 2));
+        }
+    }
+
+    @Command(names = {"checkgift"}, requiredType = Player)
+    public static class CheckGift extends AdminCommand {
+
+        public static void execute(Char chr, String[] args) {
+            Set<FirstEnterReward> rewards = chr.getFirstEnterRewards();
+            if (!rewards.isEmpty()) {
+                chr.chatMessage("You have %d hot time rewards available!", rewards.size());
+                chr.checkFirstEnterReward();
+            } else {
+                chr.chatMessage("No hot time rewards available!");
+            }
+
+            chr.checkFirstEnterReward();
         }
     }
 }

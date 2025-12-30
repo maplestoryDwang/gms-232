@@ -3,6 +3,7 @@ package net.swordie.ms.client.jobs;
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.character.CharacterStat;
+import net.swordie.ms.client.character.FirstEnterReward;
 import net.swordie.ms.client.character.info.HitInfo;
 import net.swordie.ms.client.character.items.BodyPart;
 import net.swordie.ms.client.character.items.Equip;
@@ -2705,7 +2706,7 @@ public abstract class Job {
                 message += "You've reached level 10, and are ready for your #b[1st Job Advancement]#k!\r\n\r\n";
                 message += "Complete the #r[Job Advancement]#k quest and unlock your 1st job advancement!\r\n";
                 chr.write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
-                chr.addFirstEnterReward(2436226, FirstEnterRewardType.GAME_ITEM, 1, "Thanks to Swordie team and community"); // Maple Admin's Heartfelt Gift
+                chr.addFirstEnterReward(new FirstEnterReward(chr.getId(), 2436226, 1, FirstEnterRewardType.GameItem, "Thanks to Swordie team and community.")); // Maple Admin's Heartfelt Gift
                 break;
             }
             case 20: {
@@ -2733,8 +2734,8 @@ public abstract class Job {
                 message += "Accept the quest #bFirst Ability - The Eye Opener#k from the Quest Notifier!\r\n";
                 chr.write(UserLocal.addPopupSay(9010000, 6000, message, "FarmSE.img/boxResult"));
                 
-                chr.addFirstEnterReward(2438907, FirstEnterRewardType.GAME_ITEM, 1, "Gift for reaching level 30."); // Pearl Weapon
-                chr.addFirstEnterReward(2435851, FirstEnterRewardType.GAME_ITEM, 1, "Gift for reaching level 30."); // Pearl Armor
+                chr.addFirstEnterReward(new FirstEnterReward(chr.getId(), 2438907, 1, FirstEnterRewardType.GameItem, "Gift for reaching level 30.")); // Pearl Weapon
+                chr.addFirstEnterReward(new FirstEnterReward(chr.getId(), 2435851, 1, FirstEnterRewardType.GameItem, "Gift for reaching level 30.")); // Pearl Armor
                 break;
             }
             case 31: {

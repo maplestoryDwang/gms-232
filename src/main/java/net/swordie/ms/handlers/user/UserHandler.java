@@ -803,15 +803,15 @@ public class UserHandler {
         boolean claimed = false;
         switch(claimTarget.getRewardType())
         {
-            case GAME_ITEM:
-            case CASH_ITEM:
+            case GameItem:
+            case CashItem:
                 if(chr.canHold(claimTarget.getItemId(), claimTarget.getQuantity())){
                     chr.addItemToInventory(claimTarget.getItemId(), claimTarget.getQuantity());
                     chr.write(WvsContext.firstEnterReward(chr.getFirstEnterRewards(), FirstEnterRewardPacketType.Item_Claimed, claimTarget.getQuantity()));
                     claimed = true;
                 }
                 break;
-            case Maple_Points:
+            case MaplePoints:
                 chr.addNx(claimTarget.getQuantity());
                 chr.write(WvsContext.firstEnterReward(chr.getFirstEnterRewards(), FirstEnterRewardPacketType.Nx_Claimed, claimTarget.getQuantity()));
                 claimed = true;
@@ -829,7 +829,8 @@ public class UserHandler {
                 claimed = true;
                 break;
             default:
-                chr.chatMessage("UNKNOWN REWARD TYPE");
+                chr.chatMessage("Unknown reward type");
+                break;
         }
         if(claimed){
             chr.removeFirstEnterReward(claimTarget);
