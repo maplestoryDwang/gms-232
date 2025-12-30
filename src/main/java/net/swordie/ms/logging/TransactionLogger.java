@@ -17,7 +17,7 @@ public class TransactionLogger {
 
     private static final int MAX_QUEUE_SIZE = 1;
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(TransactionLogger.class);
     private static final Lock lock = new ReentrantLock();
     private static final TradeTransactionDao tradeTransactionDao = (TradeTransactionDao) SworDaoFactory.getByClass(TradeTransaction.class);
 

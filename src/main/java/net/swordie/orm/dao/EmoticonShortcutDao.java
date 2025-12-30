@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class EmoticonShortcutDao implements SworDao<EmoticonShortcut> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(EmoticonShortcutDao.class);
 
     public void saveOrUpdate(Char chr, EmoticonShortcut emoticonShortcut) {
         if (emoticonShortcut == null) {

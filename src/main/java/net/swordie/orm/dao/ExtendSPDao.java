@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class ExtendSPDao implements SworDao<ExtendSP> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ExtendSPDao.class);
 
     private static final SPSetDao spSetDao = (SPSetDao) SworDaoFactory.getByClass(SPSet.class);
 

@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class MonsterCollectionRewardDao implements SworDao<MonsterCollectionReward> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MonsterCollectionRewardDao.class);
 
 //    public void saveOrUpdate(MonsterCollectionReward monsterCollectionReward ) {
 //        boolean needsId = monsterCollectionReward.getId() == 0;

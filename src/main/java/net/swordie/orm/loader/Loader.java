@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Loader {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(Loader.class);
 
     private Map<Class, EntityHolder> entities;
 

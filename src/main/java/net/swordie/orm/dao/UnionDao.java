@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class UnionDao implements SworDao<Union> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UnionDao.class);
 
     private static final UnionBoardDao unionBoardDao = (UnionBoardDao) SworDaoFactory.getByClass(UnionBoard.class);
 

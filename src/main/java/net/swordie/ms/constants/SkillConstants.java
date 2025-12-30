@@ -161,7 +161,7 @@ public class SkillConstants {
             142120002, // Ultimate - Psychic Shot
     });
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SkillConstants.class);
 
     public static final int LEVEL_UP_DAMAGE_SKILL_ID = 80001770;
 

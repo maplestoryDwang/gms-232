@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class NonCombatStatDayLimitDao implements SworDao<NonCombatStatDayLimit> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(NonCombatStatDayLimitDao.class);
 
     public void saveOrUpdate(NonCombatStatDayLimit nonCombatStatDayLimit) {
         if (nonCombatStatDayLimit == null) {

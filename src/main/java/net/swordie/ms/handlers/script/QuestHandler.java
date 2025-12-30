@@ -24,7 +24,7 @@ import org.apache.logging.log4j.Logger;
 
 public class QuestHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(QuestHandler.class);
 
 
     @Handler(op = InHeader.USER_QUEST_REQUEST)

@@ -39,7 +39,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class NettyClient {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(NettyClient.class);
     private static final int MAX_PACKET_SIZE = 16777215; // Same as netty
 
     /**

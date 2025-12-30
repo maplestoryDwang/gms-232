@@ -23,7 +23,7 @@ import static net.swordie.ms.enums.ChatType.SystemNotice;
 
 public class PartyHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(PartyHandler.class);
 
 
     @Handler(op = InHeader.PARTY_INVITABLE_SET)

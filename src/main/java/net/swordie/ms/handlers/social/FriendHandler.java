@@ -27,7 +27,7 @@ public class FriendHandler {
     private static final CharDao charDao = (CharDao) SworDaoFactory.getByClass(Char.class);
     private static final FriendDao friendDao = (FriendDao) SworDaoFactory.getByClass(Friend.class);
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FriendHandler.class);
 
 
     @Handler(op = InHeader.LOAD_ACCOUNT_ID_OF_CHARACTER_FRIEND_REQUEST)

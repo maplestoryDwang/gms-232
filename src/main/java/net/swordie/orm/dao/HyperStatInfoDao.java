@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class HyperStatInfoDao implements SworDao<HyperStatInfo> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(HyperStatInfoDao.class);
 
     public QueryHolder createQueryHolder(HyperStatsManager hsm, HyperStatInfo info) {
         if (info.isClean()) {

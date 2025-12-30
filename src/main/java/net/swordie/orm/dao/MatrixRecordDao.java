@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class MatrixRecordDao implements SworDao<MatrixRecord> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MatrixRecordDao.class);
 
     public static final String TABLE = "matrix_records";
 

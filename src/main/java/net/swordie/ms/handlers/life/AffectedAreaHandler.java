@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class AffectedAreaHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AffectedAreaHandler.class);
 
 
     @Handler(op = InHeader.USER_AFFECTED_AREA_REMOVE_BY_TIME)

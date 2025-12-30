@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 @Provider
 public class ExceptionHandler implements ExceptionMapper<Exception> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ExceptionHandler.class);
 
     @Override
     public Response toResponse(Exception e) {

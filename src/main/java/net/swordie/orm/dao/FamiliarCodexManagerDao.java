@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class FamiliarCodexManagerDao implements SworDao<FamiliarCodexManager> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FamiliarCodexManagerDao.class);
 
     public void saveOrUpdate(FamiliarCodexManager fcm) {
         if (fcm == null) {

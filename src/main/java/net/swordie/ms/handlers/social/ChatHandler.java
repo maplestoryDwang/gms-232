@@ -33,7 +33,7 @@ import static net.swordie.ms.enums.InvType.EQUIPPED;
 
 public class ChatHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ChatHandler.class);
 
     @Handler(op = InHeader.USER_CHAT)
     public static void handleUserChat(Client c, InPacket inPacket) {

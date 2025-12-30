@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class AccountDao implements SworDao<Account> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AccountDao.class);
 
     private static final CharDao charDao = (CharDao) SworDaoFactory.getByClass(Char.class);
     private static final DamageSkinSaveDataDao dssdDao = (DamageSkinSaveDataDao) SworDaoFactory.getByClass(DamageSkinSaveData.class);

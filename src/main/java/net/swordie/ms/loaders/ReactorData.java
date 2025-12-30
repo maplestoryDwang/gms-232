@@ -21,7 +21,7 @@ public class ReactorData {
     private static final boolean LOG_UNKS = false;
     private static final String REACTORS_FILE = ServerConstants.DAT_DIR + "/reactors.dat";
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ReactorData.class);
     private static HashMap<Integer, ReactorInfo> reactorInfo = new HashMap<>();
     private static HashMap<Integer, Integer> reactorOffsets;
 

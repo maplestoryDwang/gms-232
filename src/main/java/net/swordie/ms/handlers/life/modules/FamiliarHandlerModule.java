@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class FamiliarHandlerModule {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FamiliarHandlerModule.class);
 
     // Familiar Handler Module
     public static void handleFamiliarExtract(Char chr, int size, InPacket inPacket) {

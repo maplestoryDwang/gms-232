@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MatrixSlotDao implements SworDao<MatrixSlot> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MatrixSlotDao.class);
 
     public QueryHolder createQueryHolder(Char chr, MatrixSlot matrixSlot) {
         if (matrixSlot.isClean()) {

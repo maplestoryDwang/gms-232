@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class GuildMemberDao implements SworDao<GuildMember> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(GuildMemberDao.class);
 
     public void saveOrUpdate(Guild guild, GuildMember guildMember) {
         if (guildMember == null) {

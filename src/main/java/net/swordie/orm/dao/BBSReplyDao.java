@@ -14,7 +14,7 @@ import java.util.List;
 
 public class BBSReplyDao implements SworDao<BBSReply> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(BBSReplyDao.class);
 
     public void saveOrUpdate(BBSRecord bbsRecord, BBSReply bbsReply) {
         if (bbsReply == null) {

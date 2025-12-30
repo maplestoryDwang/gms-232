@@ -88,7 +88,7 @@ import static net.swordie.ms.client.jobs.cygnus.Mihile.*;
  * Created on 1/2/2018.
  */
 public abstract class Job {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(Job.class);
     protected String resolution = ""; // For Custom Screen Effects
     protected Char chr;
 

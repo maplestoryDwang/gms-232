@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class AccountDailyEntriesDao implements SworDao<AccountDailyEntries> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AccountDailyEntriesDao.class);
 
     public void saveOrUpdate(Account account, AccountDailyEntries accountDailyEntries) {
         if (accountDailyEntries == null) {

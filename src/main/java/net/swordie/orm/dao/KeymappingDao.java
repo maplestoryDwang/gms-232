@@ -16,7 +16,7 @@ import java.util.List;
 
 public class KeymappingDao implements SworDao<Keymapping> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(KeymappingDao.class);
 
     public QueryHolder createQueryHolder(FuncKeyMap fkm, Keymapping keymapping) {
         if (keymapping.isClean()) {

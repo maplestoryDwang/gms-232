@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AvatarLookDao implements SworDao<AvatarLook> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AvatarLookDao.class);
     private static final IntegerDao equipIdDao = new IntegerDao("equipid");
 
     public void saveOrUpdate(AvatarLook avatarLook) {

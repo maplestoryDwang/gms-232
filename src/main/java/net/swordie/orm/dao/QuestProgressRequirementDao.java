@@ -13,7 +13,7 @@ import java.util.List;
 
 public class QuestProgressRequirementDao implements SworDao<QuestProgressRequirement> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(QuestProgressRequirementDao.class);
 
     public void saveOrUpdate(Quest quest, QuestProgressRequirement questProgressRequirement) {
         if (questProgressRequirement == null || questProgressRequirement.isClean()) {

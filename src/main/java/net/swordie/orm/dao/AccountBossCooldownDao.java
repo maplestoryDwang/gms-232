@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class AccountBossCooldownDao implements SworDao<AccountBossCooldown> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AccountBossCooldownDao.class);
 
     public void saveOrUpdate(Account account, AccountBossCooldown accountBossCooldown) {
         if (accountBossCooldown == null) {

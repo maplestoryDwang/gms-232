@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class MiniRoomPacket implements Encodable {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MiniRoomPacket.class);
 
     private MiniRoomAction miniRoomAction;
     private MiniRoom miniRoom;

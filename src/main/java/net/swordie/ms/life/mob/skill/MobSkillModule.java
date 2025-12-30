@@ -54,7 +54,7 @@ import static net.swordie.ms.life.mob.skill.MobSkillStat.*;
 
 public class MobSkillModule {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MobSkillModule.class);
 
     public static void handlePapulatusSkill(MobTemporaryStat mts, short slv, MobSkillInfo msi, Field field, Option o, Option o2) {
         switch (slv) {

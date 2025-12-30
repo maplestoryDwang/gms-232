@@ -63,7 +63,7 @@ import static net.swordie.ms.enums.ChatType.Mob;
 
 public class AttackHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AttackHandler.class);
 
 
     // No handler, gets called from other handlers

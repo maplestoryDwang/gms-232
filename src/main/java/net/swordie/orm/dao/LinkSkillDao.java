@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class LinkSkillDao implements SworDao<LinkSkill> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(LinkSkillDao.class);
 
     public void saveOrUpdate(Account account, LinkSkill linkSkill) {
         if (linkSkill == null) {

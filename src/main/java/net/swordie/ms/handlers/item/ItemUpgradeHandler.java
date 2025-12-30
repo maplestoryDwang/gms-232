@@ -27,7 +27,7 @@ import static net.swordie.ms.enums.InvType.*;
 
 public class ItemUpgradeHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ItemUpgradeHandler.class);
 
 
     @Handler(op = InHeader.USER_EX_ITEM_UPGRADE_ITEM_USE_REQUEST)

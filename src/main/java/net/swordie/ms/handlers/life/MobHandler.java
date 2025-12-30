@@ -67,7 +67,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MobHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MobHandler.class);
 
 
     @Handler(op = InHeader.MOB_APPLY_CTRL)

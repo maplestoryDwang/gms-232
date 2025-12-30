@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class CharacterStatDao implements SworDao<CharacterStat> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CharacterStatDao.class);
 
     private static final ExtendSPDao extendSpDao = (ExtendSPDao) SworDaoFactory.getByClass(ExtendSP.class);
     private static final NonCombatStatDayLimitDao nonCombatStatDayLimitDao = (NonCombatStatDayLimitDao) SworDaoFactory.getByClass(NonCombatStatDayLimit.class);

@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 public class DropHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DropHandler.class);
 
     @Handler(op = InHeader.DROP_PICK_UP_REQUEST)
     public static void handleDropPickUpRequest(Client c, InPacket inPacket) {

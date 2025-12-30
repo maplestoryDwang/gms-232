@@ -59,7 +59,7 @@ import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat
  */
 public class Summon extends Life {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(Summon.class);
 
     private Char chr;
     private int skillID;

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class BlackListEntryDao implements SworDao<BlackListEntry> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(BlackListEntryDao.class);
 
     public void saveOrUpdate(Account account, BlackListEntry entry) {
         if (account == null || entry == null) {

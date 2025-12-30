@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class MonsterBookInfoDao implements SworDao<MonsterBookInfo> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MonsterBookInfoDao.class);
 
     public void saveOrUpdate(MonsterBookInfo monsterBookInfo) {
         if (monsterBookInfo == null) {

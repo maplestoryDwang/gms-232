@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class TrunkDao implements SworDao<Trunk> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(TrunkDao.class);
 
     private static final ItemDao itemDao = (ItemDao) SworDaoFactory.getByClass(Item.class);
     private static final CashItemInfoDao cashItemInfoDao = (CashItemInfoDao) SworDaoFactory.getByClass(CashItemInfo.class);

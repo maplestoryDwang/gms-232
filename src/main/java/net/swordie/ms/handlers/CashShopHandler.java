@@ -43,7 +43,7 @@ import java.util.Set;
  * Created on 4/23/2018.
  */
 public class CashShopHandler {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CashShopHandler.class);
 
     @Handler(op = InHeader.CASH_SHOP_QUERY_CASH_REQUEST)
     public static void handleCashShopQueryCashRequest(Client c, InPacket inPacket) {

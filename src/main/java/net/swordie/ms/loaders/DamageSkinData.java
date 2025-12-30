@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @author Asura
  */
 public class DamageSkinData {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DamageSkinData.class);
 
     private static void update() {
         StringData.loadItemStringsFromWz();

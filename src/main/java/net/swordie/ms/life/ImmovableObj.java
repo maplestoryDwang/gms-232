@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class ImmovableObj extends Life implements Encodable {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ImmovableObj.class);
 
     private Char owner;
     private ImmovableObjType ioType;

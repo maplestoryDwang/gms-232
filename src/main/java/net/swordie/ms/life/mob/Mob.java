@@ -52,7 +52,7 @@ import java.util.stream.Collectors;
 
 public class Mob extends Life {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(Mob.class);
     private static final long DR_REACTION_TIME = 3000; // 3 seconds
 
     private int afterAttack;

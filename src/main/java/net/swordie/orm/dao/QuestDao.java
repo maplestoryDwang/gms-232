@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class QuestDao implements SworDao<Quest> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(QuestDao.class);
 
     private static final QuestProgressRequirementDao questProgressRequirementDao = (QuestProgressRequirementDao) SworDaoFactory.getByClass(QuestProgressRequirement.class);
 

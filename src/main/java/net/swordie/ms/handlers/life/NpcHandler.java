@@ -40,7 +40,7 @@ import org.apache.logging.log4j.Logger;
 
 public class NpcHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(NpcHandler.class);
     private static final ItemDao itemDao = (ItemDao) SworDaoFactory.getByClass(Item.class);
 
 

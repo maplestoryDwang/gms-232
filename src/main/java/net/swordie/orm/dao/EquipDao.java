@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class EquipDao implements SworDao<Equip> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(EquipDao.class);
 
     private static final String INSERT_STRING =
             "title, " +

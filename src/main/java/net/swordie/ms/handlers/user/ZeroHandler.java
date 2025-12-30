@@ -29,7 +29,7 @@ import java.util.Random;
  */
 public class ZeroHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ZeroHandler.class);
 
     // Zero Weapon Related Handlers
     public static int getReqItemByNextRank(int nextRank) {

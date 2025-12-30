@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class MonsterCollectionExplorationDao implements SworDao<MonsterCollectionExploration> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MonsterCollectionExplorationDao.class);
 
     public void saveOrUpdate(MonsterCollectionExploration monsterCollectionExploration) {
         if (monsterCollectionExploration == null) {

@@ -27,7 +27,7 @@ import java.util.*;
 
 public class ScriptHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ScriptHandler.class);
 
 
     @Handler(op = InHeader.USER_SCRIPT_MESSAGE_ANSWER)

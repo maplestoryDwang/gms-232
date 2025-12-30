@@ -26,7 +26,7 @@ public class ItemDao implements SworDao<Item> {
     public static final int REMOVE_ITEMS_BATCH_SIZE = 100;
     public static final String TABLE = "items";
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ItemDao.class);
     private static final Lock itemWriteLock = new ReentrantLock();
     private static final EquipDao equipDao = (EquipDao) SworDaoFactory.getByClass(Equip.class);
     private static final PetItemDao petItemDao = (PetItemDao) SworDaoFactory.getByClass(PetItem.class);

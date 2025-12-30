@@ -23,10 +23,11 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import static net.swordie.ms.connection.netty.NettyClient.CLIENT_KEY;
 
@@ -41,7 +42,101 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
     private static final Logger log = LogManager.getRootLogger();
     private static final Map<InHeader, Method> handlers = new HashMap<>();
 
+
+
     public static void initHandlers(boolean mayOverride) {
+        long start = System.currentTimeMillis();
+        String packageName = "net.swordie.ms.handlers"; // handlers包路径
+        Set<Class<?>> classes = getClasses(packageName);
+
+        for (Class<?> clazz : classes) {
+            for (Method method : clazz.getMethods()) {
+                Handler handler = method.getAnnotation(Handler.class);
+                if (handler != null) {
+                    log.info("[HandlerLoader] Load method: " + clazz.getName() + "#" + method.getName());
+
+                    InHeader header = handler.op();
+                    if (header != InHeader.NO) {
+                        if (handlers.containsKey(header) && !mayOverride) {
+                            throw new IllegalArgumentException(
+                                    String.format("Multiple handlers for header %s! (%s , %s)",
+                                            header, handlers.get(header).getName(), method.getName()));
+                        }
+                        handlers.put(header, method);
+                    }
+
+                    // 多 Header 支持
+                    for (InHeader h : handler.ops()) {
+                        handlers.put(h, method);
+                    }
+                }
+            }
+        }
+
+        log.info("Initialized " + handlers.size() + " handlers in " +
+                (System.currentTimeMillis() - start) + "ms.");
+    }
+
+    public static Set<Class<?>> getClasses(String packageName) {
+        Set<Class<?>> classes = new HashSet<>();
+        String packagePath = packageName.replace(".", "/");
+
+        try {
+            Enumeration<URL> resources =
+                    Thread.currentThread().getContextClassLoader().getResources(packagePath);
+
+            while (resources.hasMoreElements()) {
+                URL resource = resources.nextElement();
+                String protocol = resource.getProtocol();
+
+                // 运行于IDE、普通目录
+                if ("file".equals(protocol)) {
+                    File dir = new File(resource.toURI());
+                    findClassesInDir(packageName, dir, classes);
+                }
+
+                // 运行于 JAR 内
+                else if ("jar".equals(protocol)) {
+                    String jarPath = resource.getPath().substring(5, resource.getPath().indexOf("!"));
+                    try (JarFile jarFile = new JarFile(URLDecoder.decode(jarPath, "UTF-8"))) {
+                        Enumeration<JarEntry> entries = jarFile.entries();
+                        while (entries.hasMoreElements()) {
+                            JarEntry entry = entries.nextElement();
+                            String name = entry.getName();
+                            if (name.startsWith(packagePath) && name.endsWith(".class")) {
+                                String className = name.replace("/", ".").replace(".class", "");
+                                classes.add(Class.forName(className));
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return classes;
+    }
+
+    // 递归扫描文件目录
+    private static void findClassesInDir(String packageName, File dir, Set<Class<?>> classes) {
+        if (!dir.exists()) return;
+
+        for (File file : dir.listFiles()) {
+            if (file.isDirectory()) {
+                findClassesInDir(packageName + "." + file.getName(), file, classes);
+            } else if (file.getName().endsWith(".class")) {
+                String className = packageName + "." + file.getName().replace(".class", "");
+                try {
+                    classes.add(Class.forName(className));
+                } catch (ClassNotFoundException ignored) {}
+            }
+        }
+    }
+
+    public static void initHandlersV0(boolean mayOverride) {
+
+
+
         long start = System.currentTimeMillis();
         String handlersDir = ServerConstants.HANDLERS_DIR;
         Set<File> files = new HashSet<>();
@@ -55,6 +150,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
                         .replaceAll("\\.java", "");
                 Class clazz = Class.forName(className);
                 for (Method method : clazz.getMethods()) {
+                    log.info("load handler method: =========================================================================================" + method.getName());
                     Handler handler = method.getAnnotation(Handler.class);
                     if (handler != null) {
                         InHeader header = handler.op();

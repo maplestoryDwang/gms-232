@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class CharacterPotentialDao implements SworDao<CharacterPotential> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CharacterPotentialDao.class);
 
     public void saveOrUpdate(Char chr, CharacterPotential characterPotential) {
         if (characterPotential == null) {

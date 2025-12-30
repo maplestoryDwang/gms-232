@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AvatarDataDao implements SworDao<AvatarData> {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AvatarDataDao.class);
 
     private static final CharacterStatDao characterStatDao = (CharacterStatDao) SworDaoFactory.getByClass(CharacterStat.class);
     private static final AvatarLookDao avatarLookDao = (AvatarLookDao) SworDaoFactory.getByClass(AvatarLook.class);

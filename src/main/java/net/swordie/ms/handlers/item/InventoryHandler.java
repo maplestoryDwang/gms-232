@@ -44,7 +44,7 @@ import static net.swordie.ms.enums.InventoryOperation.*;
 
 public class InventoryHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(InventoryHandler.class);
 
 
     @Handler(op = InHeader.USER_CHANGE_SLOT_POSITION_REQUEST)

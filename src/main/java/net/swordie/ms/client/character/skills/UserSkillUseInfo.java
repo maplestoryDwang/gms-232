@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class UserSkillUseInfo {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UserSkillUseInfo.class);
 
     public SkillUseInfo skillUseInfo;
 

@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
 
 public class GuildHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(GuildHandler.class);
 
     private static final CharDao charDao = (CharDao) SworDaoFactory.getByClass(Char.class);
     private static final int MAX_ANNOUNCEMENT_LENGTH = 500;

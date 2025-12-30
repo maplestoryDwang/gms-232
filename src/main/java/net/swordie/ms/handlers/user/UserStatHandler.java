@@ -31,7 +31,7 @@ import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat
 
 public class UserStatHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UserStatHandler.class);
 
     @Handler(op = InHeader.USER_SKILL_UP_REQUEST)
     public static void handleUserSkillUpRequest(Client c, InPacket inPacket) {

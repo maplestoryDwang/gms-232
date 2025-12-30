@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ShopModule {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ShopModule.class);
 
     public static void handleShopSell(Char chr, InPacket inPacket, NpcShopDlg nsd) {
         var slot = inPacket.decodeShort();

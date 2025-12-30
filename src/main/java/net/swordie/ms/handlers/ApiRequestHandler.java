@@ -23,7 +23,7 @@ public class ApiRequestHandler {
 
     private static final UserDao userDao = (UserDao) SworDaoFactory.getByClass(User.class);
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ApiRequestHandler.class);
     private static final int TOKEN_LENGTH = 50;
 
     public static void handleTokenRequest(Client c, InPacket inPacket) {

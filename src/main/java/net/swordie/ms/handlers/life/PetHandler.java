@@ -35,7 +35,7 @@ import java.util.Set;
 
 public class PetHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(PetHandler.class);
 
 
     @Handler(op = InHeader.USER_ACTIVATE_PET_REQUEST)

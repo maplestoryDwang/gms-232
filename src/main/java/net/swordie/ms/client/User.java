@@ -34,7 +34,7 @@ import java.util.Set;
 public class User {
     private static final int PASSWORD_RESET_KEY_LENGTH = 10;
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(User.class);
     private static final AccountDao accountDao = (AccountDao) SworDaoFactory.getByClass(Account.class);
     private static final UserDao userDao = (UserDao) SworDaoFactory.getByClass(User.class);
     private static final FriendDao friendDao = (FriendDao) SworDaoFactory.getByClass(Friend.class);

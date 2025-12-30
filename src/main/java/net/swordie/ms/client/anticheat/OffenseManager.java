@@ -34,7 +34,7 @@ public class OffenseManager {
 
     private static final int LOW_TRUST_POINT_FOR_BAN = 7;
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(OffenseManager.class);
     private static final OffenseDao offenseDao = (OffenseDao) SworDaoFactory.getByClass(Offense.class);
 
     private int id;

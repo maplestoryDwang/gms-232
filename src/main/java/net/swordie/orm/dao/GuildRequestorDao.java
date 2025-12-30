@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class GuildRequestorDao implements SworDao<GuildRequestor> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(GuildRequestorDao.class);
 
     public void saveOrUpdate(Guild guild, GuildRequestor guildRequestor) {
         if (guildRequestor == null) {

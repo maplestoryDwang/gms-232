@@ -42,7 +42,7 @@ import static net.swordie.ms.enums.ChatType.Notice2;
 
 public class MigrationHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MigrationHandler.class);
 
     private static final Lock transferLock = new ReentrantLock();
     private static final long STATE_WAIT_TIMEOUT = 120000; // 2 minutes

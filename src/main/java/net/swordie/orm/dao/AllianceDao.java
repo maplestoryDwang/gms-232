@@ -16,7 +16,7 @@ public class AllianceDao implements SworDao<Alliance> {
 
     private static final GuildDao guildDao = (GuildDao) SworDaoFactory.getByClass(Guild.class);
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AllianceDao.class);
 
     public void saveOrUpdate(Alliance alliance) {
         if (alliance == null) {

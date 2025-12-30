@@ -47,8 +47,12 @@
 <!--        </logger>-->
 
         <Root level="debug">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="File"/>
+            <AppenderRef ref="Console">
+                <LocationInfo>true</LocationInfo>
+            </AppenderRef>
+            <AppenderRef ref="File">
+                <LocationInfo>true</LocationInfo>
+            </AppenderRef>
         </Root>
     </Loggers>
 </Configuration>

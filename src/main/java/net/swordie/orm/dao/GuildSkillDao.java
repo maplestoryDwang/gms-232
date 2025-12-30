@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class GuildSkillDao implements SworDao<GuildSkill> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(GuildSkillDao.class);
 
     public void saveOrUpdate(Guild guild, GuildSkill guildSkill) {
         if (guildSkill == null) {

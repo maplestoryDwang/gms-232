@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class DamageSkinSaveDataDao implements SworDao<DamageSkinSaveData> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DamageSkinSaveDataDao.class);
 
     public void saveOrUpdate(Account account, DamageSkinSaveData damageSkinSavedata) {
         if (damageSkinSavedata == null) {

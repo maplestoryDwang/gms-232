@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CashItemInfoDao implements SworDao<CashItemInfo> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CashItemInfoDao.class);
 
     public static final String TABLE = "cashiteminfos";
     private static final ItemDao itemDao = (ItemDao) SworDaoFactory.getByClass(Item.class);

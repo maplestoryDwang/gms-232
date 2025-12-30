@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @Path("/login")
 public class LoginRoute {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(LoginRoute.class);
 
     private static final UserDao userDao = (UserDao) SworDaoFactory.getByClass(User.class);
 

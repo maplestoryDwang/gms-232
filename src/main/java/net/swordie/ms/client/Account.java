@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
  */
 public class Account {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(Account.class);
 
     private static final AccountDao accDao = (AccountDao) SworDaoFactory.getByClass(Account.class);
     private static final CharDao charDao = (CharDao) SworDaoFactory.getByClass(Char.class);

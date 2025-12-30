@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class SoulCollectionDao implements SworDao<SoulCollectionEntry> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SoulCollectionDao.class);
 
     public void saveOrUpdate(Account account, SoulCollectionEntry entry) {
         if (account == null || entry == null) {

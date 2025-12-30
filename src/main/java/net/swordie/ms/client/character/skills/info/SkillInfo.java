@@ -22,7 +22,7 @@ import java.util.*;
  * Created on 12/20/2017.
  */
 public class SkillInfo {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SkillInfo.class);
 
     private int skillId;
     private int rootId;

@@ -62,7 +62,7 @@ import static net.swordie.ms.client.jobs.sengoku.Kanna.*;
  * Created on 1/6/2018.
  */
 public class AffectedArea extends Life {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AffectedArea.class);
 
     private Char owner;
     private Rect rect, skillRect, rect2;

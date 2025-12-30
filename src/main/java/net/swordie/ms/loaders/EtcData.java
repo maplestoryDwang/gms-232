@@ -30,7 +30,7 @@ import java.util.Map;
  * Created on 1/4/2019.
  */
 public class EtcData {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(EtcData.class);
     private static final String ANDROID_FILE = ServerConstants.DAT_DIR + "/androids.dat";
     private static final String COMMODITY_FILE = ServerConstants.DAT_DIR + "/commodity.dat";
 

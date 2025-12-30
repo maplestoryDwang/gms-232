@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class DropInfoDao implements SworDao<DropInfo> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DropInfoDao.class);
 
     public void saveOrUpdate(DropInfo dropInfo) {
         if (dropInfo == null) {

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class OffenseManagerDao implements SworDao<OffenseManager> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(OffenseManagerDao.class);
 
     private static final OffenseDao offenseDao = (OffenseDao) SworDaoFactory.getByClass(Offense.class);
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EquipDropDao implements SworDao<EquipDrop> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(EquipDropDao.class);
 
     public void saveOrUpdate(EquipDrop equipDrop) {
         if (equipDrop == null) {

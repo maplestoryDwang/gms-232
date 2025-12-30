@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EntityHolder {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(EntityHolder.class);
 
     private final Loader loader;
     private List<EntityField> primaryKey;

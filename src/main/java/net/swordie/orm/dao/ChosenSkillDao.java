@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class ChosenSkillDao implements SworDao<ChosenSkill> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ChosenSkillDao.class);
 
     public void saveOrUpdate(Char chr, ChosenSkill chosenSkill) {
         if (chosenSkill == null || chosenSkill.getSkillId() == 0) {

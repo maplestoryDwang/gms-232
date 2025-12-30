@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MacroDao implements SworDao<Macro> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MacroDao.class);
 
     public QueryHolder createQueryHolder(Char chr, Macro macro) {
         if (macro.isClean()) {

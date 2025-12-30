@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class HyperStatsModule {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(HyperStatsModule.class);
 
     public static void increaseHyperStatSkill(Char chr, int presetIndex, int skillId) {
         var si = SkillData.getSkillInfoById(skillId);

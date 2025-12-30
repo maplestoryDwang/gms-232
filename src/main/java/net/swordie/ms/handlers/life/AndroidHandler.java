@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 public class AndroidHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AndroidHandler.class);
 
 
     @Handler(op = InHeader.ANDROID_MOVE)

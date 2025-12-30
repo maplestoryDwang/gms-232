@@ -22,7 +22,7 @@ import java.util.List;
 
 public class SwordieSqlDatabaseManager implements IDatabaseManager {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SwordieSqlDatabaseManager.class);
 
     @Override
     public void init(Class[] dbClasses) {

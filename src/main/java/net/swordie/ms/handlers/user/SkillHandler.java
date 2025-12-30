@@ -67,7 +67,7 @@ import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat
 
 public class SkillHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SkillHandler.class);
 
 
     @Handler(op = InHeader.USER_SKILL_CANCEL_REQUEST)

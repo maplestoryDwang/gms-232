@@ -39,7 +39,7 @@ import static net.swordie.ms.enums.QuestStatus.*;
  */
 public class QuestManager {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(QuestManager.class);
     private static final QuestDao questDao = (QuestDao) SworDaoFactory.getByClass(Quest.class);
 
     private long id;

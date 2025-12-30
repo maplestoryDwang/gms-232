@@ -17,7 +17,7 @@ import java.util.List;
 
 public class AuctionItemDao implements SworDao<AuctionItem> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AuctionItemDao.class);
 
     public static final String TABLE = "auction_items";
     private static final ItemDao itemDao = (ItemDao) SworDaoFactory.getByClass(Item.class);

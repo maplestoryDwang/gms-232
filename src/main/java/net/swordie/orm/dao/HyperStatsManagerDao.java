@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class HyperStatsManagerDao implements SworDao<HyperStatsManager> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(HyperStatsManagerDao.class);
 
     private static final HyperStatInfoDao hyperStatInfoDao = (HyperStatInfoDao) SworDaoFactory.getByClass(HyperStatInfo.class);
 

@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class UnionMemberDao implements SworDao<UnionMember> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UnionMemberDao.class);
 
     public void saveOrUpdate(UnionBoard unionBoard, UnionMember unionMember) {
         if (unionMember == null) {

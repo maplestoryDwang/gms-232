@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * http://code.nomad-labs.com/2011/12/09/mother-fk-the-scheduledexecutorservice/
  */
 public class CatchingScheduledThreadPoolExecutor extends ScheduledThreadPoolExecutor {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CatchingScheduledThreadPoolExecutor.class);
     private static final int STACKFRAME_FOR_DEBUG = 5;
 
     public CatchingScheduledThreadPoolExecutor(int corePoolSize) {

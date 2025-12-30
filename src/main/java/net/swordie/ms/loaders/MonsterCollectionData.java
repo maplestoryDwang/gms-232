@@ -27,7 +27,7 @@ import java.util.Map;
  * Created on 7/23/2018.
  */
 public class MonsterCollectionData {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MonsterCollectionData.class);
 
     private static final int GROUP_MOB_SIZE = 5;
 

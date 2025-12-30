@@ -32,7 +32,7 @@ import static net.swordie.ms.life.npc.NpcMessageType.*;
  * Created on 2/18/2019.
  */
 public class ScriptPacketParser {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ScriptPacketParser.class);
 
     private ScriptMaker sm;
 

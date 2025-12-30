@@ -30,7 +30,7 @@ import java.util.*;
  */
 public class ScriptMaker {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ScriptMaker.class);
     public static final boolean MAY_OVERRIDE_FILES = false;
 
     private ScriptType type;

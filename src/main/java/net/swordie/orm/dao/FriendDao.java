@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class FriendDao implements SworDao<Friend> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FriendDao.class);
 
     public void saveOrUpdate(Char chr, Friend friend) {
         if (friend == null) {

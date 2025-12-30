@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MacroHandler {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MacroHandler.class);
 
     @Handler(op = InHeader.USER_MACRO_SYS_DATA_MODIFIED)
     public static void handleUserMacroSysDataModified(Char chr, InPacket inPacket) {

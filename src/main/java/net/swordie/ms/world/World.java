@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
  * Created on 11/2/2017.
  */
 public class World {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(World.class);
 
     private static final int FIELD_CLEAR_TIME = 2;
 

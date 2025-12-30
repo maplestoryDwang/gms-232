@@ -17,7 +17,7 @@ import java.util.List;
  * Created on 8/16/2018.
  */
 public class MovementInfo implements Encodable {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MovementInfo.class);
 
     private int encodedGatherDuration;
     private Position oldPos;

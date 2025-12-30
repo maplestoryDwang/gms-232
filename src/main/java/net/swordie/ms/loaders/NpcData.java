@@ -26,7 +26,7 @@ public class NpcData {
     private static final Object lockObj = new Object();
     private static final NpcShopItemDao npcShopItemDao = (NpcShopItemDao) SworDaoFactory.getByClass(NpcShopItem.class);
     
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(NpcData.class);
     private static final boolean LOG_UNKS = false;
     private static final String NPCS_FILE = ServerConstants.DAT_DIR + "/npcs.dat";
 

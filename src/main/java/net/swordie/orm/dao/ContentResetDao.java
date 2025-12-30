@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ContentResetDao implements SworDao<ContentReset> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ContentResetDao.class);
 
     public void saveOrUpdate(ContentReset contentReset) {
         if (contentReset == null) {

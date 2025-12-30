@@ -21,7 +21,7 @@ import java.util.Set;
 
 public class WebApi {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(WebApi.class);
     public static final String ROUTES_DIR = ServerConstants.DIR + "/src/main/java/net/swordie/webapi/routes";
 
     public void init() {

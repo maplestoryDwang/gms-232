@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class OffenseDao implements SworDao<Offense> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(OffenseDao.class);
 
     public void saveOrUpdate(OffenseManager om, Offense offense) {
         if (offense == null) {

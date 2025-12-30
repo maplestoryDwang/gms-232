@@ -70,7 +70,7 @@ import java.util.List;
  * Created on 12/12/2017.
  */
 public class DatabaseManager {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DatabaseManager.class);
     private static final int KEEP_ALIVE_MS = 10 * 60 * 1000; // 10 minutes
 
     private static final IDatabaseManager databaseManager = new SwordieSqlDatabaseManager();

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UnionBoardDao implements SworDao<UnionBoard> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UnionBoardDao.class);
 
     private static final UnionMemberDao unionMemberDao = (UnionMemberDao) SworDaoFactory.getByClass(UnionMember.class);
 

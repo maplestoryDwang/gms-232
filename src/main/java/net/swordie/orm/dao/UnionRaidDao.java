@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class UnionRaidDao implements SworDao<UnionRaid> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UnionRaidDao.class);
 
     public void saveOrUpdate(UnionRaid unionRaid) {
         if (unionRaid == null) {

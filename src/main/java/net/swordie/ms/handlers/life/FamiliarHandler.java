@@ -32,7 +32,7 @@ import java.util.List;
 
 public class FamiliarHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FamiliarHandler.class);
 
 
     @Handler(op = InHeader.FAMILIAR_ADD_REQUEST)

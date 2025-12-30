@@ -84,7 +84,7 @@ import static net.swordie.ms.life.mob.skill.MobSkillID.GiveMeHeal;
 
 public class JobSkillHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(JobSkillHandler.class);
 
 
     @Handler(op = InHeader.CREATE_KINESIS_PSYCHIC_AREA)

@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class FieldHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FieldHandler.class);
 
     @Handler(op = InHeader.BROADCAST_EFFECT_TO_SPLIT)
     public static void handleBroadcastEffectToSplit(Char chr, InPacket inPacket) {

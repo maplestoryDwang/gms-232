@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * @author Asura
  */
 public class MigrationManager {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MigrationManager.class);
 
     private static final MigrationVersionDao migrationVersionDao = new MigrationVersionDao();
 

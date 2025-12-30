@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 public class DragonHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DragonHandler.class);
 
 
     @Handler(op = InHeader.DRAGON_MOVE)

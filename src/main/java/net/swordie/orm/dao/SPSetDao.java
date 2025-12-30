@@ -14,7 +14,7 @@ import java.util.List;
 
 public class SPSetDao implements SworDao<SPSet> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SPSetDao.class);
 
     public SPSetDao() {
     }

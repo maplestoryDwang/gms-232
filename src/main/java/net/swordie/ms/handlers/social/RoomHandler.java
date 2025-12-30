@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 
 public class RoomHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(RoomHandler.class);
 
     @Handler(op = InHeader.MINI_ROOM)
     public static void handleMiniRoom(Char chr, InPacket inPacket) {

@@ -1,5 +1,7 @@
 package net.swordie.orm.dao;
 
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.ResetType;
 import net.swordie.ms.client.User;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements SworDao<User> {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UserDao.class);
     private static final AccountDao accountDao = (AccountDao) SworDaoFactory.getByClass(Account.class);
     private static final FriendDao friendDao = (FriendDao) SworDaoFactory.getByClass(Friend.class);
 

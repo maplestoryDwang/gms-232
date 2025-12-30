@@ -20,7 +20,7 @@ import java.util.*;
  * Created on 10/1/2018.
  */
 public class VCoreData {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(VCoreData.class);
 
     // job -> [(skillID, iconID)]
     private static Map<Integer, List<VCoreInfo>> jobSkills = new HashMap<>();

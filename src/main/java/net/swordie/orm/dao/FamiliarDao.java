@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class FamiliarDao implements SworDao<Familiar> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FamiliarDao.class);
 
     // Familiars
     public static final String TABLE_F = "familiars";

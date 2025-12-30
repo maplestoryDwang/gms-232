@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class CharacterCardDao implements SworDao<CharacterCard> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CharacterCardDao.class);
 
     public void saveOrUpdate(CharacterCard charactercard ) {
         if (charactercard == null) {

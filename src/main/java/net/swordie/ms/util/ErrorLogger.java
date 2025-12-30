@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class ErrorLogger {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ErrorLogger.class);
 
     public static void logAsClientError(String toLog) {
         Util.makeDirIfAbsent(ServerConstants.LOG_DIR);

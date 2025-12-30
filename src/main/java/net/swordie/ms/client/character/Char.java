@@ -147,7 +147,7 @@ public class Char {
     private static final FuncKeyMapDao funcKeyMapDao = (FuncKeyMapDao) SworDaoFactory.getByClass(FuncKeyMap.class);
     private static final ItemDao itemDao = (ItemDao) SworDaoFactory.getByClass(Item.class);
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(Char.class);
     private static final int AUTO_CLEAR_BUYBACK_THRESHOLD = 30;
 
     private static final CharDao charDao = (CharDao) SworDaoFactory.getByClass(Char.class);

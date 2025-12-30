@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public class EmoticonDao implements SworDao<Emoticon> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(EmoticonDao.class);
 
     public void saveOrUpdate(Char chr, Emoticon emoticon) {
         if (emoticon == null) {

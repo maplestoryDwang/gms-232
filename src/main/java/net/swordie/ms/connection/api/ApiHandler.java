@@ -22,7 +22,7 @@ import static net.swordie.ms.connection.netty.NettyClient.CLIENT_KEY;
  */
 public class ApiHandler extends SimpleChannelInboundHandler<InPacket> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ApiHandler.class);
 
     private static final ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("api-%d").build();
     private static final ExecutorService API_EXECUTOR_SERVICE = Executors.newCachedThreadPool(namedThreadFactory);

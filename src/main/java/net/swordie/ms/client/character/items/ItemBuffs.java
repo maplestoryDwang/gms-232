@@ -16,7 +16,7 @@ import java.util.Map;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
 
 public class ItemBuffs {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ItemBuffs.class);
 
     public static void giveItemBuffsFromItemID(Char chr, TemporaryStatManager tsm, int itemID) {
         Map<SpecStat, Integer> specStats = ItemData.getItemInfoByID(itemID).getSpecStats();

@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 public class UnionBoard implements Encodable {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UnionBoard.class);
     private static final UnionMemberDao unionMemberDao = (UnionMemberDao) SworDaoFactory.getByClass(UnionMember.class);
 
     private long id;

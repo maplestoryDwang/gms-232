@@ -23,7 +23,7 @@ import java.util.List;
 
 public class UnionHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UnionHandler.class);
 
 
     @Handler(op = InHeader.UNION_REQUEST)

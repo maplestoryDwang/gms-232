@@ -27,7 +27,7 @@ import java.util.Map;
  * @author Asura
  */
 public class EliteFieldModule {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(EliteFieldModule.class);
 
     private static void startRandomEliteChampion(Field field) {
         var rList = new ArrayList<EliteChampionFieldEvent>() {{

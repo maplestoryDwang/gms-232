@@ -27,7 +27,7 @@ import org.apache.logging.log4j.Logger;
 
 public class SummonedHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SummonedHandler.class);
 
     @Handler(op = InHeader.SUMMONED_MOVE)
     public static void handleSummonedMove(Char chr, InPacket inPacket) {

@@ -34,7 +34,7 @@ import static net.swordie.ms.enums.BaseStat.*;
  */
 public class DamageCalc {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DamageCalc.class);
 
     private final static int RAND_NUM = 11;
     public final static int MAX_CRIT_DMG = 50;

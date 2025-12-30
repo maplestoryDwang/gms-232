@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class ApiEncoder extends MessageToByteEncoder<Packet> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ApiEncoder.class);
 
     @Override
     protected void encode(ChannelHandlerContext chc, Packet outPacket, ByteBuf bb) throws Exception {

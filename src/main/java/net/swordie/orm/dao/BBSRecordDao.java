@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class BBSRecordDao implements SworDao<BBSRecord> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(BBSRecordDao.class);
 
     private static final BBSReplyDao bbsReplyDao = (BBSReplyDao) SworDaoFactory.getByClass(BBSReply.class);
     private static final IntegerColumnDao upvoteDao = new IntegerColumnDao("upvoteId");

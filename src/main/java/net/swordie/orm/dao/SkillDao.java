@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class SkillDao implements SworDao<Skill> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SkillDao.class);
 
     public QueryHolder createQueryHolder(Char chr, Skill skill) {
         if (skill.isClean()) {

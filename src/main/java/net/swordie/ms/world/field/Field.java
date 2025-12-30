@@ -68,7 +68,7 @@ import static net.swordie.ms.client.character.skills.SkillStat.time;
  */
 public class Field {
     private static final AccountDao accountDao = (AccountDao) SworDaoFactory.getByClass(Account.class);
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(Field.class);
 
     private int id;
     private final Map<Integer, Life> lifes;

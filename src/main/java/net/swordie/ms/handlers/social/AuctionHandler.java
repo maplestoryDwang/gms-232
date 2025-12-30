@@ -26,7 +26,7 @@ import java.util.Set;
 
 public class AuctionHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(AuctionHandler.class);
     private static final AccountDao accountDao = (AccountDao) SworDaoFactory.getByClass(Account.class);
     private static final AuctionItemDao auctionItemDao = (AuctionItemDao) SworDaoFactory.getByClass(AuctionItem.class);
 

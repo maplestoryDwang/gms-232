@@ -17,7 +17,7 @@ import static net.swordie.ms.enums.MessageType.*;
 
 public class MessagePacket implements Encodable {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(MessagePacket.class);
 
     private MessageType messageType;
     private Collection<Integer> ints;

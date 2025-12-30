@@ -20,7 +20,7 @@ import java.util.*;
  * Created on 4/14/2018.
  */
 public class PetItem extends Item {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(PetItem.class);
 
     private String name;
     private byte level;

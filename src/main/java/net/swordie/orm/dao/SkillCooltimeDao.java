@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public class SkillCooltimeDao implements SworDao<SkillCooltime> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(SkillCooltimeDao.class);
 
     public void saveOrUpdate(Char chr, Map<Integer, Long> skillCooltimes) {
         deleteByChrId(chr.getId());

@@ -18,7 +18,7 @@ import java.util.*;
  * Created on 2/21/2018.
  */
 public class DropData {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DropData.class);
 
     private static final DropInfoDao dropInfoDao = (DropInfoDao) SworDaoFactory.getByClass(DropInfo.class);
 

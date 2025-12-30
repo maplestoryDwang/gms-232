@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class ZeroInfoDao implements SworDao<ZeroInfo> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ZeroInfoDao.class);
 
     public void saveOrUpdate(ZeroInfo zeroInfo) {
         if (zeroInfo == null) {

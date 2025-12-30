@@ -13,7 +13,7 @@ import java.util.List;
 
 public class NpcShopItemDao implements SworDao<NpcShopItem> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(NpcShopItemDao.class);
 
     public void saveOrUpdate(NpcShopItem npcShopItem) {
         if (npcShopItem == null) {

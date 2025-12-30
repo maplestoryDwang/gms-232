@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class QuestManagerDao implements SworDao<QuestManager> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(QuestManagerDao.class);
 
     private static final QuestDao questDao = (QuestDao) SworDaoFactory.getByClass(Quest.class);
 

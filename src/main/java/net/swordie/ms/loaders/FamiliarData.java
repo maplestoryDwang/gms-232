@@ -22,7 +22,7 @@ import java.util.Map;
  * @author Asura
  */
 public class FamiliarData {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FamiliarData.class);
 
     private static final Map<Integer, FamiliarInfo> familiarInfos = new HashMap<>();
     private static final Map<Integer, BadgeInfo> badgeInfos = new HashMap<>();

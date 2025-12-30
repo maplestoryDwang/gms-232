@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class VoyageHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(VoyageHandler.class);
 
     @Handler(op = InHeader.VOYAGE_COMPLETE_REQUEST)
     public static void handleVoyageCompleteRequest(Char chr, InPacket inPacket) {

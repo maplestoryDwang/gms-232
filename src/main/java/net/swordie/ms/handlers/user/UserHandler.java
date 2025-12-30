@@ -69,7 +69,7 @@ import static net.swordie.ms.enums.ChatType.SystemNotice;
 
 public class UserHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(UserHandler.class);
 
 
     @Handler(op = InHeader.USER_MOVE)

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class InventoryDao implements SworDao<Inventory> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(InventoryDao.class);
 
     private static final ItemDao itemDao = (ItemDao) SworDaoFactory.getByClass(Item.class);
 

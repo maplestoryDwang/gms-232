@@ -38,7 +38,7 @@ import java.util.Set;
 
 public class CharDao implements SworDao<Char> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(CharDao.class);
 
     private static final AvatarDataDao avatarDataDao = (AvatarDataDao) SworDaoFactory.getByClass(AvatarData.class);
     private static final InventoryDao inventoryDao = (InventoryDao) SworDaoFactory.getByClass(Inventory.class);

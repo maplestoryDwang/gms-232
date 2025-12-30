@@ -46,7 +46,7 @@ import static net.swordie.ms.enums.InvType.EQUIP;
 import static net.swordie.ms.enums.InvType.EQUIPPED;
 
 public class ItemHandlerModule {
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ItemHandlerModule.class);
 
     protected static void handleRewardItem(Char chr, ItemInfo itemInfo, Item item) {
         // Reward items

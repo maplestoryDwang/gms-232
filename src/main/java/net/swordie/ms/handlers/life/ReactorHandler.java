@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ReactorHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ReactorHandler.class);
     private static final int HARVEST_REACTOR_BASE = 100000;
     private static final int HARVEST_REACTOR_END = 299999;
 

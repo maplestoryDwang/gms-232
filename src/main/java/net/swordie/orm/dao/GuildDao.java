@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class GuildDao implements SworDao<Guild> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(GuildDao.class);
 
     private static final BBSRecordDao bbsRecordDao = (BBSRecordDao) SworDaoFactory.getByClass(BBSRecord.class);
     private static final GuildMemberDao guildMemberDao = (GuildMemberDao) SworDaoFactory.getByClass(GuildMember.class);

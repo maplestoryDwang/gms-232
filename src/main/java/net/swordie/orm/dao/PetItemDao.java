@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class PetItemDao implements SworDao<PetItem> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(PetItemDao.class);
 
     private static final String INSERT_STRING =
             "name," +

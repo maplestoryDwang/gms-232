@@ -15,7 +15,7 @@ import java.util.List;
 
 public class FuncKeyMapDao implements SworDao<FuncKeyMap> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(FuncKeyMapDao.class);
 
     private static final KeymappingDao keymappingDao = (KeymappingDao) SworDaoFactory.getByClass(Keymapping.class);
 

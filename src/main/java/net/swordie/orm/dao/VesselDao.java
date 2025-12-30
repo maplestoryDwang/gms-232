@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class VesselDao implements SworDao<Vessel> {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(VesselDao.class);
 
     public void saveOrUpdate(Char chr, Vessel vessel) {
         if (vessel == null || chr == null) {

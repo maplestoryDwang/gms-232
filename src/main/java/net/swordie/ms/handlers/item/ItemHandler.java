@@ -39,7 +39,7 @@ import static net.swordie.ms.enums.InvType.*;
 
 public class ItemHandler {
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(ItemHandler.class);
 
     @Handler(op = InHeader.USER_PORTAL_SCROLL_USE_REQUEST)
     public static void handleUserPortalScrollUseRequest(Client c, InPacket inPacket) {
