@@ -4,6 +4,8 @@ import net.swordie.ms.connection.db.Saveable;
 import net.swordie.ms.enums.FirstEnterRewardType;
 import net.swordie.ms.util.FileTime;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class FirstEnterReward implements Saveable {
 
@@ -16,7 +18,15 @@ public class FirstEnterReward implements Saveable {
     private String description;
     private FileTime expireTime;
 
-    public FirstEnterReward(){
+    public FirstEnterReward() {}
+
+    public FirstEnterReward(int charId, int itemId, int quantity, FirstEnterRewardType type, String description) {
+        setCharId(charId);
+        setItemId(itemId);
+        setQuantity(quantity);
+        setRewardType(type);
+        setExpireTime(FileTime.fromEpochMillis(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365)));
+        setDescription(description);
     }
 
     public long getId() {

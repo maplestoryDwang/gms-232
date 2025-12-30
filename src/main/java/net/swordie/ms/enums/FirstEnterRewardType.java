@@ -3,8 +3,9 @@ package net.swordie.ms.enums;
 import java.util.Arrays;
 
 public enum FirstEnterRewardType{
-    Item(2),
-    Maple_Points(3),
+    GameItem(1),
+    CashItem(2),
+    MaplePoints(3),
     Meso(4),
     Exp(5)
     ;
