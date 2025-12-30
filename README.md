@@ -21,3 +21,7 @@ How to install: see #server-setup-guide in the Swordie discord.
 
 Feel free to create PRs to improve this source. You can create a fork of this repository, then work on that and 
 create a merge request towards this main repository. Tag Asura or Sjonnie on discord to ask for a review.
+
+## Links & Community Resources
+* [RaGEZONE Release Post (contains setup guide and client files)](https://forum.ragezone.com/threads/xmas-release-v232-swordie-source.1257894/)
+* [AuthHook & Launcher](https://forum.ragezone.com/threads/swordie-v232-launcher-friends-family-use-only.1258180/)

@@ -436,7 +436,8 @@ public class Server extends Properties {
 	public void addAuthToken(byte[] token, int userID, boolean isPlayer) {
 		String tokenStr = new String(token);
 		FileTime expiryDate = FileTime.fromDate(LocalDateTime.now().plusMinutes(ServerConstants.TOKEN_EXPIRY_TIME));
-		AuthInfo entry = new AuthInfo(userID, expiryDate, false, isPlayer);
+		boolean needsToVerifyWz = isPlayer && ServerConstants.CHECK_WZ_ON_LOGIN;
+		AuthInfo entry = new AuthInfo(userID, expiryDate, false, needsToVerifyWz);
 		getAuthTokens().put(tokenStr, entry);
 	}
 

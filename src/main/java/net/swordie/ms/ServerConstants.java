@@ -27,6 +27,7 @@ public class ServerConstants {
 	public static final int BCRYPT_ITERATIONS = 5;
 	public static final long TOKEN_EXPIRY_TIME = 60 * 24; // 24h
 	public static final long CLEAR_CACHE_RATE = 4; // 24h
+	public static boolean CHECK_WZ_ON_LOGIN = false;
 
 	// Tespia
 	public static final boolean IS_TESPIA = false; // set true if Tespia instance of server.
