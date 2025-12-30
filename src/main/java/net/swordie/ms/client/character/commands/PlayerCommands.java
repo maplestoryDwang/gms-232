@@ -266,7 +266,7 @@ public class PlayerCommands {
     }
 
     @Command(names = {"checkgift"}, requiredType = Player)
-    public static class CheckGift extends AdminCommand {
+    public static class CheckGift extends PlayerCommand {
 
         public static void execute(Char chr, String[] args) {
             Set<FirstEnterReward> rewards = chr.getFirstEnterRewards();
