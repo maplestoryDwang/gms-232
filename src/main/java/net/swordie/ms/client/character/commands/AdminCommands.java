@@ -2388,7 +2388,6 @@ public class AdminCommands {
                     return;
                 }
             }
-
             //Check if user is online somewhere in the server (could be char select too)
             User banUser = Server.getInstance().getUserById(banChr.getUserId());
 
@@ -3998,15 +3997,21 @@ public class AdminCommands {
             String targetName = args[1];
             int itemid = Integer.parseInt(args[2]);
             int quantity = Integer.parseInt(args[3]);
-            String message = args.length >= 5 ? args[4] : String.format("Gifted by admin %s", chr.getName());
-            int worldID = chr.getClient().getChannelInstance().getWorldId().getVal();
-            World world = Server.getInstance().getWorldById(worldID);
-            Char targetChr = world.getCharByName(targetName);
+            String message = (args.length >= 5)
+                    ? String.join(" ", java.util.Arrays.copyOfRange(args, 4, args.length))
+                    : "Default msg";
 
+            Char targetChr = Server.getInstance().getWorldById(chr.getClient().getWorldId()).getCharByName(targetName);
+            boolean online = true;
             if (targetChr == null) {
-                chr.chatMessage(String.format("%s is not online.", targetName));
-                chr.dispose();
-                return;
+                online = false;
+                targetChr = charDao.getByNameAndWorld(targetName, chr.getAccount().getWorldId());
+                if (targetChr == null) {
+                    chr.chatMessage(SpeakerChannel, "Could not find that character.");
+                    return;
+                }
+                Account account = accountDao.getByCharId(targetChr.getId());
+                targetChr.setAccount(account);
             }
 
             int targetId = targetChr.getId();
@@ -4020,7 +4025,10 @@ public class AdminCommands {
             reward.setDescription(message);
 
             targetChr.addFirstEnterReward(reward);
-            targetChr.checkFirstEnterReward();
+            if (online) {
+                targetChr.checkFirstEnterReward();
+            }
+            chr.chatMessage("Gift Sent!, target is online: " + online);
         }
     }
 
@@ -4035,6 +4043,8 @@ public class AdminCommands {
             } else {
                 chr.chatMessage("No hot time rewards available!");
             }
+
+            chr.checkFirstEnterReward();
         }
     }
 }
