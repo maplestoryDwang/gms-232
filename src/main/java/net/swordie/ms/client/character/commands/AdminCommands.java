@@ -113,7 +113,31 @@ public class AdminCommands {
             }
         }
     }
+    @Command(names = {"warphere"}, requiredType = Tester)
+    public static class WarpHere extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            Char victim = chr.getWorld().getCharByName((args[1]));
+            if (victim != null) {
+                victim.changeChannelAndWarp((byte) chr.getClient().getChannelInstance().getChannelId(), chr.getFieldID());
+            } else {
+                chr.chatMessage(Notice2, "Player not found, make sure you typed the correct name (Case Sensitive).");
+            }
+        }
+    }
+    @Command(names = {"givenx"}, requiredType = Tester)
+    public static class giveNx extends AdminCommand {
 
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 3) {
+                chr.chatMessage("Usage: !givenx [name] [amount]");
+                return;
+            }
+            String name = args[1];
+            int amount = Integer.valueOf(args[2]);
+            Char other = chr.getWorld().getCharByName(name);
+            other.addNx(amount);
+        }
+    }
     @Command(names = {"vmatrix"}, requiredType = Admin)
     public static class VMatrixCommand extends AdminCommand {
 
