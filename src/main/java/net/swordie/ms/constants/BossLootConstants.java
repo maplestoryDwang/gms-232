@@ -191,7 +191,7 @@ public class BossLootConstants {
             //
             // Silver 8
             //
-            Map.entry(BossConstants.DARKNELL_CHAOS, SilverLootConstants.TIER_8_LOOT), // Dunkell (Hard)
+            Map.entry(BossConstants.DARKNELL_HARD, SilverLootConstants.TIER_8_LOOT), // Dunkell (Hard)
 
             //
             // Silver 9
@@ -221,7 +221,7 @@ public class BossLootConstants {
             Map.entry(BossConstants.GUARDIAN_ANGEL_SLIME_CHAOS, new Tuple<>(9210051, 8880711)),
             Map.entry(BossConstants.CHOSEN_SEREN_TREASURE_CHEST, new Tuple<>(9210050, 8880600)),
             Map.entry(BossConstants.LUCID_REWARD_BOX_EASY, new Tuple<>(9210048, 8880142)),
-            Map.entry(BossConstants.DARKNELL_CHAOS, new Tuple<>(9210047, 8645066)),
+            Map.entry(BossConstants.DARKNELL_HARD, new Tuple<>(9210047, 8645066)),
             Map.entry(BossConstants.GLOOM_CHAOS, new Tuple<>(9210046, 8644655)),
             Map.entry(BossConstants.DARKNELL_NORMAL, new Tuple<>(9210043, 8645009)),
             Map.entry(BossConstants.GLOOM, new Tuple<>(9210042, 8644650)),
@@ -308,7 +308,7 @@ public class BossLootConstants {
             Map.entry(BossConstants.VERUS_HILLA, 89_520_000L),
             Map.entry(BossConstants.GUARDIAN_ANGEL_SLIME_CHAOS, 90_312_500L),
             Map.entry(BossConstants.GLOOM_CHAOS, 92_450_000L),
-            Map.entry(BossConstants.DARKNELL_CHAOS, 98_000_000L),
+            Map.entry(BossConstants.DARKNELL_HARD, 98_000_000L),
             //  Map.entry(0004, 110_450_000L), //TODO Verus Hilla Hard
             Map.entry(BossConstants.CHOSEN_SEREN_TREASURE_CHEST, 133_687_500L),
             //  Map.entry(0005, 151_250_000L), //TODO chosen seren hard

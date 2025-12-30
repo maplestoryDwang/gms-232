@@ -8,8 +8,8 @@ response = sm.sendSayOkay("We should start looking at #rGloom#k.\r\n\r\n"
                           "#L2##kLeave#l")
 
 info = [
-    [BossConstants.GLOOM_FIELD, BossCooldown.Gloom],
-    [BossConstants.GLOOM_HARD_FIELD, BossCooldown.GloomHard],
+    [BossConstants.GLOOM_FIELD, BossCooldown.Darknell],
+    [BossConstants.GLOOM_HARD_FIELD, BossCooldown.DarknellHard],
 ]
 
 if response != 2:

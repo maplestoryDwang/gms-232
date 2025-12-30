@@ -610,9 +610,14 @@ public class BossConstants {
     public static final int GLOOM_CHAOS = 9210046;
 
     // Darknell --------------------------------------------------------------------------------------------------------
-    //Not sure if these are right ID's
-    public static final int DARKNELL_NORMAL = 9210043;
-    public static final int DARKNELL_CHAOS = 9210047;
+    public static final int DARKNELL_FIELD = 450012600;
+    public static final int DARKNELL_NORMAL = 8645009;
+    public static final long DARKNELL_HP = 26_000_000_000_000L; // 40t
+
+    public static final int DARKNELL_HARD_FIELD = 450012600;
+    public static final long DARKNELL_HARD_HP = 160_000_000_000_000L; //160t
+    public static final int DARKNELL_HARD = 8645009;
+    public static final int DARKNELL_BEAM = 8645068;
 
     // Black Mage ------------------------------------------------------------------------------------------------------
     public static final int GENESIS_CRUX = 8880518;

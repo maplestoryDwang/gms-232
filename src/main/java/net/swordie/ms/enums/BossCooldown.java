@@ -42,6 +42,7 @@ public enum BossCooldown {
     Will(22, BossConstants.WILL_P3),
     VerusHilla(22, BossConstants.VERUS_HILLA),
     Gloom(22, 8644650),
+    Darknell(22, BossConstants.DARKNELL_NORMAL),
 
     // Hard (Chaos)
     ZakumHard(22, 8800102),
@@ -63,6 +64,7 @@ public enum BossCooldown {
     WillHard(68, BossConstants.HARD_WILL_P3),
     VerusHillaHard(68),
     GloomHard(68),
+    DarknellHard(68, BossConstants.DARKNELL_HARD),
     BlackMage(92),
     ;
 
