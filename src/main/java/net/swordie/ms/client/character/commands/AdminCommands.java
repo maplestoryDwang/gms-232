@@ -113,7 +113,7 @@ public class AdminCommands {
             }
         }
     }
-    @Command(names = {"warphere"}, requiredType = Tester)
+    @Command(names = {"warphere"}, requiredType = GameMaster)
     public static class WarpHere extends AdminCommand {
         public static void execute(Char chr, String[] args) {
             Char victim = chr.getWorld().getCharByName((args[1]));
@@ -124,7 +124,7 @@ public class AdminCommands {
             }
         }
     }
-    @Command(names = {"givenx"}, requiredType = Tester)
+    @Command(names = {"givenx"}, requiredType = GameMaster)
     public static class giveNx extends AdminCommand {
 
         public static void execute(Char chr, String[] args) {
