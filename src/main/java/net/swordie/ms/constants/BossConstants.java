@@ -616,7 +616,7 @@ public class BossConstants {
 
     public static final int DARKNELL_HARD_FIELD = 450012600;
     public static final long DARKNELL_HARD_HP = 160_000_000_000_000L; //160t
-    public static final int DARKNELL_HARD = 8645009;
+    public static final int DARKNELL_HARD = 8645066;
     public static final int DARKNELL_BEAM = 8645068;
 
     // Black Mage ------------------------------------------------------------------------------------------------------
