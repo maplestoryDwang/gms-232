@@ -5,6 +5,7 @@ import net.swordie.ms.ServerConstants;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.User;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.client.character.FirstEnterReward;
 import net.swordie.ms.client.character.items.Equip;
 import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.client.character.items.ItemOption;
@@ -52,10 +53,7 @@ import net.swordie.ms.loaders.*;
 import net.swordie.ms.loaders.containerclasses.SkillStringInfo;
 import net.swordie.ms.scripts.ScriptManagerImpl;
 import net.swordie.ms.scripts.ScriptType;
-import net.swordie.ms.util.FileTime;
-import net.swordie.ms.util.Position;
-import net.swordie.ms.util.Rect;
-import net.swordie.ms.util.Util;
+import net.swordie.ms.util.*;
 import net.swordie.ms.world.Channel;
 import net.swordie.ms.world.World;
 import net.swordie.ms.world.field.*;
@@ -115,7 +113,31 @@ public class AdminCommands {
             }
         }
     }
+    @Command(names = {"warphere"}, requiredType = GameMaster)
+    public static class WarpHere extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            Char victim = chr.getWorld().getCharByName((args[1]));
+            if (victim != null) {
+                victim.changeChannelAndWarp((byte) chr.getClient().getChannelInstance().getChannelId(), chr.getFieldID());
+            } else {
+                chr.chatMessage(Notice2, "Player not found, make sure you typed the correct name (Case Sensitive).");
+            }
+        }
+    }
+    @Command(names = {"givenx"}, requiredType = GameMaster)
+    public static class giveNx extends AdminCommand {
 
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 3) {
+                chr.chatMessage("Usage: !givenx [name] [amount]");
+                return;
+            }
+            String name = args[1];
+            int amount = Integer.valueOf(args[2]);
+            Char other = chr.getWorld().getCharByName(name);
+            other.addNx(amount);
+        }
+    }
     @Command(names = {"vmatrix"}, requiredType = Admin)
     public static class VMatrixCommand extends AdminCommand {
 
@@ -972,7 +994,7 @@ public class AdminCommands {
         }
     }
 
-    @Command(names = {"getitem"}, requiredType = Tester)
+    @Command(names = {"getitem", "item"}, requiredType = Tester)
     public static class GetItem extends AdminCommand {
         public static void execute(Char chr, String[] args) {
             short quant = 1;
@@ -2388,7 +2410,6 @@ public class AdminCommands {
                     return;
                 }
             }
-
             //Check if user is online somewhere in the server (could be char select too)
             User banUser = Server.getInstance().getUserById(banChr.getUserId());
 
@@ -3985,5 +4006,45 @@ public class AdminCommands {
             chr.getScriptManager().setActionBar(true, ActionBarType.getByVal(Integer.parseInt(args[1])));
         }
 
+    }
+
+    @Command(names = {"gift"}, requiredType = Admin)
+    public static class GiftBox extends AdminCommand {
+
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 4) {
+                chr.chatMessage("Usage: !gift <player> <itemID> <quantity> <message>");
+                return;
+            }
+            String targetName = args[1];
+            int itemid = Integer.parseInt(args[2]);
+            int quantity = Integer.parseInt(args[3]);
+            String message = (args.length >= 5)
+                    ? String.join(" ", java.util.Arrays.copyOfRange(args, 4, args.length))
+                    : "Default msg";
+
+            Char targetChr = Server.getInstance().getWorldById(chr.getClient().getWorldId()).getCharByName(targetName);
+            boolean online = true;
+            if (targetChr == null) {
+                online = false;
+                targetChr = charDao.getByNameAndWorld(targetName, chr.getAccount().getWorldId());
+                if (targetChr == null) {
+                    chr.chatMessage(SpeakerChannel, "Could not find that character.");
+                    return;
+                }
+                Account account = accountDao.getByCharId(targetChr.getId());
+                targetChr.setAccount(account);
+            }
+
+            int targetId = targetChr.getId();
+
+            FirstEnterReward reward = new FirstEnterReward(targetId, itemid, quantity, FirstEnterRewardType.GameItem, message);
+
+            targetChr.addFirstEnterReward(reward);
+            if (online) {
+                targetChr.checkFirstEnterReward();
+            }
+            chr.chatMessage("Gift Sent!, target is online: " + online);
+        }
     }
 }

@@ -100,6 +100,7 @@ public class User {
         this.name = name;
         this.accountType = AccountType.Player;
         this.creationDate = FileTime.currentTime();
+        this.pic = "111111"; // We don't use those anymore :D
         this.accounts = new HashSet<>();
         this.offenseManager = new OffenseManager(true);
     }
