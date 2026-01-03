@@ -2443,6 +2443,7 @@ public class Char {
 
         initFriendStatus();
 
+
         write(Stage.setField(this, toField, getChannel(), false, 0, characterData, hasBuffProtector(),
                 (byte) (portal != null ? portal.getId() : 0), false, 100, null, true, -1));
         toField.addChar(this);

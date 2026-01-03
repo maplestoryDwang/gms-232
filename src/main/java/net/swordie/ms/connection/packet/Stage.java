@@ -169,7 +169,7 @@ public class Stage {
 
         // sub
         size = 0;
-        outPacket.encodeInt(size);
+        outPacket.encodeInt(size);  //sub_1434CB7E0
         for (int i = 0; i < size; i++) {
             outPacket.encodeInt(0); // ?
         }

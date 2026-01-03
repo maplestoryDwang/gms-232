@@ -355,9 +355,11 @@ public class CharacterStat {
 
         outPacket.encodeByte(0);
         outPacket.encodeFT(FileTime.MIN_TIME());
+//        outPacket.encodeLong(0);
 
         outPacket.encodeShort(getFatigue()); // short in 188
         outPacket.encodeInt(getLastFatigueUpdateTime());
+
         outPacket.encodeInt(getCharismaExp());
         outPacket.encodeInt(getInsightExp());
         outPacket.encodeInt(getWillExp());
