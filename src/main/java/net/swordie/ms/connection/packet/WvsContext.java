@@ -48,6 +48,8 @@ import net.swordie.ms.util.Position;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -703,6 +705,39 @@ public class WvsContext {
             case SetSonOfLinkedSkillResult_Fail_DBRequestFail:
                 break;
         }
+
+        return outPacket;
+    }
+
+
+    public static OutPacket getServerTime() {
+        // 发送一次服务端时间给客户端
+        OutPacket outPacket = new OutPacket(OutHeader.GET_SERVER_TIME);
+        outPacket.encodeByte(true);
+        outPacket.encodeInt(0);
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Shanghai"));
+        // 或者直接用服务器本地时区：ZonedDateTime.now()
+
+        int year        = now.getYear();
+        int month       = now.getMonthValue();      // 1~12
+        int day         = now.getDayOfMonth();      // 1~31
+        int dayOfWeek   = now.getDayOfWeek().getValue() % 7;
+        // Java: 1=Monday ... 7=Sunday
+        // Windows SYSTEMTIME: 0=Sunday ... 6=Saturday
+
+        int hour        = now.getHour();             // 0~23
+        int minute      = now.getMinute();           // 0~59
+        int second      = now.getSecond();           // 0~59
+        int millis      = now.getNano() / 1_000_000; // 0~999
+
+        outPacket.encodeShort(year);
+        outPacket.encodeShort(month);
+        outPacket.encodeShort(dayOfWeek);
+        outPacket.encodeShort(day);
+        outPacket.encodeShort(hour);
+        outPacket.encodeShort(minute);
+        outPacket.encodeShort(second);
+        outPacket.encodeShort(millis);
 
         return outPacket;
     }

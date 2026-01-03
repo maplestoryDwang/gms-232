@@ -42,8 +42,8 @@ public class FileTime implements Serializable, Comparable<FileTime> {
 
 	public enum Type {
 		// Mushy
-		MAX_TIME(35120710, -1157267456),
-		ZERO_TIME(21968699, -35635200),
+		MAX_TIME(35120710, -1157267456), //2099
+		ZERO_TIME(21968699, -35635200), //1970
 		FT_UT_OFFSET(116444592000000000L),
 		QUEST_TIME(27111903),
 		PLAIN_ZERO(0);
@@ -124,6 +124,14 @@ public class FileTime implements Serializable, Comparable<FileTime> {
 	public static FileTime currentTime() {
 		return fromEpochMillis(System.currentTimeMillis());
 	}
+//	// dang
+//	public static FileTime currentTime() {
+//		long sixHoursInMillis = 6 * 60 * 60 * 1000; // 6小时的毫秒数
+//		long currentMillis = System.currentTimeMillis();
+//		long sixHoursAgo = currentMillis - sixHoursInMillis;
+//
+//		return fromEpochMillis(sixHoursAgo);
+//	}
 
 	/**
 	 * Creates a new FileTime from a given time (millis since epoch).
