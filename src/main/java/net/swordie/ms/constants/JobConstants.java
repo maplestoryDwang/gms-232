@@ -536,6 +536,8 @@ public class JobConstants {
         switch (beginnerJob) {
             case 0:
                 return isExplorer(job);
+            case 2000:
+                return isAran(job);
             case 2001:
                 return isEvan(job);
             case 2002:
