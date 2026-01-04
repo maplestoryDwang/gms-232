@@ -14,6 +14,7 @@ import net.swordie.ms.life.mob.Mob;
  */
 public class FPSModeHandler {
 
+    // 黄门打老鹰？
     @Handler(op = InHeader.SHOOT_ATTACK_IN_FPS_REQUEST)
     public static void handleShootAttackInFPSRequest(Char chr, InPacket inPacket) {
         inPacket.decodeInt(); // tick

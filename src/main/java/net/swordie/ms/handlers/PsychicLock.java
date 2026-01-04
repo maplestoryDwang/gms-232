@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 超能力者使用？
+ *
  * Created on 1/13/2018.
  */
 public class PsychicLock {

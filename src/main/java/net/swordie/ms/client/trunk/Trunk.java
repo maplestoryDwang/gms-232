@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 
 /**
  * Created on 4/7/2018.
+ *
+ * 商城购买后暂存的区域 以及物品仓库
  */
 @Entity
 @Table(name = "trunks")
