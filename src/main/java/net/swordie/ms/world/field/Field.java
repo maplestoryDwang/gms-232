@@ -81,20 +81,30 @@ public class Field {
     private ScriptManagerImpl scriptManager;
     private RuneStone runeStone;
     private long nextRuneStoneSpawn;
+    // 燃烧地图
     private int burningFieldLevel = GameConstants.BURNING_FIELD_LEVEL_ON_START;
+    // 精英怪
     private long nextEliteSpawnTime = System.currentTimeMillis();
     private int killedElites;
     private EliteState eliteState;
+
     private List<TownPortal> townPortalList = new ArrayList<>();
     private boolean isChannelField;
     private Clock clock;
     private int channel;
     private Channel channelInstance;
     private boolean changeToChannelOnLeave;
+
+    // 一些参数
     private Map<String, Object> properties;
     private long lastFieldBossSpawnTime;
+
+    // 地图事件：精英怪差不多，种花需要打怪之类的
     private FieldEvent fieldEvent;
+
+    // 地图实例
     private Instance instance;
+    // 地图所属
     private FieldOwnershipManager fieldOwnershipManager;
 
     public Field(int fieldID) {

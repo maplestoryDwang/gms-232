@@ -208,6 +208,7 @@ public class Char {
 
     private List<Macro> macros;
 
+    // 幻影？
     private Set<StolenSkill> stolenSkills;
     private Set<ChosenSkill> chosenSkills;
 
@@ -244,8 +245,10 @@ public class Char {
     private MonsterBattleRankInfo monsterBattleRankInfo;
     private Position position;
     private Position oldPosition;
+    // 地图相关信息
     private Field field;
     private byte moveAction;
+    // 状态控制
     private TemporaryStatManager temporaryStatManager;
     private GachaponManager gachaponManager;
     private Job jobHandler;
@@ -264,18 +267,25 @@ public class Char {
     private short fieldSeatID;
     private PortableChair chair;
     private short foothold;
+
+    // 怪怪卡？
     private int tamingMobLevel;
     private int tamingMobExp;
     private int tamingMobFatigue;
+
+
     private String ADBoardRemoteMsg;
     private boolean inCouple;
     private CoupleRecord couple;
     private FriendshipRingRecord friendshipRingRecord;
+
+    // 职业相关
     private int evanDragonGlide;
     private int kaiserMorphRotateHueExtern;
     private int kaiserMorphPrimiumBlack;
     private int kaiserMorphRotateHueInnner;
     private int makingMeisterSkillEff;
+
     private FarmUserInfo farmUserInfo;
     private int customizeEffect;
     private String customizeEffectMsg;
@@ -307,8 +317,11 @@ public class Char {
     private long nextRandomPortalTime;
     private Map<Integer, Integer> currentDirectionNode = new HashMap<>();
     private boolean tutor = false;
+
+    // 地图信息
     private int transferField = 0;
     private int transferFieldReq = 0;
+    // 0转被动精灵的祝福
     private String blessingOfFairy = null;
     private String blessingOfEmpress = null;
     private boolean isInvincible;
@@ -317,6 +330,9 @@ public class Char {
     private Android android;
     private boolean skillInfoMode = false;
     private List<NpcShopItem> buyBack = new ArrayList<>();
+
+    // 技能相关
+    // 超能力者使用？
     private PsychicLock psychicLock = null;
     private Map<Integer, PsychicArea> psychicAreas = new HashMap<>();
     private Map<Integer, ForceAtom> forceAtoms = new HashMap<>();
@@ -325,6 +341,8 @@ public class Char {
     private int forceAtomKeyCounter = 1;
     private int secondAtomKeyCounter = 10;
     private int jupiterThunder = 1000;
+
+
     private Char copy;
     private boolean showDamageCalc;
     private SpecialNode specialNode = new SpecialNode();
@@ -338,15 +356,19 @@ public class Char {
     private boolean hasPetVac;
     private long lastComboKill;
     private int stylishKillSkin = -1; // default -1
+    // 黄门信息
     private long polloFritto = 0;
     private int lastBagItemIndexOpened = -1;
     private long lastKeydownMPConsumption = 0;
     private long lastFieldSwitchTime = 0;
     private IterativeBuyInfo iterativeBuyInfo;
+
+    // 缤纷喇叭
     private long nextAvailableMegaphone = 0;
     private long nextAvailableAvatarMegaphone = 0;
     private long nextAvailableTripleMegaphone = 0;
     private long nextAvailableConsumeItemTime;
+
     private Set<Emoticon> emoticons; // Favourite Emoticons
     private Set<EmoticonShortcut> emoticonShortcuts; // Emoticon Shortcuts
     private AuctionItemSearchCriteria lastAuctionCriteria;

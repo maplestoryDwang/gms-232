@@ -4,7 +4,9 @@ import net.swordie.ms.client.character.Char;
 import net.swordie.ms.util.Position;
 
 /**
- * Created on 11-1-2019.
+ *  MoveEnergyBall
+ *
+ *  Created on 11-1-2019.
  *
  * @author Asura
  */

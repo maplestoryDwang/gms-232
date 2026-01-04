@@ -504,6 +504,7 @@ public class SkillHandler {
         chr.getField().broadcastPacket(UserRemote.destroyGrenade(chr.getId(), grenadeID), chr);
     }
 
+    // 能量球技能MoveEnergyBall
     @Handler(op = InHeader.USER_B2_BODY_REQUEST)
     public static void handleB2BodyRequest(Char chr, InPacket inPacket) { // TODO  turn the 'friction' switch off, once I find it..
         short requestType = inPacket.decodeShort();
