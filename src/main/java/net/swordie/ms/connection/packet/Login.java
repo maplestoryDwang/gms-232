@@ -239,7 +239,6 @@ public class Login {
         int reserved = 0;
         outPacket.encodeInt(reserved); // Reserved size
 
-//        outPacket.encodeFT(FileTime.fromType(FileTime.Type.ZERO_TIME)); // Reserved timestamp
         outPacket.encodeFT(FileTime.currentTime()); // Reserved timestamp
         for (int i = 0; i < reserved; i++) {
             // not really interested in this
