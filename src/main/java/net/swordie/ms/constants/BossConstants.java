@@ -612,7 +612,7 @@ public class BossConstants {
     // Darknell --------------------------------------------------------------------------------------------------------
     public static final int DARKNELL_FIELD = 450012600;
     public static final int DARKNELL_NORMAL = 8645009;
-    public static final long DARKNELL_HP = 26_000_000_000_000L; // 40t
+    public static final long DARKNELL_HP = 26_000_000_000_000L; // 26t
 
     public static final int DARKNELL_HARD_FIELD = 450012600;
     public static final long DARKNELL_HARD_HP = 160_000_000_000_000L; //160t
