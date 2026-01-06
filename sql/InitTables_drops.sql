@@ -8203,6 +8203,53 @@ values
     (9421589, 1582022, 300, 1, 1),       # Meister Titan
 
 
+    # Japan Armors ID
+    # Warrior
+    (9421589, 1003601, 300, 1, 1),       # Amaterasu's Helm
+    (9421589, 1052509, 300, 1, 1),       # Amaterasu's Armor
+    (9421589, 1072711, 300, 1, 1),       # Amaterasu's Shoes
+    (9421589, 1082472, 300, 1, 1),       # Amaterasu's Gloves
+    (9421589, 1102456, 300, 1, 1),       # Amaterasu's Cape
+    (9421589, 1132156, 300, 1, 1),       # Amaterasu's Belt
+    (9421589, 1152094, 300, 1, 1),       # Amaterasu's Epaulet
+
+    # Bowman
+    (9421589, 1003602, 300, 1, 1),       # Oyamatsumi's Helm
+    (9421589, 1052510, 300, 1, 1),       # Oyamatsumi's Armor
+    (9421589, 1072712, 300, 1, 1),       # Oyamatsumi's Shoes
+    (9421589, 1082473, 300, 1, 1),       # Oyamatsumi's Gloves
+    (9421589, 1102457, 300, 1, 1),       # Oyamatsumi's Cape
+    (9421589, 1132157, 300, 1, 1),       # Oyamatsumi's Belt
+    (9421589, 1152095, 300, 1, 1),       # Oyamatsumi's Epaulet
+
+    # Magician
+    (9421589, 1052511, 300, 1, 1),       # Ame-no-Uzume's Armor
+    (9421589, 1003603, 300, 1, 1),       # Ama-no-Uzume's Helm
+    (9421589, 1072713, 300, 1, 1),       # Ama-no-Uzume's Shoes
+    (9421589, 1082474, 300, 1, 1),       # Ame-no-Uzume's Gloves
+    (9421589, 1102458, 300, 1, 1),       # Ame-no-Uzume's Cape
+    (9421589, 1132158, 300, 1, 1),       # Ame-no-Uzume's Belt
+    (9421589, 1152096, 300, 1, 1),       # Ame-no-Uzume's Epaulet
+
+    # Thief
+    (9421589, 1003604, 300, 1, 1),       # Tsukuyomi's Helm
+    (9421589, 1052512, 300, 1, 1),       # Tsukuyomi's Armor
+    (9421589, 1072714, 300, 1, 1),       # Tsukuyomi's Shoes
+    (9421589, 1082475, 300, 1, 1),       # Tsukuyomi's Gloves
+    (9421589, 1102459, 300, 1, 1)        # Tsukuyomi's Cape
+    (9421589, 1132159, 300, 1, 1),       # Tsukuyomi's Belt
+    (9421589, 1152097, 300, 1, 1),       # Tsukuomi's Epaulet
+
+    # Pirate
+    (9421589, 1003605, 300, 1, 1),       # Susano-o's Helm
+    (9421589, 1052513, 300, 1, 1),       # Susano-o's Armor
+    (9421589, 1072715, 300, 1, 1),       # Susano-o's Shoes
+    (9421589, 1082476, 300, 1, 1),       # Susano-o's Gloves
+    (9421589, 1102460, 300, 1, 1),       # Susano-o's Cape
+    (9421589, 1132160, 300, 1, 1),       # Susano-o's Belt
+    (9421589, 1152098, 300, 1, 1),       # Susano-o's Epaulet
+
+
     # Common items EQP - USE - ETC - SETUP
 
     (9421589, 4310018, 6000, 2, 2),      # Crusader Coin
