@@ -170,7 +170,7 @@ public class Phantom extends Job {
             stealJobHandlers.add(new NightLord(chr));
             stealJobHandlers.add(new Shadower(chr));
             stealJobHandlers.add(new BladeMaster(chr));
-            
+
             // Pirate
             stealJobHandlers.add(new Buccaneer(chr));
             stealJobHandlers.add(new Corsair(chr));
@@ -376,7 +376,9 @@ public class Phantom extends Job {
     private void doCarteNoir(AttackInfo attackInfo) {
         if (attackInfo.skillId == MILLE_AIGUILLES) {
             var ai = new AttackInfo();
-            ai.mobAttackInfo = new ArrayList<>() {{ add(attackInfo.mobAttackInfo.get(0)); }};
+            ai.mobAttackInfo = new ArrayList<>() {{
+                add(attackInfo.mobAttackInfo.get(0));
+            }};
             ai.skillId = attackInfo.skillId;
             ai.mobCount = 1;
             cartDeck(1);
@@ -388,55 +390,56 @@ public class Phantom extends Job {
     }
 
     private void createCarteForceAtom(AttackInfo attackInfo) {
-    if (!chr.hasSkill(CARTE_BLANCHE) || attackInfo.mobCount <= 0) {
-        return;
-    }
-
-    boolean hasNoir = chr.hasSkill(CARTE_NOIR);
-    ForceAtomEnum fae = hasNoir ? ForceAtomEnum.PHANTOM_CARD_2 : ForceAtomEnum.PHANTOM_CARD_1;
-    int skillId = hasNoir ? CARTE_NOIR : CARTE_BLANCHE;
-
-    int propp = hasNoir
-            ? chr.getSkillStatValue(prop, CARTE_NOIR)
-            : chr.getSkillStatValue(prop, CARTE_BLANCHE);
-
-    if (propp <= 0) {
-        return;
-    }
-
-    List<Integer> targets = new ArrayList<>();
-    List<ForceAtomInfo> faiList = new ArrayList<>();
-
-    for (var mai : attackInfo.mobAttackInfo) {
-        if (mai == null || mai.mob == null || mai.mobId == 0) {
-            continue;
+        if (!chr.hasSkill(CARTE_BLANCHE) || attackInfo.mobCount <= 0) {
+            return;
         }
 
-        if (Util.succeedProp(propp)) {
-            ForceAtomInfo fai = new ForceAtomInfo(
-                    chr.getNewForceAtomKey(),
-                    fae.getInc(),
-                    Util.getRandom(15, 30),
-                    Util.getRandom(15, 30),
-                    0,
-                    Util.getRandom(0, 50),
-                    Util.getCurrentTime(),
-                    0, 0,
-                    new Position()
-            );
-            faiList.add(fai);
-            targets.add(mai.mobId); 
+        boolean hasNoir = chr.hasSkill(CARTE_NOIR);
+        ForceAtomEnum fae = hasNoir ? ForceAtomEnum.PHANTOM_CARD_2 : ForceAtomEnum.PHANTOM_CARD_1;
+        int skillId = hasNoir ? CARTE_NOIR : CARTE_BLANCHE;
+
+        int propp = hasNoir
+                ? chr.getSkillStatValue(prop, CARTE_NOIR)
+                : chr.getSkillStatValue(prop, CARTE_BLANCHE);
+
+        if (propp <= 0) {
+            return;
         }
-    }
 
-    if (targets.isEmpty() || faiList.isEmpty()) {
-        return;
-    }
+        List<Integer> targets = new ArrayList<>();
+        List<ForceAtomInfo> faiList = new ArrayList<>();
 
-    chr.createForceAtom(new ForceAtom(false, 0, chr.getId(), fae,
-            true, targets, skillId, faiList, new Rect(), 0, 0,
-            new Position(), skillId, new Position(), 0));
-}
+        for (var mai : attackInfo.mobAttackInfo) {
+            if (mai == null || mai.mob == null || mai.mobId == 0) {
+                continue;
+            }
+
+            if (Util.succeedProp(propp)) {
+                ForceAtomInfo fai = new ForceAtomInfo(
+                        chr.getNewForceAtomKey(),
+                        fae.getInc(),
+                        Util.getRandom(15, 30),
+                        Util.getRandom(15, 30),
+                        0,
+                        Util.getRandom(0, 50),
+                        Util.getCurrentTime(),
+                        0, 0,
+                        new Position()
+                );
+                faiList.add(fai);
+                targets.add(mai.mobId);
+            }
+        }
+
+        // 🚨 THIS is the critical guard
+        if (targets.isEmpty() || faiList.isEmpty()) {
+            return;
+        }
+
+        chr.createForceAtom(new ForceAtom(false, 0, chr.getId(), fae,
+                true, targets, skillId, faiList, new Rect(), 0, 0,
+                new Position(), skillId, new Position(), 0));
+    }
 
 
     private void createCarteForceAtomByJudgmentDraw() {
