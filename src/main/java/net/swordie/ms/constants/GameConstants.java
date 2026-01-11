@@ -20,6 +20,7 @@ public class GameConstants {
     public static final int CHANNELS_PER_WORLD = 10;
     public static final int BUFFED_CHANNELS = CHANNELS_PER_WORLD;
     public static final int MOB_EXP_RATE = 4;
+    public static final int COMBO_ORB_EXP_RATE = 1; // Note: MOB_EXP_RATE does not affect combo orbs
     public static final int MOB_NX_RATE = 1;
     public static final int MOB_DROP_RATE = 1;
     public static final int MOB_MESO_RATE = 2;
@@ -1438,13 +1439,13 @@ public class GameConstants {
     public static double getExpOrbExpModifierById(int itemID) {
         switch (itemID) {
             case BLUE_EXP_ORB_ID:
-                return BLUE_EXP_ORB_MULT;
+                return BLUE_EXP_ORB_MULT * COMBO_ORB_EXP_RATE;
             case PURPLE_EXP_ORB_ID:
-                return PURPLE_EXP_ORB_MULT;
+                return PURPLE_EXP_ORB_MULT * COMBO_ORB_EXP_RATE;
             case RED_EXP_ORB_ID:
-                return RED_EXP_ORB_MULT;
+                return RED_EXP_ORB_MULT * COMBO_ORB_EXP_RATE;
             case GOLD_EXP_ORB_ID:
-                return GOLD_EXP_ORB_MULT;
+                return GOLD_EXP_ORB_MULT * COMBO_ORB_EXP_RATE;
 
             case ELITE_CHAMPION_ORB:
                 return 1;
