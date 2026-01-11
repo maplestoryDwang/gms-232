@@ -388,30 +388,56 @@ public class Phantom extends Job {
     }
 
     private void createCarteForceAtom(AttackInfo attackInfo) {
-        if (!chr.hasSkill(CARTE_BLANCHE) || attackInfo.mobCount <= 0) {
-            return;
-        }
-        boolean hasNoir = chr.hasSkill(CARTE_NOIR);
-        ForceAtomEnum fae = hasNoir ? ForceAtomEnum.PHANTOM_CARD_2 : ForceAtomEnum.PHANTOM_CARD_1;
-        int skillId = hasNoir ? CARTE_NOIR : CARTE_BLANCHE;
-        List<Integer> targets = new ArrayList<>();
-        List<ForceAtomInfo> faiList = new ArrayList<>();
-        int propp = hasNoir ? chr.getSkillStatValue(prop, CARTE_NOIR) : chr.getSkillStatValue(prop, CARTE_BLANCHE);
-
-        for (var mai : attackInfo.mobAttackInfo) {
-            if (Util.succeedProp(propp)) {
-                ForceAtomInfo fai = new ForceAtomInfo(chr.getNewForceAtomKey(), fae.getInc(), Util.getRandom(15, 30), Util.getRandom(15, 30),
-                        0, Util.getRandom(0, 50), Util.getCurrentTime(), 0, 0,
-                        new Position());
-                faiList.add(fai);
-                targets.add(mai.mob != null ? mai.mobId : 0);
-            }
-        }
-
-        chr.createForceAtom(new ForceAtom(false, 0, chr.getId(), fae,
-                true, targets, skillId, faiList, new Rect(), 0, 0,
-                new Position(), skillId, new Position(), 0));
+    if (!chr.hasSkill(CARTE_BLANCHE) || attackInfo.mobCount <= 0) {
+        return;
     }
+
+    boolean hasNoir = chr.hasSkill(CARTE_NOIR);
+    ForceAtomEnum fae = hasNoir ? ForceAtomEnum.PHANTOM_CARD_2 : ForceAtomEnum.PHANTOM_CARD_1;
+    int skillId = hasNoir ? CARTE_NOIR : CARTE_BLANCHE;
+
+    int propp = hasNoir
+            ? chr.getSkillStatValue(prop, CARTE_NOIR)
+            : chr.getSkillStatValue(prop, CARTE_BLANCHE);
+
+    if (propp <= 0) {
+        return;
+    }
+
+    List<Integer> targets = new ArrayList<>();
+    List<ForceAtomInfo> faiList = new ArrayList<>();
+
+    for (var mai : attackInfo.mobAttackInfo) {
+        if (mai == null || mai.mob == null || mai.mobId == 0) {
+            continue;
+        }
+
+        if (Util.succeedProp(propp)) {
+            ForceAtomInfo fai = new ForceAtomInfo(
+                    chr.getNewForceAtomKey(),
+                    fae.getInc(),
+                    Util.getRandom(15, 30),
+                    Util.getRandom(15, 30),
+                    0,
+                    Util.getRandom(0, 50),
+                    Util.getCurrentTime(),
+                    0, 0,
+                    new Position()
+            );
+            faiList.add(fai);
+            targets.add(mai.mobId); 
+        }
+    }
+
+    if (targets.isEmpty() || faiList.isEmpty()) {
+        return;
+    }
+
+    chr.createForceAtom(new ForceAtom(false, 0, chr.getId(), fae,
+            true, targets, skillId, faiList, new Rect(), 0, 0,
+            new Position(), skillId, new Position(), 0));
+}
+
 
     private void createCarteForceAtomByJudgmentDraw() {
         if (!chr.hasSkill(CARTE_BLANCHE)) {
