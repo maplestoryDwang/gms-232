@@ -1237,8 +1237,10 @@ public class SkillConstants {
                 return 80000609; // Bravado
             case Adele.NOBLE_FIRE_ORIGIN: // Noble Fire
                 return Adele.NOBLE_FIRE_LINKED; // Noble Fire
-            case Lara.NATURE_FRIEND_ORIGIN:
-                return Lara.NATURE_FRIEND_ORIGIN;
+            case Lara.NATURE_FRIEND_ORIGIN: //Nature Friend
+                return Lara.NATURE_FRIEND_ORIGIN; //Nature Friend
+            case Kain.PRIOR_PREPARATION_ORIGIN: //Time to Prepare
+                return Kain.PRIOR_PREPARATION_LINKED; //Time to Prepare
 
             case 252: // Invincible Belief (Hero)
                 return 80002759; // Invincible Belief (Hero)
@@ -1338,8 +1340,8 @@ public class SkillConstants {
                 return 110000800; // Focus Spirit
             case 80000609: // Bravado
                 return 160000001; // Bravado
-            case Adele.NOBLE_FIRE_LINKED:
-                return Adele.NOBLE_FIRE_ORIGIN;
+            case Adele.NOBLE_FIRE_LINKED: // Noble Fire
+                return Adele.NOBLE_FIRE_ORIGIN; // Noble Fire
 
             case 80002759: // Invincible Belief (Hero)
                 return 252; // Invincible Belief (Hero)
@@ -1374,7 +1376,8 @@ public class SkillConstants {
 
             case Lara.NATURE_FRIEND_LINKED:
                 return Lara.NATURE_FRIEND_ORIGIN;
-
+            case Kain.PRIOR_PREPARATION_LINKED: // Time to Prepare
+                return Kain.PRIOR_PREPARATION_ORIGIN; // Time to Prepare
             default:
                 return 0;
         }
@@ -1427,8 +1430,10 @@ public class SkillConstants {
             return 80000609;
         } else if (JobConstants.isAdele(job)) { // Noble Fire
             return Adele.NOBLE_FIRE_LINKED;
-        } else if (JobConstants.isLara(job)) {
+        } else if (JobConstants.isLara(job)) { //Nature Friend
             return Lara.NATURE_FRIEND_LINKED;
+        } else if (JobConstants.isKain(job)) { //Time to Prepare
+            return Kain.PRIOR_PREPARATION_LINKED;
         }
 
         // KoC (Cygnus Blessing)
