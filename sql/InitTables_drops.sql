@@ -8236,9 +8236,9 @@ values
     (9421589, 1052512, 300, 1, 1),       # Tsukuyomi's Armor
     (9421589, 1072714, 300, 1, 1),       # Tsukuyomi's Shoes
     (9421589, 1082475, 300, 1, 1),       # Tsukuyomi's Gloves
-    (9421589, 1102459, 300, 1, 1)        # Tsukuyomi's Cape
+    (9421589, 1102459, 300, 1, 1),        # Tsukuyomi's Cape
     (9421589, 1132159, 300, 1, 1),       # Tsukuyomi's Belt
-    (9421589, 1152097, 300, 1, 1),       # Tsukuomi's Epaulet
+    (9421589, 1152097, 300, 1, 1),       # Tsukuyomi's Epaulet
 
     # Pirate
     (9421589, 1003605, 300, 1, 1),       # Susano-o's Helm
