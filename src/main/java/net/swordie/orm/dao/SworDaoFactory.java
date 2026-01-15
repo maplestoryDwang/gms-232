@@ -56,6 +56,7 @@ import net.swordie.ms.client.soulcollection.SoulCollectionEntry;
 import net.swordie.ms.client.trunk.Trunk;
 import net.swordie.ms.life.Familiar;
 import net.swordie.ms.life.drop.DropInfo;
+import net.swordie.ms.life.npc.PlacedNpcTemplate;
 import net.swordie.ms.loaders.containerclasses.EquipDrop;
 import net.swordie.ms.logging.TradeTransaction;
 import net.swordie.ms.world.auction.AuctionItem;
@@ -137,6 +138,7 @@ public class SworDaoFactory {
     private static SworDao<MiniGameRecord> minigameRecordDao;
     private static SworDao<AccountDailyEntries> accountDailyEntryDao;
     private static SworDao<ContentReset> contentResetDao;
+    private static SworDao<PlacedNpcTemplate> placedNpcTemplateDao;
 
     private static final Map<String, SworDao> namedDaos = new HashMap<>();
 
@@ -573,6 +575,13 @@ public class SworDaoFactory {
                 contentResetDao = new ContentResetDao();
             }
             return contentResetDao;
+        }
+
+        if (clazz == PlacedNpcTemplate.class) {
+            if (placedNpcTemplateDao == null) {
+                placedNpcTemplateDao = new PlacedNpcTemplateDao();
+            }
+            return placedNpcTemplateDao;
         }
 
 

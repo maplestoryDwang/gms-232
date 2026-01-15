@@ -181,10 +181,6 @@ public class Field {
             return;
         }
 
-        if (life instanceof Npc) {
-            log.error(Util.getStackFrame("Removed npc: "));
-        }
-
         removeLifeType(life);
         getLifes().remove(life.getObjectId());
         getLifeToControllers().remove(life);
@@ -662,6 +658,13 @@ public class Field {
             }
         }
         return lifes;
+    }
+
+    public Npc getNpcByTemplateIdAndInRect(int templateId, Rect rect) {
+        return getNpcs().stream()
+                .filter(npc -> npc.getTemplateId() == templateId && rect.hasPositionInside(npc.getPosition()))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Char> getCharsInRect(Rect rect) {
