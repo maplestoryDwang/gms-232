@@ -459,10 +459,10 @@ public class StringData {
         if (source == null) {
             return res;
         }
-        query = query.toLowerCase();
-        if (query.isEmpty()) {
+        if (query == null || query.isEmpty()) {
             return res;
         }
+        query = query.toLowerCase();
 
         for (Map.Entry<Integer, String> entry : source.entrySet()) {
             Integer id = entry.getKey();

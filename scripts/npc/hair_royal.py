@@ -1,12 +1,18 @@
 # Big Headward | Henesys Hair Salon
 from net.swordie.ms.loaders import StringData
 
+def _get_avatar_look():
+    return chr.getAvatarData().getAvatarLook() if not chr.isZeroBeta() else chr.getAvatarData().getZeroAvatarLook()
+
 start = 0
 end = 0
 
 # ===== MAIN MENU (Hair / Face / Search) =====
+al = _get_avatar_look()
 main = sm.sendNext(
-    "Hello!\r\nI'm Big Headward\r\nI do Hairs & Faces!\r\n\r\n"
+    "Current Hair: ({0}) #z{0}#\r\n".format(al.getHair()) +
+    "Current Face: ({0}) #z{0}#\r\n\r\n".format(al.getFace()) +
+    "Hello! I'm Big Headward\r\nI do Hairs & Faces!\r\n\r\n"
     "#L0#Hair#l\r\n"
     "#L1#Face#l\r\n"
     "#L2#Search Hair by Name#l\r\n"
@@ -24,6 +30,7 @@ HAIR_MENU = {
         (43000, "MuLung (43000 ~ 43999)"),
         (45000, "Ariant (45000 ~ 45999)"),
         (46000, "Amoria (46000 ~ 46999)"),
+        # (60000, "??? (60000 ~ 60999)"), # more here according to Eqp.txt, maybe not available in this version?
     ]),
     1: ("Female Hairs", [
         (31000, "Henesys (31000 ~ 31999)"),
@@ -34,6 +41,7 @@ HAIR_MENU = {
         (44000, "MuLung (44000 ~ 44999)"),
         (47000, "Ariant (47000 ~ 47999)"),
         (48000, "Amoria (48000 ~ 48999)"),
+        # (61000, "??? (61000 ~ 61999)"), # more here according to Eqp.txt, maybe not available in this version?
     ]),
     2: ("Unisex / Event Hairs", [
         (32000, "Royal (32000 ~ 32999)"),
@@ -62,12 +70,7 @@ FACE_MENU = {
 }
 
 
-def _get_avatar_look():
-    return chr.getAvatarData().getAvatarLook() if not chr.isZeroBeta() else chr.getAvatarData().getZeroAvatarLook()
-
-
 def _apply_hair(start_id, end_id):
-    al = _get_avatar_look()
     hairColour = al.getHair() % 10
 
     options = list(StringData.getHairs(start_id, end_id))
@@ -81,7 +84,6 @@ def _apply_hair(start_id, end_id):
 
 
 def _apply_face(start_id, end_id):
-    al = _get_avatar_look()
     eyeColour = al.getFace() % 1000
 
     options = list(StringData.getFaces(start_id, end_id))
@@ -111,32 +113,49 @@ def _search_and_ask_avatar(is_hair):
         sm.sendNext("No results for: " + query)
         return
 
-    al = _get_avatar_look()
-
-    if is_hair:
-        color_mod = 10
-        current_color = al.getHair() % 10
-    else:
-        color_mod = 1000
-        current_color = al.getFace() % 1000
-
     options = []
     seen = set()
 
-    for k in res.keySet():
-        try:
-            iid = int(k)
-        except:
-            continue
+    if is_hair:
+        # Hair color: last digit
+        current_color = al.getHair() % 10
+        color_mod = 10
 
-        base = iid - (iid % color_mod)
-        chosen = base + current_color
+        for k in res.keySet():
+            try:
+                iid = int(k)
+            except:
+                continue
 
-        if chosen in seen:
-            continue
+            base = iid - (iid % color_mod)
+            chosen = base + current_color
 
-        seen.add(chosen)
-        options.append(chosen)
+            if chosen in seen:
+                continue
+            seen.add(chosen)
+            options.append(chosen)
+
+    else:
+        # Face format (5 digits): AA C BB
+        # - AA = family
+        # - C  = color digit
+        # - BB = tail
+        current_color = (al.getFace() // 100) % 10
+
+        for k in res.keySet():
+            try:
+                iid = int(k)
+            except:
+                continue
+
+            family = iid // 1000
+            tail = iid % 100
+            chosen = (family * 1000) + (current_color * 100) + tail
+
+            if chosen in seen:
+                continue
+            seen.add(chosen)
+            options.append(chosen)
 
     if len(options) == 0:
         sm.sendNext("No results after applying your current color filter.")
