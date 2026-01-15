@@ -12,6 +12,7 @@ import net.swordie.ms.jwzlib.WzProperty;
 import net.swordie.ms.life.Life;
 import net.swordie.ms.life.Reactor;
 import net.swordie.ms.life.npc.Npc;
+import net.swordie.ms.life.npc.PlacedNpcTemplate;
 import net.swordie.ms.loaders.containerclasses.FieldInfo;
 import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseInfo;
 import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseMobGenInfo;
@@ -19,6 +20,8 @@ import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseWave
 import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Util;
 import net.swordie.ms.world.field.*;
+import net.swordie.orm.dao.PlacedNpcTemplateDao;
+import net.swordie.orm.dao.SworDaoFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -430,6 +433,42 @@ public class FieldData {
         }
     }
 
+    private static void loadCustomNpcs() {
+        PlacedNpcTemplateDao templateDao = (PlacedNpcTemplateDao) SworDaoFactory.getByClass(PlacedNpcTemplate.class);
+        List<PlacedNpcTemplate> templates = templateDao.getAll();
+        
+        log.info("Loading {} placed NPC templates from database...", templates.size());
+        
+        for (PlacedNpcTemplate template : templates) {
+            int mapId = template.getMapid();
+            FieldInfo field = getFields().get(mapId);
+            
+            if (field == null) {
+                log.warn("Cannot add placed NPC template {} - field {} not found", template.getId(), mapId);
+                continue;
+            }
+             
+            Life life = new Life(template.getNpcid());
+            life.setLifeType("n"); 
+            life.setTemplateId(template.getNpcid()); 
+            life.setX(template.getX());
+            life.setY(template.getY());
+            life.setCy(template.getCy());
+            life.setRx0(template.getRx0());
+            life.setRx1(template.getRx1());
+            life.setFh(template.getFh());
+            life.setPosition(new Position(template.getX(), template.getY()));
+            
+            
+            field.addLife(life);
+            
+            log.debug("Added placed NPC template {} (NPC ID: {}) to field {}", 
+                    template.getId(), template.getNpcid(), mapId);
+        }
+        
+        log.info("Loaded {} placed NPC templates into fields", templates.size());
+    }
+
     public static Map<Integer, FieldInfo> getFields() {
         return fields;
     }
@@ -699,36 +738,6 @@ public class FieldData {
         loadWorldMapFromWz();
         saveWorldMap(ServerConstants.DAT_DIR + "/worldMap.dat");
         log.info(String.format("Completed generating field data in %dms.", System.currentTimeMillis() - start));
-    }
-
-    private static void loadCustomNpcs() {
-        // just do it like this for now, shouldn't be many npcs anyway
-        var field = getFields().get(910000000); // Free Market
-
-        int objectId = 0;
-        for (var entry : field.getLifes().entrySet()) {
-            if (entry.getValue().getTemplateId() == 9000133) {
-                // Wonky
-                objectId = entry.getKey();
-                break;
-            }
-        }
-
-        if (objectId != 0) {
-            field.getLifes().remove(objectId);
-        }
-
-        var fredrick = new Life(9030000);
-        fredrick.setLifeType("n");
-        fredrick.setCy(-176);
-        fredrick.setFh(81);
-        fredrick.setRx0(-907);
-        fredrick.setRx1(-807);
-        fredrick.setX(-857);
-        fredrick.setY(-184);
-        fredrick.setPosition(new Position(fredrick.getX(), fredrick.getY()));
-
-        field.addLife(fredrick);
     }
 
     public static Field getFieldCopyById(int id) {

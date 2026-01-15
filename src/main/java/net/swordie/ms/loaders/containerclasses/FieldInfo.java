@@ -9,6 +9,8 @@ import net.swordie.ms.constants.OzConstants;
 import net.swordie.ms.enums.EliteState;
 import net.swordie.ms.enums.FieldType;
 import net.swordie.ms.life.Life;
+import net.swordie.ms.life.npc.Npc;
+import net.swordie.ms.loaders.NpcData;
 import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseInfo;
 import net.swordie.ms.scripts.ScriptManagerImpl;
 import net.swordie.ms.util.Position;
@@ -19,11 +21,15 @@ import net.swordie.ms.world.field.Foothold;
 import net.swordie.ms.world.field.MobGen;
 import net.swordie.ms.world.field.Portal;
 import net.swordie.ms.world.field.fieldownership.FieldOwnershipManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class FieldInfo {
+    private static final Logger log = LogManager.getLogger(FieldInfo.class);
+    
     private PhysicalSpace2D fhSpace;
 
     private int vrTop, vrLeft, vrBottom, vrRight;
@@ -478,6 +484,7 @@ public class FieldInfo {
 
             field.addLife(life.deepCopy());
         }
+
         field.setChannelField(isChannelField);
         field.startFieldScript();
         field.spawnRandomHarvest();
