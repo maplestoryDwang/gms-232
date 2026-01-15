@@ -95,12 +95,7 @@ def _apply_face(start_id, end_id):
 
 
 def _search_and_ask_avatar(is_hair):
-    # If your script engine doesn't support sendAskText, replace this with however you capture input.
-    try:
-        query = sm.sendAskText("Type part of the name to search:", "", 1, 30)
-    except:
-        sm.sendNext("This script environment doesn't support text input here.")
-        return
+    query = sm.sendAskText("Type part of the name to search:", "", 1, 30)
 
     if query is None:
         return
@@ -110,8 +105,6 @@ def _search_and_ask_avatar(is_hair):
         sm.sendNext("Empty search.")
         return
 
-    # These Java methods must exist in your server:
-    # StringData.getHairStringByName(String) / StringData.getFaceStringByName(String)
     res = StringData.getHairStringByName(query) if is_hair else StringData.getFaceStringByName(query)
 
     if res is None or len(res) == 0:
@@ -120,9 +113,6 @@ def _search_and_ask_avatar(is_hair):
 
     al = _get_avatar_look()
 
-    # Filter by current color to shrink the list:
-    # Hair: last digit color (mod 10)
-    # Face: last 3 digits color (mod 1000) (matches your existing face-color logic)
     if is_hair:
         color_mod = 10
         current_color = al.getHair() % 10
@@ -133,7 +123,6 @@ def _search_and_ask_avatar(is_hair):
     options = []
     seen = set()
 
-    # res is a java.util.Map (Jython). Iterate keys, normalize to base, then apply current color.
     for k in res.keySet():
         try:
             iid = int(k)
