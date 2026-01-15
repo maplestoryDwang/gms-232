@@ -4,19 +4,13 @@ from net.swordie.ms.loaders import StringData
 start = 0
 end = 0
 
-# ===== MAIN MENU (Hair / Face) =====
+# ===== MAIN MENU (Hair / Face / Search) =====
 main = sm.sendNext(
     "Hello!\r\nI'm Big Headward\r\nI do Hairs & Faces!\r\n\r\n"
     "#L0#Hair#l\r\n"
-    "#L1#Face#l"
-)
-
-# ===== CATEGORY MENU (Male / Female / Unisex) =====
-cat = sm.sendNext(
-    ("Hair" if main == 0 else "Face") + " - Choose Category\r\n\r\n"
-                                        "#L0#Male#l\r\n"
-                                        "#L1#Female#l\r\n"
-                                        "#L2#Unisex / Event#l"
+    "#L1#Face#l\r\n"
+    "#L2#Search Hair by Name#l\r\n"
+    "#L3#Search Face by Name#l"
 )
 
 # ===== DATA (startId, label) =====
@@ -67,53 +61,141 @@ FACE_MENU = {
     ]),
 }
 
-# Pick which menu set to use
-menu_set = HAIR_MENU if main == 0 else FACE_MENU
 
-if cat in menu_set:
-    title, items = menu_set[cat]
+def _get_avatar_look():
+    return chr.getAvatarData().getAvatarLook() if not chr.isZeroBeta() else chr.getAvatarData().getZeroAvatarLook()
 
-    # Build submenu text: visible numbering starts at 1
-    msg = title + "\r\n\r\n"
-    for i, (sid, label) in enumerate(items):
-        msg += "#L{0}#{1}. {2}#l\r\n".format(i, i + 1, label)
 
-    sub = sm.sendNext(msg)
+def _apply_hair(start_id, end_id):
+    al = _get_avatar_look()
+    hairColour = al.getHair() % 10
 
-    if 0 <= sub < len(items):
-        start = items[sub][0]
-        end = start + 999
+    options = list(StringData.getHairs(start_id, end_id))
+    temp = []
+    for o in options:
+        temp.append(o + hairColour)
+    options = temp
+
+    answer = sm.sendAskAvatar("I can change your hair to anything you'd like!", False, chr.isZeroBeta(), options)
+    sm.changeCharacterLook(answer)
+
+
+def _apply_face(start_id, end_id):
+    al = _get_avatar_look()
+    eyeColour = al.getFace() % 1000
+
+    options = list(StringData.getFaces(start_id, end_id))
+    temp = []
+    for o in options:
+        temp.append(o + eyeColour)
+    options = temp
+
+    answer = sm.sendAskAvatar("I can change your face to anything you'd like!", False, chr.isZeroBeta(), options)
+    sm.changeCharacterLook(answer)
+
+
+def _search_and_ask_avatar(is_hair):
+    # If your script engine doesn't support sendAskText, replace this with however you capture input.
+    try:
+        query = sm.sendAskText("Type part of the name to search:", "", 1, 30)
+    except:
+        sm.sendNext("This script environment doesn't support text input here.")
+        return
+
+    if query is None:
+        return
+
+    query = str(query).strip()
+    if query == "":
+        sm.sendNext("Empty search.")
+        return
+
+    # These Java methods must exist in your server:
+    # StringData.getHairStringByName(String) / StringData.getFaceStringByName(String)
+    res = StringData.getHairStringByName(query) if is_hair else StringData.getFaceStringByName(query)
+
+    if res is None or len(res) == 0:
+        sm.sendNext("No results for: " + query)
+        return
+
+    al = _get_avatar_look()
+
+    # Filter by current color to shrink the list:
+    # Hair: last digit color (mod 10)
+    # Face: last 3 digits color (mod 1000) (matches your existing face-color logic)
+    if is_hair:
+        color_mod = 10
+        current_color = al.getHair() % 10
+    else:
+        color_mod = 1000
+        current_color = al.getFace() % 1000
+
+    options = []
+    seen = set()
+
+    # res is a java.util.Map (Jython). Iterate keys, normalize to base, then apply current color.
+    for k in res.keySet():
+        try:
+            iid = int(k)
+        except:
+            continue
+
+        base = iid - (iid % color_mod)
+        chosen = base + current_color
+
+        if chosen in seen:
+            continue
+
+        seen.add(chosen)
+        options.append(chosen)
+
+    if len(options) == 0:
+        sm.sendNext("No results after applying your current color filter.")
+        return
+
+    prompt = "Pick the hair you want!" if is_hair else "Pick the face you want!"
+    answer = sm.sendAskAvatar(prompt, False, chr.isZeroBeta(), options)
+    sm.changeCharacterLook(answer)
+
+
+# ===== NORMAL MENU FLOW (Hair / Face) =====
+if main == 0 or main == 1:
+    # ===== CATEGORY MENU (Male / Female / Unisex) =====
+    cat = sm.sendNext(
+        ("Hair" if main == 0 else "Face") + " - Choose Category\r\n\r\n"
+                                            "#L0#Male#l\r\n"
+                                            "#L1#Female#l\r\n"
+                                            "#L2#Unisex / Event#l"
+    )
+
+    menu_set = HAIR_MENU if main == 0 else FACE_MENU
+
+    if cat in menu_set:
+        title, items = menu_set[cat]
+
+        msg = title + "\r\n\r\n"
+        for i, (sid, label) in enumerate(items):
+            msg += "#L{0}#{1}. {2}#l\r\n".format(i, i + 1, label)
+
+        sub = sm.sendNext(msg)
+
+        if 0 <= sub < len(items):
+            start = items[sub][0]
+            end = start + 999
+        else:
+            start = 0
+            end = 0
     else:
         start = 0
         end = 0
-else:
-    start = 0
-    end = 0
 
-if start > 0 and end > 0:
-    al = chr.getAvatarData().getAvatarLook() if not chr.isZeroBeta() else chr.getAvatarData().getZeroAvatarLook()
+    if start > 0 and end > 0:
+        if main == 0:
+            _apply_hair(start, end)
+        else:
+            _apply_face(start, end)
 
-    if main == 0: # Hair
-        hairColour = al.getHair() % 10
-        options = StringData.getHairs(start, end)
-
-        temp = []
-        for o in options:
-            temp.append(o + hairColour)
-        options = temp
-
-        answer = sm.sendAskAvatar("I can change your hair to anything you'd like!", False, chr.isZeroBeta(), options)
-
-        sm.changeCharacterLook(answer)
-    elif main == 1: # Face
-        eyeColour = al.getFace() % 1000
-        options = list(StringData.getFaces(start, end))
-
-        temp = []
-        for o in options:
-            temp.append(o + eyeColour)
-        options = temp
-
-        answer = sm.sendAskAvatar("I can change your face to anything you'd like!", False, chr.isZeroBeta(), options)
-
-        sm.changeCharacterLook(answer)
+elif main == 2:
+    _search_and_ask_avatar(True)   # search hair
+elif main == 3:
+    _search_and_ask_avatar(False)  # search face
