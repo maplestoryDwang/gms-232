@@ -9,15 +9,19 @@ import net.swordie.ms.client.character.emoticons.EmoticonType;
 import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.client.friend.Friend;
 import net.swordie.ms.connection.InPacket;
+import net.swordie.ms.connection.packet.AndroidPacket;
 import net.swordie.ms.connection.packet.UserPacket;
 import net.swordie.ms.connection.packet.field.FieldPacket;
 import net.swordie.ms.constants.GameConstants;
+import net.swordie.ms.enums.AndroidEmoteType;
 import net.swordie.ms.enums.ChatUserType;
 import net.swordie.ms.enums.GroupMessageType;
 import net.swordie.ms.enums.InvType;
 import net.swordie.ms.enums.WhisperType;
 import net.swordie.ms.handlers.Handler;
 import net.swordie.ms.handlers.header.InHeader;
+import net.swordie.ms.life.android.Android;
+import net.swordie.ms.life.android.AndroidEmote;
 import net.swordie.ms.loaders.ForbiddenWordsData;
 import net.swordie.ms.loaders.StringData;
 import net.swordie.ms.util.Util;
@@ -80,6 +84,35 @@ public class ChatHandler {
             chr.getField().broadcastPacketByChr(chr, UserPacket.chat(chr, chatType, msg,
                     type, 0, c.getWorldId(), emoticonId, false));
         }
+        //Android Emotion Checker
+        Android android = chr.getAndroid();
+        if (android == null) {
+            return;
+        }
+
+        AndroidEmoteType emote = AndroidEmote.getEmotionFromMessage(msg);
+        if (emote == null) {
+            return;
+        }
+
+        int duration = 5000; //Default GMS Duration For Emotions.
+
+        // Local Client Broadcast For Android Emotion
+        chr.write(AndroidPacket.androidEmotion(
+                android,
+                emote.getId(),
+                duration
+        ));
+
+        // Remote Client Broadcast For Android Emotion
+        chr.getField().broadcastPacket(
+                AndroidPacket.remoteAndroidEmotion(
+                        android,
+                        emote.getId(),
+                        duration
+                ),
+                chr
+        );
     }
 
     public static void executeAdminCommand(Client c, Char chr, String msg) {

@@ -40,6 +40,7 @@ import net.swordie.ms.constants.JobConstants.JobEnum;
 import net.swordie.ms.enums.*;
 import net.swordie.ms.handlers.header.OutHeader;
 import net.swordie.ms.life.AffectedArea;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.Life;
 import net.swordie.ms.life.RandomPortal;
 import net.swordie.ms.life.Reactor;
@@ -4084,6 +4085,44 @@ public class AdminCommands {
                 targetChr.checkFirstEnterReward();
             }
             chr.chatMessage("Gift Sent!, target is online: " + online);
+        }
+    }
+    @Command(names = {"androidemotion", "androide"}, requiredType = Admin)
+    public static class AndroidEmotion extends AdminCommand {
+        public void execute(Char chr, String[] args) {
+
+            if (args.length < 2) {
+                chr.chatMessage("Usage: !androide <emotion> [duration]");
+                return;
+            }
+
+            Android android = chr.getAndroid();
+            if (android == null) {
+                chr.chatMessage("You do not have an Android.");
+                return;
+            }
+
+            int emotion;
+            int duration = 5000; //Default GMS Duration For Emotions.
+
+            try {
+                emotion = Integer.parseInt(args[1]);
+                if (args.length >= 3) {
+                    duration = Integer.parseInt(args[2]);
+                }
+            } catch (NumberFormatException e) {
+                chr.chatMessage("Invalid number.");
+                return;
+            }
+
+            // Local Client Broadcast For Android Emotion
+            chr.write(AndroidPacket.androidEmotion(android, emotion, duration));
+
+            // Remote Client Broadcast For Android Emotion
+            chr.getField().broadcastPacket(
+                    AndroidPacket.remoteAndroidEmotion(android, emotion, duration),
+                    chr
+            );
         }
     }
 }

@@ -31,7 +31,7 @@ import net.swordie.ms.constants.QuestConstants;
 import net.swordie.ms.constants.SkillConstants;
 import net.swordie.ms.enums.DBChar;
 import net.swordie.ms.enums.InvType;
-import net.swordie.ms.life.Android;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.Familiar;
 import net.swordie.ms.loaders.QuestData;
 import net.swordie.ms.util.FileTime;

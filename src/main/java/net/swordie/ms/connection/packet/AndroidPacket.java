@@ -2,7 +2,7 @@ package net.swordie.ms.connection.packet;
 
 import net.swordie.ms.connection.OutPacket;
 import net.swordie.ms.handlers.header.OutHeader;
-import net.swordie.ms.life.Android;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.movement.MovementInfo;
 import net.swordie.ms.util.FileTime;
 
@@ -63,5 +63,24 @@ public class AndroidPacket {
         android.encodeAndroidInfo(outPacket);
 
         return outPacket;
+    }
+    public static OutPacket androidEmotion(Android android, int emotion, int duration) {
+        OutPacket out = new OutPacket(OutHeader.ANDROID_EMOTION); //Android's Emotion Function (Local Client)
+
+        out.encodeInt(emotion);   // Emotion ID
+        out.encodeInt(duration);  // Duration
+
+        return out;
+    }
+    public static OutPacket remoteAndroidEmotion(Android android, int emotion, int duration) {
+        OutPacket out = new OutPacket(OutHeader.REMOTE_ANDROID_EMOTION); //Android's Emotion Function (Remote Client)
+
+        out.encodeInt(android.getChrId()); //
+        out.encodeInt(emotion);            // Emotion ID
+        out.encodeInt(duration);           // Duration
+        out.encodeInt(0);
+        out.encodeInt(0);
+
+        return out;
     }
 }

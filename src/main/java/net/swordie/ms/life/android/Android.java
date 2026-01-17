@@ -1,4 +1,4 @@
-package net.swordie.ms.life;
+package net.swordie.ms.life.android;
 
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.character.items.BodyPart;
@@ -8,6 +8,7 @@ import net.swordie.ms.connection.Encodable;
 import net.swordie.ms.connection.OutPacket;
 import net.swordie.ms.connection.packet.AndroidPacket;
 import net.swordie.ms.enums.EnterType;
+import net.swordie.ms.life.Life;
 import net.swordie.ms.loaders.containerclasses.AndroidInfo;
 import net.swordie.ms.util.ErrorLogger;
 import net.swordie.ms.util.FileTime;
