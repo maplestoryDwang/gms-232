@@ -10,23 +10,20 @@ import net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat;
 import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
 import net.swordie.ms.client.jobs.anima.Lara;
 import net.swordie.ms.client.jobs.nova.Kain;
-import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
-import static net.swordie.ms.client.character.skills.SkillStat.*;
-import net.swordie.ms.life.mob.Mob;
-import net.swordie.ms.loaders.SkillData;
 import net.swordie.ms.connection.InPacket;
-
+import net.swordie.ms.loaders.SkillData;
 
 import static net.swordie.ms.client.character.skills.SkillStat.*;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.IndieNBDR;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.NatureFriend;
+import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.IndieDamR;
+import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.PriorPreparation;
 
 /**
  * Created on 28/12/2021.
  *
  * @author Asura
  */
-
 public class LinkSkillHandler implements ICommonSkillHandler {
 
 
@@ -50,8 +47,10 @@ public class LinkSkillHandler implements ICommonSkillHandler {
         if (chr.hasSkill(Lara.NATURE_FRIEND_ORIGIN) || chr.hasSkill(Lara.NATURE_FRIEND_LINKED)) {
             natureFriend(attackInfo);
         }
-
-        // Kain Link: Prior Preparation (Time to Prepare)
+        //
+        // Kain : Time to Prepare
+        // Upon defeating 8 enemies or hitting boss 5 times, increment count. Upon reaching 5 counts, give {w} Damage buff for {time} and place skill on cooldown for {cooltime}
+        //
         if (chr.hasSkill(Kain.PRIOR_PREPARATION_ORIGIN) || chr.hasSkill(Kain.PRIOR_PREPARATION_LINKED)) {
             priorPreparation(attackInfo);
         }
@@ -97,19 +96,14 @@ public class LinkSkillHandler implements ICommonSkillHandler {
     }
 
     private void priorPreparation(AttackInfo attackInfo) {
-        //
-        // Kain : Time to Prepare
-        // After completing Time to Prepare at least 1 time, then upon either defeating #x enemies or attacking a boss #u times, damage increases by #y% for #time sec, for every #w times you've stacked Time to Prepare.
-        // Cooldown: ## sec
-        //
-        if (chr.hasSkillOnCooldown(Kain.PRIOR_PREPARATION_ORIGIN) || chr.hasSkillOnCooldown(Kain.PRIOR_PREPARATION_LINKED)) {
+        if (chr.hasSkillOnCooldown(Kain.PRIOR_PREPARATION_ORIGIN)) {
             return;
         }
 
-        int slv = chr.getSkillLevel(Kain.PRIOR_PREPARATION_LINKED);
-        if (slv <= 0) {
-            slv = chr.getSkillLevel(Kain.PRIOR_PREPARATION_ORIGIN);
-        }
+        int slv = Math.max(
+                chr.getSkillLevel(Kain.PRIOR_PREPARATION_LINKED),
+                chr.getSkillLevel(Kain.PRIOR_PREPARATION_ORIGIN)
+        );
         if (slv <= 0) {
             return;
         }
@@ -121,50 +115,43 @@ public class LinkSkillHandler implements ICommonSkillHandler {
 
         var tsm = chr.getTemporaryStatManager();
 
-        int prep = 0;
+        int prepStacks = 0;
         int mobKills = 0;
         int bossHits = 0;
 
         if (tsm.hasStat(PriorPreparation)) {
             var o = tsm.getOption(PriorPreparation);
-            prep = o.nOption;
+            prepStacks = o.nOption;
             mobKills = o.xOption;
             bossHits = o.yOption;
         }
 
         int mobThreshold = si.getValue(x, slv);
-        int bossThreshold = si.getValue(y, slv);
+        int bossThreshold = si.getValue(w, slv);
         int maxPrep = si.getValue(u, slv);
 
         boolean changed = false;
 
         for (var mai : attackInfo.mobAttackInfo) {
-            Mob mob = (Mob) chr.getField().getLifeByObjectID(mai.mobId);
-            if (mob == null) {
-                continue;
-            }
-
-            if (mob.isBoss()) {
+            if (mai.isBoss) {
                 bossHits++;
                 changed = true;
 
                 if (bossHits >= bossThreshold) {
-                    prep++;
+                    prepStacks++;
                     bossHits = 0;
                     mobKills = 0;
                     break;
                 }
-            } else {
-                if (mai.mobDies) {
-                    mobKills++;
-                    changed = true;
+            } else if (mai.mobDies) {
+                mobKills++;
+                changed = true;
 
-                    if (mobKills >= mobThreshold) {
-                        prep++;
-                        bossHits = 0;
-                        mobKills = 0;
-                        break;
-                    }
+                if (mobKills >= mobThreshold) {
+                    prepStacks++;
+                    bossHits = 0;
+                    mobKills = 0;
+                    break;
                 }
             }
         }
@@ -173,11 +160,12 @@ public class LinkSkillHandler implements ICommonSkillHandler {
             return;
         }
 
-        if (prep >= maxPrep) {
+        prepStacks = Math.min(prepStacks, maxPrep);
+
+        if (prepStacks >= maxPrep) {
             tsm.removeStatsBySkill(Kain.PRIOR_PREPARATION_LINKED_BUFF);
 
-            int dmgInc = (slv >= 2) ? 17 : 9;
-
+            int dmgInc = si.getValue(y, slv);
             int dur = si.getValue(time, slv);
 
             tsm.putCharacterStatValue(
@@ -188,9 +176,8 @@ public class LinkSkillHandler implements ICommonSkillHandler {
             tsm.sendSetStatPacket();
 
             chr.setSkillCooldown(Kain.PRIOR_PREPARATION_ORIGIN, slv);
-
         } else {
-            Option o = new Option(Math.max(0, Math.min(prep, maxPrep)), Kain.PRIOR_PREPARATION_LINKED_BUFF, 0);
+            var o = new Option(prepStacks, Kain.PRIOR_PREPARATION_LINKED_BUFF, 0);
             o.xOption = mobKills;
             o.yOption = bossHits;
 
@@ -198,7 +185,6 @@ public class LinkSkillHandler implements ICommonSkillHandler {
             tsm.sendSetStatPacket();
         }
     }
-
 
     @Override
     public void handleHit(Client c, HitInfo hitInfo) {
