@@ -1,6 +1,6 @@
 package net.swordie.ms.enums;
 
-    public enum AndroidEmoteType {
+public enum AndroidEmoteType {
     HIT(1),
     SMILE(2),
     TROUBLED(3),
