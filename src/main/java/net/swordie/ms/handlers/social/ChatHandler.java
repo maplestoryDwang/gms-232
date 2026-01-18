@@ -81,38 +81,10 @@ public class ChatHandler {
             var chatType = chr.getUser().getAccountType().isGmOrAdmin()
                     ? ChatUserType.Admin
                     : ChatUserType.User;
+                    handleAndroidEmotionFromChat(chr, msg);
             chr.getField().broadcastPacketByChr(chr, UserPacket.chat(chr, chatType, msg,
                     type, 0, c.getWorldId(), emoticonId, false));
         }
-        //Android Emotion Checker
-        Android android = chr.getAndroid();
-        if (android == null) {
-            return;
-        }
-
-        AndroidEmoteType emote = AndroidEmote.getEmotionFromMessage(msg);
-        if (emote == null) {
-            return;
-        }
-
-        int duration = 5000; //Default GMS Duration For Emotions.
-
-        // Local Client Broadcast For Android Emotion
-        chr.write(AndroidPacket.androidEmotion(
-                android,
-                emote.getId(),
-                duration
-        ));
-
-        // Remote Client Broadcast For Android Emotion
-        chr.getField().broadcastPacket(
-                AndroidPacket.remoteAndroidEmotion(
-                        android,
-                        emote.getId(),
-                        duration
-                ),
-                chr
-        );
     }
 
     public static void executeAdminCommand(Client c, Char chr, String msg) {
@@ -179,6 +151,30 @@ public class ChatHandler {
         if (!executed) {
             chr.chatMessage(Expedition, "Unknown command \"" + command + "\"");
         }
+    }
+        private static void handleAndroidEmotionFromChat(Char chr, String message) {
+        Android android = chr.getAndroid();
+        if (android == null) {
+            return;
+        }
+
+        AndroidEmoteType emotionId = AndroidEmote.getEmotionFromMessage(message);
+        if (emotionId == null) {
+            return;
+        }
+
+        int durationMs = 5000;
+
+        // Local client
+        chr.write(
+                AndroidPacket.androidEmotion(android, emotionId, durationMs)
+        );
+
+        // Remote clients
+        chr.getField().broadcastPacket(
+                AndroidPacket.remoteAndroidEmotion(android, emotionId, durationMs),
+                chr
+        );
     }
 
     @Handler(op = InHeader.USER_ITEM_LINKED_CHAT)

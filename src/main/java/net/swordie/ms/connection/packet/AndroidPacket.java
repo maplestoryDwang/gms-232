@@ -64,20 +64,20 @@ public class AndroidPacket {
 
         return outPacket;
     }
-    public static OutPacket androidEmotion(Android android, int emotion, int duration) {
-        OutPacket out = new OutPacket(OutHeader.ANDROID_EMOTION); //Android's Emotion Function (Local Client)
+    public static OutPacket androidEmotion(Android android, AndroidEmoteType emotionId, int durationMs) {
+        OutPacket out = new OutPacket(OutHeader.ANDROID_EMOTION);
 
-        out.encodeInt(emotion);   // Emotion ID
-        out.encodeInt(duration);  // Duration
+        out.encodeInt(emotionId.getId());
+        out.encodeInt(durationMs);
 
         return out;
     }
-    public static OutPacket remoteAndroidEmotion(Android android, int emotion, int duration) {
-        OutPacket out = new OutPacket(OutHeader.REMOTE_ANDROID_EMOTION); //Android's Emotion Function (Remote Client)
+    public static OutPacket remoteAndroidEmotion(Android android, AndroidEmoteType emotionId, int durationMs) {
+        OutPacket out = new OutPacket(OutHeader.REMOTE_ANDROID_EMOTION);
 
-        out.encodeInt(android.getChrId()); //
-        out.encodeInt(emotion);            // Emotion ID
-        out.encodeInt(duration);           // Duration
+        out.encodeInt(android.getChrId());
+        out.encodeInt(emotionId.getId());
+        out.encodeInt(durationMs);
         out.encodeInt(0);
         out.encodeInt(0);
 

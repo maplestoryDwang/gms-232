@@ -4089,10 +4089,11 @@ public class AdminCommands {
     }
     @Command(names = {"androidemotion", "androide"}, requiredType = Admin)
     public static class AndroidEmotion extends AdminCommand {
+
         public void execute(Char chr, String[] args) {
 
             if (args.length < 2) {
-                chr.chatMessage("Usage: !androide <emotion> [duration]");
+                chr.chatMessage("Usage: !androide <emotionId> [durationMs]");
                 return;
             }
 
@@ -4102,25 +4103,29 @@ public class AdminCommands {
                 return;
             }
 
-            int emotion;
-            int duration = 5000; //Default GMS Duration For Emotions.
+            int emotionIdValue;
+            int durationMs = 5000;
 
             try {
-                emotion = Integer.parseInt(args[1]);
+                emotionIdValue = Integer.parseInt(args[1]);
                 if (args.length >= 3) {
-                    duration = Integer.parseInt(args[2]);
+                    durationMs = Integer.parseInt(args[2]);
                 }
             } catch (NumberFormatException e) {
                 chr.chatMessage("Invalid number.");
                 return;
             }
 
-            // Local Client Broadcast For Android Emotion
-            chr.write(AndroidPacket.androidEmotion(android, emotion, duration));
+            AndroidEmoteType emotionId = AndroidEmoteType.fromId(emotionIdValue);
+            if (emotionId == null) {
+                chr.chatMessage("Invalid Android emotion ID: " + emotionIdValue);
+                return;
+            }
 
-            // Remote Client Broadcast For Android Emotion
+            chr.write(AndroidPacket.androidEmotion(android, emotionId, durationMs));
+
             chr.getField().broadcastPacket(
-                    AndroidPacket.remoteAndroidEmotion(android, emotion, duration),
+                    AndroidPacket.remoteAndroidEmotion(android, emotionId, durationMs),
                     chr
             );
         }
