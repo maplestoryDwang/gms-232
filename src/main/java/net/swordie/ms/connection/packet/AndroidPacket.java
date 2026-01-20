@@ -1,6 +1,7 @@
 package net.swordie.ms.connection.packet;
 
 import net.swordie.ms.connection.OutPacket;
+import net.swordie.ms.enums.AndroidEmoteType;
 import net.swordie.ms.handlers.header.OutHeader;
 import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.movement.MovementInfo;
