@@ -40,6 +40,20 @@ public class FieldData {
     private static final Logger log = LogManager.getRootLogger();
     private static final boolean LOG_UNKS = false;
 
+    private static class NpcRemovalRule {
+        final int mapId;
+        final int npcId;
+
+        NpcRemovalRule(int mapId, int npcId) {
+            this.mapId = mapId;
+            this.npcId = npcId;
+        }
+    }
+
+    private static final List<NpcRemovalRule> NPC_REMOVAL_RULES = Arrays.asList(
+            new NpcRemovalRule(910000000, 9000133) // HomeComing Wonky
+    );
+
     public static void main(String[] args) {
         generateDatFiles();
     }
@@ -436,21 +450,17 @@ public class FieldData {
     private static void loadCustomNpcs() {
         PlacedNpcTemplateDao templateDao = (PlacedNpcTemplateDao) SworDaoFactory.getByClass(PlacedNpcTemplate.class);
         List<PlacedNpcTemplate> templates = templateDao.getAll();
-        
         log.info("Loading {} placed NPC templates from database...", templates.size());
-        
         for (PlacedNpcTemplate template : templates) {
             int mapId = template.getMapid();
             FieldInfo field = getFields().get(mapId);
-            
             if (field == null) {
                 log.warn("Cannot add placed NPC template {} - field {} not found", template.getId(), mapId);
                 continue;
             }
-             
             Life life = new Life(template.getNpcid());
-            life.setLifeType("n"); 
-            life.setTemplateId(template.getNpcid()); 
+            life.setLifeType("n");
+            life.setTemplateId(template.getNpcid());
             life.setX(template.getX());
             life.setY(template.getY());
             life.setCy(template.getCy());
@@ -458,15 +468,47 @@ public class FieldData {
             life.setRx1(template.getRx1());
             life.setFh(template.getFh());
             life.setPosition(new Position(template.getX(), template.getY()));
-            
-            
             field.addLife(life);
-            
-            log.debug("Added placed NPC template {} (NPC ID: {}) to field {}", 
-                    template.getId(), template.getNpcid(), mapId);
+            log.debug("Added placed NPC template {} (NPC ID: {}) to field {}", template.getId(), template.getNpcid(), mapId);
+        }
+        log.info("Loaded {} placed NPC templates into fields", templates.size());
+    }
+
+    private static void removeConfiguredNpcs() {
+        
+        Map<Integer, Set<Integer>> removalsByMap = new HashMap<>();
+        for (NpcRemovalRule rule : NPC_REMOVAL_RULES) {
+            removalsByMap.computeIfAbsent(rule.mapId, k -> new HashSet<>()).add(rule.npcId);
         }
         
-        log.info("Loaded {} placed NPC templates into fields", templates.size());
+        int totalRemoved = 0;
+        
+        for (Map.Entry<Integer, Set<Integer>> entry : removalsByMap.entrySet()) {
+            int mapId = entry.getKey();
+            Set<Integer> npcIdsToRemove = entry.getValue();
+            
+            FieldInfo field = getFields().get(mapId);
+            if (field == null) {
+                log.warn("Cannot remove NPCs {} from map {} - field not found", npcIdsToRemove, mapId);
+                continue;
+            }
+            
+            var lifes = field.getLifes();
+            var iterator = lifes.entrySet().iterator();
+            while (iterator.hasNext()) {
+                var lifeEntry = iterator.next();
+                Life life = lifeEntry.getValue();
+                
+                if ("n".equalsIgnoreCase(life.getLifeType()) && 
+                    npcIdsToRemove.contains(life.getTemplateId())) {
+                    iterator.remove();
+                    totalRemoved++;
+                    log.info("Removed NPC {} from map {}", life.getTemplateId(), mapId);
+                }
+            }
+        }
+        
+        log.info("Total NPCs removed by configured rules: {}", totalRemoved);
     }
 
     public static Map<Integer, FieldInfo> getFields() {
@@ -734,6 +776,7 @@ public class FieldData {
         long start = System.currentTimeMillis();
         loadFieldInfoFromWz();
         loadCustomNpcs();
+        removeConfiguredNpcs();
         saveFields(FIELDS_FILE);
         loadWorldMapFromWz();
         saveWorldMap(ServerConstants.DAT_DIR + "/worldMap.dat");
