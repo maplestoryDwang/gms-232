@@ -17,6 +17,8 @@ import java.util.*;
 public class StringData {
     public static Map<Integer, SkillStringInfo> skillString = new HashMap<>();
     public static Map<Integer, String> itemStrings = new HashMap<>();
+    public static Map<Integer, String> hairStrings = new HashMap<>();
+    public static Map<Integer, String> faceStrings = new HashMap<>();
     public static Map<Integer, String> mapStrings = new HashMap<>();
     public static Map<Integer, String> mobStrings = new HashMap<>(); // name + health
     public static Map<Integer, String> npcStrings = new HashMap<>();
@@ -271,6 +273,11 @@ public class StringData {
                 int id = dataInputStream.readInt();
                 String name = dataInputStream.readUTF();
                 itemStrings.put(id, name);
+                if ((id >= 20000 && id < 30000) || (id >= 50000 && id < 52000)) {
+                    faceStrings.put(id, name);
+                } else if (id >= 30000 && id < 50000) {
+                    hairStrings.put(id, name);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -420,41 +427,59 @@ public class StringData {
     }
 
     public static Map<Integer, String> getItemStringByName(String query, boolean exact) {
-        query = query.toLowerCase();
+        return searchStringMap(itemStrings, query, exact);
+    }
+
+    public static Map<Integer, String> getQuestStringByName(String query) {
+        return searchStringMap(questStrings, query, false);
+    }
+
+    public static Map<Integer, String> getMobStringByName(String query) {
+        return searchStringMap(getMobStrings(), query, false);
+    }
+
+    public static Map<Integer, String> getNpcStringByName(String query) {
+        return searchStringMap(getNpcStrings(), query, false);
+    }
+
+    public static Map<Integer, String> getMapStringByName(String query) {
+        return searchStringMap(getMapStrings(), query, false);
+    }
+
+    public static Map<Integer, String> getHairStringByName(String query) {
+        return searchStringMap(hairStrings, query, false);
+    }
+
+    public static Map<Integer, String> getFaceStringByName(String query) {
+        return searchStringMap(faceStrings, query, false);
+    }
+
+    private static Map<Integer, String> searchStringMap(Map<Integer, String> source, String query, boolean exact) {
         Map<Integer, String> res = new HashMap<>();
-        for (Map.Entry<Integer, String> entry : itemStrings.entrySet()) {
-            int id = entry.getKey();
+        if (source == null) {
+            return res;
+        }
+        if (query == null || query.isEmpty()) {
+            return res;
+        }
+        query = query.toLowerCase();
+
+        for (Map.Entry<Integer, String> entry : source.entrySet()) {
+            Integer id = entry.getKey();
             String name = entry.getValue();
-            if (name == null) {
+            if (id == null || name == null) {
                 continue;
             }
+
             String ssName = name.toLowerCase();
             if (exact && ssName.equals(query)) {
-                res.put(id, name);
+                    res.put(id, name);
             } else if (!exact && ssName.contains(query)) {
                 res.put(id, name);
             }
         }
         return res;
     }
-
-    public static Map<Integer, String> getQuestStringByName(String query) {
-        query = query.toLowerCase();
-        Map<Integer, String> res = new HashMap<>();
-        for (Map.Entry<Integer, String> entry : questStrings.entrySet()) {
-            int id = entry.getKey();
-            String name = entry.getValue();
-            if (name == null) {
-                continue;
-            }
-            String ssName = name.toLowerCase();
-            if (ssName.contains(query)) {
-                res.put(id, name);
-            }
-        }
-        return res;
-    }
-
 
     public static Map<Integer, SkillStringInfo> getSkillStringByName(String query) {
         Map<Integer, SkillStringInfo> res = new HashMap<>();
@@ -467,57 +492,6 @@ public class StringData {
             String ssName = ssi.getName().toLowerCase();
             if (ssName.contains(query)) {
                 res.put(id, ssi);
-            }
-        }
-        return res;
-    }
-
-    public static Map<Integer, String> getMobStringByName(String query) {
-        query = query.toLowerCase();
-        Map<Integer, String> res = new HashMap<>();
-        for (Map.Entry<Integer, String> entry : getMobStrings().entrySet()) {
-            int id = entry.getKey();
-            String name = entry.getValue();
-            if (name == null) {
-                continue;
-            }
-            String ssName = name.toLowerCase();
-            if (ssName.contains(query)) {
-                res.put(id, name);
-            }
-        }
-        return res;
-    }
-
-    public static Map<Integer, String> getNpcStringByName(String query) {
-        query = query.toLowerCase();
-        Map<Integer, String> res = new HashMap<>();
-        for (Map.Entry<Integer, String> entry : getNpcStrings().entrySet()) {
-            int id = entry.getKey();
-            String name = entry.getValue();
-            if (name == null) {
-                continue;
-            }
-            String ssName = name.toLowerCase();
-            if (ssName.contains(query)) {
-                res.put(id, name);
-            }
-        }
-        return res;
-    }
-
-    public static Map<Integer, String> getMapStringByName(String query) {
-        query = query.toLowerCase();
-        Map<Integer, String> res = new HashMap<>();
-        for (Map.Entry<Integer, String> entry : getMapStrings().entrySet()) {
-            int id = entry.getKey();
-            String name = entry.getValue();
-            if (name == null) {
-                continue;
-            }
-            String ssName = name.toLowerCase();
-            if (ssName.contains(query)) {
-                res.put(id, name);
             }
         }
         return res;
