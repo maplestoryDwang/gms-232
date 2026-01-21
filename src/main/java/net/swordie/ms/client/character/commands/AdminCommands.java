@@ -60,8 +60,10 @@ import net.swordie.ms.world.field.*;
 import net.swordie.ms.world.field.fieldeffect.FieldEffect;
 import net.swordie.ms.world.field.fieldevents.timedfieldevents.elitechampions.*;
 import net.swordie.ms.world.field.obstacleatom.ObstacleAtomInfo;
+import net.swordie.ms.life.npc.PlacedNpcTemplate;
 import net.swordie.orm.dao.AccountDao;
 import net.swordie.orm.dao.CharDao;
+import net.swordie.orm.dao.PlacedNpcTemplateDao;
 import net.swordie.orm.dao.SworDaoFactory;
 import net.swordie.orm.dao.UserDao;
 import org.apache.logging.log4j.LogManager;
@@ -88,6 +90,7 @@ public class AdminCommands {
     private static final CharDao charDao = (CharDao) SworDaoFactory.getByClass(Char.class);
     private static final AccountDao accountDao = (AccountDao) SworDaoFactory.getByClass(Account.class);
     private static final UserDao userDao = (UserDao) SworDaoFactory.getByClass(User.class);
+    private static final PlacedNpcTemplateDao placedNpcTemplateDao = (PlacedNpcTemplateDao) SworDaoFactory.getByClass(PlacedNpcTemplate.class);
 
     @Command(names = {"test"}, requiredType = Admin)
     public static class Test extends AdminCommand {
@@ -3303,9 +3306,20 @@ public class AdminCommands {
     public static class PNPC extends AdminCommand {
         public static void execute(Char chr, String[] args) {
             if (args.length < 2) {
-                chr.chatMessage("Usage: !pnpc <id>");
+                chr.chatMessage("Usage: !pnpc <id> | !pnpc delete <id>");
                 return;
             }
+            
+            if (args[1].equalsIgnoreCase("delete")) {
+                if (args.length < 3) {
+                    chr.chatMessage("Usage: !pnpc delete <id>");
+                    return;
+                }
+                int npcId = Integer.parseInt(args[2]);
+                deleteNpcById(chr, npcId);
+                return;
+            }
+            
             int id = Integer.parseInt(args[1]);
             Npc npc = NpcData.getNpcDeepCopyById(id);
             if (npc == null) {
@@ -3315,26 +3329,51 @@ public class AdminCommands {
             Field field = chr.getField();
             Position pos = chr.getPosition();
             npc.setPosition(pos.deepCopy());
-            npc.setCy(chr.getPosition().getY());
-            npc.setRx0(chr.getPosition().getX() + 50);
-            npc.setRx1(chr.getPosition().getX() - 50);
+            npc.setCy(pos.getY());
+            npc.setRx0(pos.getX() + 50);
+            npc.setRx1(pos.getX() - 50);
             npc.setFh(chr.getFoothold());
             npc.setNotRespawnable(true);
-            if (npc.getField() == null) {
-                npc.setField(field);
-            }
+            npc.setField(field);
             field.spawnLife(npc, null);
-            log.debug("npc has id " + npc.getObjectId());
 
-            DatabaseManager.executeInsert("INSERT INTO npc (npcid,mapid,x,y,cy,rx0,rx1,fh) VALUES (?,?,?,?,?,?,?,?)",
-                    id,
-                    field.getId(),
-                    pos.getX(),
-                    pos.getY(),
-                    npc.getCy(),
-                    npc.getRx0(),
-                    npc.getRx1(),
-                    npc.getFh());
+            PlacedNpcTemplate template = new PlacedNpcTemplate(id, field.getId(), pos.getX(), pos.getY(), 
+                    npc.getCy(), npc.getRx0(), npc.getRx1(), npc.getFh());
+            placedNpcTemplateDao.saveOrUpdate(template);
+            chr.chatMessage("Spawned NPC " + id + " at your position.");
+            chr.chatMessage("Remember to regenerate .dat files to persist this change!");
+        }
+        
+        private static void deleteNpcById(Char chr, int npcId) {
+            Field field = chr.getField();
+            
+            Rect rect = chr.getPosition().getRectAround(new Rect(-200, -200, 200, 200));
+            Npc targetNpc = field.getNpcByTemplateIdAndInRect(npcId, rect);
+            
+            if (targetNpc == null) {
+                chr.chatMessage("No NPC with ID " + npcId + " found near you.");
+                return;
+            }
+            
+            List<PlacedNpcTemplate> templates = placedNpcTemplateDao.getByMapId(field.getId());
+            Position npcPos = targetNpc.getPosition();
+            Rect npcRect = npcPos.getRectAround(new Rect(-5, -5, 5, 5));
+            
+            PlacedNpcTemplate toDelete = templates.stream()
+                    .filter(template -> template.getNpcid() == npcId && 
+                            npcRect.hasPositionInside(new Position(template.getX(), template.getY())))
+                    .findFirst()
+                    .orElse(null);
+            
+            field.removeLife(targetNpc);
+            
+            if (toDelete != null) {
+                placedNpcTemplateDao.delete(toDelete);
+                chr.chatMessage("Deleted placed NPC " + npcId + " (DB ID: " + toDelete.getId() + ")");
+                chr.chatMessage("Remember to regenerate .dat files to persist this change!");
+            } else {
+                chr.chatMessage("Removed NPC " + npcId + " from field (not found in database)");
+            }
         }
     }
 
