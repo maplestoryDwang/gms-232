@@ -9,12 +9,15 @@ import net.swordie.ms.client.character.skills.info.SkillUseInfo;
 import net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat;
 import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
 import net.swordie.ms.client.jobs.anima.Lara;
+import net.swordie.ms.client.jobs.nova.Kain;
 import net.swordie.ms.connection.InPacket;
 import net.swordie.ms.loaders.SkillData;
 
 import static net.swordie.ms.client.character.skills.SkillStat.*;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.IndieNBDR;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.NatureFriend;
+import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.IndieDamR;
+import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.PriorPreparation;
 
 /**
  * Created on 28/12/2021.
@@ -43,6 +46,13 @@ public class LinkSkillHandler implements ICommonSkillHandler {
         //
         if (chr.hasSkill(Lara.NATURE_FRIEND_ORIGIN) || chr.hasSkill(Lara.NATURE_FRIEND_LINKED)) {
             natureFriend(attackInfo);
+        }
+        //
+        // Kain : Time to Prepare
+        // Upon defeating 8 enemies or hitting boss 5 times, increment count. Upon reaching 5 counts, give {w} Damage buff for {time} and place skill on cooldown for {cooltime}
+        //
+        if (chr.hasSkill(Kain.PRIOR_PREPARATION_ORIGIN) || chr.hasSkill(Kain.PRIOR_PREPARATION_LINKED)) {
+            priorPreparation(attackInfo);
         }
     }
 
@@ -81,6 +91,97 @@ public class LinkSkillHandler implements ICommonSkillHandler {
             chr.setSkillCooldown(Lara.NATURE_FRIEND_ORIGIN, slv);
         } else {
             tsm.putCharacterStatValue(NatureFriend, new Option(Math.max(0, Math.min(newStack, threshold)), Lara.NATURE_FRIEND_LINKED_BUFF, 0), true);
+            tsm.sendSetStatPacket();
+        }
+    }
+
+    private void priorPreparation(AttackInfo attackInfo) {
+        if (chr.hasSkillOnCooldown(Kain.PRIOR_PREPARATION_ORIGIN)) {
+            return;
+        }
+
+        int slv = Math.max(
+                chr.getSkillLevel(Kain.PRIOR_PREPARATION_LINKED),
+                chr.getSkillLevel(Kain.PRIOR_PREPARATION_ORIGIN)
+        );
+        if (slv <= 0) {
+            return;
+        }
+
+        var si = SkillData.getSkillInfoById(Kain.PRIOR_PREPARATION_ORIGIN);
+        if (si == null) {
+            return;
+        }
+
+        var tsm = chr.getTemporaryStatManager();
+
+        int prepStacks = 0;
+        int mobKills = 0;
+        int bossHits = 0;
+
+        if (tsm.hasStat(PriorPreparation)) {
+            var o = tsm.getOption(PriorPreparation);
+            prepStacks = o.nOption;
+            mobKills = o.xOption;
+            bossHits = o.yOption;
+        }
+
+        int mobThreshold = si.getValue(x, slv);
+        int bossThreshold = si.getValue(w, slv);
+        int maxPrep = si.getValue(u, slv);
+
+        boolean changed = false;
+
+        for (var mai : attackInfo.mobAttackInfo) {
+            if (mai.isBoss) {
+                bossHits++;
+                changed = true;
+
+                if (bossHits >= bossThreshold) {
+                    prepStacks++;
+                    bossHits = 0;
+                    mobKills = 0;
+                    break;
+                }
+            } else if (mai.mobDies) {
+                mobKills++;
+                changed = true;
+
+                if (mobKills >= mobThreshold) {
+                    prepStacks++;
+                    bossHits = 0;
+                    mobKills = 0;
+                    break;
+                }
+            }
+        }
+
+        if (!changed) {
+            return;
+        }
+
+        prepStacks = Math.min(prepStacks, maxPrep);
+
+        if (prepStacks >= maxPrep) {
+            tsm.removeStatsBySkill(Kain.PRIOR_PREPARATION_LINKED_BUFF);
+
+            int dmgInc = si.getValue(y, slv);
+            int dur = si.getValue(time, slv);
+
+            tsm.putCharacterStatValue(
+                    IndieDamR,
+                    new Option(dmgInc, Kain.PRIOR_PREPARATION_ORIGIN, dur),
+                    true
+            );
+            tsm.sendSetStatPacket();
+
+            chr.setSkillCooldown(Kain.PRIOR_PREPARATION_ORIGIN, slv);
+        } else {
+            var o = new Option(prepStacks, Kain.PRIOR_PREPARATION_LINKED_BUFF, 0);
+            o.xOption = mobKills;
+            o.yOption = bossHits;
+
+            tsm.putCharacterStatValue(PriorPreparation, o, true);
             tsm.sendSetStatPacket();
         }
     }
