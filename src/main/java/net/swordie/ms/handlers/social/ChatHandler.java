@@ -81,7 +81,7 @@ public class ChatHandler {
             var chatType = chr.getUser().getAccountType().isGmOrAdmin()
                     ? ChatUserType.Admin
                     : ChatUserType.User;
-                    handleAndroidEmotionFromChat(chr, msg);
+            handleAndroidEmotionFromChat(chr, msg);
             chr.getField().broadcastPacketByChr(chr, UserPacket.chat(chr, chatType, msg,
                     type, 0, c.getWorldId(), emoticonId, false));
         }
@@ -108,7 +108,8 @@ public class ChatHandler {
                     Method method = clazz.getDeclaredMethod("execute", Char.class, String[].class);
                     split = msg.split(" ");
                     method.invoke(adminCommand, c.getChr(), split);
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                         InstantiationException e) {
                     chr.chatMessage("Exception: " + e.getCause().toString());
                     e.printStackTrace();
                 }
@@ -140,7 +141,8 @@ public class ChatHandler {
                     Method method = clazz.getDeclaredMethod("execute", Char.class, String[].class);
                     split = msg.split(" ");
                     method.invoke(playerCommand, c.getChr(), split);
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                         InstantiationException e) {
                     chr.chatMessage("Something went wrong while executing the command.");
                     if (Server.DEBUG) {
                         e.printStackTrace();
@@ -152,7 +154,8 @@ public class ChatHandler {
             chr.chatMessage(Expedition, "Unknown command \"" + command + "\"");
         }
     }
-        private static void handleAndroidEmotionFromChat(Char chr, String message) {
+
+    private static void handleAndroidEmotionFromChat(Char chr, String message) {
         Android android = chr.getAndroid();
         if (android == null) {
             return;
