@@ -8,7 +8,7 @@ import net.swordie.ms.constants.ItemConstants;
 import net.swordie.ms.constants.JobConstants;
 import net.swordie.ms.constants.SkillConstants;
 import net.swordie.ms.enums.*;
-import net.swordie.ms.life.Android;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.loaders.ItemData;
 import net.swordie.ms.loaders.containerclasses.EquipItemInfo;
 import net.swordie.ms.loaders.containerclasses.ItemInfo;

@@ -40,6 +40,7 @@ import net.swordie.ms.constants.JobConstants.JobEnum;
 import net.swordie.ms.enums.*;
 import net.swordie.ms.handlers.header.OutHeader;
 import net.swordie.ms.life.AffectedArea;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.Life;
 import net.swordie.ms.life.RandomPortal;
 import net.swordie.ms.life.Reactor;
@@ -4084,6 +4085,49 @@ public class AdminCommands {
                 targetChr.checkFirstEnterReward();
             }
             chr.chatMessage("Gift Sent!, target is online: " + online);
+        }
+    }
+    @Command(names = {"androidemotion", "androide"}, requiredType = Admin)
+    public static class AndroidEmotion extends AdminCommand {
+
+        public void execute(Char chr, String[] args) {
+
+            if (args.length < 2) {
+                chr.chatMessage("Usage: !androide <emotionId> [durationMs]");
+                return;
+            }
+
+            Android android = chr.getAndroid();
+            if (android == null) {
+                chr.chatMessage("You do not have an Android.");
+                return;
+            }
+
+            int emotionIdValue;
+            int durationMs = 5000;
+
+            try {
+                emotionIdValue = Integer.parseInt(args[1]);
+                if (args.length >= 3) {
+                    durationMs = Integer.parseInt(args[2]);
+                }
+            } catch (NumberFormatException e) {
+                chr.chatMessage("Invalid number.");
+                return;
+            }
+
+            AndroidEmoteType emotionId = AndroidEmoteType.fromId(emotionIdValue);
+            if (emotionId == null) {
+                chr.chatMessage("Invalid Android emotion ID: " + emotionIdValue);
+                return;
+            }
+
+            chr.write(AndroidPacket.androidEmotion(android, emotionId, durationMs));
+
+            chr.getField().broadcastPacket(
+                    AndroidPacket.remoteAndroidEmotion(android, emotionId, durationMs),
+                    chr
+            );
         }
     }
 }

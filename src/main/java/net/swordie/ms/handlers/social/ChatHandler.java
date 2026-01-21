@@ -9,15 +9,19 @@ import net.swordie.ms.client.character.emoticons.EmoticonType;
 import net.swordie.ms.client.character.items.Item;
 import net.swordie.ms.client.friend.Friend;
 import net.swordie.ms.connection.InPacket;
+import net.swordie.ms.connection.packet.AndroidPacket;
 import net.swordie.ms.connection.packet.UserPacket;
 import net.swordie.ms.connection.packet.field.FieldPacket;
 import net.swordie.ms.constants.GameConstants;
+import net.swordie.ms.enums.AndroidEmoteType;
 import net.swordie.ms.enums.ChatUserType;
 import net.swordie.ms.enums.GroupMessageType;
 import net.swordie.ms.enums.InvType;
 import net.swordie.ms.enums.WhisperType;
 import net.swordie.ms.handlers.Handler;
 import net.swordie.ms.handlers.header.InHeader;
+import net.swordie.ms.life.android.Android;
+import net.swordie.ms.life.android.AndroidEmote;
 import net.swordie.ms.loaders.ForbiddenWordsData;
 import net.swordie.ms.loaders.StringData;
 import net.swordie.ms.util.Util;
@@ -77,6 +81,7 @@ public class ChatHandler {
             var chatType = chr.getUser().getAccountType().isGmOrAdmin()
                     ? ChatUserType.Admin
                     : ChatUserType.User;
+            handleAndroidEmotionFromChat(chr, msg);
             chr.getField().broadcastPacketByChr(chr, UserPacket.chat(chr, chatType, msg,
                     type, 0, c.getWorldId(), emoticonId, false));
         }
@@ -103,7 +108,8 @@ public class ChatHandler {
                     Method method = clazz.getDeclaredMethod("execute", Char.class, String[].class);
                     split = msg.split(" ");
                     method.invoke(adminCommand, c.getChr(), split);
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                         InstantiationException e) {
                     chr.chatMessage("Exception: " + e.getCause().toString());
                     e.printStackTrace();
                 }
@@ -135,7 +141,8 @@ public class ChatHandler {
                     Method method = clazz.getDeclaredMethod("execute", Char.class, String[].class);
                     split = msg.split(" ");
                     method.invoke(playerCommand, c.getChr(), split);
-                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                         InstantiationException e) {
                     chr.chatMessage("Something went wrong while executing the command.");
                     if (Server.DEBUG) {
                         e.printStackTrace();
@@ -146,6 +153,31 @@ public class ChatHandler {
         if (!executed) {
             chr.chatMessage(Expedition, "Unknown command \"" + command + "\"");
         }
+    }
+
+    private static void handleAndroidEmotionFromChat(Char chr, String message) {
+        Android android = chr.getAndroid();
+        if (android == null) {
+            return;
+        }
+
+        AndroidEmoteType emotionId = AndroidEmote.getEmotionFromMessage(message);
+        if (emotionId == null) {
+            return;
+        }
+
+        int durationMs = 5000;
+
+        // Local client
+        chr.write(
+                AndroidPacket.androidEmotion(android, emotionId, durationMs)
+        );
+
+        // Remote clients
+        chr.getField().broadcastPacket(
+                AndroidPacket.remoteAndroidEmotion(android, emotionId, durationMs),
+                chr
+        );
     }
 
     @Handler(op = InHeader.USER_ITEM_LINKED_CHAT)
