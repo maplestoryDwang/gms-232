@@ -65,6 +65,7 @@ public class DropInfoDao implements SworDao<DropInfo> {
         try {
             di = new DropInfo();
             di.setId(resultSet.getLong(alias + ".id"));
+            di.setMobId(resultSet.getInt(alias + ".mobid"));
             di.setItemID(resultSet.getInt(alias + ".itemid"));
             di.setChance(resultSet.getInt(alias + ".chance"));
             di.setMinQuant(resultSet.getInt(alias + ".minquant"));
@@ -78,6 +79,19 @@ public class DropInfoDao implements SworDao<DropInfo> {
 
     public Set<DropInfo> byMobId(int mobId) {
         var objs = DatabaseManager.executeSelect(this, "SELECT * FROM mob_drops md WHERE mobid = ?", "md", mobId);
+
+        Set<DropInfo> ret = new HashSet<>();
+        for (var obj : objs) {
+            if (obj != null) {
+                ret.add((DropInfo) obj);
+            }
+        }
+
+        return ret;
+    }
+
+    public Set<DropInfo> byItemId(int itemId) {
+        var objs = DatabaseManager.executeSelect(this, "SELECT * FROM mob_drops md WHERE itemid = ?", "md", itemId);
 
         Set<DropInfo> ret = new HashSet<>();
         for (var obj : objs) {

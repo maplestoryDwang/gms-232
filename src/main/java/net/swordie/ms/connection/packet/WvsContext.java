@@ -1685,4 +1685,27 @@ public class WvsContext {
 
         return outPacket;
     }
+
+    public static OutPacket OnRewardMobListResult(short groupCount, List<List<Integer>> groups) {
+        var outPacket = new OutPacket(OutHeader.REWARD_MOB_LIST_RESULT);
+
+        if (groups == null) groups = Collections.emptyList();
+        if (groupCount < 0) groupCount = 0;
+        if (groupCount > 100) groupCount = 100; // client guard
+
+        outPacket.encodeShort(groupCount);
+        for (int g = 0; g < groupCount; g++) {
+            List<Integer> list = groups.get(g);
+            int cnt = (list != null) ? list.size() : 0;
+            if (cnt > 0xFFFF) cnt = 0xFFFF; // u16
+            outPacket.encodeShort((short) cnt);
+            if (cnt > 0) {
+                for (int j = 0; j < cnt; j++) {
+                    outPacket.encodeInt(list.get(j));
+                }
+            }
+        }
+
+        return outPacket;
+    }
 }

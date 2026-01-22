@@ -14,6 +14,7 @@ public class DropInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private int mobId;
     private int itemID;
     private int chance; // out of a 10000
     @Transient
@@ -156,9 +157,18 @@ public class DropInfo {
         this.id = id;
     }
 
+    public int getMobId() {
+        return mobId;
+    }
+
+    public void setMobId(int mobId) {
+        this.mobId = mobId;
+    }
+
     public DropInfo deepCopy() {
         DropInfo di = new DropInfo();
 
+        di.setMobId(getMobId());
         di.setItemID(getItemID());
         di.setChance(getChance());
         di.setMoney(getMoney());

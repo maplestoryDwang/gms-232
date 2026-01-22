@@ -837,4 +837,29 @@ public class UserHandler {
             chr.write(WvsContext.firstEnterReward(chr.getFirstEnterRewards(), FirstEnterRewardPacketType.Load_Items, 0));
         }
     }
+
+    @Handler(op = InHeader.REQUEST_NAVIGATION)
+    public static void handleNavigationRequest(Char chr, InPacket inPacket) {
+        short reqCount = inPacket.decodeShort();
+        var groups = new ArrayList<List<Integer>>(reqCount);
+
+        for (int i = 0; i < reqCount; i++) {
+            int itemId = inPacket.decodeInt();
+            var raw = DropData.getDropInfoByItemId(itemId);
+            var filtered = new ArrayList<Integer>();
+            var seen = new HashSet<Integer>(); // Each group has its own seen set
+            
+            if (raw != null) {
+                for (var dropInfo : raw) {
+                    int mobId = dropInfo.getMobId();
+                    if (mobId > 0 && seen.add(mobId)) { // Only add valid mobIds and avoid duplicates within group
+                        filtered.add(mobId);
+                    }
+                }
+            }
+            groups.add(filtered);
+        }
+
+        chr.write(WvsContext.OnRewardMobListResult((short) groups.size(), groups));
+    }
 }
