@@ -848,18 +848,21 @@ public class UserHandler {
             var raw = DropData.getDropInfoByItemId(itemId);
             var filtered = new ArrayList<Integer>();
             var seen = new HashSet<Integer>(); // Each group has its own seen set
-            
-            if (raw != null) {
-                for (var dropInfo : raw) {
-                    int mobId = dropInfo.getMobId();
-                    if (mobId > 0 && seen.add(mobId)) { // Only add valid mobIds and avoid duplicates within group
-                        filtered.add(mobId);
-                    }
+
+            for (var dropInfo : raw) {
+                int mobId = dropInfo.getMobId();
+                if (mobId > 0 && seen.add(mobId)) { // Only add valid mobIds and avoid duplicates within group
+                    filtered.add(mobId);
                 }
             }
             groups.add(filtered);
         }
 
-        chr.write(WvsContext.OnRewardMobListResult((short) groups.size(), groups));
+        // Validation checks
+        short groupCount = (short) groups.size();
+        if (groupCount < 0) groupCount = 0;
+        if (groupCount > 100) groupCount = 100; // client guard
+
+        chr.write(WvsContext.rewardMobListResult(groupCount, groups));
     }
 }
