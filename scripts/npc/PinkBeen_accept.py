@@ -20,9 +20,10 @@ cd = info[response][1]
 toFieldId = info[response][2]
 
 if sm.getParty() is None:
-    sm.sendSayOkay("Please create a party before going in.")
-elif not sm.isPartyLeader():
-    sm.sendSayOkay("Please have your party leader enter if you wish to face Cygnus.")
+    sm.createSoloParty()
+
+if not sm.isPartyLeader():
+    sm.sendSayOkay("Please have your party leader enter if you wish to face Pink Bean.")
 elif sm.checkParty(cd, reqLv):
     sm.warpInstanceIn(toFieldId, 0, True)
     sm.setInstanceTime(BossConstants.PINK_BEAN_TIME, PB_ENTRANCE)

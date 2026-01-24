@@ -14,8 +14,9 @@ else:
                            "#L1#Chaos (Level 180+) #l \r\n")
     if response == 0:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Ranmaru.")
         elif sm.checkParty(BossCooldown.Ranmaru, 130):
             sm.warpInstanceIn(BossConstants.RANMARU_NORMAL_MAP, 0, True)
@@ -24,8 +25,9 @@ else:
             sm.setBossCooldown(BossCooldown.Ranmaru)
     elif response == 1:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Ranmaru.")
         elif sm.checkParty(BossCooldown.RanmaruHard, 180):
             sm.warpInstanceIn(BossConstants.RANMARU_HARD_MAP, 3, True)

@@ -913,6 +913,13 @@ public interface ScriptManager {
 	 */
 	Party getParty();
 
+    /**
+     * Create a new {@link Party} for the {@link Char} linked to the {@link ScriptManager} and sets it
+     * as the party's leader.
+     * @return The {@link Party} created to the linked {@link Char}
+     */
+    Party createSoloParty();
+
 	/**
 	 * Gets the {@link Char} linked's Party size
 	 *

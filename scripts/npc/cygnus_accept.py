@@ -13,8 +13,9 @@ else:
     response = sm.sendNext("Would you like to fight Cygnus? \r\n #b#L0#Easy Mode (Level 140+)#l \r\n #L1#Normal Mode (Level 170+)#l")
     if response == 0:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Cygnus.")
         elif sm.checkParty(BossCooldown.CygnusEasy, 140):
             sm.warpInstanceIn(BossConstants.CYGNUS_EASY_MAP, 0, True)
@@ -23,8 +24,9 @@ else:
             sm.setBossCooldown(BossCooldown.CygnusEasy)
     elif response == 1:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Cygnus.")
         elif sm.checkParty(BossCooldown.Cygnus, 170):
             sm.warpInstanceIn(BossConstants.CYGNUS_NORMAL_MAP, 0, True)

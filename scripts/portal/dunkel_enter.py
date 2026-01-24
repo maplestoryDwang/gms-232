@@ -34,10 +34,10 @@ normalDunkel = response == 0
 cd = BossCooldown.Darknell if normalDunkel else BossCooldown.DarknellHard
 
 if sm.getParty() is None:
-    sm.sendSayOkay("Please create a party before going in.")
+    sm.createSoloParty()
 
-elif not sm.isPartyLeader():
-    sm.sendSayOkay("Please have your party leader talk to me if you wish to face Damien.")
+if not sm.isPartyLeader():
+    sm.sendSayOkay("Please have your party leader talk to me if you wish to face Darknell.")
 
 elif sm.checkParty(cd) and response != 99:
     if is_party_eligible(destinations[response][1], sm.getParty()):

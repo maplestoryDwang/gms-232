@@ -35,9 +35,9 @@ response = sm.sendSay(dialog)
 cd = BossCooldown.Lotus if response == 0 else BossCooldown.LotusHard
 
 if sm.getParty() is None:
-	sm.sendSayOkay("Please create a party before going in.")
+	sm.createSoloParty()
 
-elif not sm.isPartyLeader():
+if not sm.isPartyLeader():
 	sm.sendSayOkay("Please have your party leader talk to me if you wish to face Lotus.")
 
 elif sm.checkParty(cd) and response != 99:

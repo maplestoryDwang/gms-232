@@ -16,8 +16,9 @@ else:
                                 "#L2#Hard (Level 125+) #l \r\n")
     if response == 0:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Von Leon.")
         elif sm.checkParty(BossCooldown.VonLeonEasy, 125):
             sm.warpInstanceIn(BossConstants.VON_LEON_EASY_FIELDID, 0, True)
@@ -27,8 +28,9 @@ else:
 
     elif response == 1:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Von Leon.")
         elif sm.checkParty(BossCooldown.VonLeon, 125):
             sm.warpInstanceIn(BossConstants.VON_LEON_NORMAL_FIELDID, 0, True)
@@ -38,8 +40,9 @@ else:
 
     elif response == 2:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Von Leon.")
         elif sm.checkParty(BossCooldown.VonLeonHard, 125):
             sm.warpInstanceIn(BossConstants.VON_LEON_HARD_FIELDID, 0, True)

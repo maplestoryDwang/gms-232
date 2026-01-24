@@ -15,8 +15,9 @@ else:
         "#e<Boss:Hilla>#n\r\n\r\nChoose a mode.\r\n\r\n\r\n#L0#Normal (level 120+)#l\r\n#L1#Hard (Level 170+)#l")
     if response == 0:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Hilla.")
         elif sm.checkParty(BossCooldown.Hilla, 120):
             sm.warpInstanceIn(262030100, 0, True)
@@ -26,8 +27,9 @@ else:
             sm.setBossCooldown(BossCooldown.Hilla)
     if response == 1:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Hilla.")
         elif sm.checkParty(BossCooldown.HillaHard, 170):
             sm.warpInstanceIn(262031100, 0, True)
