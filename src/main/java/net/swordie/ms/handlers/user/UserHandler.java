@@ -838,8 +838,8 @@ public class UserHandler {
         }
     }
 
-    @Handler(op = InHeader.REQUEST_NAVIGATION)
-    public static void handleNavigationRequest(Char chr, InPacket inPacket) {
+    @Handler(op = InHeader.REWARD_MOB_LIST_REQUEST)
+    public static void rewardMobListRequest(Char chr, InPacket inPacket) {
         short reqCount = inPacket.decodeShort();
         var groups = new ArrayList<List<Integer>>(reqCount);
 
