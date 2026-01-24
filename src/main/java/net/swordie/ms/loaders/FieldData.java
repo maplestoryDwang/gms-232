@@ -13,6 +13,7 @@ import net.swordie.ms.life.Life;
 import net.swordie.ms.life.Reactor;
 import net.swordie.ms.life.npc.Npc;
 import net.swordie.ms.life.npc.PlacedNpcTemplate;
+import net.swordie.ms.life.npc.RemovedNpcTemplate;
 import net.swordie.ms.loaders.containerclasses.FieldInfo;
 import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseInfo;
 import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseMobGenInfo;
@@ -21,6 +22,7 @@ import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Util;
 import net.swordie.ms.world.field.*;
 import net.swordie.orm.dao.PlacedNpcTemplateDao;
+import net.swordie.orm.dao.RemovedNpcTemplateDao;
 import net.swordie.orm.dao.SworDaoFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,25 +39,26 @@ public class FieldData {
     private static Map<Integer, FieldInfo> fields = new HashMap<>();
     private static Map<Integer, Integer> fieldOffsets;
     private static List<Integer> worldMapFields = new ArrayList<>();
-    private static final Logger log = LogManager.getRootLogger();
-    private static final boolean LOG_UNKS = false;
-
-    private static class NpcRemovalRule {
-        final int mapId;
-        final int npcId;
-
-        NpcRemovalRule(int mapId, int npcId) {
-            this.mapId = mapId;
-            this.npcId = npcId;
-        }
-    }
-
-    private static final List<NpcRemovalRule> NPC_REMOVAL_RULES = Arrays.asList(
-            new NpcRemovalRule(910000000, 9000133) // HomeComing Wonky
-    );
+    private static final Logger log = LogManager.getLogger(FieldData.class);
 
     public static void main(String[] args) {
         generateDatFiles();
+    }
+
+    public static Map<Integer, FieldInfo> getFields() {
+        return fields;
+    }
+
+    public static List<Integer> getWorldMapFields() {
+        return worldMapFields;
+    }
+
+    public static FieldInfo getFieldInfoById(int id) {
+        FieldInfo field = getFields().get(id);
+        if (field == null) {
+            field = getFieldFromFile(id);
+        }
+        return field;
     }
 
     private static void saveFields(String file) {
@@ -475,10 +478,13 @@ public class FieldData {
     }
 
     private static void removeConfiguredNpcs() {
+        RemovedNpcTemplateDao templateDao = (RemovedNpcTemplateDao) SworDaoFactory.getByClass(RemovedNpcTemplate.class);
+        List<RemovedNpcTemplate> templates = templateDao.getAll();
+        log.info("Loading {} removed NPC templates from database...", templates.size());
         
         Map<Integer, Set<Integer>> removalsByMap = new HashMap<>();
-        for (NpcRemovalRule rule : NPC_REMOVAL_RULES) {
-            removalsByMap.computeIfAbsent(rule.mapId, k -> new HashSet<>()).add(rule.npcId);
+        for (RemovedNpcTemplate template : templates) {
+            removalsByMap.computeIfAbsent(template.getMapid(), k -> new HashSet<>()).add(template.getNpcid());
         }
         
         int totalRemoved = 0;
@@ -508,23 +514,7 @@ public class FieldData {
             }
         }
         
-        log.info("Total NPCs removed by configured rules: {}", totalRemoved);
-    }
-
-    public static Map<Integer, FieldInfo> getFields() {
-        return fields;
-    }
-
-    public static List<Integer> getWorldMapFields() {
-        return worldMapFields;
-    }
-
-    public static FieldInfo getFieldInfoById(int id) {
-        var field = getFields().get(id);
-        if (field == null) {
-            field = getFieldFromFile(id);
-        }
-        return field;
+        log.info("Total NPCs removed by database configuration: {}", totalRemoved);
     }
 
     private static FieldInfo getFieldFromFile(int id) {

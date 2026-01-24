@@ -61,9 +61,11 @@ import net.swordie.ms.world.field.fieldeffect.FieldEffect;
 import net.swordie.ms.world.field.fieldevents.timedfieldevents.elitechampions.*;
 import net.swordie.ms.world.field.obstacleatom.ObstacleAtomInfo;
 import net.swordie.ms.life.npc.PlacedNpcTemplate;
+import net.swordie.ms.life.npc.RemovedNpcTemplate;
 import net.swordie.orm.dao.AccountDao;
 import net.swordie.orm.dao.CharDao;
 import net.swordie.orm.dao.PlacedNpcTemplateDao;
+import net.swordie.orm.dao.RemovedNpcTemplateDao;
 import net.swordie.orm.dao.SworDaoFactory;
 import net.swordie.orm.dao.UserDao;
 import org.apache.logging.log4j.LogManager;
@@ -91,6 +93,7 @@ public class AdminCommands {
     private static final AccountDao accountDao = (AccountDao) SworDaoFactory.getByClass(Account.class);
     private static final UserDao userDao = (UserDao) SworDaoFactory.getByClass(User.class);
     private static final PlacedNpcTemplateDao placedNpcTemplateDao = (PlacedNpcTemplateDao) SworDaoFactory.getByClass(PlacedNpcTemplate.class);
+    private static final RemovedNpcTemplateDao removedNpcTemplateDao = (RemovedNpcTemplateDao) SworDaoFactory.getByClass(RemovedNpcTemplate.class);
 
     @Command(names = {"test"}, requiredType = Admin)
     public static class Test extends AdminCommand {
@@ -3373,6 +3376,62 @@ public class AdminCommands {
                 chr.chatMessage("Remember to regenerate .dat files to persist this change!");
             } else {
                 chr.chatMessage("Removed NPC " + npcId + " from field (not found in database)");
+            }
+        }
+    }
+
+    @Command(names = {"rnpc"}, requiredType = GameMaster)
+    public static class RNPC extends AdminCommand {
+        public static void execute(Char chr, String[] args) {
+            if (args.length < 2) {
+                chr.chatMessage("Usage: !rnpc <id> | !rnpc delete <id>");
+                return;
+            }
+            
+            Field field = chr.getField();
+            
+            if (args[1].equalsIgnoreCase("delete")) {
+                if (args.length < 3) {
+                    chr.chatMessage("Usage: !rnpc delete <id>");
+                    return;
+                }
+                int npcId = Integer.parseInt(args[2]);
+                deleteRemovedNpc(chr, npcId, field);
+                return;
+            }
+            
+            int npcId = Integer.parseInt(args[1]);
+            
+            List<RemovedNpcTemplate> existing = removedNpcTemplateDao.getByMapId(field.getId());
+            boolean alreadyRemoved = existing.stream()
+                    .anyMatch(template -> template.getNpcid() == npcId);
+            
+            if (alreadyRemoved) {
+                chr.chatMessage("NPC " + npcId + " is already in the removed list for this map.");
+                return;
+            }
+            
+            RemovedNpcTemplate template = new RemovedNpcTemplate(npcId, field.getId());
+            removedNpcTemplateDao.saveOrUpdate(template);
+            
+            chr.chatMessage("Added NPC " + npcId + " to removed list for map " + field.getId());
+            chr.chatMessage("Remember to regenerate .dat files to apply this change!");
+        }
+        
+        private static void deleteRemovedNpc(Char chr, int npcId, Field field) {
+            List<RemovedNpcTemplate> templates = removedNpcTemplateDao.getByMapId(field.getId());
+            
+            RemovedNpcTemplate toDelete = templates.stream()
+                    .filter(template -> template.getNpcid() == npcId)
+                    .findFirst()
+                    .orElse(null);
+            
+            if (toDelete != null) {
+                removedNpcTemplateDao.delete(toDelete);
+                chr.chatMessage("Removed NPC " + npcId + " from removed list (DB ID: " + toDelete.getId() + ")");
+                chr.chatMessage("Remember to regenerate .dat files to apply this change!");
+            } else {
+                chr.chatMessage("NPC " + npcId + " is not in the removed list for this map.");
             }
         }
     }
