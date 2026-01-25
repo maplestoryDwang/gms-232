@@ -8,11 +8,12 @@ public class MobExpConstants {
         int rate
     ) {}
 
+    public static final int MOB_EXP_BASE_RATE = 4;
+
     public static final List<MobExpRate> MOB_EXP_RATE_PER_MIN_LEVEL = List.of(
         // make sure to sort it starting from lowest minLevel to highest
         new MobExpRate(1, 1),
-        new MobExpRate(10, 4),
-        new MobExpRate(200, 5)
+        new MobExpRate(10, MOB_EXP_BASE_RATE)
     );
 
     /**
