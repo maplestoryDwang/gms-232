@@ -2761,6 +2761,7 @@ public abstract class Job {
         }
         chr.heal(chr.getMaxHP());
         chr.healMP(chr.getMaxMP());
+        chr.updateExpRate();
     }
 
 
