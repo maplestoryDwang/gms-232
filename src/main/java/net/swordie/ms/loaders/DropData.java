@@ -89,6 +89,10 @@ public class DropData {
         return drops;
     }
 
+    public static Set<DropInfo> getDropInfoByItemId(int itemId) {
+        return dropInfoDao.byItemId(itemId);
+    }
+
     private static Set<DropInfo> getCachedDropInfoById(int mobID) {
         return getDrops().getOrDefault(mobID, null);
     }

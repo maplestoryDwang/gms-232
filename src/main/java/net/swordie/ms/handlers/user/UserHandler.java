@@ -837,4 +837,32 @@ public class UserHandler {
             chr.write(WvsContext.firstEnterReward(chr.getFirstEnterRewards(), FirstEnterRewardPacketType.Load_Items, 0));
         }
     }
+
+    @Handler(op = InHeader.REWARD_MOB_LIST_REQUEST)
+    public static void rewardMobListRequest(Char chr, InPacket inPacket) {
+        short reqCount = inPacket.decodeShort();
+        var groups = new ArrayList<List<Integer>>(reqCount);
+
+        for (int i = 0; i < reqCount; i++) {
+            int itemId = inPacket.decodeInt();
+            var raw = DropData.getDropInfoByItemId(itemId);
+            var filtered = new ArrayList<Integer>();
+            var seen = new HashSet<Integer>(); // Each group has its own seen set
+
+            for (var dropInfo : raw) {
+                int mobId = dropInfo.getMobId();
+                if (mobId > 0 && seen.add(mobId)) { // Only add valid mobIds and avoid duplicates within group
+                    filtered.add(mobId);
+                }
+            }
+            groups.add(filtered);
+        }
+
+        // Validation checks
+        short groupCount = (short) groups.size();
+        if (groupCount < 0) groupCount = 0;
+        if (groupCount > 100) groupCount = 100; // client guard
+
+        chr.write(WvsContext.rewardMobListResult(groupCount, groups));
+    }
 }
