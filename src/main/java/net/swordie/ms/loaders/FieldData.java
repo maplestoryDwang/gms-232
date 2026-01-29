@@ -13,6 +13,7 @@ import net.swordie.ms.life.Life;
 import net.swordie.ms.life.Reactor;
 import net.swordie.ms.life.npc.Npc;
 import net.swordie.ms.life.npc.PlacedNpcTemplate;
+import net.swordie.ms.life.npc.RemovedNpcTemplate;
 import net.swordie.ms.loaders.containerclasses.FieldInfo;
 import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseInfo;
 import net.swordie.ms.loaders.containerclasses.monsterdefense.MonsterDefenseMobGenInfo;
@@ -21,6 +22,7 @@ import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Util;
 import net.swordie.ms.world.field.*;
 import net.swordie.orm.dao.PlacedNpcTemplateDao;
+import net.swordie.orm.dao.RemovedNpcTemplateDao;
 import net.swordie.orm.dao.SworDaoFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,11 +39,26 @@ public class FieldData {
     private static Map<Integer, FieldInfo> fields = new HashMap<>();
     private static Map<Integer, Integer> fieldOffsets;
     private static List<Integer> worldMapFields = new ArrayList<>();
-    private static final Logger log = LogManager.getRootLogger();
-    private static final boolean LOG_UNKS = false;
+    private static final Logger log = LogManager.getLogger(FieldData.class);
 
     public static void main(String[] args) {
         generateDatFiles();
+    }
+
+    public static Map<Integer, FieldInfo> getFields() {
+        return fields;
+    }
+
+    public static List<Integer> getWorldMapFields() {
+        return worldMapFields;
+    }
+
+    public static FieldInfo getFieldInfoById(int id) {
+        FieldInfo field = getFields().get(id);
+        if (field == null) {
+            field = getFieldFromFile(id);
+        }
+        return field;
     }
 
     private static void saveFields(String file) {
@@ -436,21 +453,17 @@ public class FieldData {
     private static void loadCustomNpcs() {
         PlacedNpcTemplateDao templateDao = (PlacedNpcTemplateDao) SworDaoFactory.getByClass(PlacedNpcTemplate.class);
         List<PlacedNpcTemplate> templates = templateDao.getAll();
-        
         log.info("Loading {} placed NPC templates from database...", templates.size());
-        
         for (PlacedNpcTemplate template : templates) {
             int mapId = template.getMapid();
             FieldInfo field = getFields().get(mapId);
-            
             if (field == null) {
                 log.warn("Cannot add placed NPC template {} - field {} not found", template.getId(), mapId);
                 continue;
             }
-             
             Life life = new Life(template.getNpcid());
-            life.setLifeType("n"); 
-            life.setTemplateId(template.getNpcid()); 
+            life.setLifeType("n");
+            life.setTemplateId(template.getNpcid());
             life.setX(template.getX());
             life.setY(template.getY());
             life.setCy(template.getCy());
@@ -458,31 +471,50 @@ public class FieldData {
             life.setRx1(template.getRx1());
             life.setFh(template.getFh());
             life.setPosition(new Position(template.getX(), template.getY()));
-            
-            
             field.addLife(life);
-            
-            log.debug("Added placed NPC template {} (NPC ID: {}) to field {}", 
-                    template.getId(), template.getNpcid(), mapId);
+            log.debug("Added placed NPC template {} (NPC ID: {}) to field {}", template.getId(), template.getNpcid(), mapId);
         }
-        
         log.info("Loaded {} placed NPC templates into fields", templates.size());
     }
 
-    public static Map<Integer, FieldInfo> getFields() {
-        return fields;
-    }
-
-    public static List<Integer> getWorldMapFields() {
-        return worldMapFields;
-    }
-
-    public static FieldInfo getFieldInfoById(int id) {
-        var field = getFields().get(id);
-        if (field == null) {
-            field = getFieldFromFile(id);
+    private static void removeConfiguredNpcs() {
+        RemovedNpcTemplateDao templateDao = (RemovedNpcTemplateDao) SworDaoFactory.getByClass(RemovedNpcTemplate.class);
+        List<RemovedNpcTemplate> templates = templateDao.getAll();
+        log.info("Loading {} removed NPC templates from database...", templates.size());
+        
+        Map<Integer, Set<Integer>> removalsByMap = new HashMap<>();
+        for (RemovedNpcTemplate template : templates) {
+            removalsByMap.computeIfAbsent(template.getMapid(), k -> new HashSet<>()).add(template.getNpcid());
         }
-        return field;
+        
+        int totalRemoved = 0;
+        
+        for (Map.Entry<Integer, Set<Integer>> entry : removalsByMap.entrySet()) {
+            int mapId = entry.getKey();
+            Set<Integer> npcIdsToRemove = entry.getValue();
+            
+            FieldInfo field = getFields().get(mapId);
+            if (field == null) {
+                log.warn("Cannot remove NPCs {} from map {} - field not found", npcIdsToRemove, mapId);
+                continue;
+            }
+            
+            var lifes = field.getLifes();
+            var iterator = lifes.entrySet().iterator();
+            while (iterator.hasNext()) {
+                var lifeEntry = iterator.next();
+                Life life = lifeEntry.getValue();
+                
+                if ("n".equalsIgnoreCase(life.getLifeType()) && 
+                    npcIdsToRemove.contains(life.getTemplateId())) {
+                    iterator.remove();
+                    totalRemoved++;
+                    log.info("Removed NPC {} from map {}", life.getTemplateId(), mapId);
+                }
+            }
+        }
+        
+        log.info("Total NPCs removed by database configuration: {}", totalRemoved);
     }
 
     private static FieldInfo getFieldFromFile(int id) {
@@ -734,6 +766,7 @@ public class FieldData {
         long start = System.currentTimeMillis();
         loadFieldInfoFromWz();
         loadCustomNpcs();
+        removeConfiguredNpcs();
         saveFields(FIELDS_FILE);
         loadWorldMapFromWz();
         saveWorldMap(ServerConstants.DAT_DIR + "/worldMap.dat");
