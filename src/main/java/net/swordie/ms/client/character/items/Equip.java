@@ -1699,7 +1699,7 @@ public class Equip extends Item {
 
     public boolean hasUsedSlots() {
         Equip defaultEquip = ItemData.getEquipDeepCopy(getItemId(), false);
-        return defaultEquip.getTuc() != getTuc();
+        return defaultEquip.getTuc() != getTuc() - getIuc();
     }
 
     // https://strategywiki.org/wiki/MapleStory/Bonus_Stats_and_Nebulites
