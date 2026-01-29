@@ -10,8 +10,9 @@ response = sm.sendNext("#e<Boss:Horntail>#n \r\n Select a mode. \r\n \r\n"
             "#L2#Chaos(Level 135+) #l \r\n")
 if response == 0:
     if sm.getParty() is None:
-        sm.sendSayOkay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSayOkay("Please have your party leader enter if you wish to face Horntail.")
     elif sm.checkParty(BossCooldown.HorntailEasy, 130):
         sm.warpInstanceIn(240060002, 0, True)
@@ -19,8 +20,9 @@ if response == 0:
         sm.setBossCooldown(BossCooldown.HorntailEasy)
 elif response == 1:
     if sm.getParty() is None:
-        sm.sendSayOkay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSayOkay("Please have your party leader enter if you wish to face Horntail.")
     elif sm.checkParty(BossCooldown.Horntail, 130):
         sm.warpInstanceIn(240060000, 0, True)
@@ -29,8 +31,9 @@ elif response == 1:
         sm.setBossCooldown(BossCooldown.Horntail)
 elif response == 2:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Horntail.")
         elif sm.checkParty(BossCooldown.HorntailHard, 135):
             sm.warpInstanceIn(240060001, 0, True)

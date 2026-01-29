@@ -16,8 +16,9 @@ else:
                                                           "#L1#Normal (Level 150+) #l \r\n")
     if response == 0:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Arkarium.")
         elif sm.checkParty(BossCooldown.ArkariumEasy, 150):
             sm.warpInstanceIn(BossConstants.ARKARIUM_EASY_FIELD, 0, True)
@@ -28,8 +29,9 @@ else:
             sm.chat("One of your party members has this boss on cooldown.")
     elif response == 1:
         if sm.getParty() is None:
-            sm.sendSayOkay("Please create a party before going in.")
-        elif not sm.isPartyLeader():
+            sm.createSoloParty()
+
+        if not sm.isPartyLeader():
             sm.sendSayOkay("Please have your party leader enter if you wish to face Arkarium.")
         elif sm.checkParty(BossCooldown.Arkarium, 150):
             sm.warpInstanceIn(BossConstants.ARKARIUM_NORMAL_FIELD, 0, True)

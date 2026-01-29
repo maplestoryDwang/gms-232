@@ -6,8 +6,9 @@ response = sm.sendNext("Would you like to fight Von Bon?\r\n #b#L0#Normal Mode#l
 
 if response == 0:
     if sm.getParty() is None:
-        sm.sendSayOkay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSayOkay("Please have your party leader enter if you wish to face Von Bon.")
     elif sm.checkParty(BossCooldown.VonBon):
         sm.warpInstanceIn(105200100, 0, True) # East Garden
@@ -16,8 +17,9 @@ if response == 0:
         sm.setBossCooldown(BossCooldown.VonBon)
 elif response == 1:
     if sm.getParty() is None:
-        sm.sendSayOkay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSayOkay("Please have your party leader enter if you wish to face Von Bon.")
     elif sm.checkParty(BossCooldown.VonBonHard):
         sm.warpInstanceIn(105200500, 0, True) # East Garden

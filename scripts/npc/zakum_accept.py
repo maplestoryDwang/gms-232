@@ -21,8 +21,9 @@ cd = cds[sm.getFieldID()]
 
 if response:
     if sm.getParty() is None:
-        sm.sendSayOkay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSayOkay("Please have your party leader talk to me if you wish to face Zakum.")
     elif sm.checkParty(cd):
         if sm.canHold(EYE_OF_FIRE):

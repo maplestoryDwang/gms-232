@@ -8,8 +8,9 @@ if sel == 0:
     sm.sendSayOkay("Alan please add Dream Defender")
 else:
     if sm.getParty() is None:
-        sm.sendSay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSay("Please have your party leader enter if you wish to face Lucid.")
     elif sm.checkParty(cd):
         sm.setBossCooldown(cd)
