@@ -1720,4 +1720,16 @@ public class WvsContext {
 
         return outPacket;
     }
+
+    public static OutPacket rewardMobListResult(short groupCount, List<List<Integer>> groups) {
+        var outPacket = new OutPacket(OutHeader.REWARD_MOB_LIST_RESULT);
+
+        outPacket.encodeShort(groupCount);
+        for (List<Integer> groupList : groups) {
+            outPacket.encodeShort((short) groupList.size());
+            groupList.forEach(val -> outPacket.encodeInt(val));
+        }
+
+        return outPacket;
+    }
 }

@@ -17,7 +17,6 @@ import net.swordie.ms.client.character.cards.MonsterBookInfo;
 import net.swordie.ms.client.character.cashshop.IterativeBuyInfo;
 import net.swordie.ms.client.character.chair.PortableChair;
 import net.swordie.ms.client.character.commerce.vessel.Vessel;
-import net.swordie.ms.client.character.dailies.DailiesManager;
 import net.swordie.ms.client.character.damage.DamageCalc;
 import net.swordie.ms.client.character.damage.DamageSkinSaveData;
 import net.swordie.ms.client.character.damage.DamageSkinType;
@@ -73,7 +72,6 @@ import net.swordie.ms.client.jobs.legend.Evan;
 import net.swordie.ms.client.jobs.legend.Luminous;
 import net.swordie.ms.client.jobs.resistance.WildHunterInfo;
 import net.swordie.ms.client.jobs.resistance.demon.DemonAvenger;
-import net.swordie.ms.client.jobs.sengoku.Hayato;
 import net.swordie.ms.client.jobs.sengoku.Kanna;
 import net.swordie.ms.client.party.Party;
 import net.swordie.ms.client.party.PartyMember;
@@ -94,6 +92,7 @@ import net.swordie.ms.events.Events;
 import net.swordie.ms.handlers.PsychicLock;
 import net.swordie.ms.handlers.executors.EventManager;
 import net.swordie.ms.life.*;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.drop.Drop;
 import net.swordie.ms.life.mob.Mob;
 import net.swordie.ms.life.pet.Pet;
@@ -129,7 +128,6 @@ import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.*;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -380,6 +378,7 @@ public class Char {
     private Set<FirstEnterReward> firstEnterRewards;
     private MiniRoom miniRoom;
     private List<MiniGameRecord> miniGameRecords;
+    private int currentExpRate;
 
     public Char() {
         itemPots = new ArrayList<>();
@@ -2521,6 +2520,18 @@ public class Char {
                     ? FriendFlag.AccountFriendOnline
                     : FriendFlag.AccountFriendOffline);
         }
+    }
+
+    public int getCurrentLevelExpRate() {
+        if (currentExpRate == 0) {
+            updateExpRate();
+        }
+
+        return currentExpRate;
+    }
+
+    public void updateExpRate() {
+        currentExpRate = MobExpConstants.getRateForCharacterLevel(getLevel());
     }
 
     public Set<Summon> getSummons() {

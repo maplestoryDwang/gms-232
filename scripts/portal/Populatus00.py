@@ -25,8 +25,9 @@ else:
     dc = info[sel][3]
 
     if sm.getParty() is None:
-        sm.sendSayOkay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSayOkay("Please have your party leader enter if you wish to face Papulatus.")
     elif sm.checkParty(cd, reqLev):
         sm.warpInstanceIn(toFieldId, 0, True)

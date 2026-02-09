@@ -8,7 +8,7 @@ import net.swordie.ms.constants.ItemConstants;
 import net.swordie.ms.constants.JobConstants;
 import net.swordie.ms.constants.SkillConstants;
 import net.swordie.ms.enums.*;
-import net.swordie.ms.life.Android;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.loaders.ItemData;
 import net.swordie.ms.loaders.containerclasses.EquipItemInfo;
 import net.swordie.ms.loaders.containerclasses.ItemInfo;
@@ -1699,7 +1699,7 @@ public class Equip extends Item {
 
     public boolean hasUsedSlots() {
         Equip defaultEquip = ItemData.getEquipDeepCopy(getItemId(), false);
-        return defaultEquip.getTuc() != getTuc();
+        return defaultEquip.getTuc() != getTuc() - getIuc();
     }
 
     // https://strategywiki.org/wiki/MapleStory/Bonus_Stats_and_Nebulites

@@ -32,6 +32,7 @@ import net.swordie.ms.client.guild.result.GuildType;
 import net.swordie.ms.client.jobs.legend.Shade;
 import net.swordie.ms.client.party.Party;
 import net.swordie.ms.client.party.PartyMember;
+import net.swordie.ms.client.party.PartyResult;
 import net.swordie.ms.client.trunk.TrunkDlg;
 import net.swordie.ms.connection.packet.*;
 import net.swordie.ms.connection.packet.field.FieldPacket;
@@ -1944,6 +1945,20 @@ public class ScriptManagerImpl implements ScriptManager {
     @Override
     public Party getParty() {
         return getChr().getParty();
+    }
+
+    @Override
+    public Party createSoloParty() {
+        Party party = Party.createNewParty(
+            false,
+            true,
+            getChr().getName() + "'s party",
+            getChr().getClient().getWorld()
+        );
+        party.addPartyMember(getChr());
+        party.broadcast(WvsContext.partyResult(PartyResult.createNewParty(party)));
+
+        return party;
     }
 
     @Override

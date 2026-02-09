@@ -48,7 +48,9 @@ public class Kain extends Job {
     // TODO [4] Handle Grappling Wire local&remote effect
 
     // TODO [5] Handle Link Skill & Union (If needs handling)
-
+    public static final int PRIOR_PREPARATION_ORIGIN = 60030241; // Link Skill
+    public static final int PRIOR_PREPARATION_LINKED = 80003015; // Link Skill
+    public static final int PRIOR_PREPARATION_LINKED_BUFF = 80003018; // Link Skill Buff
 
     // Thanatos Descent Rect
     public static final Rect thanatosRect = new Rect(-200, -250, 200, -30);

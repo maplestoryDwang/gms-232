@@ -5,7 +5,7 @@ import net.swordie.ms.connection.InPacket;
 import net.swordie.ms.connection.packet.AndroidPacket;
 import net.swordie.ms.handlers.Handler;
 import net.swordie.ms.handlers.header.InHeader;
-import net.swordie.ms.life.Android;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.movement.MovementInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

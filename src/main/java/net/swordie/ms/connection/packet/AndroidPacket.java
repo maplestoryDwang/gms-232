@@ -1,8 +1,9 @@
 package net.swordie.ms.connection.packet;
 
 import net.swordie.ms.connection.OutPacket;
+import net.swordie.ms.enums.AndroidEmoteType;
 import net.swordie.ms.handlers.header.OutHeader;
-import net.swordie.ms.life.Android;
+import net.swordie.ms.life.android.Android;
 import net.swordie.ms.life.movement.MovementInfo;
 import net.swordie.ms.util.FileTime;
 
@@ -63,5 +64,24 @@ public class AndroidPacket {
         android.encodeAndroidInfo(outPacket);
 
         return outPacket;
+    }
+    public static OutPacket androidEmotion(Android android, AndroidEmoteType emotionId, int durationMs) {
+        OutPacket out = new OutPacket(OutHeader.ANDROID_EMOTION);
+
+        out.encodeInt(emotionId.getId());
+        out.encodeInt(durationMs);
+
+        return out;
+    }
+    public static OutPacket remoteAndroidEmotion(Android android, AndroidEmoteType emotionId, int durationMs) {
+        OutPacket out = new OutPacket(OutHeader.REMOTE_ANDROID_EMOTION);
+
+        out.encodeInt(android.getChrId());
+        out.encodeInt(emotionId.getId());
+        out.encodeInt(durationMs);
+        out.encodeInt(0);
+        out.encodeInt(0);
+
+        return out;
     }
 }

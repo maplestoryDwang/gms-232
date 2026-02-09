@@ -2,8 +2,9 @@ answer = sm.sendSay("Where would you like to go to? \r\n#L0#Velderoth's Sitting 
 
 if answer == 0:
     if sm.getParty() is None:
-        sm.sendSay("Please create a party before going in.")
-    elif not sm.isPartyLeader():
+        sm.createSoloParty()
+
+    if not sm.isPartyLeader():
         sm.sendSay("Please have your party leader enter if you wish to face Velderoth.")
     elif sm.checkParty():
         sm.warpInstanceIn(401053100, 0, True)

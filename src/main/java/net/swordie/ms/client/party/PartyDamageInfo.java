@@ -44,7 +44,7 @@ public class PartyDamageInfo {
      * Formula used is taken from https://strategywiki.org/wiki/MapleStory/Formulas#Party_EXP.
      */
     public void distributeExp(Char mostDamageChar) {
-        long totalExp = mob.getForcedMobStat().getExp() * GameConstants.MOB_EXP_RATE;
+        long totalExp = mob.getForcedMobStat().getExp();
         int attackers = damageDone.size();
         Set<Char> possibleMembers = new HashSet<>(party.getOnlineChars());
         Set<Char> eligibleMembers = possibleMembers.stream().filter(this::isEligible).collect(Collectors.toSet());
@@ -59,6 +59,7 @@ public class PartyDamageInfo {
             double perc = (double) exp / totalExp;
             exp *= expRate;
             exp *= runeMulti;
+            exp *= chr.getCurrentLevelExpRate();
 
             ExpIncreaseInfo eii = new ExpIncreaseInfo();
             if (!damageDone.containsKey(chr)) {
