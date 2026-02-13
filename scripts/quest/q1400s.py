@@ -1,23 +1,23 @@
 sm.setSpeakerID(12100)
-sm.sendNext("Hmm, you're making good progress with your leveling. Have you decided on which job you want to take? You could be a Warrior with great strength and high HP, a Magician with many spells, a Bowman that shoots arrows from afar, a Thief that uses quick, sneaky attacks, or a Pirate with all kinds of flashy chain skills... There are so many!")
-choice = sm.sendNext("If you go to Victoria Island, you can advance to the job of your choice by going to the right Job Instructor. But before that, lemme know which one you're interested in, and I'll send #bthem#k a letter of recommendation. That will make it easier for you to advance! So, which job will you choose?\r\n\r\n#b#L0#I want to be a mighty Warrior!#l\r\n#L1#I want to be a mystical Magician!#l\r\n#L2#I want to be a sharp-shooting Bowman!#l\r\n#L3#I want to be a sneaky Thief!#l\r\n#L4#I want to be a swashbuckling Pirate!#l")
+sm.sendNext("嗯，你的升级进度看起来不错。你已经决定好要选择哪种职业了吗？你可以成为拥有强大力量和高生命值的战士、掌握众多法术的魔法师、在远处射箭的弓箭手、擅长迅捷与隐秘攻击的盗贼，或者使用各种华丽连锁技能的海盗……选择实在太多了！")
+choice = sm.sendNext("如果你前往维多利亚岛，只要找到对应的转职教官，就可以转职成你想要的职业。在那之前，先告诉我你对哪种职业感兴趣吧，我会给#b他们#k寄一封推荐信。这样你转职时会更加顺利！那么，你会选择哪个职业呢？\r\n\r\n#b#L0#我想成为强大的战士！#l\r\n#L1#我想成为神秘的魔法师！#l\r\n#L2#我想成为百发百中的弓箭手！#l\r\n#L3#我想成为行动诡秘的盗贼！#l\r\n#L4#我想成为纵横大海的海盗！#l")
 
 sm.createQuestWithQRValue(1406, str(choice+1))
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
 
 if choice == 0:
-    sm.sendNext("A Warrior, huh? Boy, you're going to get really strong! They can take tons of damage, and dish plenty out, too. Okay, I'll send my recommendation to #bDances with Balrog#k, the Warrior Job Instructor.")
-    sm.sendSay("He will contact you when you reach Lv. 10. Become a great Warrior!")
+    sm.sendNext("战士吗？哈哈，那你一定会变得非常强大！他们不仅能承受大量伤害，也能造成可观的输出。好吧，我会把推荐信送给#b武术教练#k，战士转职教官。")
+    sm.sendSay("等你达到 10 级时，他会主动联系你。努力成为一名伟大的战士吧！")
 elif choice == 1:
-    sm.sendNext("A Magician, huh? Okay, I'll send my recommendation to #bGrendel, the Really Old#k, the Magician Job Instructor.")
-    sm.sendSay("They will contact you when you reach Lv. 10. Become a great Magician!")
+    sm.sendNext("魔法师吗？好的，我会把推荐信送给#b汉斯#k，魔法师转职教官。")
+    sm.sendSay("等你达到 10 级时，他们会联系你。努力成为一名伟大的魔法师吧！")
 elif choice == 2:
-    sm.sendNext("A Bowman, huh? Okay, I'll send my recommendation to #bAthena Pierce#k, the Bowman Job Instructor.")
-    sm.sendSay("They will contact you when you reach Lv. 10. Become a great Bowman!")
+    sm.sendNext("弓箭手吗？好的，我会把推荐信送给#b赫琳娜#k，弓箭手转职教官。")
+    sm.sendSay("等你达到 10 级时，她会联系你。努力成为一名伟大的弓箭手吧！")
 elif choice == 3:
-    sm.sendNext("A Thief, huh? Okay, I'll send my recommendation to #bthe Dark Lord#k, the Thief Job Instructor.")
-    sm.sendSay("They will contact you when you reach Lv. 10. Become a great Thief!")
+    sm.sendNext("盗贼吗？好的，我会把推荐信送给#b达克鲁#k，盗贼转职教官。")
+    sm.sendSay("等你达到 10 级时，他会联系你。努力成为一名伟大的盗贼吧！")
 elif choice == 4:
-    sm.sendNext("A Pirate, huh? Okay, I'll send my recommendation to #bKyrin#k, the Pirate Job Instructor.")
-    sm.sendSay("They will contact you when you reach Lv. 10. Become a great Pirate!")
+    sm.sendNext("海盗吗？好的，我会把推荐信送给#b凯琳#k，海盗转职教官。")
+    sm.sendSay("等你达到 10 级时，她会联系你。努力成为一名伟大的海盗吧！")

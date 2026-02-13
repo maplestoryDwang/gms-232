@@ -515,7 +515,8 @@ public class StringData {
         mapList.add(getMobStrings());
         mapList.add(getNpcStrings());
         mapList.add(getMapStrings());
-        String[] names = new String[]{"Mob", "Npc", "Map"};
+        mapList.add(getQuestStrings());
+        String[] names = new String[]{"Mob", "Npc", "Map","Quest"};
         sortedSkillTree.putAll(getSkillString());
         for (Map.Entry<Integer, SkillStringInfo> entry : sortedSkillTree.entrySet()) {
             sb.append(entry.getKey()).append(" - ").append(entry.getValue().getName()).append("\r\n");

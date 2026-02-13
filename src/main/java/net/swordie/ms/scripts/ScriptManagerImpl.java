@@ -266,7 +266,7 @@ public class ScriptManagerImpl implements ScriptManager {
 
         if (!isField()) {
             getChr().chatMessage(Mob, String.format("Starting script [%s] , scriptType [%s].", scriptName, scriptType));
-            log.debug(String.format("Starting script [%s], scriptType [%s].", scriptName, scriptType));
+            log.info(String.format("Starting script [%s], scriptType [%s].", scriptName, scriptType));
         }
 
         resetParam();

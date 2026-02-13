@@ -237,12 +237,51 @@ public abstract class WzInputStream {
 			str[i] = (byte) (str[i] ^ keyNum);
 		}
 		for (int i = 0; i < (str.length / 2); i++) {
-			char toXor = (char) ((str[i] << 8) | str[i + 1]);
+			int lo = str[i*2] & 0xFF;
+			int hi = str[i*2 + 1] & 0xFF;
+			char toXor = (char) (lo | (hi << 8));
 			charRet[i] = (char) (toXor ^ invFlip);
 			invFlip++; // changes the bits that get flipped
 		}
 		return String.valueOf(charRet);
 	}
+
+	public String decryptUnicodeStrV2(byte[] data) {
+
+		return decodeUnicode(data, this.key);
+	}
+
+
+	public static String decodeUnicode(byte[] data, byte[] key) {
+		int length = data.length / 2;
+		char[] out = new char[length];
+		int mask = 0xAAAA;
+
+		for (int i = 0; i < length; i++) {
+			int lo = data[i * 2] & 0xFF;
+			int hi = data[i * 2 + 1] & 0xFF;
+			int ch = lo | (hi << 8);
+
+			// step 1: mask
+			ch ^= mask;
+
+			// step 2: key (可选)
+			if (key != null) {
+				int keyWord =
+						((key[i * 2 + 1] & 0xFF) << 8)
+								|  (key[i * 2] & 0xFF);
+				ch ^= keyWord;
+			}
+
+			out[i] = (char) ch;
+			mask++;
+		}
+
+		return new String(out);
+	}
+
+
+
 
 	public int readOffset() {
 		int off = 0xFFFFFFFF & getPosition(); // current position

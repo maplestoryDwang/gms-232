@@ -20,7 +20,7 @@ def skip_tutorial():
     sm.removeEscapeButton()
     sm.lockInGameUI(True)
 
-    if sm.sendAskYesNo("Would you like to skip the tutorial questline and instantly arrive at #m" + str(map_to_warp) + "#?"):
+    if sm.sendAskYesNo("你想跳过教程任务，马上飞到 #m" + str(map_to_warp) + "#吗?"):
         if sm.getChr().getLevel() < target_level:
             sm.addLevel(target_level - sm.getChr().getLevel())
 
@@ -45,7 +45,7 @@ if not sm.hasQuest(32202) or not sm.hasQuestCompleted(32203):
         sm.showEffect("Effect/Direction12.img/effect/tuto/BalloonMsg1/1", 900, 0, -120, 0, sm.getNpcObjectIdByTemplateId(UNK_NPC), False, 0)
         sm.sendDelay(1800)
 
-        sm.moveNpcByTemplateId(UNK_NPC, False, 1000, 100)
+        sm.moveNpcByTemplateId(UNK_NPC, True, 1000, 100)
         sm.moveCamera(False, 200, 200, 200)
 
         # The delay is for letting the Npc move
@@ -59,8 +59,8 @@ if not sm.hasQuest(32202) or not sm.hasQuestCompleted(32203):
         sm.setSpeakerType(3)
         sm.removeEscapeButton()
         sm.setPlayerAsSpeaker()
-        sm.sendNext("Who was that girl? Why did she run away when she saw me?")
-        sm.sendNext("Maybe I'll follow her..")
+        sm.sendNext("刚刚那个女孩是谁呢？为什么一见到我就逃走了呢？")
+        sm.sendNext("我也朝着那个方向过去看看吧")
 
         sm.removeNpc(UNK_NPC)
         sm.completeQuestNoRewards(32202)

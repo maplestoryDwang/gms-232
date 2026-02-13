@@ -158,9 +158,9 @@ public class MigrationHandler {
             SurpriseMissionModule.showSurpriseMissionToClient(chr, chr.getSurpriseMission());
         }
 
-        chr.setOnline(true); // v195+: respect 'invisible login' setting
 
         chr.write(Login.sendUiPermissions());
+        chr.setOnline(true); // v195+: respect 'invisible login' setting
         chr.initBlessingSkills();
         c.write(WvsContext.updateEventNameTag(new int[]{}));
         if (chr.getGuild() != null) {

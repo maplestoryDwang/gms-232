@@ -1446,15 +1446,15 @@ public enum OutHeader {
     //TODO Not updated to NEO yet
 
     // CField_MomentSwimArea::OnPacket
-    MOMENT_SWIM_AREA_SET_WATER_LEVEL(1373),
-
-    // CUnk::OnPacket
-    UNK203_1246(1395),
-    UNK203_1247(1396),
-    UNK203_1248(1397),
-    UNK203_1249(1398),
-    UNK203_1250(1399),
-    //TODO Not updated to NEO yet
+//    MOMENT_SWIM_AREA_SET_WATER_LEVEL(1373),
+//
+//    // CUnk::OnPacket
+//    UNK203_1246(1395),
+//    UNK203_1247(1396),
+//    UNK203_1248(1397),
+//    UNK203_1249(1398),
+//    UNK203_1250(1399),
+//    //TODO Not updated to NEO yet
 
 
     // CDropPool::OnPacket      v223.1

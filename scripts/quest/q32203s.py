@@ -4,29 +4,29 @@ THE_TOWN_CHIEF = 32210
 AMHERST = 4000020
 
 sm.setSpeakerID(MAI)
-sm.sendNext("Ohmygoodness! Hi! Im Mai, an aspiring hero. it took me four years, but i just completed my freshmen year at hero school. You must be a new #bExplorer#n.")
+sm.sendNext("你好，我的名字叫麦加。我从来没有见过你哦，看来你是新来的#b冒险家#k吧？")
 sm.setPlayerAsSpeaker()
-sm.sendNext("A new ... #bExplorer#n? What's that?")
+sm.sendNext("#b冒险家？#k")
 sm.setSpeakerID(MAI)
-sm.sendNext("This was on that test I flunked ten time... Oh, right! Explorers are people who come to Maple World from other worlds! They start their journey right here on #bMaple Island#n.")
+sm.sendNext("是的，为了在冒险岛世界展开冒险而从其他世界来的人。我们称这种人为“冒险家”。所有冒险家都是从#b冒险岛#k开始冒险的。")
 sm.setPlayerAsSpeaker()
-sm.sendNext("I'm on... #bMaple Island#n?")
+sm.sendNext("#b冒险岛？#k")
 sm.setSpeakerID(MAI)
-sm.sendNext("You sure are. We used to be just some tiny island, but then Explorers started popping out. Now, we even got our own outhouse!")
-sm.sendNext("So, your name is #h #, right? You have two options now. You can listen to some explanations about starting out, take a few small tests, get some free gifts and become my new best friend in the entire world...")
-sm.sendNext("Or you can be teleported straight to town, but you'll miss out on my gifts... and I'll be super lonely and sad.")
+sm.sendNext("嗯，冒险岛！这里本来只是个无名小岛，但不知从何时起有很多冒险家都纷至沓来。为了他们的到来，这里开始陆陆续续有设施搭建起来，现在这里已经变成了一个不错的村庄。并且由我来为像你一样的新手冒险家提供帮助。")
+sm.sendNext("你是叫……#h0#吧？既然你是第一次来到冒险岛世界，那就多听一下我做的说明吧？通过我的小测试的话，我就会给你对冒险非常有用的礼物哦！")
+sm.sendNext("如果你不想听我的说明，我马上送你去村庄。不过那样一来，你就无法获得礼物。")
 
-selection = sm.sendNext("What do you say? \r\n#L0##b I'll be your friend, Mai!(Go through tutorial and get free equipment)#l \r\n #L1#I don't need you, Mai!(Skip tutorial and teleport straight to town.)#l")
+selection = sm.sendNext("明白了的话，现在开始选择吧。\n你要怎么做呢？\r\n#b#L0# 听取麦加的说明，并获得新装备作为礼物。 #l\r\n#L1# 不听说明，立即移动至村庄。#l#k")
 
 if selection == 0:
-    sm.sendNext("REALLY?! I'll fill you in on everything you need to know. I promise!")
+    sm.sendNext("不错的选择！如果你按照我的说明去做，以后在冒险岛世界生活不会有任何问题的。")
     sm.startQuest(parentID)
     sm.completeQuest(parentID)
 
 elif selection == 1:
-    sm.sendNext("I knew you'd pick that. Everyeone always does... I'll send you to Amherst right away and hope that the next Explorer will want to be my friend.")
-    sm.sendSay("This is for you! You can check out the Recovery potions I gave you in your Use tab.")
-    sm.sendSay("Make sure you talk to Chief Lucas when you get to Amherst! He's really smart and will give you some great advice.")
+    sm.sendNext("好吧，那么我现在立刻送你去彩虹村。")
+    sm.sendSay("我已经把礼物放到你背包里，是恢复用药水。你待会儿打开消耗栏确认一下吧。")
+    sm.sendSay("你到了彩虹村的话，别忘了去见见#b路卡斯#k村长!他会给你一些建议，让你能刚好地去适应新世界。")
     sm.startQuest(parentID)
     sm.completeQuest(parentID)
     sm.startQuest(THE_TOWN_CHIEF)

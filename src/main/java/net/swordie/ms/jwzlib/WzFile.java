@@ -46,7 +46,9 @@ public final class WzFile extends WzObject<WzFile, WzObject<?, ?>> {
 
 	public WzFile(String wz) {
 		this(wz, ServerConstants.VERSION_FOR_WZ);
+//		this(wz, (short)186);
 		parse(new WzMappedInputStream(Paths.get(wz)));
+
 		addFromDataWz();
 	}
 
@@ -105,6 +107,7 @@ public final class WzFile extends WzObject<WzFile, WzObject<?, ?>> {
 		var ver = in.readShort(); // enc ver
 		in.setHash(getVersionHash(version));
 		root = new WzDirectory(name, h.FILE_START, h.FILE_SIZE, 0);
+//		root = new WzDirectory(name, h.FILE_START+2, h.FILE_SIZE, 0);  // cms
 		root.parse(in);
 	}
 

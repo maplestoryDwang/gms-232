@@ -400,7 +400,8 @@ public class QuestConstants {
     }
 
     public static boolean isSpamQuest(String scriptName) {
-        return scriptName.contains("63360") || scriptName.contains("7707") || scriptName.contains("36102");
+        return scriptName.contains("63360") ||  scriptName.contains("36102");
+//        return scriptName.contains("63360") || scriptName.contains("7707") || scriptName.contains("36102");
     }
 
     public static boolean isSurpriseMissionQuest(int questId) {

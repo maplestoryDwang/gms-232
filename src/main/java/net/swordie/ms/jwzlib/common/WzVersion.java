@@ -24,5 +24,6 @@ package net.swordie.ms.jwzlib.common;
 public enum WzVersion {
 	GMS,
 	EMS,
-	BMS;
+	BMS,
+	CMS;
 }

@@ -1,0 +1,1 @@
+sm.avatarOriented("UI/tutorial.img/22")
