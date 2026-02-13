@@ -3,11 +3,10 @@ KINU = 1102006
 
 sm.setSpeakerID(KINU)
 
-response = sm.sendAskYesNo("I am Kinu. I will get you up to speed on Ereve's history. "
-"Now, go on and sit! I teach best when my students are shorter than me!")
+response = sm.sendAskYesNo("我来晚了吗？你好。我是负责教授圣地历史的奇努。干嘛站在那里？快过来坐下。")
 
 if not response:
-	sm.sendNext("Why are you still standing? That is not what a well-behaved student would do.")
+	sm.sendNext("走到椅子前面，按快捷键x，就可以坐到椅子上。")
 	sm.dispose()
 
 sm.removeEscapeButton()

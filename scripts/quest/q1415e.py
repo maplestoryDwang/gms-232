@@ -5,14 +5,13 @@ job = "Mage (Fire, Poison)"
 
 sm.setSpeakerID(1032001) # Grendel the Really Old
 if sm.hasItem(darkMarble, 30):
-    sm.sendNext("I am impressed, you surpassed the test. Only few are talented enough.\r\n"
-                "You have proven yourself to be worthy, I shall mold your body into a #b"+ str(job) + "#k.")
+    sm.sendNext("#t4031013#全部搜集到啦……我知道你一定很轻松就能通过。好的，终于……我来让你变成火毒法师。准备好了吗……？")
 else:
-    sm.sendSayOkay("You have not retrieved the #t"+ str(darkMarble)+"#s yet, I will be waiting.")
+    sm.sendSayOkay("冒险之书任务已完成。")
     sm.dispose()
 
 
 sm.consumeItem(darkMarble, 30)
 sm.jobAdvance(210) # Mage FP
 sm.completeQuestNoRewards(parentID)
-sm.sendNext("You are now a #b"+ str(job) + "#k.")
+sm.sendNext("好的……从现在开始，你就是#b火毒法师#k了……法师是以较高的智力为基础，使用自然力量压制敌人的人……希望你一定要努力增加学识……")

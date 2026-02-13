@@ -1,10 +1,10 @@
 LADY_SYL = 1056000
 
 sm.setSpeakerID(LADY_SYL)
-sm.sendNext("#h0#, you look rather green. Are you ill? You're poisoned? Did Ryden tell you that? The potion was just apple juice. Couldn't you tell? Anyway, Ryden was just making a point...")
-sm.sendSay("Don't even THINK about betraying us. The Dual Blades do not forgive their enemies...")
+sm.sendNext("……#h0#？有什么事吗？脸色那么难看…什么？红雅给你投毒…？…这家伙，又在搞恶作剧了…我们暗影双刀怎么可能会给自己的同伴投毒呢，这只是红雅的恶作剧，你不用在意。我们很信任你的。")
+sm.sendSay("当然，如果你用背叛来报答我们对你的信任，那就另说了。你不想永远与暗影双刀为敌，就不要试着背叛我们。")
 
-if sm.sendAskYesNo("The look in your eyes, the lift in your shoulders. You seem ready. Do you wish to advance to #bRogue#k? Once you do, you can begin your REAL missions."):
+if sm.sendAskYesNo("话说回来，既然都搞起恶作剧，看来你的教育已经结束了吧。我能感觉到，无论是姿势还是眼神…你都已经准备好作为间谍潜入敌人内部了。你要#b转职为飞侠#k吗？也就是为了正式的任务而进入准备阶段。"):
     if chr.getLevel() >= 10 and chr.getJob() == 0:
         if sm.canHold(1332063):
             sm.giveItem(1332063)
@@ -23,13 +23,13 @@ if sm.sendAskYesNo("The look in your eyes, the lift in your shoulders. You seem 
             sm.startQuest(17903)
             sm.completeQuest(17903)
             sm.avatarOriented("Effect/OnUserEff.img/RecordClear_BT/clear")
-            sm.sendNext("You're not a Thief, even though you haven't learned any Dual Blade skills yet. But you should be able to approach the Dark Lord as our spy.")
-            sm.sendSay("Dual Blades and Thieves value the same stats, specifically LUK, with DEX as a secondary. Use the #bAuto-Assign#k feature if you're unsure how to allocate your stats.")
-            sm.sendSay("You'll need a lot of items to be a successful spy, so I've increased your Equip and ETC tab slots.")
-            sm.sendSay("That's all from me. Ryden will you in on the details. I look forward to fruitful results...")
+            sm.sendNext("冒险之书任务已完成。")
+            sm.sendSay("现在你就是飞侠了，虽然还没学到双刀技术…也正因为如此，你现在才能作为飞花院的间谍，靠近达克鲁。")
+            sm.sendSay("即使是双刀，他的属性与普通飞侠没什么区别。飞侠是以运气（LUK）为核心属性，敏捷（DEX）为辅助属性的。如果你不知道该怎么分配属性，点击#b自动分配#k就可以了。")
+            sm.sendSay("哦，还有…想要当间谍，肯定还需要很多东西对吧？我增加了你的装备、其他物品保管盒的数量。背包越大，行动起来就越方便。")
         else:
-            sm.sendSayOkay("You need more inventory space.")
+            sm.sendSayOkay("你用的新武器也发放给你了。比之前的武器应该好用得多。")
     else:
-        sm.sendSay("Please talk to me again after reaching level 10.")
+        sm.sendSay("那么，我能教你的只有这些了。现在开始，红雅会给你重新安排任务的，那么，我就等你的好消息了。")
 else:
     sm.sendNext("I can see you're not yet prepared...")

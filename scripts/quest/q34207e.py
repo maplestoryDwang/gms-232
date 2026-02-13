@@ -3,5 +3,5 @@ sm.completeQuestNoCheck(parentID)
 sm.setSpeakerID(3003151) # Simia
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendNext("#b#h0##k!\r\nI see you brought all the ingredients. Now we'll just mash these into a paste and bake it into a #bbun#k!")
+sm.sendNext("#b#ho#！#k\r\n你已经集齐材料啦？用这些材料应该可以做出面包？的味道！！")
 sm.createQuestWithQRValue(18418, "B=34847")

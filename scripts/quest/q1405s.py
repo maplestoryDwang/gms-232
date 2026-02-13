@@ -1,28 +1,28 @@
 sm.setSpeakerID(1090000)
-sm.sendNext("#h #...? Oh, right! Mai mentioned you. Yeah...you look pretty good to me. I'm Kyrin, the captain of the Nautilus and the Pirate Job Instructor. I heard you are interested in becoming a Pirate. Is that true?")
-sm.sendSay("If that's the case, I should tell you a bit about myself first. I brought the pirates together to start working against the Black Mage, the great evil that threatens all of Maple World. Turns out the hero business is more profitable than looting and pillaging!")
-sm.sendSay("If you become a Pirate, you can help investigate the Black Mage's plots, and assist in the defense of Maple World. Keep in mind that I won't make you do anything...I'm primarily a Job Instructor, and just guide the pirates in a general sense.")
-sm.sendSay("But, I know you would help us fight the Black Mage. You have that gleam in your eye that all heroes do. Anyway, I've said my piece. That was just for your information. What's really important is coming up next.")
-sm.sendSay("There are two paths you can take as a Pirate. You can fight with guns, or with your fists. Your weapons and skills will be quite different depending on what you pick, but both are still Pirates. And that means you're gonna look GOOD while you fight!")
-if sm.sendAskAccept("Okay, I've said enough. So, Pirate. In, or out? If you want to become a Pirate, I'll bring you to the Nautilus right now using my power as a Job Instructor. #rAnd if you don't, I'll help you find the right job for you#k."):
+sm.sendNext("#h0#……？嗯，麦加说的果然没错，你看上去很有天赋。见到你很高兴。我叫凯琳，是海盗船诺特勒斯号的船长，同时也是海盗们的转职官。听说你对海盗感兴趣，是吗？")
+sm.sendSay("我们得先谈点个人的事情。为了对抗威胁冒险岛世界的人——黑魔法师，我在不久前组建了海盗团。诺特勒斯号的海盗们现在正在冒险岛世界各地调查黑魔法师的痕迹。")
+sm.sendSay("如果你成为海盗的话，就必须帮助调查黑魔法师。当然，这不是义务，而是建议。虽然我是海盗们的转职官，但不是海盗们的主人。所以不是命令，只是建议。")
+sm.sendSay("如果你是在冒险岛世界冒险的人，相信你一定愿意为冒险岛世界做这些事情。不是出于奖励，而是出于善意……呵呵。好像扯得太长了。你先记住这些，真正重要的在后面。")
+sm.sendSay("海盗大致分为使用短枪的人和使用体术的人，各自的技能存在很大的差别。如果说有什么共同点的话，那就是都有华丽的连续技。虽然操作很难，但熟悉了的话，就会变得很强。")
+if sm.sendAskAccept("我好像说得太多了……你快决定吧。到底是成为海盗，还是选择其他职业？如果想成为海盗，我就使用转职官的特权，马上邀请你到诺特勒斯号去。#r拒绝的话，我会建议你选择其他职业。请别担心#k。"):
     sm.warp(120000101)
     sm.startQuest(parentID)
 else:
-    choice = sm.sendNext("You wish to choose a different path? Hey, if that's what you want. Which job will you choose, then?\r\n\r\n#b#L0#Warrior#l\r\n#L1#Magician#l\r\n#L2#Bowman#l\r\n#L3#Thief#l")
+    choice = sm.sendNext("你不想走海盗之路吗？不愿意的话，我就不能勉强。那你就去选择其他道路吧。除了海盗之外，还有四条道路可供选择。\r\n#b#L1#战士#l \r\n#b#L2#魔法师#l \r\n#b#L3#弓箭手#l \r\n#b#L4#飞侠#l")
     if choice == 0:
-        sm.sendNext("You want to be a Warrior? I don't really understand why, but all right. I'll send you to #bDances with Balrog#k.")
+        sm.sendNext("你想走战士之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b武术教练#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "1")
         sm.warp(102000003)
     elif choice == 1:
-        sm.sendNext("You want to be a Magician? I don't really understand why, but all right. I'll send you to #bGrendel the really Old#k.")
+        sm.sendNext("你想走弓箭手之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b汉斯#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "2")
         sm.warp(101000003)
     elif choice == 2:
-        sm.sendNext("You want to be a Bowman? I don't really understand why, but all right. I'll send you to #bAthena Pierce#k.")
+        sm.sendNext("你想走弓箭手之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b郝丽娜#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "3")
         sm.warp(100000201)
     elif choice == 3:
-        sm.sendNext("You want to be a Thief? I don't really understand why, but all right. I'll send you to #bthe Dark Lord#k.")
+        sm.sendNext("你想走飞侠之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b达克鲁#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "4")
         sm.warp(103000003)
-    sm.chatScript("Please CC.")
+    sm.chatScript("嗯？还想再考虑一下吗？")

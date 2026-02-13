@@ -1,18 +1,18 @@
 ATHENA = 1012100
 
 sm.setSpeakerID(ATHENA)
-sm.sendNext("A young elf named Athena Pierce... I believe I'm the only elf with that name. And I did come from Ossyria to Victoria Island to get away from the Black Mage...")
+sm.sendNext("年幼的精灵赫丽娜……这个嘛。据我所知，没有其他精灵和我同名。我确实是为了躲避黑魔法师的攻击，从神秘岛来到了金银岛。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("But she was so young. I'm sorry, but you couldn't...")
+sm.sendSay("怎么会这样？赫丽娜明明是个年纪很小的精灵。才过了这么短的时间，怎么可能长这么大了……")
 
 sm.setSpeakerID(ATHENA)
-sm.sendSay("Are you talking about the curse on the elves? Ah, I was lucky enough to avoid it. #rHundreds of years#k is enough time for an elf to mature, you know.")
+sm.sendSay("如果你是说精灵们受到的诅咒，我很幸运，没有受到诅咒。对于精灵来说，#r几百年时间#k也足够长大了。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("A curse? Hundreds... of years? This makes no sense. The day Mercedes and the rest of us faced the Black Mage was the same day that little Athena Pierce got on the ship to Victoria Island.")
+sm.sendSay("精灵们受到的诅咒？几百年？不知道你在说些什么。在我和双弩精灵他们一起去阻止黑魔法师的那一天，我听说你坐着避难船，到金银岛去了。")
 
 sm.setSpeakerID(ATHENA)
-sm.sendSay("Then were you... Were you also under the Curse of the Black Mage? Listen to me carefully... It's been centuries since the day you were sealed. Do you understand? #r#eCenturies#k#n.")
+sm.sendSay("你难道……你也受到了黑魔法师的诅咒吗？如果你刚刚醒来……那请仔细听好。从封印黑魔法师的那一天开始，已经过去了几百年的岁月。现在的这个世界，是#r#e距离你记忆中的那一天已经过了好几百年了#k#n。明白我的意思了吗？")
 
 sm.startQuest(parentID)

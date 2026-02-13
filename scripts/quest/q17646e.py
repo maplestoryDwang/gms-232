@@ -1,13 +1,13 @@
 # id 17646 ([Commerci Republic] Outlaw of the Sea), field 865010001
 sm.setSpeakerID(9390244) # Leon Daniella
-sm.sendNext("Is everyone alive?")
+sm.sendNext("大家都活着吗。")
 sm.setParam(2)
-sm.sendSay("The ship's seen better days, but the crew seems okay.")
+sm.sendSay("嗯，船只好像受到很严重的破坏，但人员好像并没有伤亡。")
 sm.setParam(0)
-sm.sendSay("The old monster must've been toying with us. It didn't even come up outta the water. Maybe it was just trying to give us high fives, kraken-style.")
+sm.sendSay("呼，深海巨妖并没有全力扑来真是万幸。它连头都没有探出来。看来它不是要吃我们，只是跟我们开个玩笑而已。")
 sm.setParam(2)
-sm.sendSay("I guess we got lucky.")
+sm.sendSay("原来是我们运气好。")
 sm.setParam(0)
-sm.sendSay("No kidding, #h0#. You play with the Grosso, you might just get smashed to Polpo, right? Haha! Because Polpo sounds like pulp.")
+sm.sendSay("不管怎样，#h0#多亏有你在啊。尽管是开玩笑，深海巨妖开的玩笑对人类来说可就是关乎生死的玩笑了。")
 sm.completeQuestNoCheck(parentID)
 sm.createQuestWithQRValue(18418, "B=33275")

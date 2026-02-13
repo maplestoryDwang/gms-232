@@ -3,14 +3,14 @@
 UNKNOWN_PERSON = 2210009 #     Npc Name = ???
 
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendNext("I can't believe the Goddess would create such a vile and vicious monster.")
+sm.sendNext("女神的宠物竟然变成了如此邪恶凶暴的怪物……？")
 
 sm.setSpeakerID(UNKNOWN_PERSON)
 sm.flipSpeaker()
-sm.sendSay("This is only the beginning. There is so much more in store...")
+sm.sendSay("呵呵呵……这只是开始。以后的事情更值得期待。")
 
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendNext("#b(The stranger's voice fades with the passing wind.)")
+sm.sendNext("#b(可疑的人的声音顺着风消失在了远方……)#k")
 
 sm.warpInstanceOut(240092300, 2) # Stone Colossus Torso 2
 sm.completeQuest(parentID)

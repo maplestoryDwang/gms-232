@@ -40,19 +40,22 @@ if not sm.hasQuest(32202) or not sm.hasQuestCompleted(32203):
         sm.showFieldEffect("maplemap/enter/10000", 0)
         sm.sendDelay(1000)
 
-        sm.spawnNpc(UNK_NPC, -240, 220)
+        # sm.spawnNpc(UNK_NPC, -240, 220)
+        sm.npc_ChangeController(10300, "oid=1194624", -240, 220, 6, -290, -190, 1, True, 0, False)
+
         sm.showNpcSpecialActionByTemplateId(UNK_NPC, "summon", 0)
         sm.showEffect("Effect/Direction12.img/effect/tuto/BalloonMsg1/1", 900, 0, -120, 0, sm.getNpcObjectIdByTemplateId(UNK_NPC), False, 0)
         sm.sendDelay(1800)
 
-        sm.moveNpcByTemplateId(UNK_NPC, True, 1000, 100)
+        sm.moveNpcByTemplateId(UNK_NPC, False, 1000, 100)
         sm.moveCamera(False, 200, 200, 200)
 
         # The delay is for letting the Npc move
-        sm.sendDelay(3000)
+        sm.sendDelay(4542)
 
         sm.moveCamera(True, 0, 0, 0)
 
+        sm.sendDelay(0)
         sm.sendDelay(900)
 
         sm.setSpeakerID(0)

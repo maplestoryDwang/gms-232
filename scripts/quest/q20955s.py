@@ -8,8 +8,8 @@ jobSkills = {
 }
 
 sm.setSpeakerID(1064022)
-sm.sendNext("I have something to give to you.")
-sm.sendNext("This power will help you protect your queen. Now I will leave to seek for a solution. I wish you good luck.")
+sm.sendNext("我忘了有东西要给你了。")
+sm.sendNext("这份力量会帮助你守护女皇。我要去寻找方法了。愿好运与你同在。")
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
 jobID = chr.getJob()

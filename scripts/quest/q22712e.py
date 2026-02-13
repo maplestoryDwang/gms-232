@@ -3,8 +3,8 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendNext("Actually, wait. Let me get a preliminary physical reading right now.")
-sm.sendSay("#face3#...That's weird. Hey, K. Looks like you have an ability you can improve.")
+sm.sendNext("好吧，那最后再检查一下身体状态。")
+sm.sendSay("只是休息了片刻，这么快就恢复了，你的体力可真够好的啊。")
 sm.sendSay("#face2#You can increase your #gbasic abilities#k and #gskill levels#k by leveling up. Don't wait to train if you want to get stronger.")
 sm.sendSay("#face2#Since your brain controls all your powers, I would focus on improving your #gINT#k. You'll never be as smart as me, but you can use the Auto-Assign function to do it smartly.")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis

@@ -3,7 +3,7 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003406) # Jean
-sm.sendSay("#face0#The last part of the questline will be implemented later. You can start on dailies and continue to esfera now.")
+sm.sendSay("#face10#你来啦，#h0#。我一直在等你。")
 sm.completeQuestNoCheck(34272)
 sm.completeQuestNoCheck(parentID)
 sm.completeQuestNoCheck(34231)

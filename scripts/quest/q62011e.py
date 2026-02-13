@@ -2,6 +2,6 @@
 sm.setSpeakerType(3)
 sm.setParam(57)
 sm.setColor(1)
-sm.sendNext("(You've found the library! Now all you have to do is locate the #t4034637#.)")
+sm.sendNext("(终于搞清楚秘密书库的位置了。现在就剩下寻找#t4034637#了。)")
 sm.completeQuestNoCheck(parentID)
 sm.playExclSoundWithDownBGM("Field.img/masteryBook/EnchantSuccess", 100)

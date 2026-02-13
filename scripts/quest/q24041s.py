@@ -4,13 +4,10 @@
 
 sm.flipDialoguePlayerAsSpeaker()
 sm.removeEscapeButton()
-sm.sendNext("Calm down, Mercedes! I just have to think. "
-"Okay, let's run down what's going on...")
-sm.sendSay("1. The rest of the Elves are still frozen, so the Black Mage's curse is still in place.")
-sm.sendSay("2. I'm the only one who's woken up. I don't know why, but I get this feeling... "
-"Could the Black Mage's seal be weakening?")
-sm.sendSay("3. I want to go outside and check on Maple World, but I'm only level 10. "
-"No, I still can't believe it... I can't be level 10!")
+sm.sendNext("左手可以动……")
+sm.sendSay("右手也没问题……")
+sm.sendSay("伤全都好了。只是等级……呃呃呃……好想哭……")
+sm.sendSay("腿也没事。")
 sm.sendSay("Brr! I don't know how long I've been asleep, but I'm freezing to death! "
 "Just how powerful was that curse?")
 sm.sendSay("Okay, so I was injured when I was cursed, and I may have been in the ice for decades. "

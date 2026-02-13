@@ -7,34 +7,33 @@ SUTRA_5_6F = 701220300
 sm.removeEscapeButton()
 sm.setSpeakerID(CHENGXIN)
 sm.setBoxChat()
-sm.sendNext("Now that the demons have quieted down, tell me who you are. What are you doing here?")
+sm.sendNext("呼，多亏了你，我们才能渡过难关。对了，我好像从没见过你嘛……你怎么会来到这么危险的地方？")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("(You fill him in on the details.)")
+sm.sendNext("(说出了这段时间发生的事情。)")
 
 sm.setSpeakerID(CHENGXIN)
 sm.setBoxChat()
-sm.sendNext("Ah, #bMonk Laomo#k... Now there was a truly great leader. A selfless soul, not an ounce of greed in him... A far cry from our current #b#p"+ str(WISE_CHIEF_PRIEST) +"##k...")
+sm.sendNext("#b老魔僧#k的书啊……你说的是#b#t4034637##k吧。#b老魔僧#k是一位非常有能力的高僧。与现在的#b#p9310053##k不同，他不喜欢钱财，是一个深受僧侣们崇敬的清廉之人。")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("(Come to think of it, the #b#p"+ str(WISE_CHIEF_PRIEST) +"##k was dressed rather ostentatiously, for a monk. "
-            "The main temple is rather flamboyant, too. And who names themselves '#b#p"+ str(WISE_CHIEF_PRIEST) +"##k'?")
+sm.sendNext("(好像的确是这么回事，#b#p9310053##k的穿着非常华丽，不像个僧侣。大雄殿的祭坛也是富丽堂皇的。)")
 
 sm.setSpeakerID(CHENGXIN)
 sm.setBoxChat()
-sm.sendNext("You and I have the same aim, friend. Stopping those demons! I'll help you find that book!")
+sm.sendNext("现在的首要任务是阻止妖怪肆虐，找书的事情我也会帮助你的！	")
 
-sm.sendNext("You can't enter #b#m"+ str(SUTRA_5_6F) +"##k looking the way you do. The demonic power is too great. Try drinking this Metamorph Potion.")
+sm.sendNext("#b#m701220300##k会把除妖怪以外的生物全部驱逐出地图。使用这个变身药水，可以暂时变成和那些妖怪相同的模样。")
 
-sm.sendNext("Temporarily transform into a demon and investigate #m"+ str(SUTRA_5_6F) +"#. The potion isn't that strong, so avoid the demons' direct gaze!")
+sm.sendNext("#r#k暂时变成妖怪后，你需要避开妖怪的视线，对#b#p9310048##k所说的#m701220300#进行调查。")
 
-response = sm.sendAskYesNo("Ready to go?")
+response = sm.sendAskYesNo("现在立刻开始吗？")
 
 if response:
-    sm.sendNext("Good luck, friend.")
+    sm.sendNext("那些妖怪在#b#m701220300##k中放置了很多用于瞎捣蛋的物品，你在调查时最好小心。")
     sm.startQuest(parentID)
     sm.warpInstanceIn(701220310)
 else:
-    sm.sendSayOkay("Let me know when you are ready to go.")
+    sm.sendSayOkay("配置文件不存在,请联系管理员。")

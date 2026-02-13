@@ -17,21 +17,20 @@ MOBID_2 = 9450027 # Contaminated Goblin 2
 sm.setSpeakerID(TAKEDA)
 sm.flipSpeaker()
 
-sm.sendNext("Looking at those spell scrolls, I was able to remember the instructions on that letter on how to lift the spell. Just needed to jump-start the of noggin")
+sm.sendNext("多亏了你搜集到的咒术书，我想起了信上写的解除咒术的方法了。")
 
-response = sm.sendAskYesNo("Unfortunately for you, lifting the spell requires more materials.\r\nBetter get to it!")
+response = sm.sendAskYesNo("为了解除这个咒术，还需要一个东西，你能再帮我一下吗？")
 
 if response:
     sm.flipSpeaker()
-    sm.sendNext("This #v" + str(ITEMID) + "##z" + str(ITEMID) + "# is just what we need.")
+    sm.sendNext("为了解除这个咒术，需要#i4034128:##t4034128:#。")
 
     sm.flipSpeaker()
-    sm.sendSay("So, go to #m" + str(MAPID_1) + "#, #m" + str(MAPID_2) + "#, and #m" + str(MAPID_3) + "#. Hunt #o" + str(MOBID_1) + "# and #o" + str(MOBID_2) +
-        "# monsters to get these #i" + str(ITEMID_2) + "# #z" + str(ITEMID_2) + "# items. We need them to grow the #i" + str(ITEMID) + "# #z" + str(ITEMID) + "#.")
+    sm.sendSay("#i4034128:##t4034128:#需要抓住#m811000004:#、#m811000005:#、#m811000006:#的#o9450026:#、#o9450027:#后得到的#i4009286:##t4009286:#作为养分，才能成长。")
 
     sm.flipSpeaker()
-    sm.sendSay("If you run around #m" + str(MAPID_1) + "#, #m" + str(MAPID_2) + "#, and #m" + str(MAPID_3) + "#. You'll see herb sprouts. Just drop one #z" + str(ITEMID_2) + "# on them.")
+    sm.sendSay("你去#m811000004:#、#m811000005:#、#m811000006:#看看，留心观察，应该就能找到药草的种子，然后用那里的#t4009286:#提供营养就行。")
 
     sm.flipSpeaker()
-    sm.sendSay("You want to grow #v" + str(ITEMID) + "##z" + str(ITEMID) + "# to Stage 4 and you need 10 #z" + str(ITEMID_2) + "# items for each stage")
+    sm.sendSay("#i4034128:##t4034128:#会经历3个成长阶段，每个阶段需要10个#t4009286:#。")
     sm.startQuest(parentID)

@@ -3,12 +3,12 @@ sm.setSpeakerType(3)
 sm.setParam(548)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013358) # Pathfinder
-sm.sendNext("#face0#Well... All right, I accept. Lead the way.")
+sm.sendNext("#face0#虽然村民们会感觉有点距离感……\r\n但他们很快就能看出你拥有一颗善良之心，并友善地对待你。")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(1013353) # Mascarpo
-sm.sendSay("#face0#You're...actually interested? I-I mean, of course! Who wouldn't be?")
-sm.sendSay("#face0#Just answering a couple questions in return for you saving me doesn't feel like a square deal. Come and party at our festival and I'll make sure you don't go hungry.")
-sm.sendSay("#face0#In our town, everyone's the shy sort, so don't feel bad if folks keep their distance at first. They know a good heart when they see one, though, so I'm sure they'll warm up to you quickly.")
+sm.sendSay("#face0#相信你一定能很快跟村民们打成一片。\r\n呵呵……我看人的眼光可从来不会有错。")
+sm.sendSay("#face0#呵呵，介绍就到这里……\r\n那我就马上带你到村里去吧。")
+sm.sendSay("#face0#好的，请跟我来。\r\n我来把你带到卡鲁帕村。\r\n\r\n#r ※ 自动移动到任务地图。#k")
 sm.sendSay("#face0#I'm sure you'll all be the best of friends before you know it. I'm always right about these things at least 80% of the time.")
 sm.setSpeakerType(4)
 sm.setSpeakerID(1013306) # Mascarpo

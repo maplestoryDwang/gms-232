@@ -1,29 +1,29 @@
 MONKEY = 1096003
 
 sm.setSpeakerID(MONKEY)
-sm.sendNext("Ook, ook! Oook! Ook! Ook! Ook?!")
+sm.sendNext("吱吱～吱，吱！吱吱吱！吱吱～！吱！吱？！")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("I remember...I was on my way to Maple Island, to become an Explorer... What happened? What's going on?")
+sm.sendSay("我明明是想到冒险岛世界去当一个冒险家的……到底是怎么回事？")
 
 sm.setSpeakerID(MONKEY)
-sm.sendSay("Oook! Ook! Ook! Oooook!")
+sm.sendSay("吱吱吱吱～吱！吱吱！吱吱吱吱吱！")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("I was talking to the captain, and admiring the scenery, and... Balrog! Balrog attacked the ship! So... Did I fall overboard? Then, why am I alive? I know #bI can swim#k, but can I swim while unconscious? Maybe I can. Maybe I'm a natural swimmer!")
+sm.sendSay("和船长说话的时候看了看守卫，好像是……没错！蝙蝠怪！蝙蝠怪出现了！然后我……就那样掉下了船？那怎么会没事呢？虽然我#b知道游泳的方法#k，但是在这个过程中，我不可能神智清醒啊……难道，我是个游泳神童吗？！")
 
 sm.setSpeakerID(MONKEY)
-sm.sendSay("Ooook! Ook! Ook! (Huh, a little monkey...tapping its foot angrily. Actually, when I first woke up, that monkey was the only thing I saw...)")
+sm.sendSay("吱吱吱吱吱！吱！吱！(有只小猴子好像很不满地在那里上窜下跳。看上去好像还很小。我醒来之后看到的第一个面孔，好像就是它……)")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Huh? Why are you waving your arms like that? Are you trying to tell me something? (The monkey took an apple out of the nearby chest. It looks delicious. But, what is he trying to tell you?)\r\n\r\n#i2010000#")
+sm.sendSay("嗯……？从刚才开始，你就一直想跟我说话吗？嗯？手上拿着的是……(猴子从怀里拿出一个苹果。看上去很好吃的熟透的苹果。但是……给我苹果干什么？)\r\n\r\n#i2010000#")
 
 sm.setSpeakerID(MONKEY)
-if sm.sendAskAccept("Ook ook! Om nom nom! (The monkey looks frustrated that you don't understand him. He pretends to eat the apple. Wait, does he want YOU to eat it? That must be it! What a nice monkey.)"):
+if sm.sendAskAccept("吱吱吱吱吱～咕嘟！(猴子一脸郁闷的表情，把苹果递给我，做出吃的动作。难道……它知道我体力很虚弱，让我吃掉它！这家伙，心地还挺善良的！)"):
     sm.giveItem(2010000)
     sm.startQuest(parentID)
     sm.setPlayerAsSpeaker()
-    sm.sendNext("(You have received a delicious-looking apple. You should eat it. Now...how do you open your Inventory? Was it the #bI#k key...?)")
+    sm.sendNext("(获得了看上去很好吃的苹果。吃一口看看吧。按#bI#k键，可以打开背包吗～？)")
     sm.avatarOriented("UI/tutorial.img/cannon/2")
 else:
     sm.setPlayerAsSpeaker()

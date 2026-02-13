@@ -16,11 +16,11 @@ else:
 
 sm.flipDialoguePlayerAsSpeaker()
 if sm.canHold(medal):
-    sm.sendNext("What is this feeling...?")
-    sm.sendSay("I've never felt this way when I was a commander.")
-    sm.sendSay("It feels like I've also gained a new power.")
-    sm.sendSay("I'll never forget my past and mission.")
-    sm.sendSay("I'll vanquish the Black Mage and atone for my sins so that no one else needs to walk down my path.")
+    sm.sendNext("这种感觉……")
+    sm.sendSay("感觉到了当军团长的时候没有感受到的全新的感情。")
+    sm.sendSay("除了感情之外，感觉有股新的力量在喷涌而出。")
+    sm.sendSay("是的，不过我不会忘记。我的过去，以及要做的事情！")
+    sm.sendSay("为了不再让我这样的人出现，必须消除邪恶，改正我犯下的错误。")
 
     sm.completeQuest(parentID)
     sm.giveSkill(echo)

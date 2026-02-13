@@ -7,22 +7,16 @@ sm.setSpeakerID(DANCES_WITH_BALROG)
 
 sm.setSpeakerID(1022000)
 
-sm.sendNext("You wish to become a #b"+ str(job) + "#k?\r\n"
-            "A #b"+ str(job) + "#k is specialised in short weapons such as #bHammers#k and #bAxes#k. "
-            "There are many useful skills you can acquire with both weapons, but I strongly recommend that you focus on one and stick to it.")
+sm.sendNext("你想选择准骑士之路吗？准骑士是拥有自制力，防备敌人，用强大的力量保护他人的人。主要使用的武器是#b剑#k和#b钝器#k。")
 
 
-sm.sendNext("Before I teach you the ways of the "+ str(job) + ", you will have to accomplish a very difficult test. "
-            "I will warp you into a special map, in which I require you to defeat #bSkeledogs#k "
-            "and return 30 #i"+ str(darkMarble) +"##z"+ str(darkMarble) +"#s to me.")
+sm.sendNext("作为战士，准骑士的技能中有很多自我强化技能。让自己熟练使用武器的 #b精准武器#k，造成强力伤害的#b终极剑钝器#k，提高攻击速度的#b快速武器#k，使身体变得强壮的#b物理训练#k等等。")
 
-response = sm.sendAskYesNo("Once you enter the map, you #rcannot#k return without the #b#t"+ str(darkMarble) +"#s#k, if you die you will lose your experience.\r\n"
-                            "Are you ready?")
+response = sm.sendAskYesNo("不仅如此。对于准骑士而言, 还有#b威胁#k技能, 即可以在一定时间内震慑多数敌人。也算是向敌人真实地展现冷酷的准骑士之特点吧？")
 
 if response:
     sm.warp(910230000, 0)
     sm.startQuestNoCheck(parentID)
 else:
-    sm.sendSayOkay("You cannot stay a Swordman. You #bwill#k have to face up to the test.\r\n"
-                   "Talk to me when you are ready.")
+    sm.sendSayOkay("当然还有更强大的攻击技能。你知道#b火焰冲击和寒冰冲击#k技能吗？它是瞬间给武器赋予火属性或者冰属性, 并以此给予敌人属性伤害的技能, 若有了它, 狩猎也会比之前轻松很多的。")
 sm.dispose()

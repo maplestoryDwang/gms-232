@@ -7,21 +7,15 @@ sm.setSpeakerID(DANCES_WITH_BALROG)
 
 sm.setSpeakerID(1022000)
 
-sm.sendNext("You wish to become a #b"+ str(job) + "#k?\r\n"
-            "A #b"+ str(job) + "#k is specialised in short weapons such as #bSwords#k and #bAxes#k. "
-            "There are many useful skills you can acquire with both weapons, but I strongly recommend that you focus on one and stick to it.")
+sm.sendNext("你想走剑客之路吗？我来为你简单地说明一下剑客。剑客是最一般意义上的战士。主要使用的武器是#b剑#k和#b斧#k。")
 
 
-sm.sendNext("Before I teach you the ways of the "+ str(job) + ", you will have to accomplish a very difficult test. "
-                "I will warp you into a special map, in which I require you to defeat #bSkeledogs#k "
-                "and return 30 #i"+ str(darkMarble) +"##z"+ str(darkMarble) +"#s to me.")
+sm.sendNext("作为战士，剑客的技能中有很多自我强化技能。让自己熟练使用武器的 #b精准武器#k，造成强力伤害的#b终极剑斧#k，提高攻击速度的#b快速武器#k，使身体变得强壮的#b物理训练#k等等。")
 
-response = sm.sendAskYesNo("Once you enter the map, you #rcannot#k return without the #b#t"+ str(darkMarble) +"#s#k, if you die you will lose your experience.\r\n"
-               "Are you ready?")
+response = sm.sendAskYesNo("当然还有更强大的攻击技能。你知道#b轻舞飞扬#k技能吗？它是挥舞刀剑或者斧头给予眼前的敌人施加二连击的技能, 要是有了它, 狩猎也会比之前容易很多。")
 
 if response:
     sm.warp(910230000, 0)
     sm.startQuestNoCheck(parentID)
 else:
-    sm.sendSayOkay("You cannot stay a Swordman. You #bwill#k have to face up to the test.\r\n"
-                   "Talk to me when you are ready.")
+    sm.sendSayOkay("攻击时若能激活#b斗气集中#k的话, 就可以累积斗气点数, 并通过它使用更强大的斗气消耗技能。")

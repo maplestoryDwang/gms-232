@@ -1,12 +1,12 @@
 # 21401 - [Job Adv] (Lv.100)   Aran
 sm.setSpeakerID(1201002)
-sm.sendNext("Thank you, Aran. If it weren't for you, I would have become enraged and who knows what could have happened. Thank you NOT! It's only your duty as my mster...")
-if sm.sendAskYesNo("Anyways, I just noticed how high of a level you've reached. If you were able to control me in my state of rage, I think you're ready to handle more abilities"):
+sm.sendNext("谢谢你，战神。多亏了你，才阻止了我的暴走。真是万幸……！以主人的实力，这点小事当然不在话下了！")
+if sm.sendAskYesNo("现在来看，你的等级已经很高了。既然能够打倒暴走状态下的我……那么唤醒你过去全部的力量也应该是可以的了。"):
     if not sm.canHold(1142132):
-        sm.sendSayOkay("Please make some space in your equipment inventory.")
+        sm.sendSayOkay("沉睡的技能全都唤醒了……毕竟好久没用了，还需要熟悉熟悉。不过，应该进步会很快的。")
         sm.dispose()
     sm.giveItem(1142132)
     sm.jobAdvance(2112)
     sm.completeQuest(parentID)
-    sm.sendNext("Your skills have been restored. Those skills have been dormant for so long that you'll have to re-train yourself. but you'll be as good as new once you complete your training.")
-    sm.sendNext("Even with all that, however, you still have a long way to go until you return to the old you.")
+    sm.sendNext("喂，你在哪呢？大事不好了！你快来趟#b#m104000004##k吧！\r\n#b#L0# (喂…………！#p1002104#可是一直喊我英雄的…………)#l")
+    sm.sendNext("#b只要你接受，我就喊你#m104000000##k，你要以最快的速度赶过来！知道吗？")

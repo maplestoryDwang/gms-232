@@ -15,8 +15,7 @@ if sm.canHold(yuGardenVisitor):
     sm.giveItem(yuGardenVisitor)
     sm.completeQuest(parentID)
 
-    sm.sendNext("Now I can officially welcome you to Shanghai. We just have that teeny-weeny jiangshi problem right now. "
-    "Sorry about that. But I hope you enjoy your stay!")
-    sm.sendNext("I'm so sorry, I think I see another traveler. I hope you have a fun, happy, and SAFE stay at Yu Garden!")
+    sm.sendNext("啊！这是通过测试的证物，#i3700310:##t3700310#。")
+    sm.sendNext("我现在真是焦头烂额，所以都没能好好欢迎你。虽然这里有些危险，还充满了僵尸……但还是欢迎你来上海！希望你能在上海度过快乐的时光！要是你有什么疑问或困难，可以随时来找我！")
 else:
-    sm.sendNext("I'm sorry, but can you make some room in your Set-up inventory first?")
+    sm.sendNext("啊……对了，你是否知道一个叫#p9310538#的哈夫林旅客呢？")

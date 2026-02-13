@@ -1,8 +1,8 @@
 # 22008 |   Chasing away the foxes (Evan intro)
 sm.setSpeakerID(1013101)
-if sm.sendAskYesNo("It's strange. The chickens are acting funny. They used to hatch way more Eggs. Do you think the Foxes have something to do with it? If so, we better hurry up and do something about it."):
+if sm.sendAskYesNo("你不觉得奇怪吗？最近的鸡怎么和以前不一样了？以前它们会下很多#t4032451#，但现在越来越少了。是不是因为狐狸增多了呢？那样的话，必须赶紧想办法才行。你说对不对？"):
     sm.startQuest(parentID)
-    sm.sendNext("Right? Let us go and defeat those Foxes. Go on ahead and defeat #r10 Treacherous Foxes#k in #bBack Yard#k first. I'll follow you and take care of what's left behind. Now, hurry over to the Back Yard!")
+    sm.sendNext("好吧，让我们去消灭狐狸吧。你先去#b#m100030103##k消灭#r10只#o9300385##k。我会负责剩下的事情的。好了，你快到#m100030103#去吧～")
     sm.dispose()
 else:
     sm.dispose()

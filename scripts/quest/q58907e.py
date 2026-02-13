@@ -8,16 +8,16 @@ ITEMID = 4034129 # Mega Bitter Medicine
 sm.setSpeakerID(MOURI)
 
 sm.flipSpeaker()
-sm.sendNext("Hm? Shingen didn't come here himself? How disappointing.")
+sm.sendNext("嗯？信玄公没来，派你来了？……我还以为信玄公会亲自来呢……")
 
 sm.flipSpeaker()
-sm.sendSay("Regardless, I pass on the #i" + str(ITEMID) + "##z" + str(ITEMID) + "# to treat the warrior.")
+sm.sendSay("好吧……首先，为了治疗#i4034129:##t4034129:#新来的武将，把这个药交给你。")
 
 sm.flipSpeaker()
-sm.sendSay("I'm sure she will awaken soon. Go to the Master Room to meet her")
+sm.sendSay("他应该马上就会醒来的。武将在堂主的房间里，你去看看吧。")
 
 sm.flipSpeaker()
-sm.sendSay("The Master Room is to the left.")
+sm.sendSay("堂主的房间在这个地图的左边尽头。\r\n\r\n（#b现在可以通过左边的传送点前往守卫房间了。）")
 
 sm.completeQuest(parentID)
 sm.consumeItem(ITEMID) # remove mega Bitter Medicine from user

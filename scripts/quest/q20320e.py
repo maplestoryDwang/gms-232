@@ -1,7 +1,7 @@
 sm.setSpeakerID(1101002)
-if sm.sendAskYesNo("Now you're a REAL knight. Would you like to take your Job Advancement?"):
+if sm.sendAskYesNo("米哈尔，你已经完成了考验吗？"):
     if not sm.canHold(1142401):
-        sm.sendSayOkay("You need inventory space.")
+        sm.sendSayOkay("你现在觉醒了更强的力量，继续走在光之道路上吧!")
     else:
         if chr.getJob() == 5110:
             sm.jobAdvance(5111)

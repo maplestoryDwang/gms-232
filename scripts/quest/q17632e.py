@@ -2,18 +2,18 @@
 
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("Hey, what's that?")
+sm.sendNext("这是什么。")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("It looks like.. a barrier?")
+sm.sendNext("像是什么结界。")
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("A barrier for what? Do you think the fishhead set it up?")
+sm.sendNext("是连接哪里的结界呢。会和阿库旁多有关联吗？")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("Maybe, but I'm not busting through to check")
+sm.sendNext("有那个可能。但是我绝不会赞成进入那里面的。")
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("Me neither. Let's go tell pops.")
+sm.sendNext("嗯，我也不是很想进去。就跟统帅报告下吧。")
 sm.completeQuest(parentID)
 sm.warpInstanceOut(865020300) # Canal 4

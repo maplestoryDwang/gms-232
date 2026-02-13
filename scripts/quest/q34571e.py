@@ -2,33 +2,33 @@
 sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(56)
-sm.sendSay("What happened? Everything looks different all of a sudden.")
+sm.sendSay("#face0#我先回去了。这里的事情结束了。")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
-sm.sendSay("#face0#I'm starting to hate this place. Okay, that's a lie, I already hated this place.")
+sm.sendSay("#face3#梅尔朗，你不想帮我们吗……")
 sm.setInnerOverrideSpeakerTemplateID(3003501) #Melange
-sm.sendSay("#face0#Tana's touched the power of the mirror. It's flowing out through the ocean.")
+sm.sendSay("#face0#如果是蜘蛛，请不用担心。\r\n因为他好像被塔纳的镜世界压制着。")
 sm.setParam(56)
-sm.sendSay("Melange? How long have you been here?")
+sm.sendSay("#face3#被压制？那是什么意思？")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
-sm.sendSay("#face0#What does that mean? The power of the mirror... comes from Tana?")
+sm.sendSay("#face0#只要塔纳还在坚持，就无法在这里使用镜之力量。因为两种力量是相互冲突的。")
 sm.setInnerOverrideSpeakerTemplateID(3003501) #Melange
-sm.sendSay("#face0#Creating a sun through the power of the Mirror World makes it hard to break from the outside.")
-sm.sendSay("#face0#But the spider's ritual was interrupted, so that power is flowing out with the Erda.")
+sm.sendSay("#face3#那不和电波干涉很像吗？要是相同波长的电波碰到一起……")
+sm.sendSay("#face1#原……原来是……电波干涉。明……明白了。")
 sm.setParam(56)
-sm.sendSay("Um... I'm still not sure what you're...")
+sm.sendSay("#face0#据说要是没有镜之力量，他没什么了不起的……不过千万不要大意。\r\n他之所以强大，还有其他原因。")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
-sm.sendSay("#face0#I don't even get how Morass works half of th etime, so this Mirror World stuff just fries my brain.")
+sm.sendSay("又走掉了……")
 sm.setInnerOverrideSpeakerTemplateID(3003501) #Melange
-sm.sendSay("#face0#I'll head back. You guys finish up.")
+sm.sendSay("#face3#没什么了不起……")
 sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
-sm.sendSay("#face0#Melange, um, I don't suppose you want to help..?")
+sm.sendSay("#face3#但是真的很疼耶……")
 sm.setInnerOverrideSpeakerTemplateID(3003501) #Melange
-sm.sendSay("#face0#If you're worried about the spider, don't. He's threatened by Tana's Mirror World.")
+sm.sendSay("沃莉？")
 sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
-sm.sendSay("#face0#What do you mean, threatened?")
+sm.sendSay("#face0#啊，没什么。哈哈……走吧。")
 sm.setInnerOverrideSpeakerTemplateID(3003501) #Melange
 sm.sendSay("#face0#As long as Tana holds on, the spider can't access the power of the mirror himself. The two powers oppose each other.")
 sm.setInnerOverrideSpeakerTemplateID(3003502) #Shubert

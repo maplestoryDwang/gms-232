@@ -11,6 +11,6 @@ if remainingTasks <= 0:
 
 sm.setSpeakerID(3003432) # Jean
 sm.setParam(2)
-sm.sendNext("#b(You gave Jean the information you obtained from observing the monsters up close.)#k")
+sm.sendNext("委托已经完成了吗？太感谢你了，这是你的报酬，2个#i1712005:# #t1712005:#和1个#i2614029:# #t2614029:#。")
 sm.setParam(0)
 sm.sendSay("You have " + str(QuestConstants.MORASS_WEEKLY_AMOUNT - remainingTasks) + " tasks completed this week. Thanks to you, we're one step closer to understanding this place.")

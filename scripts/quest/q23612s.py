@@ -10,4 +10,4 @@ if chr.getJob() == 3610 and chr.getLevel() >= 60:
         sm.addMaxMP(150)
         sm.completeQuest(parentID)
     else:
-        sm.sendSayOkay("Please make some space in your EQUIP tab for your medal.")
+        sm.sendSayOkay("你好？我找你来，是有重要的事情。不知你知不知道，我们接到了报告，说#p2154009#还在找你。")

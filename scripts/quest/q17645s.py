@@ -2,21 +2,21 @@
 sm.setSpeakerID(9390209) # Captain Blood
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(9390235) # Leon Daniella
-sm.sendNext("These pirates are way tougher than those ones before! Maybe they'll come work for my dad...")
+sm.sendNext("果然是受了普赛依的指挥的家伙们更有组织性了！")
 sm.setParam(0)
-sm.sendSay("Not a chance, scallywag!")
+sm.sendSay("你是海盗王普赛依！！")
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(9390202) # Leon Daniella
-sm.sendSay("Captain Blood! I hate that guy!")
+sm.sendSay("能把我们赶到这里，实力还算是够可以得啦。但是玩笑就开到这为止了。")
 sm.setParam(0)
-sm.sendSay("Ye did well to make it this far, but the pleasure cruise ends here! Yar har har!")
+sm.sendSay("到底谁不行等着瞧就知道了！#h0#！准备好了吗！？")
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(9390235) # Leon Daniella
-res = sm.sendAskYesNo("We'll show you what we've got! #h0#, ready?")
+res = sm.sendAskYesNo("把海盗们从这海峡赶出去！！")
 sm.startQuest(parentID)
 sm.setParam(5)
-sm.sendNext("Let's wipe their butts! I mean...GO!")
-sm.sendSay("Let's do some fightinnnnnnnng!")
+sm.sendNext("好的，痛快地干一场吧！！")
+sm.sendSay("谢谢你的称赞。")
 sm.startQuest(parentID)
 sm.startQuest(parentID)
 sm.startQuest(parentID)

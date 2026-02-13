@@ -3,15 +3,15 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013350) # Brie
-sm.sendNext("#face0#Oh, you're back already. What are those things you're holding? Aren't those from the plants that were growing on top of the Ruins Sentinels?")
+sm.sendNext("#face0#啊,这么快就回来啦。你手里拿着的那个东西……\r\n是遗迹攻击兵身上的东西吗？")
 sm.setParam(548)
 sm.setInnerOverrideSpeakerTemplateID(1013358) # Pathfinder
-sm.sendSay("#face0#They have a soft glow normally, but they flare up if you give them a good bop, like this.")
+sm.sendSay("#face0#碰到之后,就会这样发光。")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(1013350) # Brie
-sm.sendSay("#face0#Huh. You know, that just might work, even underwater. But we need to be sure, so how about dropping one in the water as a test?")
+sm.sendSay("#face0#有了这个,应该就能潜入水里了。\r\n不过为了以防万一,最好还是丢一个进去试试……")
 sm.setParam(548)
 sm.setInnerOverrideSpeakerTemplateID(1013358) # Pathfinder
-sm.sendSay("#face3##b(You picked up a glowpod and dropped it into the pool. The soft light illuminated the water for a good while before finally dimming and growing dark.)#k")
-sm.sendSay("#face0#(These don't last long enough that I can reach the bottom with just one. I'll have to take all I've gathered and hope for the best.)")
+sm.sendSay("#face3##b(拿起一个发光的闪光石,丢进了水坑。\r\n光在水里亮了好久,然后化作一阵烟消失了。)#k")
+sm.sendSay("#face0##b(看来坚持不了多久。用一个到不了底下。\r\n把搜集到的全都带上吧。)#k")
 sm.completeQuestNoCheck(parentID)

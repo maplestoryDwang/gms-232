@@ -5,10 +5,10 @@ heroicStar = 4031344
 HARMONIA = 2081100
 sm.setSpeakerID(HARMONIA)
 
-sm.sendNext("You have returned.")
+sm.sendNext("你证明了自己拥有成为英雄的素质。现在没有必要继续证明了……你愿意成为真正的冒险家吗？")
 
 
-sm.sendNext("I will take these tokens of heroism from you, and grant you your 4th job skills.\r\nYou helped a great deal in the fight to come.")
+sm.sendNext("冒险之书任务已完成。")
 
 sm.consumeItem(heroicPentagon, 1)
 sm.consumeItem(heroicStar, 1)

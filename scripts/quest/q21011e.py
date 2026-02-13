@@ -2,12 +2,12 @@
 PUIR  = 1202003
 
 sm.setSpeakerID(PUIR)
-sm.sendNext("Wait, are you... No way.... Are you the hero that #p1201000# has been talking about all this time?! #p1201000#! Don't just nod... Tell me! Is this the hero you've been waiting for?! ")
-sm.sendSay("   #i4001171#")
-sm.sendSay("I'm sorry. I'm just so overcome with emotions... *Sniff sniff* My goodness, I'm starting to tear up. You must be so happy, #p1201000#.")
-sm.sendSay("Wait a minute... You're not carrying any weapons. From what I've heard, each of the heroes had a special weapon. Oh, you must have lost it during the battle against the Black Mage.")
+sm.sendNext("和#p1201000#在一起的，难道……难道就是传说中的英雄？#p1201000#！别不耐烦地点头，给我们介绍介绍呀！这位就是传说中的英雄吗？！")
+sm.sendSay("……真对不起，太激动了，忍不住嗓门大了些。呜呜～真是令人激动……唉，眼泪都快出来了……#p1201000#这回可开心了。")
+sm.sendSay("等等……英雄大人怎么能没有武器呢？我听说每个英雄都有自己的独特武器……啊，估计是和黑魔法师战斗的时候遗失了。")
+sm.sendSay("虽然寒碜了点，不过#b先拿这把剑用着吧#k。算是送给英雄的礼物。英雄如果没有武器，岂不是会有些奇怪？\r\n\r\n#fUI/UIWindow2.img/QuestIcon/4/0# \r\n#i1302000# #t1302000# 1个\r\n\r\n#fUI/UIWindow2.img/QuestIcon/8/0# 35 exp")
 
-if sm.sendAskYesNo("This isn't good enough to replace your weapon, but #bcarry this sword with you for now#k. It's my gift to you. A hero can't be walking around empty-handed.\r\n#fUI/UIWindow2.img/QuestIcon/4/0# \r\n#i1302000# 1 #t1302000# \r\n\r\n#fUI/UIWindow2.img/QuestIcon/8/0# 35 exp"):
+if sm.sendAskYesNo("#b（看自己这技能水平没一点英雄的样子……这把剑感觉也很陌生。以前的我是用剑的吗？这把剑怎么用呢？）#k"):
     sm.giveItem(1302000)
     sm.giveExp(35)
     sm.completeQuest(parentID)

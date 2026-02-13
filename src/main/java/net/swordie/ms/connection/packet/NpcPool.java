@@ -97,7 +97,8 @@ public class NpcPool {
 		outPacket.encodeInt(npcObjId);
 		outPacket.encodeString(effectName);
 		outPacket.encodeInt(duration); // if  duration > 0  -> Repeat Effect lasts: duration
-		outPacket.encodeByte(true); // showLocal
+//		outPacket.encodeByte(true); // showLocal
+		outPacket.encodeByte(false); // 176 is false
 
 		return outPacket;
 	}

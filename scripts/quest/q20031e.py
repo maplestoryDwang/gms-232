@@ -6,10 +6,10 @@ ITEM1 = 4033194
 ITEM2 = 4033195
 
 sm.setSpeakerID(LIMBERT)
-selection1 = sm.sendNext("What took you so long?! You better not have been rooting through my things!\r\n#b\r\n#L0#I wasn't, but I found this letter up there by the potion box... It's from some guy named Chromile.#l")
+selection1 = sm.sendNext("怎么这么慢？该不会是趁我不在的时候，在哪儿偷懒吧？让你去拿的东西呢？\r\n#b\r\n#L0# ……在这里……还有，我在阁楼里捡到了这封信。好像还没看过……好像是个叫库洛姆的人寄来的……#l")
 
 if selection1 == 0:
-    sm.sendNext("What?! Who told you you could touch that?!")
+    sm.sendNext("你说什么！！快给我！干嘛随便碰别人的东西？")
 else:
     sm.dispose()
 
@@ -25,13 +25,13 @@ sm.sendDelay(2000)
 
 sm.removeEscapeButton()
 sm.setPlayerAsSpeaker()
-sm.sendNext("Another great day with the old man...")
+sm.sendNext("呜呜……今天又被骂了……")
 
-sm.sendSay("Huh? What's that?")
+sm.sendSay("嗯？那是什么？")
 
 sm.showBalloonMsg("Effect/Direction7.img/effect/tuto/soul/0", 4000)
 sm.sendDelay(5000)
 
-sm.sendNext("It was like... a small shining light...")
+sm.sendNext("哇！！刚才那是什么？我看见了……一道明亮的光……？")
 
 sm.warp(913070002, 0)

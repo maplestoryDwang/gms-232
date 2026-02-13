@@ -7,17 +7,16 @@ sm.removeEscapeButton()
 sm.setBoxChat()
 sm.flipBoxChat()
 sm.flipBoxChatPlayerNoEscape()
-sm.sendNext("#fs 24#(You've received a letter from #b#p"+ str(ELDER_JUNG) +"##k from Mount Song Hamlet.)")
+sm.sendNext("#fs25#(嵩山镇的#b#p9310049##k寄来了书信。)")
 
 sm.setSpeakerID(ELDER_JUNG)
 sm.setBoxChat()
-sm.sendNext("I hope this finds you well, #h0#. "
-            "I am the elder of #b#m"+ str(MOUNT_SONG_HAMLET) +"##k. We have have of your great deeds for other realms. We are in dire need of your assistance.")
+sm.sendNext("你可能记不得我和#b#m701210000##k了。但是，现在能够帮助我们的人就只有#h0#了。")
 
-response = sm.sendAskYesNo("The details are sensitive. I would like to discuss them in person. Will you join me at #b#m"+ str(MOUNT_SONG_HAMLET) +"##k?")
+response = sm.sendAskYesNo("我希望能够当面和你说说详细情况，你能来#b#m701210000##k吗？")
 
 if response:
-    sm.sendNext("Thank you. I await you at #b#m"+ str(MOUNT_SONG_HAMLET) +"##k.")
+    sm.sendNext("谢谢你能这么爽快地答应下来。情况紧急，请你现在就出发吧。请你到#b#m701210000##k来找我吧。")
     sm.warp(MOUNT_SONG_HAMLET)
     sm.startQuest(parentID)
     sm.completeQuest(parentID)

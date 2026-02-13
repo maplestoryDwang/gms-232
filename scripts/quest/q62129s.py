@@ -7,10 +7,8 @@ sm.removeEscapeButton()
 sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(57)
-sm.sendNext("WHOA! No way! Could this really be...?!")
-sm.sendNext("Whoa! Is this a #eJade Kettle made in the great Qing Dynasty?!#n "
-"The glow, the detail! It must be real! \r\n"
-"Maybe a Qing princess drank tea made from this!")
-sm.sendNext("#p" + repr(huiKoonKit) + "# will be so excited to see this!")
+sm.sendNext("#fs16#啊？！难道！！这是？！")
+sm.sendNext("#e公元1750年制造的玉壶？！#n看这栩栩如生的形态，漂亮的色彩！\r\n这准是清朝皇室的王子拿在手里把玩的玉壶！")
+sm.sendNext("交给#p9310537#吧！")
 
 sm.startQuest(parentID)

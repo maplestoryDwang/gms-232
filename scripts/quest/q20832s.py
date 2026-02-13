@@ -2,19 +2,19 @@
 sm.setSpeakerID(1102102)
 
 sm.removeEscapeButton()
-sm.sendNext("Your basic attacks no longer make me want to cry. It is time to teach you something more advanced!")
+sm.sendNext("基本攻击你好像确实已经学会了。这次让我来教你更深奥的攻击方法吧。")
 
 sm.setSpeakerID(1102100)
-sm.sendSay("Hey, everyone. You having fun with your training, #h0#? Kimu, Kizan, can I speak to you for a moment?")
+sm.sendSay("#h0#，训练还行吧？继续努力。奇姆、奇赞。你去和他们谈谈……")
 
 sm.setSpeakerID(1102102)
-sm.sendSay("#h0#! Take a break! That's an order!")
+sm.sendSay("#h0#，你先休息一下吧。")
 
 sm.setSpeakerID(1102100)
-sm.sendSay("(Kiku whispers to the others.)")
+sm.sendSay("#h0#，你在这里稍等一下。我很快就会回来。不要一个人到处乱逛！")
 
 sm.setSpeakerID(1102102)
-sm.sendSay("!!!")
+sm.sendSay("(嘀咕嘀咕嘀咕)")
 
 sm.setSpeakerID(1102101)
 sm.sendSay("...")

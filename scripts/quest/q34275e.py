@@ -2,12 +2,12 @@
 from net.swordie.ms.client.character.items import BodyPart
 from net.swordie.ms.constants import QuestConstants
 sm.setSpeakerID(3003432) # Jean
-sm.sendNext("#h0#, I see you completed all your missions for the week. Please accept a level up on #i1712005:# #t1712005:# as a reward.")
+sm.sendNext("今天的委托全部完成了吗？太好了！我把")
 
 if sm.levelArcaneSymbol(BodyPart.AFMorass, 3):
     sm.completeQuestNoCheck(parentID)
     sm.createQuestWithQRValue(QuestConstants.MORASS_COUNT_QUEST, "")
-    sm.sendSayOkay("I've leveled up your symbol. Please come back next week!")
+    sm.sendSayOkay(":#和1个#i2614029:# #t2614029:#给你。")
 else:
     sm.sendSayOkay("Something went wrong.")
 

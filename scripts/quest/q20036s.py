@@ -5,16 +5,16 @@ CYGNUS = 1106001
 NEINHEART = 1106003
 
 sm.setSpeakerID(CYGNUS)
-sm.sendNext("Do you see, Neinheart? This child must be the descendant of the Knight of Light.")
+sm.sendNext("是的，女皇陛下说的总是对的。虽然还有很多不足之处，但这个少年好像确实继承了光之骑士的血。")
     
 sm.setSpeakerID(NEINHEART)
-sm.sendSay("I suppose the Empress is correct. You will have to learn the ways of a true knight, shopkeep. Your skills with a broom won't get you far on the battlefield.")
+sm.sendSay("我父亲是光之骑士？我会成为光之骑士？我只是个平凡的少年。连名字都没有……")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("My father was the Knight of Light? What does that even mean? I'm just an ordinary kid...")
+sm.sendSay("选择权在你。但是你生来就带有光明之血，最好不要和自己的命运对抗。为了你，同时也是为了冒险岛世界。\r\n你愿意跟我走吗？")
 
 sm.setSpeakerID(CYGNUS)
-if sm.sendAskAccept("The choice is yours. Listen to your heart. The voice of destiny will guide you down the correct path. For the good of your own soul, and the good of the world...\r\nWill you come with me?"):
+if sm.sendAskAccept("你好像需要个名字。就用“从光明中诞生的人”的意思，起名叫#b#e“米哈尔”#k#n如何？好像很适合你。现在和我一起到圣地去吧。没有比那里更适合让你成为光之骑士的了。"):
     sm.sendNext("There has been an incident at the #b Ellinel Fairy Academy#k. A human magician has trespassed in the sacred halls of the fairy school.")
     sm.giveItem(1142399)# Newborn Light (Medal)
     sm.giveItem(1052444)# Apprentice Knight of Light Robe

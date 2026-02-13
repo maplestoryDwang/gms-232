@@ -4,27 +4,26 @@ MYSTERIOUS_GIRL = 1064001 # npc Id
 sm.removeEscapeButton()
 sm.lockInGameUI(True)
 sm.setPlayerAsSpeaker()
-sm.sendNext("We need to find those baddies if we want to get you out of here.")
+sm.sendNext("为了解开你的封印，必须先了解入侵者的身份。")
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
-sm.sendNext("But... they all left")
+sm.sendNext("但是他们已经全部走掉了。")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("They had to have left some clues behind. "
-            "What about those weird doors over there?")
+sm.sendNext("也许会留下什么线索，让我们找找看吧。对于那边的四扇门，你知道些什么吗？")
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
-sm.sendNext("They showed up when the bad guys left, but I can't get through them.")
+sm.sendNext("把我封印起来的那些人制造了那些门之后就走了。我试着到门外去，但是因为封印的原因，没办法出去。")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("Then that sounds like a good place to start. Maybe I should-")
+sm.sendNext("那些门的外面会不会有什么线索呢？到门外面去……嗯？这是怎么回事？")
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
-sm.sendNext("Y-you're glowing!")
+sm.sendNext("哇，你的身体发出了白光！")
 sm.invokeAtFixedRate(0, 2450, 3, "showEffect", "Effect/Direction11.img/effect/Aura/0", 3, 0)
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("Ah! What is this?! Don't let it take all my fr00dz!!")
+sm.sendNext("这到底是怎么回事？嗯，嗯？身，身体被吸进去了！")
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
 sm.sendNext("#h0#!!!")

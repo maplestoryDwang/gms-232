@@ -7,29 +7,19 @@
 DAME = 9010106
 sm.setSpeakerID(DAME)
 if sm.getUnionLevel() < 500 or sm.getUnionCharacterCount() < 3:
-    sm.sendSayOkay("You're not ready to join a Legion, warrior. Legions are reserved for battle-hardened warriors with a "
-           "#b#eCumulative Level#n of at least 500#k, and require #r#ea minimum of 3 characters#n#k.\r\n\r\n#eWhat "
-           "is Cumulative Level?#n\r\n#bYour Cumulative Level is the combined level of all your characters on a given "
-           "world #rwho are Lv. 60+ and have completed the 2nd Job Advancement#k. If you have 40 or more characters, "
-           "the only your 40 highest level characters will be counted. However, #rZero#k is a special case. Only your"
-           " highest level Zero will be counted.")
+    sm.sendSayOkay("勇士！\r\n现在你可以创建#b#e<冒险岛联盟>#k#n了。")
 elif not sm.hasQuest(16013) and not sm.hasQuestCompleted(16013):
     sm.setQRValue(18793, "q0=1q1=0pq=0q2=0q1Date=" + sm.getCurrentDateAsString() + "pqDate=" + 
                   sm.getCurrentDateAsString() + "q2Date=" + sm.getCurrentDateAsString()) # Legion quest
     sm.incrementUnionRank()
     sm.completeQuestNoRewards(16013)
-    sm.sendNext("Hello #b#h0##k. Good to see you again.")
+    sm.sendNext("<冒险岛联盟>是指#b同一世界内我的角色们#k组成的集团。#r只有60级以上/完成2转的角色#k可以进入联盟。")
     sm.setPlayerAsSpeaker()
-    sm.sendSay("Have we met?")
+    sm.sendSay("将<冒险岛联盟>所属的角色配置在#b战斗地图#k中，可以获得#r特别的效果#k。\r\n根据如何配置角色，可以获得各种不同的效果。")
     sm.setSpeakerID(DAME)
-    sm.sendSay("Ta-da! It's me, #b#eMs. Appropriation!#n#k Surprised? Frustrated with the everyday bureaucracy of the "
-               "workplace, I spent my free time getting totally ripped and hunting down dragons. And now I've been "
-               "knighted by Empress Cygnus!")
-    sm.sendSay("For a while now, I've been matching Maplers with all kinds of #bpart-time jobs#k to help them build "
-               "character and level up.\r\n\r\nIt was an okay start, but the system didn't work out the way\r\nI had "
-               "hoped. Too much bureaucratic red tape.")
-    sm.sendSay("#b#eBut now, I'M in charge.#n#k Wahahahaha!\r\nAnd the new system I've developed is a zillion times "
-               "better, with better rewards! Shall I tell you about it?")
+    sm.sendSay("此外，配置在战斗地图上的攻击队员们可以合力挑战#b巨大的龙#k，获得#r联盟币#k。\r\n可以在联盟币商店中购买珍贵的道具。")
+    sm.sendSay("好了，让#b协作的力量#k变得更强吧！\r\n\r\n我会在各个村庄中和我的新职员斗篷先生待在一起。如果想听听更详细的说明，请随时来找我。")
+    sm.sendSay("从现在起，可以在详细菜单中对冒险岛联盟进行管理了。")
     sm.sendSay("Several months ago, I went on my first vacation in years. But our cruise ship ran aground on an "
                "#buncharted island#k full of #rterrible dragons#k.\r\nAfter the captain and crew were dragged off "
                "into the jungle and devoured, we passengers realized that there was only one way we were getting off "

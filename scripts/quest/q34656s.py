@@ -1,8 +1,8 @@
 # id 34656 (First Fighting Tactic, 1st job cadena advancement), field 402000001
 sm.setSpeakerID(3001200)
 if chr.getJob() == 6002:
-    sm.sendNext("The treatment worked well for you, which means you're ready to learn Shadowdealer skills and techniques. Welcome to the branch.")
-    sm.sendSay("You've done well as my apprentice. You're strong, and you have incredible talent for combat. Keep practicing the techniques I've shown you, and you'll get even stronger.")
+    sm.sendNext("治疗应该结束了。现在我来教你影子商团的秘传技术。从现在起，你就是支部的正式成员了。")
+    sm.sendSay("这段时间以来，你作为我的弟子展现出了优秀的战斗天赋，我认为你已经足够强大了。不过，如果能学会我刚才教给你的技术，你就会变得更加强大。")
     sm.setJob(6400)
     sm.setSTR(4)
     sm.setINT(4)

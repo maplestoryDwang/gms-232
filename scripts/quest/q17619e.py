@@ -1,39 +1,39 @@
 # [Commerci Republic] Come Back Here!
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("I can't believe it. All those items... stolen! And the iron I ordered was in there too")
+sm.sendNext("幽灵…… 我的交易品…… 幽灵…… 我的交易品…… ")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("Hey Tepes!")
+sm.sendNext("幽灵…… 我的交易品…… 幽灵……")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("And the white carnation buttons I was going to sew on my vest were in there too... I can't believe they're all gone.")
+sm.sendNext(" …… 他的魂好像丢了一半……")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("#b(Aww, he looks seriously depressed.)")
+sm.sendNext("喂。我把丢失的贸易品重新找回来了。")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("Hellooooo I got your items back. See?")
+sm.sendNext("幽…… 什么！？找回来了！？在哪呢…… 哦！！是真的呢！！这是怎么回事？你在哪找到的？")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("And the silver ribbons I ordered to tie my-- Wait, what? You got my items! Oh, happy day! How'd you do it?")
+sm.sendNext("那个，就是…… 我抓到了幽灵。")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("It was easy. I tracked down the thief.")
+sm.sendNext("是真的吗？我之前还没发现，你真是了不起的冒险家啊！！")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("Incredible. That'll teach me to judge people based on their clothing.")
+sm.sendNext("(你之前是怎么看我的……)")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("#b(Hey! What did he mean by that?!)")
+sm.sendNext("十分感谢！！你是我的救命恩人。你有什么愿望就告诉我吧！只要我能做到，我一定会帮你的！")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("Anyway. I owe you one, my friend. Anything you need, I'll make it happen. I swear it.")
+sm.sendNext("是真的吗？")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("Are you serious?")
+sm.sendNext("当然啦！这是海上男子汉的约定。也是以信任为本的达尼尔拉商团的商人的约定！")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("On my very life. Whatever you need.")
+sm.sendNext("啊，原来你在这里啊。")
 sm.completeQuest(parentID)
 sm.dispose()

@@ -4,6 +4,6 @@ sm.setMapTaggedObjectVisible("obj_01", True, 0, 0)
 sm.setSpeakerID(3003151) # Simia
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendNext("#b#h0##k! You're back with more ingredients! We just finished baking the bun. Now we'll just throw in the topping you brought... There!")
+sm.sendNext("#b#ho#！#k\r\n你已经集齐材料啦？面包已经做好了…现在只要像这样混合，然后像这样放上去……")
 sm.createQuestWithQRValue(18418, "B=34848")
-sm.sendSay("All right, the first part of our #bDelicious Beefy Tastesplosion Sandwich#k is ready to go! Next, we make the patty. Ask #bPibik#k to help you with that!")
+sm.sendSay("好啦！现在#b")

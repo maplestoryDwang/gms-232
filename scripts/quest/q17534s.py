@@ -1,8 +1,8 @@
 # id 17534 ([Gollux] The Face of Fear), field 863000100
 sm.setSpeakerID(9390120) # Heart Tree Guardian
-sm.sendNext("Now, I'll give you a chance to face Gollux in all its power.")
-sm.sendSay("I can give you up to 3 Entrance Keys per day.")
-res = sm.sendAskYesNo("You now have 0 Entrance Key(s). Do you want all 3 Entrance Keys?")
+sm.sendNext("我可以给你挑战强大的贝勒德的机会。")
+sm.sendSay("我每天最多可以送你三把入场时所需的钥匙。")
+res = sm.sendAskYesNo("你想领取3把入场钥匙吗？")
 sm.startQuest(17535)
 sm.startQuest(parentID)
 sm.completeQuestNoCheck(parentID)

@@ -3,32 +3,31 @@
 MYSTERIOUS_GIRL = 1064001 # npc Id
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
-sm.sendNext("I want to get out of here.")
+sm.sendNext("我想从这里出去。")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("What?")
+sm.sendNext("你到底在说什么啊？这是什么地方？你是谁？")
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
-sm.sendNext("I said I want to get out of here.")
+sm.sendNext("这里？这里是鲁塔比斯。我想离开这里。请你帮帮我。")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("Oh, well I need to stay. I'm supposed to find out more about this place before I go.")
+sm.sendNext("(唉……一直在自言自语。真费劲。)")
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
-sm.sendNext("This place? This is Root Abyss. And you don't want to be here. "
-            "Let's leave together. Follow me")
+sm.sendNext("(看来她好像是迷路了，要帮帮她吗？)")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("Wha- Where are you going?!")
+sm.sendNext("知道了。我来看看有没有办法离开这里。")
 
-response = sm.sendAskYesNo("#b(She looks lost... maybe I should help her out?)")
+response = sm.sendAskYesNo("你真的愿意帮我吗？不许骗我哦！")
 
 if response:
-    sm.sendNext("All right, fine. I'll show you how to get out.")
+    sm.sendNext("嗯，肯定在某处有出去的路……")
     sm.startQuest(parentID)
 else:
     sm.dispose()
 
 sm.setSpeakerID(MYSTERIOUS_GIRL)
-sm.sendNext("You are really going to help, right! You promised!")
+sm.sendNext("我想离开这里。")
 sm.dispose()

@@ -7,6 +7,5 @@ SILVER_SPEARMAN = 9480029
 sm.removeEscapeButton()
 sm.setSpeakerID(CHENGXIN)
 sm.setBoxChat()
-sm.sendNext("Ah, ha! My support unit has arrived. On the double, defeat those demons!\r\n"
-            "150 #r#o"+ str(SILVER_SPEARMAN) +"##k monsters and 100 #r#o"+ str(SILVER_GIANT) +"##k monsters!")
+sm.sendNext("哦，正好来了一个支援者啊！事不宜迟！必须赶紧消灭那些妖怪，否则村子肯定会遭殃。情况紧急，情况紧急啊！你帮我消灭150只#r#o9600024##k和100只#r#o9600022##k吧！")
 sm.startQuest(parentID)

@@ -5,11 +5,11 @@ LIMBERT = 1106002
 EGG = 4033196
 
 sm.setSpeakerID(LIMBERT)
-selection1 = sm.sendNext("Where's the eggs? I told you to get eggs. If you broke them... Wait a second, what happened to you?\r\n #b\r\n#L0# Uh, well, you know how you told me not to mess with Bigby? Well... I kinda... He got out.#l")
+selection1 = sm.sendNext("鸡蛋拿来了吗？没打碎吧？等等，怎么成了这个样子？发生了什么事？\r\n#b\r\n#L0#嗯……“沃尔夫”突然攻击了我……然后……“沃尔夫”逃走了。#l")
 
 
 if selection1 == 0:
-    sm.sendNext("What?!! I swear to every deity I can think of, you will starve to death if that dog is not in my yard by dinnertime.")
+    sm.sendNext("什么！“沃尔夫”逃走了？你这没用的东西！！今天不许吃饭！！如果找不到“沃尔夫”，你也别回来了！")
 else:
     sm.dispose()
 

@@ -7,21 +7,15 @@ KYRIN = 10204
 sm.setSpeakerID(KYRIN)
 
 sm.setSpeakerID(1090000)
-sm.sendNext("You wish to become a #b"+ str(job) + "#k?\r\n"
-                                                "a #b"+ str(job) + "#k is specialised in short range attacks and use #bdaggers#k to defeat their enemies. "
-                                                             "There are many useful skills you can acquire.")
+sm.sendNext("你想选择拳手之路吗？那是用拳头或指节拳甲和敌人战斗的勇敢的海盗。虽然动作华丽，但操作起来却很不容易……你对自己有自信吗？")
 
 
-sm.sendNext("Before I teach you the ways of the "+ str(job) + ", you will have to accomplish a very difficult test. "
-            "I will warp you into a special map, in which I require you to defeat #b"+ monster +"#k "
-            "and return 30 #i"+ str(darkMarble) +"##z"+ str(darkMarble) +"#s to me.")
+sm.sendNext("最具代表性的技能是#b龙卷风拳#k。用力向上猛击，创造出真正的龙卷风。#b贯骨击#k也是非常帅的技能，可以向前突进，攻击敌人。")
 
-response = sm.sendAskYesNo("Once you enter the map, you #rcannot#k return without the #b#t"+ str(darkMarble) +"#s#k, if you die you will lose your experience.\r\n"
-                            "Are you ready?")
+response = sm.sendAskYesNo("当然，基本技能也很重要。学会#b精准拳甲#k和#b急速拳#k后，可以让你的拳甲更快、更强。通过#b血量增加#k，可以提高血量。通过增强忍耐力的#b忍耐#k，可以持续恢复体力和魔量。")
 
 if response:
     sm.warp(912040000, 0) # Pirate Test Site
     sm.startQuestNoCheck(parentID)
 else:
-    sm.sendSayOkay("You cannot be a Magician forever. You #bwill#k have to face up to the test.\r\n"
-                   "Talk to me when you are ready.")
+    sm.sendSayOkay("通过让内心平静提高自己的攻击力和命中值的#b静心#k，也是拳手不可或缺的核心技能之一。")

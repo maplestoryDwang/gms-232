@@ -1,9 +1,9 @@
 # 21300 - [Job Adv] (Lv.60)   Aran
 sm.setSpeakerID(1510009)
-sm.sendNext("How is the training going? Hm, Lv. 60? You still ahve a long way to go, but it's definitely praiseworthy compared to the first time I met you. Continue to train diligently, and I'm sure you'll regain your strength soon!")
-if sm.sendAskYesNo("But first, you must head to #b#m140000000##k your #b#p1201001##k is acting weird again. I think it has something to tell you. It might be able to restore your abilities, so please hurry."):
+sm.sendNext("修炼得如何？嗯……60级了……虽然还不够，不过比起当初把你刚从冰窟里挖出来的那个状态要强百倍了。像这样下去，很快你就能恢复从前的实力了。")
+if sm.sendAskYesNo("不过，你得先回#b#m140000000##k一趟。你的#b#p1201001##k又出现了奇怪的反应。似乎是有什么话要对你说。说不定能唤醒你的能力也说不定，赶紧回去一趟吧。"):
     sm.startQuest(parentID)
-    sm.sendSayOkay("Anyway, I thought it was really something that a weapon had its own identity, but this weapon gets extremely annoying. It cries, saying that I'm not paying attention to its needs, and now... Oh, please keep this a secret from the Polearm. I don't think it's a good idea to upset the weapon any more than I already have.")
+    sm.sendSayOkay("不管怎样，拥有意识的武器还是很厉害的，某个方面来看，那家伙有种很神圣的感觉。如果不听它的，它就会呜呜哭……啊，这种话可一定要对长矛保密。我可不想让它吵得更凶。")
     sm.dispose()
 else:
     sm.dispose()

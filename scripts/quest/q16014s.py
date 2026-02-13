@@ -9,12 +9,7 @@ sm.setSpeakerID(DAME)
 # Hack to get intro to work for now (16013 isn't showing up :( )
 if not sm.hasQuest(16013) and not sm.hasQuestCompleted(16013):
 	if sm.getUnionLevel() < 500 or sm.getUnionCharacterCount() < 3:
-		sm.sendSayOkay("You're not ready to join a Legion, warrior. Legions are reserved for battle-hardened warriors with a "
-					   "#b#eCumulative Level#n of at least 500#k, and require #r#ea minimum of 3 characters#n#k.\r\n\r\n#eWhat "
-					   "is Cumulative Level?#n\r\n#bYour Cumulative Level is the combined level of all your characters on a given "
-					   "world #rwho are Lv. 60+ and have completed the 2nd Job Advancement#k. If you have 40 or more characters, "
-					   "the only your 40 highest level characters will be counted. However, #rZero#k is a special case. Only your"
-					   " highest level Zero will be counted.")
+		sm.sendSayOkay("冒险岛联盟")
 	else:
 		chr.getQuestManager().initUnion()
 		sm.sendNext("Hello #b#h0##k. Good to see you again.")

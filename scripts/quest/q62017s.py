@@ -6,26 +6,25 @@ selectName = ["Quashara", "Quivia", "Shaniqua"]
 sm.removeEscapeButton()
 sm.setSpeakerID(NINE_TAILED_FOX)
 sm.setBoxChat()
-sm.sendNext("You did surprisingly well, human.\r\n"
-            "I guess I'll let you live.")
+sm.sendNext("你……真是个值得信赖的#r人类#k啊。我挺喜欢你的！")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("That's right, #b#p"+ str(NINE_TAILED_FOX) +"##k. You and me are buds now, so I'll give you a #rNickname#k.")
+sm.sendNext("对了，#b#p9310579##k你叫什么#r名字#k？")
 
 sm.setSpeakerID(NINE_TAILED_FOX)
 sm.setBoxChat()
-sm.sendNext("What's a #rNickname#k?")
+sm.sendNext("#r名字#k？那是什么东东？")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("It's a name that I can use to address you. Just like my name is #r#h0##k.")
+sm.sendNext("嗯……就是别人在称呼你时使用的独一无二的词。我的名字叫#r#h0##k。名字就是用来区分自己和别人的一种称呼。")
 
-sm.sendNext("I want YOU to have a name. That way I don't have to use your demon name, which is really just the name of your species.")
+sm.sendNext("如果你不介意的话，我来帮你起#r名字#k吧！")
 
 sm.setSpeakerID(NINE_TAILED_FOX)
 sm.setBoxChat()
-sm.sendNext("If it's a human thing, I'm in!")
+sm.sendNext("嗯……好吧……起得好听点就行！")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
@@ -38,15 +37,15 @@ sm.createQuestWithQRValue(62015, selectName[selection])
 
 sm.setSpeakerID(NINE_TAILED_FOX)
 sm.setBoxChat()
-sm.sendNext(sm.getQRValue(62015) +", hm? I kinda like it.")
+sm.sendNext("那么~该起个什么名字呢？适合你的名字……\r\n#L0#白狐#l\r\n#L1#卡珊德拉#l\r\n#L2#美狐#l")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("I'll call you #r"+ sm.getQRValue(62015) +"#k from now on, then.")
+sm.sendNext("嗯……美狐……？我喜欢这个#r名字#k。")
 
 sm.setSpeakerID(NINE_TAILED_FOX)
 sm.setBoxChat()
-sm.sendNext( "Very well. #r"+ sm.getQRValue(62015) +"#k has a sophisticated ring to it")
+sm.sendNext( "我怎么感觉不太对劲……帮我起个别的#r名字#k吧。")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)

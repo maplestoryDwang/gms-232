@@ -2,8 +2,8 @@
 sm.setSpeakerID(9130107) # Mysterious Boy
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(9130107) # Mysterious Boy
-sm.sendNext("The alliance men? Last I saw, the Spirit Walkers were giving them some weird potions and casting spells, then they turned strange. What could have happened?")
-sm.sendSay("Please save them. They were so good to me, almost like fathers.")
-res = sm.sendAskYesNo("I saw the Oda Spirit Walkers nearby. Maybe we can get some information from them.")
+sm.sendNext("盟军士兵？我最后看见的是阴阳师让他们吃了什么药，然后念了咒术，他们就变得很奇怪。")
+sm.sendSay("请你找到那些士兵吧。他们对于失去了父亲的我，十分照顾……")
+res = sm.sendAskYesNo("我看见了附近有织田军的阴阳师。从他们那里应该能得到什么情报吧。")
 sm.startQuest(parentID)
-sm.sendSayOkay("Thank you for your help! I think defeating about 100 Oda Spirit Walkers will give you enough leads.")
+sm.sendSayOkay("谢谢你能帮我！消灭100个织田军的阴阳师，应该就能找到线索了吧？")

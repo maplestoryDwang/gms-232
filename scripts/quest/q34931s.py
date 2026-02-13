@@ -3,16 +3,16 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001510) # Ferret
-sm.sendNext("#face2#We lost the signal again. The sandstorm got even stronger than before.")
+sm.sendNext("#face2#哎呀，电波又消失了，叽勒……可能是因为沙暴比刚才更强了，叽勒……")
 sm.setInnerOverrideSpeakerTemplateID(3001500) # Ark
-sm.sendSay("#face0#We'll just have to do a little more hunting.")
+sm.sendSay("#face0#刚才明明一起把周围清理干净了啊……怎么办？这次还需要我帮忙吗？")
 sm.setInnerOverrideSpeakerTemplateID(3001510) # Ferret
-sm.sendSay("#face0#That's our best shot, yeah.")
+sm.sendSay("#face0#哎呀，它们的旋风好像更强了……不过只能试试看了。")
 sm.setSpeakerType(4)
 sm.setSpeakerID(3001410) # Ferret
-res = sm.sendAskAccept("#face0#How about #b50#k more #b#o2400357##k monsters?")
+res = sm.sendAskAccept("#face0#好吧……你能去周围消灭掉#b50只#k#b#o2400357##k吗，叽勒？")
 sm.setSpeakerType(3)
-sm.sendNext("#face0#Do what you can, and I'll keep searching for that signal.")
+sm.sendNext("#face0#我要更加集中精力寻找电波。清理周围的事情就拜托了，叽，叽勒楞……")
 sm.startQuest(parentID)
 sm.startQuest(parentID)
 sm.startQuest(parentID)

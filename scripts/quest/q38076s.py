@@ -1,6 +1,6 @@
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendNext("I remember now. I put in a photograph. A photo, the only one, with everyone... They told me to put my most prized possession in, and that was it. Good choice, I guess.")
-sm.sendSay("Now I'm sure. The world has #rCOMPLETELY forgotten me.#k\r\nThere are absolutely no traces of me anywhere.")
+sm.sendNext("现在终于记起来了。我放入的是照片。什么时候来着, 和这些家伙拍的唯一一张合影。提示我放入最珍贵的东西, 我嫌麻烦就随便拿了一样放进去, 看来还真选对了。")
+sm.sendSay("现在可以确信了。这个世界已经将我#e#r彻.底.遗忘了。#k#n关于我的任何痕迹都没留下, 我也无法存在于任何人的记忆当中。")
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
 #sm.jobAdvance(2511)

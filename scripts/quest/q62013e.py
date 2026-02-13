@@ -6,25 +6,25 @@ KID_SHOES = 4034657
 sm.removeEscapeButton()
 sm.setSpeakerID(TOWN_MISCREANT)
 sm.setBoxChat()
-sm.sendNext("Hey! My shoes! Thanks for giving them back, demon!")
+sm.sendNext("#fs20#啊！这是我的鞋子，昨晚被#r可怕妖怪#k偷走了！")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("I'm not a demon!")
+sm.sendNext("#r可怕妖怪#k？你见过妖怪？")
 
 sm.setSpeakerID(TOWN_MISCREANT)
 sm.setBoxChat()
-sm.sendNext("But only demons steal shoes from little kids who don't eat their orange mushrooms!")
+sm.sendNext("嗯！！#r长有一百多个角的可怕妖怪#k！")
 
-sm.sendNext("Ma told me so!")
+sm.sendNext("虽然我没见到过……可人们都这么说！而且，妖怪会把所穿鞋子尺寸与它相符的孩子抓走……太可怕了。")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("It's not nice to stereotype against demons. The demon who BORROWED your shoes asked me to return them. He just wanted to try them on")
+sm.sendNext("不过，世界上也有一些不可怕的善良的妖怪。这双鞋就是它出于好奇才带走的，它拜托我把鞋子还给原来的主人，还说再也不会瞎捣蛋了。所以你不必害怕。")
 
 sm.setSpeakerID(TOWN_MISCREANT)
 sm.setBoxChat()
-sm.sendNext("Really? Did he dance in them? Because I loooove dancing in these shoes. Maybe he and I can be friends!")
+sm.sendNext("(#p9310577#听到这个消息会非常高兴吧。那么快点去 #m701220350#吧。)")
 
 sm.consumeItem(KID_SHOES)
 sm.giveExp(2020453)

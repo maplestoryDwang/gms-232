@@ -1,12 +1,12 @@
 # Hayato 2nd job adv | 57162
 sm.setPlayerAsSpeaker()
-sm.sendNext("This battle is not over, yet I feel a sense of peace. This world is not so different from my own.")
-sm.sendNext("I feel like my old self, yet stronger. I believe this world holds many new challenges for me.")
-sm.sendNext("I have not yet regained all of my Battoujutsu skills, but one day they will return. One day, the falcon will take flight once again.")
+sm.sendNext("距离最初来到这个世界，已经过去多长时间了呢？当时，我在陌生的丘陵醒来，发现身体完全不听自己的控制。后来才知道，原来是因为日本和这个世界的物理法则不同，才导致出现这样的问题。就因为这个缘故，我一开始就连想击败训练用的人偶都需要花上不少的力气，实在是太丢脸了。")
+sm.sendNext("不过在那之后，我又经历了各种各样的事情，逐渐开始适应要如何在这个世界活动自己的身体了。虽说还没有彻底恢复原本的力量，但身体至少变得听话了很多。")
+sm.sendNext("好久没有用过的那些剑术，现在应该也可以重新开始使用了。相信只要脚踏实地坚持修行，那么终有一日，我一定能够自由自在地使出原本所有的秘藏剑术来。虽说目前还很难完全实现这一点，但一定要继续努力下去才是。")
 if sm.canHold(1142491):
     sm.giveItem(1142491)
     sm.startQuest(parentID)
     sm.completeQuest(parentID)
     sm.jobAdvance(4110)
 else:
-    sm.sendNext("Please make space in your Equip inventory.")
+    sm.sendNext("获得<无敌剑豪的勋章>勋章")

@@ -3,12 +3,12 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001508) # Zippy
-sm.sendNext("#face0#Oh, good. You're here. Ferret got a better signal, and it turns out the crystal we need is in pieces and scattered all over the place.")
-sm.sendSay("#face0#We should check the piece at the location closest to the refuge first, so we can get an idea of what we're dealing with.")
+sm.sendNext("#face0#嗯……来啦。在你帮助巴克巴克的时候，维依又搜索了一下电波……果然分散在各处。")
+sm.sendSay("#face0#首先，最好从距离避难处最近的电波开始确认……怎么样……要去看看吗？")
 sm.setSpeakerType(4)
 sm.setSpeakerID(3001400) # Zippy
-res = sm.sendAskAccept("#face0#Ark, go with Ferret and check the first location.")
+res = sm.sendAskAccept("#face0#谢谢你，亚克。和维依一起，到捕捉到电波的位置去确认一下吧。")
 sm.setSpeakerType(3)
 sm.setInnerOverrideSpeakerTemplateID(3001510) # Ferret
-sm.sendNext("#face4#Yes! The signal's coming from #r#m402000615##k. Let's check it out.")
+sm.sendNext("#face4#啊，感觉到电波的地方是#r#m402000615##k。我想马上去确认一下，叽，叽勒。")
 sm.startQuest(parentID)

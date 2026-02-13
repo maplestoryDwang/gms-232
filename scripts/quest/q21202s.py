@@ -1,16 +1,16 @@
 # 21202 - [Job Adv] (Lv.30)   Aran
 sm.setSpeakerID(1203000)
-sm.sendNext("Hmm... What's a young person like you doing in this secluded place?")
+sm.sendNext("呵呵……年轻人来这么偏僻的地方干嘛？")
 sm.setPlayerAsSpeaker()
-sm.sendNext("I've come to get the best Polearm there is!")
+sm.sendNext("我想要最厉害的长矛！")
 sm.setSpeakerID(1203000)
-sm.sendNext("The best Polearm? You should be able to purchase it in some town or other...")
+sm.sendNext("最厉害的长矛？那种东西在小村子里怎么有卖的……")
 sm.setPlayerAsSpeaker()
-sm.sendNext("I hear that you are the best blacksmith in all of Maple World! I want nothing less than a weapon made by you!")
+sm.sendNext("我知道你就是冒险岛世界里最厉害的铁匠！我想要你做的武器！")
 sm.setSpeakerID(1203000)
-if sm.sendAskYesNo("I'm too old to make weapons now, but... I do have a Polearm that i made way back when. It's still in excellent shape. But I can't give it to you because that Polearm is extremely sharp, so sharp it could even hurt its master. Do you still want it?"):
+if sm.sendAskYesNo("我这个老头子太老了，哪还能做什么优秀的武器啊。倒是有一支很久以前做的长矛……不过却不能给你。那个家伙太锋利，弄不好连主人都会被伤到。这种武器你还想要吗？"):
     sm.startQuest(parentID)
-    sm.sendSayOkay("Well, if you say so... I can't object to that. I'll tell you what. I'll give you a quick test, and if you pass it, the #p1201001# is yours. Head over to the #bTraining Center#k and take on the #r#o9831006##k that are there. your job is to bring back #b30 Sign of Acceptances#k.")
+    sm.sendSayOkay("呵呵……既然你这么说，我这个老头子就试一试你。你去旁边的#b修炼场#k，打败那些#r#o9001012##k，取回#b#t4032311##k#b30个#k给我。我就把#p1201001#交给你。")
     sm.dispose()
 else:
     sm.dispose()

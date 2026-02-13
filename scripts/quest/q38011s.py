@@ -2,12 +2,12 @@
 MOONBEAM = 3002100
 
 sm.setSpeakerID(MOONBEAM)
-sm.sendNext("What's wrong with you? You're covered in scars! What happened? Tell me now! Is anybody bullying you? Picking on you? You're already so weak and stupid, why would anyone do that?")
-sm.sendSay("What? You were just going after a couple #o2400203#s? Why did you run off on your own to hunt them? You coulda just told me and I-I could have done that for you! Why do you need to give gifts in return?")
-sm.sendSay("Shade, you stupid! Ughh, I'm so irritated! I-I hate you so much!")
+sm.sendNext("你这是怎么回事？全身都是伤。是在哪里受的伤？是被人打了吗？是谁？快告诉我！居然有人欺负这么可怜的人。到底是谁？")
+sm.sendSay("什么？只是抓了几只#o2400203#，就变成了这个样子？你为什么不经我的允许，就去抓#o2400203#啊？只要跟我说一声……我都可以帮你搞定！答谢？为什么要准备那种东西？为什么？")
+sm.sendSay("隐月真是个傻瓜！真讨厌！真的……真的……很讨厌！")
 sm.startQuest(parentID)
 
 sm.setPlayerAsSpeaker()
-sm.sendSayOkay("What did I do wrong this time? Why are foxes on an emotional roller coaster all the time? I guess I better apologize to her. She was headed in direction of the #r#m410000002##k. I guess... I guess I should follow her?")
+sm.sendSayOkay("啊，这次我又做错什么了吗？狐狸们的感情波动怎么这么厉害啊？哈，是不是应该先说声道歉呢？她往那个方向跑过去了，好像是去了#r#m410000002##k……应该跟过去吧？")
 
 

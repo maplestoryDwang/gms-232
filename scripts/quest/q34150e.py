@@ -13,6 +13,6 @@ if remainingTasks <= 0:
 
 sm.setSpeakerID(3003104) # Rona
 sm.setParam(2)
-sm.sendNext("#b(You gave Rona the information you obtained from observing the Blazing Erdas up close.)#k")
+sm.sendNext("你搜集到了50个#t4034936:#。来，我把1个#i1712001:# #t1712001:#和1个#i2614029:# #t2614029:#送给你。搜集到的样本一定会对研究起到很大的帮助。")
 sm.setParam(0)
 sm.sendSay("You have " + str(QuestConstants.VANISHING_JOURNEY_WEEKLY_AMOUNT -remainingTasks) + " tasks completed this week. Thanks to you, we're one step closer to understanding this place.")

@@ -2,14 +2,14 @@
 PURUN = 1202004
 
 sm.setSpeakerID(PURUN)
-sm.sendNext("Welcome, hero! What's that? You want to know how I knew who you were? That's easy. I eavesdropped on some people talking loudly next to me. I'm sure the rumor has spread through the entire island already. Everyone knows that you've returned!")
-sm.sendSay("Anyway, what's with the long face? Is something wrong? Hm? You're not sure whether you're really a hero or not? You lost your memory?! No way... It must be because you were trapped inside the ice for hundreds and hundreds of years.")
+sm.sendNext("英雄！你好！啊？你难道不知道自己是英雄吗？前面3个人都喊那么大声了，我还能听不见吗？整个岛都知道英雄苏醒的事情了。")
+sm.sendSay("咦，你怎么好像不开心的样子？有什么问题吗？啊？不知道自己到底是不是英雄？你失忆了吗？怎么会……看样子是被封冻在冰里数百年来的后遗症。")
 
-if sm.sendAskAccept("Hm, how about trying out that sword? Wouldn't that bring back some memories? How about #bfighting some monsters#k?"):
+if sm.sendAskAccept("嗯，既然你是英雄，挥挥剑也许就会想起什么来呢？试着去#b打猎怪兽#k，怎么样？"):
     sm.removeEscapeButton()
     sm.startQuest(parentID)
-    sm.sendNext("It just so happens that there are a lot of #r#o9300383#s#k near here. How about defeating just #r3#k of them? It could help you remember a thing or two.")
-    sm.sendSay("Ah, you've also forgotten how to use your skills? #bPlace skills in the quick slots for easy access.#k You can also place consumable items in the slots, so use the slots to your advantage.")
+    sm.sendNext("对了，这附近有许多#r#o9300383##k，请击退 #r3只#k试试，说不定你就能想起什么了。")
+    sm.sendSay("哦，你应该还没有忘记使用技能的方法吧？#b将技能拖到快捷栏上，以方便使用#k。除了技能以外，消费道具也可以拖到这里来方便使用。")
     sm.tutorAutomatedMsg(17)
 else:
     sm.sendNext("Hm... You don't think that would help? Think about it. It could help, you know...")

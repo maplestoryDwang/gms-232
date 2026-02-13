@@ -2,14 +2,11 @@
 LIBRARIAN = 2500002
 
 sm.setSpeakerID(LIBRARIAN)
-sm.sendNext("Come on over! I am #b#p2500002##k. Surprised? I'll have you know my simian parts are my best parts.")
-sm.sendSay("What is this place, you ask? This is the #bGrand Athenaeum#k. All the knowledge and records of this world are enshrined here. Many people don't know it, but Maple World's stories write themselves into their own book when they happen. No pens or ink required!")
-sm.sendSay("Ha ha, you think I'm lying? You can see for yourself! You can #benter the stories themselves#k, and experience them as a character.")
-sm.sendSay("#b#p2500000##k gave me books that all touch on key events in Maple World's history.")
-if sm.sendAskAccept("Let's see... Clearing all five would be too many, so if you clear #bthree, regardless of the order#k, I'll give you a #bpretty neat gift#k.\r\nAre you up for the challenge?\r\n\r\n"
-                    "\n\n- Bonus Pendant Slot #e#b(21 Day)#k#n\r\n"
-                    "\n\n- #i1122263#   #b#t1122263##k\r\n\r\n"
-                    "\n\n- #i2431892#   #b#t2431892##k"):
+sm.sendNext("欢迎你。我是管理这里的#b#p2500002##k。你不会因为我是猴子就吓到了吧？")
+sm.sendSay("你问这里是什么地方吗？这里是 #b次元图书馆#k。\r\n\r\n这里是汇聚世上所有知识和记录的地方。虽然很多人都不知道这个地方，但即便没有专人来书写记录，冒险岛的故事也会自动汇集到这里来，形成书籍。")
+sm.sendSay("呵呵呵，你觉得我在说谎吗？甚至连你也可以成为#b实际存在过的人物#k，进到故事里去呢。要不要亲自去确认一下啊？")
+sm.sendSay("我这里刚好有#b#p2500000##k叼来的书。讲述的都是冒险岛世界实际发生过的事。")
+if sm.sendAskAccept("让我看看……五个全部完成好像太多了。只要你能#b完成三个#k，我就#b送你一份相当不错的礼物#k……好了，你想挑战吗？\r\n\r\n - 吊坠额外栏#e#b（21天期限制）#k#n\r\n\r\n - #i1122263#   #b#t1122263##k"):
     sm.completeQuest(parentID)
     sm.startQuest(32663)# [Grand Athenaeum] Read The White Mage
     sm.startQuest(32664)# [Grand Athenaeum] Read Empress In Training
@@ -17,6 +14,6 @@ if sm.sendAskAccept("Let's see... Clearing all five would be too many, so if you
     #sm.startQuest(32698)# Book for higher version
     #sm.startQuest(32990)# Book for higher version
     sm.startQuest(32666)# [Grand Athenaeum] Food for the Soul
-    sm.sendSayOkay("You can read the books containing stories in any order you'd like. Talk to #b#p2500000##k.")
+    sm.sendSayOkay("包含着不同故事的书，可以按任意顺序阅读。你去和#b#p2500000##k谈谈吧。")
 else:
     sm.sendNext("Busy? You're always welcome here.")

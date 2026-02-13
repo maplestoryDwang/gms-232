@@ -1,13 +1,13 @@
 # 57110 | Counterintelligence
 sm.setSpeakerID(9130008)
-sm.sendNext("A report has just come in about soldiers in dark armor circling the outskirts of Momijigaoka.")
+sm.sendNext("剑斗。刚刚负责盯守枫叶山丘外围的哨兵传来了不好的消息。他们说，似乎有身穿黑色甲胄的士兵出现在了这附近。")
 sm.setPlayerAsSpeaker()
-sm.sendNext("Soldiers in dark armor... Oda! They must have been brought to this world as well!")
+sm.sendNext("黑色甲胄……难道是织田军的士兵？果然不出所料，织田军也来到“这边”这个世界了啊！")
 sm.setSpeakerID(9130008)
-sm.sendNext("There is no doubt they are Oda's soldiers. However, I am sure they have not discovered the base. Their movements are too erratic.")
-if sm.sendAskYesNo("It is only a matter of time before they stumble onto our nest, most likely due to blind luck. We would be best served if someone were to go fight them. Don't you think, Hayato?"):
+sm.sendNext("根据哨兵的描述，这些士兵应该就是织田军的人。不过，敌兵并没有摆出什么阵型，也没有携带什么武器装备，应该是织田军的侦察兵吧。")
+if sm.sendAskYesNo("他们现在应该还没有注意到我们这个本阵的存在。但是再让他们这样侦查下去，恐怕枫叶山丘被敌人发现也不过是时间的问题了。我相信剑斗你应该有能力阻止敌人的侦查。不知道这个任务可不可以交给你来负责呢？"):
     sm.startQuest(parentID)
-    sm.sendNext("Well then, I suppose you should get to work. The reports mention Maple Hill Road. I would expect resistance, and I would not be surprised if you find more difficult than you expected.")
+    sm.sendNext("谢谢，有你在真是太好了。从本阵的东门移动到枫叶坡道后，应该就可以看到敌军的侦察兵了。只要能击退大概30名左右的敌军，应该就可以阻止他们的侦查了。好了，接下来就拜托你了。")
     sm.dispose()
 else:
     sm.dispose()

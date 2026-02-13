@@ -8,8 +8,7 @@ import string
 parwen = 2111006
 
 sm.setSpeakerID(parwen)
-sm.sendNext("Oh, you're here! Good thing, because I, Parwen, have found the master key "
-"that will allow you to enter the Secret Passage! Isn't it great? Tell me Parwen is great!")
+sm.sendNext("密码是#b4ZDEOV25A1#k，记下来了吗？在秘密通道入口处输入这组密码，就可以自由出入通道。")
 response = sm.sendAskAccept("Now, the passcode is very long and complex, so I suggest you write it down somewhere. "
 "I'm only going to tell you this once, okay? Are you ready?")
 if response:

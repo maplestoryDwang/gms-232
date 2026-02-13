@@ -1,8 +1,8 @@
 # 25511 - [Job Adv] (Lv.100)   Epiphany
 sm.removeEscapeButton()
 sm.setPlayerAsSpeaker()
-sm.sendNext("(I feel the Light and Dark within me coming together, merging into a new kind of energy!)")
-sm.sendNext("(I've reached a new level of balance between the Light and Dark.)")
+sm.sendNext("(这是什么感觉？我体内的两股力量合二为一，成为一种新的力量啦。)")
+sm.sendNext("(光与黑暗的融合提升了一个阶段。)")
 sm.setJob(2712)
 sm.startQuest(parentID)
 sm.completeQuest(parentID)

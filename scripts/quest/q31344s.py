@@ -4,28 +4,21 @@ GUWARU = 2210011
 
 sm.setSpeakerID(GUWARU)
 sm.flipSpeaker()
-sm.sendNext("Greetings #h0#! Can you hear me? Have you spoken with the colossus?\r\n"
-            "#b(It sounds like Guwaru. You tell him all about the Stone Colossus.)")
+sm.sendNext("#h0#，你能听到我说话吗？能和岩壁巨人对话吗？\r\n#b(是古瓦洛的声音。把和岩壁巨人的对话告诉他吧。)#k")
 
 sm.flipSpeaker()
-sm.sendSay("The birth of this creature is something I had long thought impossible. "
-           "The spirits of hundreds, if not thousands, of lesser life forms have combined to become one, gigantic entity.")
+sm.sendSay("岩壁巨人是大地精灵长期聚集在一起形成的新的生命体，看上去就像是粘土组成的一样。实际上是成百上千个小生命体结合在一起后诞生出来的东西。")
 
 sm.flipSpeaker()
-sm.sendSay("This all began when my powers wre abused by Magnus long ago. "
-           "The smaller spirits huddled together in fear at the corruption that held me. "
-           "Alone they were mere insects. Together, they could be safe. "
-           "The lack of my guidance forced them to coalesce")
+sm.sendSay("因为我在几百年前遭到了军团长麦格纳斯的背叛，被吸收了力量。因此精灵们本能地感觉到了危机。就像受了伤之后，身体的各个组织会迅速运作起来恢复身体一样，精灵们决定通过“合体”来应对“我的力量消失”的危机。这一过程，经历了几百年时间。")
 
 sm.flipSpeaker()
-sm.sendSay("But this is unnatural, and dangerous. If these spirits were dispersed across the world, the corruption of a few would not be a concern. "
-           "But if they were tainted by dark energy in this confined space, I fear the corruption would spread too fast to stop.")
+sm.sendSay("但这很明显是违背自然规律的……原来精灵们不应该组成巨大的生命体，而是应该分散在各地，组成世界才对。如果精灵们分散在世界各地，即使某个地方的精灵受到了污染，他们也能自我净化。但是现在他们合成了一个生命体，就产生了很大的问题。")
 
 sm.flipSpeaker()
-sm.sendSay("The catastrophes that colossus could create, if left under the influence of evil powers... "
-           "I cannot begin to think. If only I had not allowed myself to fall victim to the Black Mage's idiotic plans.")
+sm.sendSay("如果岩壁巨人被黑暗力量污染，那该怎么办呢？那样的话，一定会发生大灾难。从岩壁巨人说的话来看，好像已经出现了污染的征兆。这一切全都是我的错。")
 
 sm.flipSpeaker()
-sm.sendSay("You must help the Stone Colossus regain its pure heart. It would be disastrous if the creature were to fall evil.")
+sm.sendSay("你能帮助岩壁巨人吗？必须阻止大灾难的发生。")
 
 sm.startQuest(parentID)

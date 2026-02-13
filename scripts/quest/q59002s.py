@@ -1,19 +1,19 @@
 # 59002 - Brave Like a Hero
 
 sm.setSpeakerID(9390306)
-sm.sendNext("What is this with you and that hero thing? Do you really think you're cut out to be a hero?")
+sm.sendNext("等等,你刚才说,你会成为英雄?")
 sm.setPlayerAsSpeaker()
-sm.sendNext("Sure, I'm going to be a legend, just like the five Maple Heroes!")
+sm.sendNext("嗯!我一定会成为冒险岛5大英雄一样的大英雄!")
 sm.setSpeakerID(9390306)
-sm.sendNext("Yeah. *snort* Sure.")
+sm.sendNext("切!!我一定会成为英雄的!\r\n你怎么才会相信我呢?")
 sm.setPlayerAsSpeaker()
-sm.sendNext("You don't believe me? That's okay. What can I do to prove it to you?")
+sm.sendNext("若你敢进入村东#b野狼森林#k的话,我就相信你。\r\n知道吗?那里危险的连大人们都不敢轻易进去呢!")
 sm.setSpeakerID(9390306)
-if sm.sendAskYesNo("You know #bWolf Forest#k to the east? The place even grown-ups are afraid of? Go there... ALONE. Then maybe I'll believe you'll be a hero someday."):
+if sm.sendAskYesNo("好,我去去就来!"):
     sm.setPlayerAsSpeaker()
-    sm.sendNext("You got it! Be back in a jiffy!")
+    sm.sendNext("哇,真的?不要勉强啊。")
     sm.setSpeakerID(9390306)
-    sm.sendNext("W-wait! Really? Are you sure?")
+    sm.sendNext("哼,要想当英雄,这点程度就应该不在话下才是!")
     sm.setPlayerAsSpeaker()
-    sm.sendNext("Bah, a hero like me ain't scared of no forest!")
+    sm.sendNext("可笑啊,你怎么可能?")
     sm.startQuest(parentID)

@@ -4,8 +4,7 @@ sm.setSpeakerID(1510006)
 lumber = 4030022
 
 if sm.canHold(lumber):
-    sm.sendNext("Navigator, this lumber seems decent.\r\n\r\n"
-                "#b#v"+ str(lumber) +"##t"+ str(lumber) +"#")
+    sm.sendNext("航海士，这样的木材应该能派上用场。\r\n\r\n#b#i4030022##z4030022#")
     sm.startQuestNoCheck(parentID)
     sm.giveItem(lumber)
 else:

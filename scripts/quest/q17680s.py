@@ -2,7 +2,7 @@
 sm.setSpeakerID(9390246) # Captain Blood
 sm.setParam(33)
 sm.setColor(1)
-sm.sendNext("Yaarrr... me throbbin' head... how...")
+sm.sendNext("呜哦……我竟然中招了……")
 sm.setParam(57)
-sm.sendSay("Give it up and hand yourself over. I'll make sure they go easy on you.")
+sm.sendSay("好啦，现在可以放弃乖乖地束手就擒了吧。")
 sm.startQuest(parentID)

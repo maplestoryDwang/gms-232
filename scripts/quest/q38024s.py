@@ -1,27 +1,27 @@
 MOONBEAM = 3002000
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("The town seems restless, different from other days. Did something happen?")
+sm.sendNext("感觉村里的氛围和平时不太一样。村里发生什么事了吗？")
 
 sm.setSpeakerID(MOONBEAM)
-sm.sendSay("...Dunno.")
+sm.sendSay("……我也不知道。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("(Something must be up. Moonbeam isn't herself either.)")
-sm.sendSay("Okay.")
+sm.sendSay("(虽然不知道是什么，但一定有什么事。情绪消沉的样子，完全不是阿琅的作风。)")
+sm.sendSay("哦，知道了。")
 
 sm.setSpeakerID(MOONBEAM)
-sm.sendSay("...I'm sorry.")
+sm.sendSay("……对不起。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Why?")
+sm.sendSay("什么？")
 
 sm.setSpeakerID(MOONBEAM)
-sm.sendSay("Just... everything. I'm sorry. I'm really, really sorry...")
+sm.sendSay("没什么。对不起，真的很对不起……")
 
 sm.startQuest(parentID)
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Moonbeam! Why is she crying all of a sudden? I should look into it myself.")
+sm.sendSay("阿琅！到底发生了什么事，哭成那个样子……最好直接去问问她。")
 
 

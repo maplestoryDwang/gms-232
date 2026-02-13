@@ -22,7 +22,7 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(ark)
-sm.sendNext("#face0#Memories...  We'd shout 'Fools and idiots forever!' while bumping fists.")
+sm.sendNext("空任务位于： #b 脚本/任务/34972.js#k\r\n\r\n那么现在，你要立刻开始这个任务吗？")
 sm.sendNext("#face0#I always failed at the Academy, but I never gave up. "
 "He joined the Academy despite having a successful future waiting for him.")
 sm.sendNext("#face0#We couldn't be more different, but we shared the same dream. "

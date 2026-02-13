@@ -2,7 +2,7 @@
 sm.setSpeakerID(9130107) # Mysterious Boy
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(9130107) # Mysterious Boy
-sm.sendNext("Woo! It's quite heavy now. Feel all those souls... ")
-sm.sendSay("It's VERY full! ")
+sm.sendNext("这个有150人的坛子还真的有点重呢。")
+sm.sendSay("好~满~啊")
 sm.completeQuestNoCheck(parentID)
 sm.createQuestWithQRValue(18418, "B=35636")

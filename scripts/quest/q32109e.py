@@ -1,10 +1,10 @@
 # id 32109 ([Ellinel Fairy Academy] Cootie's Suggestion), field 101072000
 sm.setSpeakerID(1500001) # Headmistress Ivana
-res = sm.sendNext("You think YOU can find the missing children? How do you propose to do that?#b\r\n#L0#Let's look around the lake. #l\r\n#L1#Why don't we use magic?#l#l\r\n#L2#I'd like to look through the childrens' rooms.#l")
+res = sm.sendNext("呜呜……你们是来帮忙找孩子们吗？你们打算怎么帮忙？\r\n\r\n")
 if res == 0:
-    sm.sendNext("The lake has been searched ten times over at this point. There's nothing left there to find.  ")
+    sm.sendNext("#L1##b想在湖中寻找。#l\r\n")
 elif res == 1:
-    sm.sendNext("Magic doesn't work like that.")
+    sm.sendNext("#L2##b想用魔法来搜寻孩子们的行踪。#l\r\n")
 elif res == 2:
-    sm.sendNext("I don't really like the idea of you snooping around, but you can go ahead.")
+    sm.sendNext("#L3##b想在孩子们生活过的地方寻找线索。#l\r\n")
     sm.completeQuest(parentID)

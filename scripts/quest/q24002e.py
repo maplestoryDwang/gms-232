@@ -3,9 +3,7 @@
 PHILIUS = 1033202
 
 sm.setSpeakerID(PHILIUS)
-sm.sendNext("Maybe we're the lucky ones. "
-            "While we sleep, Maple World will heal from the terrible things the Black Mage has done. "
-            "I wonder what kind of world we'll wake up to?")
+sm.sendNext("启动了魔法阵。现在外面的人应该无法感觉到#m101050000#的存在了。")
 
 
 response = sm.sendAskYesNo("Your Highness, I will dream of a more beautiful world when we awaken...")

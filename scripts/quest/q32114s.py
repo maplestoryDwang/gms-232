@@ -1,5 +1,5 @@
 # id 32114 ([Ellinel Fairy Academy] Combing the Academy 4), field 101072700
 sm.setSpeakerID(1500012) # Cootie the Really Small
-res = sm.sendAskAccept("The girls' dormitories are laid out just like the boys', on the end of each floor. I don't know if I'm supposed to be looking around in ladies' rooms though...")
-sm.sendNext("We must do what must be done to complete this investigation!\r\n(Cootie's blushing for some reason...)\r\n\r\nPlease look around the dormitories on the third floor for me...")
+res = sm.sendAskAccept("找到有用的东西了吗？")
+sm.sendNext("你说他们不知道在偷偷地制作什么？会在做什么呢……或许这就是解开这个秘密的关键！")
 sm.startQuest(parentID)

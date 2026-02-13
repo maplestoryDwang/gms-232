@@ -6,7 +6,7 @@ ITEM1 = 4033194
 ITEM2 = 4033195
 
 sm.setSpeakerID(LIMBERT)
-sm.sendNext("Are you done cleaning yet? I suppose it looks moderately presentable in here. What are you looking at? Go organize the shelves!")
+sm.sendNext("怎么这么慢？磨磨蹭蹭的～打扫完了吗？现在好像稍微好一点了。看什么看？打扫完了的话，快来帮我整理东西！")
     
 sm.sendNext("What?! Who told you you could touch that?!")
 

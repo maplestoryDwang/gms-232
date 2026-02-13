@@ -4,15 +4,15 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1531002) # Yuna
-sm.sendNext("#b#h0##k! You jerk, I've been waiting TWO DAYS for you to get back to me! Have you been fooling with Jay again?")
+sm.sendNext("#b#h0##k！！你居然现在才来，真是令人难以置信，我让杰帮我传话都已经是两天前的事情了！！")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("He forgot to tell me until just now, and I came as soon as I could. You know I hate to keep you waiting.")
+sm.sendSay("我真的是刚刚才听到他跟我说这件事的，\r\n一听说你在等，我真的是以超新星爆炸的速度奔过来的。")
 sm.setInnerOverrideSpeakerTemplateID(1531002) # Yuna
-sm.sendSay("#face1#...Like I haven't heard THAT before.")
+sm.sendSay("#face1#是……是嘛？")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face2#(Her expression softens. Nice save.)#k")
+sm.sendSay("#face2#嗯。#b(瞧瞧脸色立马就恢复正常了，多可爱啊。)#k")
 sm.setInnerOverrideSpeakerTemplateID(1531002) # Yuna
-sm.sendSay("Well... You know, this wouldn't happen if you'd just show up for Student Council Meetings. I mean, you ARE the president! Give me the Meeting Minutes.")
+sm.sendSay("嗯，那也没办法了，如果你一开始能够准点地出现在总学生会会议上，也就不会有这种事情了，会议录给我。")
 sm.playSound("Sound/SoundEff.img/PvP/80001740_Use", 100)
 sm.onLayer(500, "0", 800, 0, 12, "Map/Effect2.img/kinesis/chaYuna", 5, True, -1, False)
 sm.moveLayer(300, "0", -800, 0)

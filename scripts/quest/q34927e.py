@@ -7,6 +7,6 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001509) # Salvo
-sm.sendNext("#face0#Wow! This is going to make some really great stuff!")
+sm.sendNext("#face0#很好，用它可以制造出性能非常好的炸，炸，炸弹↗")
 sm.setInnerOverrideSpeakerTemplateID(3001500) # Ark
-sm.sendSay("#face0#(Guess I should check in with Zippy now that I've finished helping Ferret and Salvo.)")
+sm.sendSay("#face0#（维依和巴克巴克的事情全部搞定了。回到妮雅那里去吧。）")

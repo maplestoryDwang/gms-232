@@ -2,18 +2,18 @@
 sm.setSpeakerID(1501001) # Ruenna the Fairy
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(1501013) # Ruenna the Fairy
-sm.sendNext("I wonder what could have made a bird of Elodin cry...")
-sm.sendSay("Oh? She said she'd teach him how to sing? Wonderful!")
-sm.sendSay("So now you have to take the baby bird there in person?")
-res = sm.sendAskYesNo("Then the two of you could go there together!")
+sm.sendNext("艾洛丁的鸟在哭……？嗯……一定是发生了什么事……")
+sm.sendSay("总之，你说过会教它唱歌的！")
+sm.sendSay("你必须把小鸟一起带走，对吧？")
+res = sm.sendAskYesNo("那你们一起去就行了！")
 sm.setParam(5)
-sm.sendNext("Come back safely!")
+sm.sendNext("再见！")
 sm.createQuestWithQRValue(37150, "00=h0;01=h1;02=h0;03=h0;04=h1")
 sm.setInnerOverrideSpeakerTemplateID(1501010) # Baby Bird
-sm.sendSay("I'm so excited! Maybe she can teach me how to sing properly, so Ruenna will like listening to me!")
+sm.sendSay("嘿嘿，真让人期待！你会比鲁安教得更好吗？那样我的歌声定能得到人们的认可！")
 sm.setInnerOverrideSpeakerTemplateID(1501013) # Ruenna the Fairy
-sm.sendSay("Don't get ahead of yourself now...")
+sm.sendSay("哼，小心我……")
 sm.setParam(3)
-sm.sendSay("Why don't we get going? It's a long trip.")
+sm.sendSay("哈哈……那就快出发吧。还有很长的路要走。")
 sm.startQuest(parentID)
 sm.warp(101084400)

@@ -2,13 +2,13 @@
 MOONBEAM = 3002100
 
 sm.setSpeakerID(MOONBEAM)
-sm.sendNext("The Fox God gave you his blessings, so you probably have a new skill! Check your skill window.")
+sm.sendNext("你已经在狐神的庇护下，得到了精灵的力量，也将因而获得新的技能。查看一下你的技能窗吧。")
 
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendSay("Fox Trot... Spirit Bond... I've never seen these skills before.")
+sm.sendSay("缩地…………精灵凝聚…………从没见过这种技能。")
 
 sm.setSpeakerID(MOONBEAM)
-sm.sendSay("They'll be a big help for a slow, weak thing like you. Here, let's talk some more so I can show you how they work!")
+sm.sendSay("这样的技能对于行动缓慢外加力量虚弱的隐月来说是非常必要的！好的，我会教你如何使用，准备好的话就再和我说话吧！")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)

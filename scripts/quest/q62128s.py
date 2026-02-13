@@ -7,10 +7,8 @@ sm.removeEscapeButton()
 sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(57)
-sm.sendNext("WHOA! No way! Could this really be...?!")
-sm.sendNext("Whoa! Is this a #eTang Dynasty Horseback Riding Doll circa 650 A.D.?!#n "
-"It's so realistic! It must be real! \r\n"
-"Maybe a little Tang prince played with it!")
-sm.sendNext("#p" + repr(huiKoonKit) + "# will be so excited to see this!")
+sm.sendNext("#fs16#啊？！难道！！这是？！")
+sm.sendNext("#e公元650年制造的骑马像？！#n看这栩栩如生的形态，漂亮的色彩！\r\n这准是唐代皇室的王子拿在手里把玩的骑马像陶器！")
+sm.sendNext("交给#p9310537#吧！")
 
 sm.startQuest(parentID)

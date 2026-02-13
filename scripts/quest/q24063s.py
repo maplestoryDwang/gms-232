@@ -5,23 +5,19 @@
 danika = 1033101
 
 sm.setSpeakerID(danika)
-sm.sendNext("Your Majesty! I missed you so... I've been trying to act normal, "
-"but I was afraid I'd never see you again...")
+sm.sendNext("双弩精灵！双弩精灵！我想见你！呜呜～虽然我装得很坦然，但我一直害怕我们再也不能见面了！")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Danika! Are you okay?")
+sm.sendSay("你身体没事吧，#p1033101#？")
 
 sm.setSpeakerID(danika)
-sm.sendSay("Don't worry about me! I'm fine, compared to the others! "
-"I lost my skills, but I'm not hurt.")
+sm.sendSay("是的！没事！就身体而言，我自信比任何精灵都要强壮！虽然没有自信能像以前那样使用技能，但是没有不舒服的地方！")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Thank goodness!")
+sm.sendSay("太好了……")
 
 sm.setSpeakerID(danika)
-response = sm.sendAskAccept("How did you survive here on your own, Your Majesty? "
-"It must have been lonely! Don't worry. I'll be here to keep you company from now on! \r\n\r\n"
-"#fUI/UIWindow2.img/QuestIcon/8/0# 1000 exp")
+response = sm.sendAskAccept("当然啦！很棒吧！独自生活在已经历经数百年时间的世界！那是多么苦闷的事情啊！呜哇！~ 从现在开始，就让#p1033101#我来陪伴你吧！	\r\n\r\n#fUI/UIWindow2.img/QuestIcon/8/0# 2000 exp")
 if response:
     sm.giveExp(1000)
     sm.startQuest(parentID)

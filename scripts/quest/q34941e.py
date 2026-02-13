@@ -7,4 +7,4 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001508) # Zippy
-sm.sendNext("#face2#This should go a long way to helping us disguise the crystal. Thanks! I think Salvo needs help gathering emergency rations if you'd like to help him too.")
+sm.sendNext("#face2#嗯……把这些焊起来就行了。嗯……巴克巴克好像正在搜集备用粮…如果可以，你最好去看看……")

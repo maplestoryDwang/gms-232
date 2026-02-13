@@ -3,39 +3,39 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3003502) # Shubert
-sm.sendNext("#face3#Is that... the #bJellyfish#k?!")
-sm.sendSay("#face3#H-how'd you get it here?")
+sm.sendNext("#face3#这……这不是#b海蜇号#k吗？！")
+sm.sendSay("#face3#这个……你怎么带回来的？")
 sm.setInnerOverrideSpeakerTemplateID(1540451) # Neinheart
-sm.sendSay("#face2##bEdelstein#k found a way to recover it.\r\nIt's had some improvements, so it should be more reliable this time.")
+sm.sendSay("#face2#这是为了此次作战，从#b埃德尔斯坦#k紧急空运过来的。\r\n据说已做了许多改良，在性能上应该会比较可靠。")
 sm.setInnerOverrideSpeakerTemplateID(3004157) # Resistance Soldier
-sm.sendSay("#face0#All checks completed, Commander.")
+sm.sendSay("#face0#南哈特，检查完毕了。")
 sm.setParam(56)
-sm.sendSay("We need a submersible for this? But in Morass...")
+sm.sendSay("需要潜水艇吗？但在莫拉斯……")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(1540451) # Neinheart
-sm.sendSay("#face2#The Origin Sea is changing. The environment is different now.")
-sm.sendSay("#face2#Now all we need to do is wait for our new pilot.\r\nOllie, #h0#, why don't the two of you familiarize yourselves with the controls while you wait?")
+sm.sendSay("#face2#随着太初之海发生异变，环境与之前发生了很大改变。")
+sm.sendSay("#face2#好，现在就等驾驶员过来了。\r\n沃莉、#h0#，你们二位可以在等待期间看看操纵方法。")
 sm.setInnerOverrideSpeakerTemplateID(3003500) # Ollie
-sm.sendSay("#face3#Let me check the instructions here...")
+sm.sendSay("#face3#我想想……说明书在……")
 sm.setInnerOverrideSpeakerTemplateID(3004157) # Resistance Soldier
-sm.sendSay("#face0#Uh, Ollie? You're... holding them upside-down.")
+sm.sendSay("#face0#沃莉？那个……你把说明书那倒了。")
 sm.setInnerOverrideSpeakerTemplateID(3003500) # Ollie
-sm.sendSay("#face1#Oh, really? S-so they're supposed to be like this?")
-sm.sendSay("#face0#Hmm... I guess they kind of make sense now...")
+sm.sendSay("#face1#啊，是吗？应该这么看吗？")
+sm.sendSay("#face0#嗯……啊！我知道了！像这样看就行！")
 sm.setInnerOverrideSpeakerTemplateID(3004157) # Resistance Soldier
-sm.sendSay("#face0#...No, they're sideways now. Rotate them one more time. The other way.")
+sm.sendSay("#face0#哦……再从那里往左拐一下……。")
 sm.setInnerOverrideSpeakerTemplateID(3003500) # Ollie
-sm.sendSay("#face1#...")
+sm.sendSay("#face3#南哈特，等等。")
 sm.setInnerOverrideSpeakerTemplateID(3003502) # Shubert
-sm.sendSay("#face3#...")
-sm.sendSay("#face3#Neinheart.")
+sm.sendSay("#face2#怎么了？")
+sm.sendSay("#face3#我……我来操纵吧。")
 sm.setInnerOverrideSpeakerTemplateID(1540451) # Neinheart
-sm.sendSay("#face2#Yes?")
+sm.sendSay("#face3#那家伙不好对付。\r\n我对它比较熟悉，交给我吧。")
 sm.setInnerOverrideSpeakerTemplateID(3003502) # Shubert
-sm.sendSay("#face3#I... I'll be your pilot.")
-sm.sendSay("#face3#Subs are hard to handle.\r\nYou need a pilot who's been down there before.")
+sm.sendSay("#face2#嗯……突然调整人员有点困难……。")
+sm.sendSay("#face2#休麦说得有道理，我批准了。")
 sm.setInnerOverrideSpeakerTemplateID(1540451) # Neinheart
-sm.sendSay("#face2#Well, I can't say I'd normally approve a last-minute personnel change...")
+sm.sendSay("#face3#终究是被卷进去了……")
 sm.sendSay("#face2#...but, since you do make a good point, I'll allow it.")
 sm.setInnerOverrideSpeakerTemplateID(3003502) # Shubert
 sm.sendSay("#face3#Ughh...")

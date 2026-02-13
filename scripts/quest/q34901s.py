@@ -3,7 +3,7 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001500) # Ark
-sm.sendNext("#face0#(I may have lost my memories, but I've clearly got the hands of a warrior. I must already be trained for combat.)")
+sm.sendNext("#face0#（即使失去了记忆……身体，这双手还本能地知道战斗的感觉。我也许已经熟悉了这样的情况……）")
 sm.setJob(15500)
 sm.setSTR(4)
 sm.setINT(4)

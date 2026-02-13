@@ -7,10 +7,8 @@ sm.removeEscapeButton()
 sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(57)
-sm.sendNext("WHOA! No way! Could this really be...?!")
-sm.sendNext("#eA Bronze Incense Burner from the great Ming Dynasty?!#n "
-"The exquisite sculpting, the attention to detail! It must be real! \r\n"
-"Maybe a Ming emperor used this in his bedroom!")
-sm.sendNext("#p" + repr(huiKoonKit) + "# will be so excited to see this!")
+sm.sendNext("#fs16#啊？！难道！！这是？！")
+sm.sendNext("#e公元150年制造的青铜香炉？！#n看这栩栩如生的形态，漂亮的色彩！\r\n这准是明朝皇室的王子拿在手里把玩的香炉！")
+sm.sendNext("交给#p9310537#吧！")
 
 sm.startQuest(parentID)

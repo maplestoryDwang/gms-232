@@ -1,6 +1,6 @@
 # id 31900 ([Twilight Perion] The Second Future), field 913050010
 sm.setSpeakerID(1105001) # Athena Pierce
-res = sm.sendAskAccept("You're here! Let's get the meeting started right away!")
+res = sm.sendAskAccept("你来啦！会议现在可以开始了吗？")
 sm.setParam(1)
-sm.sendNext("We must begin immediately, without any delays.")
+sm.sendNext("好的，那我们马上开始吧。")
 sm.warp(913051000)

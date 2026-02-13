@@ -2,12 +2,12 @@
 sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(56)
-sm.sendSay("Cough, cough!")
-sm.sendSay("You... You attacked Will and stopped the ritual. But why? Why did you save me?")
+sm.sendSay("咳咳！咳咳！")
+sm.sendSay("你……攻击威尔，妨碍仪式的人是你。\r\n你到底想干什么？为什么……要救我？")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003505) #???
-sm.sendSay("#face0#...")
-sm.sendSay("#face0#Go through the Gate of light at the base camp.")
+sm.sendSay("#fn黑体##fs20#为了除掉那家伙……需要#r「对抗者」#k。")
+sm.sendSay("那家伙……是指黑魔法师？啊？！")
 sm.setInnerOverrideSpeakerTemplateID(3003502) #Shubert
 sm.completeQuest(parentID)
 sm.warp(450007040)

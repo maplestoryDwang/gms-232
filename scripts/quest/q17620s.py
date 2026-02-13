@@ -1,36 +1,34 @@
 # [Commerci Republic] Eye for an Eye
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("Now, what dream can I make come true for you? Remember, anything in the entire world is yours for the asking.")
+sm.sendNext("好了，不要有负担，你就告诉我吧。我能帮你些什么？")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("Can you introduce me to Gilberto Daniella?")
+sm.sendNext("嗯…… 那我就跟你直说吧。我想见见吉尔伯特·达尼尔拉。")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("I offer to make your wildest dreams coe true, and that is what you want?")
+sm.sendNext("………… 我没有听错吧…… 你说什么？")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("Yup, I really want to meet Gilberto Daniella.")
+sm.sendNext("我想见#b吉。尔。伯。特。达。尼。尔。拉#k。")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("I heard you the first time, it's just...")
+sm.sendNext("额…… 那个，我……。")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("What?")
+sm.sendNext("怎么了？很难办？")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("Well, I thought you'd ask for something difficult, like borrowing my hat.")
+sm.sendNext("不…… 不是说很难办……")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("That was next on my list.")
+sm.sendNext("海上男子汉…… 刚刚好像跟我说了些什么……")
 
 sm.setSpeakerID(9390225) # Tepes
-response = sm.sendAskYesNo("To get to the Daniella merchant Union Office, head east from this spot, past the town fountain. "
-                "It's the white building with golden ornamentation.")
+response = sm.sendAskYesNo("……………… 唉，不管了。好的。从这里往东边一直~ 走，经过喷泉之后，就能看到一个有金色点缀的白色建筑物。那就是达尼尔拉商团的办公室。吉尔伯特应该在那里面。")
 
 if response:
     sm.setSpeakerID(9390225) # Tepes
-    sm.sendNext("I'll let them know you're on your way. Be polite when you talk to Gilberto. "
-                "He is quite powerful in Commerci.")
+    sm.sendNext("我会跟商团提前打好招呼的，你应该能进得去。见到吉尔伯特的话，你一定要礼貌点。他在整个凯梅尔兹共和国都有着影响力。")
     sm.startQuest(parentID)
 sm.dispose()

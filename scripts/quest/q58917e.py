@@ -3,6 +3,6 @@ sm.completeQuestNoCheck(parentID)
 sm.setSpeakerID(9130107) # Mysterious Boy
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(9130107) # Mysterious Boy
-sm.sendNext("Yes, that's it. That's the jar I saw.  ")
+sm.sendNext("没错，我看到的坛子就是这个。")
 sm.createQuestWithQRValue(18418, "B=35647")
 sm.sendPrev("Okay! Now that we have the jars, we just have to put some souls in them.")

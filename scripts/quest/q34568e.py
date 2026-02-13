@@ -3,5 +3,5 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
-sm.sendSay("#face0#I think this thing's ready to go. Let's take it somewhere a little more secure, so nothing can interrupt us.")
+sm.sendSay("#face0#好像行了。\r\n为了以防万一，最好移动到附近没人的地方，然后再使用。")
 sm.completeQuest(parentID)

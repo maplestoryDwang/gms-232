@@ -1,11 +1,11 @@
 RYDEN = 1057001
 
 sm.setSpeakerID(RYDEN)
-sm.sendNext("How interesting. New recruit, you didn't even bat an eyelash at Shiba's insults... It was all a setup, you see. We wanted to see how you would react. You did quite well.")
-sm.sendSay("You have a knack for our Dual Blade ways. #bI recommend you for the special mission!#k ")
-sm.sendSay("I can't tell you what kind of mission it is. That's up to #bLady Syl#k, IF she agrees that you're worthy. If not, you'll train the same way as everyone else. So, try not to tick Lady Syl off.")
+sm.sendNext("咔咔咔…这次来了个好玩的菜鸟嘛？西瓦这么欺负你，你居然连眼睛也不眨一下，难道你不会觉得伤心吗？其实啊，西瓦只是想考验你一下而已，你有足够的天赋踏上双刀之路。")
+sm.sendSay("不仅是双刀方面的才能，我发现你还有其他方面的天赋……可不能让你接受平凡的修炼！#b拥有特殊才能的人，就给他安排特殊的任务#k!这就是暗影双刀的作风。")
+sm.sendSay("你想知道这是什么任务?这个嘛…现在还不能告诉你。我要正式把你介绍给#b雪姬#k大人，如果雪姬喜欢你，就能接受到特殊任务，如果不是……那就只能接受平凡的修炼了。所以你努力让雪姬大人喜欢你就对了。")
 
-if sm.sendAskAccept("When you accept, I'll send you to Lady Syl."):
+if sm.sendAskAccept("你接受了我就直接把你送到雪姬那里去。"):
     sm.startQuest(parentID)
     sm.removeNpc(RYDEN)
     sm.warp(103050101, 0)

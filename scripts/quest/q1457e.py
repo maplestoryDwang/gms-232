@@ -4,10 +4,10 @@ heroicPentagon = 4031517
 heroicStar = 4031518
 
 sm.setSpeakerID(2081400) # Hellin
-sm.sendNext("You have returned.")
+sm.sendNext("你证明了自己拥有成为英雄的素质。这样就足够了！没有必要继续证明了。你想成为真正的冒险家吗？")
 
 
-sm.sendNext("I will take these tokens of heroism from you, and grant you your 4th job skills.\r\nYou helped a great deal in the fight to come.")
+sm.sendNext("[技能]获得黑暗猫头鹰！")
 
 sm.consumeItem(heroicPentagon, 1)
 sm.consumeItem(heroicStar, 1)

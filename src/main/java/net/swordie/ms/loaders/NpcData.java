@@ -23,6 +23,9 @@ import java.util.Map;
  * Created on 2/19/2018.
  */
 public class NpcData {
+    private static int OBJECTID = 20000000;
+
+
     private static final Object lockObj = new Object();
     private static final NpcShopItemDao npcShopItemDao = (NpcShopItemDao) SworDaoFactory.getByClass(NpcShopItem.class);
     
@@ -183,5 +186,9 @@ public class NpcData {
             npcOffsets = null;
         }
         getShops().clear();
+    }
+
+    public static int getCount() {
+        return OBJECTID++;
     }
 }

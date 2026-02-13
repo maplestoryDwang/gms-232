@@ -11,8 +11,7 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(mouriMotonari)
-sm.sendNext("#face0#Kanna, your strength returns. I am nothing short of amazed at your fervor. "
-"Both Sokoku and Maple World shall remember your name.")
+sm.sendNext("找回了失去的记忆.")
 sm.sendNext("#face0#Kanna, I'm thankful for your dedication. Your loyalty was... unexpected.")
 sm.sendNext("#face0#I'm glad you're on my side, Kanna.")
 

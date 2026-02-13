@@ -1,9 +1,9 @@
 # 21401 - [Job Adv] (Lv.100)   Aran
 sm.setSpeakerID(1201002)
-sm.sendNext("Why do I look like this, you ask? I don't want to talk about it, but I suppose I can't hide from you since you're my master...")
-sm.sendNext("While you were trapped inside ice for hundreds of years, I, too, was frozen. It was a long time to be away from you. That's when the seed of darkness was planted in my heart.")
-sm.sendNext("But since you awoke, I thought the darkness had gone away. I thought things would return to the way they were, but I was mistaken.")
-if sm.sendAskYesNo("Please, Aran. Please stop me from becoming enraged. Only you can control me. It's out of my hands now. Please do whatever it takes to #rstop me from going berserk#k!"):
+sm.sendNext("……问我怎么会变成这样？……本来不太想说的……不是，当然瞒不过主人你了……")
+sm.sendNext("……你被冰封的数百年间，我也被冰在了冰窟里。那么长的时间，没有主人的陪伴……渐渐的，我的心里便出现了黑暗。")
+sm.sendNext("不过，你重新苏醒后，我心中的黑暗也跟着完全消失了。既然主人回来了，心里也没有什么可难过的了。本以为这样就没事了……没想到这只是我的错觉。")
+if sm.sendAskYesNo("拜托了，战神……一定要阻止我。能够阻止我暴走的只有你了。我再也抑制不住内心中的黑暗了！无论如何，一定要#r打败暴走的我#k！"):
     sm.startQuest(parentID)
     sm.warpInstanceIn(914020000)
     sm.setInstanceTime(20*60, 140000000)

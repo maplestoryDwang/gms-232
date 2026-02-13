@@ -3,41 +3,41 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendNext("There you are. Wash your hands before you touch any of my stuff.")
+sm.sendNext("凯内西斯, 你的手应该洗干净了吧？\r\n听说光是认真洗手, 就已经能够预防大部分的传染病了。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("Give it a rest, you polish those things like twice a day. Tell me what you found.")
+sm.sendSay("别再跟我提这些公益广告的内容了，倒是说说你究竟发现什么了吧。")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("#face3#Ok. This is really cool.")
+sm.sendSay("#face3#嗯，事情变得越来越有趣了呢。")
 sm.lockInGameUI(True, False)
 sm.changeBGM("Bgm43.img/Unknown Part Of City", 0, 0)
 sm.blind(True, 200, 0, 0, 0, 1300)
 sm.sendDelay(1600)
-sm.sendNext("I've been tracing someone online known only as WM. Their messages have been popping up on message boards all over.")
-sm.sendSay("It was always a big block of text, maybe some kind of code. A few cryptos tried to decode it, but most people ignored it.")
-sm.sendSay("But then we noticed that the timestamps on the posts lined up with the weird stuff happening in the city. Whenever WM posts, monsters show up.")
-sm.sendSay("That kicked off this weird cult following, with people saying WM was a prophet...")
+sm.sendNext("你还记得用W.M.这个ID的人吗？那个在网上周期性地发出加密信息的ID。")
+sm.sendSay("一开始大家都觉得他没什么了不起的，但是随着时间的推移……")
+sm.sendSay("人们发现那个信息发出来的时间，和城市里发生事件或事故的时间越来越重合，也就是说W.M.一旦发出信息，过不了多久城市里就会出现奇怪的怪物。")
+sm.sendSay("有许多黑客都说W.M.是个预言家，但是……")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("Ridiculous. Do people online believe anything?")
+sm.sendSay("这不可能的啊。")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("HEY. Hey. Some of us are smart enough to recognize the real meaning behind all this.")
+sm.sendSay("是啊，从常识的角度来看，与其说这是预言，倒不如说这更接近于是一种犯罪预告。这就是我们共同的意见。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("Does that mean you cracked WM's code, Jay?")
+sm.sendSay("难道你已经解读了W.M.的信息了吗，杰？")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("What else? I needed something to keep me awake this morning.")
-sm.sendSay("My colleagues couldn't crack it because WM is using a local TV broadcast as part of his hash. The code itself was arranged like packet transfers, so I just set up a comparison array script and ran it against all broadcasts for an hour or so. Simple.")
-sm.sendSay("It's almost like WM wanted it decrypted.")
+sm.sendSay("嗯，没想到还是蛮简单的。")
+sm.sendSay("之所以其他国家的黑客未能破解是有原因的，只有将这个信息和相同时刻我们国家的电视台信号相结合才能得出答案，暗号本身只是莫斯码的一种变形，想要解开并不难。")
+sm.sendSay("……就好像有种故意等待某人解开暗号的感觉呢。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("Do you think the police know?")
+sm.sendSay("警察都知道了吗？")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("Seriously? The police here probably don't know videos have comment sections. I hacked their database anyway, and there's nothing in their cyber division.")
+sm.sendSay("应该还不知道吧，警察的网络调查网中并没有相应信息。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("So... what does the code say?")
+sm.sendSay("暗号的内容呢？")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("It describes exactly where and when the monsters will appear. Now, the most recent one says that the next attack... #bwill be at your school#k.")
+sm.sendSay("怪物出现的时间和地点，可是那个地点……好像就是#b凯内西斯你所上的学校#k。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face4#...Really.")
+sm.sendSay("#face4#……你说是#b学校#k？")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("#face0#That can't be a coincidence, K.")
+sm.sendSay("#face0#怎么样，很奇怪吧？")
 sm.blind(False, 0, 0, 0, 0, 1300)
 sm.sendDelay(1600)
 sm.completeQuestNoCheck(parentID)

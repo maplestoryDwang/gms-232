@@ -5,24 +5,24 @@ COMPASS = 3002006
 
 sm.setSpeakerID(COMPASS)
 
-if not sm.sendAskAccept("I see, you are taking the test of the foxes. I'm very proud of you. You will be talked about by the younger generation for overcoming your lack in many ways. Now here is the test. Pass this multiple-choice quiz and I shall give you my paw stamp. Do you want to begin now?"):
-    sm.sendSayOkay("It's nothing urgent, so take your time. Talk to me when you are ready.")
+if not sm.sendAskAccept("是吗？你正在参加狐狸的考试？了不起，真了不起。你那不畏艰险、勇攀高峰的精神，一定会成为后辈们的榜样。好吧，考试现在开始。如果你能答对我所有的问题，我就认可你，给你盖上脚印图章。好了，你想现在开始吗？"):
+    sm.sendSayOkay("那我来问第一个问题。以下哪个是我们尖耳狐狸最喜欢的食物？\r\n#L0# 虫干#l\r\n#L1# 斑点翅膀#l\r\n#L2# 麻雀蛋#l\r\n#L3# 老鼠尾巴#l\r\n#b#e#L4# 生肝#l")
     sm.dispose()
 
-answer = sm.sendSay("The first question. What's the favorite meal of Pointy-Ear Foxes?\r\n#L0# Dried Caterpillar#l\r\n#L1# Spotted Wings#l\r\n#L2# Sparrow Eggs#l\r\n#L3# Mouse Tail#l\r\n#L4# #bRaw Liver#l")
+answer = sm.sendSay("是吗？你正在参加狐狸的考试？了不起，真了不起。你那不畏艰险、勇攀高峰的精神，一定会成为后辈们的榜样。好吧，考试现在开始。如果你能答对我所有的问题，我就认可你，给你盖上脚印图章。好了，你想现在开始吗？")
 
 if not answer == 4:
-    sm.sendNext("Wrong! You should study more!")
+    sm.sendNext("那我来问第一个问题。以下哪个是我们尖耳狐狸最喜欢的食物？\r\n#L0# 虫干#l\r\n#L1# 斑点翅膀#l\r\n#L2# 麻雀蛋#l\r\n#L3# 老鼠尾巴#l\r\n#b#e#L4# 生肝#l")
     sm.dispose()
 
-answer = sm.sendSay("That's right! We love raw liver. Second question, who do we serve as our god?\r\n#L0# Tiger God#l\r\n#L1# #bFox God#k#l\r\n#L2# Wolf God#l\r\n#L3# Mountain God#l\r\n#L4# Nongod#l")
+answer = sm.sendSay("答对了。我们尖耳狐狸最喜欢的食物是生肝。接下来是第二个问题。以下哪个是我们尖耳狐狸信奉的守护神？\r\n#L0# 虎神#l\r\n#b#e#L1# 狐神#k#n#l\r\n#L2# 狼神#l\r\n#L3# 山神#l\r\n#L4# 瘟神#l")
 if not answer == 1:
-    sm.sendNext("Wrong! You should study more!")
+    sm.sendNext("没错。我们尖耳狐狸信奉狐神。下面是最后一个问题。我们尖耳狐狸拥有一种特别的能力。你知道是什么吗？\r\n#b#e#L0# 操控精灵的能力#k#n#l\r\n#L1# 操控时间的能力#l\r\n#L2# 操控动物的能力#l\r\n#L3# 不听话的能力#l\r\n#L4# 可爱得让人受不了的能力#l")
     sm.dispose()
 
-answer = sm.sendSay("That's right, the Pointy-Ear Foxes believe in the fox god. Now last question, what kind of power do we have?\r\n#L0# #bPower to handle spirits#k#l\r\n#L1# Power to control time#l\r\n#L2# Power to control animals#l\r\n#L3# Power to ignore other people#l\r\n#L4# Power to be super cute#l")
+answer = sm.sendSay("回答正确。我们尖耳狐狸拥有操控精灵的能力。你也得到狐神的护佑了吧？希望你能珍惜那种能力。如果滥用的话，可能会招致狐神的愤怒。")
 if not answer == 0:
-    sm.sendNext("Wrong! You should study more!")
+    sm.sendNext("好的，我的考试全部结束了。我来给你盖一个脚印。你去找#r#p3002009##k吧。他会告诉你下一项考试的内容。\r\n#fUI/DialogImage.img/quest/0")
     sm.dispose()
 
 sm.sendNext("That's right, we have the power to handle spirits. I heard you got one too, from the fox god. Use it wisely, or the fox god will not be pleased.")

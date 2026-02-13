@@ -10,7 +10,7 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("I'm so sorry, but do you have the red bean porridge and the garlic?")
+sm.sendNext("你带来红豆粥和蒜了吗？")
 
 sm.completeQuest(parentID)
 sm.giveExp(170598)
@@ -18,52 +18,43 @@ sm.consumeItem(redBeanPorridge)
 sm.consumeItem(garlic)
 sm.startQuest(62114)
 
-sm.sendNext("Oh, thank goodness! I knew it. I knew it from the moment I looked at you. "
-"But the test is required, and I am SO sorry for troubling you, but everything worked out!")
-sm.sendNext("Pardon me for asking, but why do you look so confused?")
+sm.sendNext("嗯……你还真把红豆粥和蒜带来了啊。很抱歉我怀疑了你。不过这测试非做不可。")
+sm.sendNext("呼……我不知道你对上海有多少了解。")
 
 sm.setParam(57)
-sm.sendNext("The chef promised that you'd fill me in, but you're just talking in circles. "
-"WHAT IS GOING ON IN THIS STUPID GARDEN?!")
+sm.sendNext("上海是著名的旅游城市！我听说上海有美丽的夜景和漂亮的街道。")
 
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("Well... A while back, black clouds rolled in over the city, and they've been looming over us. "
-"It's been non-stop night ever since.")
-sm.sendNext("It was great at first. Tourists poured in to party in the Pearl of the Night, but...")
+sm.sendNext("哎……那已经是过去的事情了。因为就在平凡的某一天，上海的上空突然出现了黑云。笼罩着天空的黑云让人无法分辨早晨和夜晚，那黑云甚至都没有散去的迹象。")
+sm.sendNext("事实上，一开始并没有什么大问题，这样反倒还更好了。上海是有名的夜都，这样一来旅客就更多了，不过……")
 
 sm.setParam(57)
-sm.sendNext("But...?")
+sm.sendNext("不过？")
 
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("About a hundred days after the sun disappeared, weird things started happening. "
-"Animals went haywire, and inanimate objects started malfunctioning. They seemed to have come to life. "
-"But the worst part was...")
-sm.sendNext("The worst part was when the jiangshi appeared...")
+sm.sendNext("因为黑云的影响，已经有100多天没看到太阳了，上海还开始出现异常现象。很多动物都发疯似地乱蹦乱跳，街上的招牌和信号灯也像有生命似的开始动起来了。而且……")
+sm.sendNext("而且……还出现了僵尸。")
 
 sm.setParam(57)
-sm.sendNext("Jiangshi? What's that?")
+sm.sendNext("僵尸？！？")
 
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("They're the living dead. Animate corpses. They were a creature of legend, or so we all thought. "
-"They have the most frightening hop...")
-sm.sendNext("Those of us who escaped with our lives fled here to Yu Garden. "
-"Legend says that the jiangshi are physically incapable of crossing the zigzag bridge...")
-sm.sendNext("Luckily, it seems to be true... for now. "
-"But I've heard rumors of jiangshi who can talk like us and bend their arms and legs... "
-"That's why I thought of that test.")
+sm.sendNext("没错，僵尸。就是会动的尸体。传说中的那种僵尸在上海出现了。")
+sm.sendNext("出现僵尸后，人们便纷纷往豫园避难。通往豫园的入口处有一座九曲桥，据说僵尸无法通过那座桥。")
+sm.sendNext("幸运的是，那个传说是真的。这座桥需要拐九个弯才能通过，那些僵尸当然无法做到吧。不过我们也不能放松警惕。根据传闻，有一些僵尸关节灵活、能学人说话……所以，需要对初来豫园的陌生人进行一下测试。")
 
 sm.setParam(57)
-sm.sendNext("Are the jiangshi allergic to red bean porridge and garlic or something?")
+sm.sendNext("可你为什么要让我去搜集红豆粥和蒜呢？")
 
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("According to legend, yes, they are.")
+sm.sendNext("啊 ，这是因为，僵尸讨厌红豆粥和蒜。不过，这也只是传说罢了……")
 
 sm.setParam(57)
-sm.sendNext("...")
+sm.sendNext("啊！对了，既然你通过了测试，那我就给你一个证物吧。我现在就去找证物，你能不能稍后再跟我说话呢？")
 
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)

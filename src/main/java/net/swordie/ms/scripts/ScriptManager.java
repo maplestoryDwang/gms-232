@@ -617,20 +617,24 @@ public interface ScriptManager {
 	 */
 	void spawnNpc(int npcId, int x, int y);
 
-	/**
-	 * Spawns an NPC on the {@link Char} field, of the specified template id, with the specified x and y co-ordinates and a boolean if the npc should be flipped or not.
-	 * Example: "sm.spawnNpc(1000000, 10, 10, true)"
-	 *
-	 * @param npcId
-	 * 		The id of the NPC to be spawned.
-	 * @param x
-	 * 		The x co-ordinate in the Field for the NPC to be spawned at.
-	 * @param y
-	 * 		The y co-ordinate in the Field for the NPC to be spawned at.
-	 *
-	 * @param flip
-	 * 		If the npc should be flipped
-	 */
+
+	void npc_ChangeController(int npcId, String npcTag, int x, int y, short fh, short rx0, short rx1, int faceLeft, boolean canMove, short fadeInTime, boolean forceSpawnNew);
+
+
+		/**
+         * Spawns an NPC on the {@link Char} field, of the specified template id, with the specified x and y co-ordinates and a boolean if the npc should be flipped or not.
+         * Example: "sm.spawnNpc(1000000, 10, 10, true)"
+         *
+         * @param npcId
+         * 		The id of the NPC to be spawned.
+         * @param x
+         * 		The x co-ordinate in the Field for the NPC to be spawned at.
+         * @param y
+         * 		The y co-ordinate in the Field for the NPC to be spawned at.
+         *
+         * @param flip
+         * 		If the npc should be flipped
+         */
 	void spawnNpc(int npcId, int x, int y, boolean flip);
 	/**
 	 * Removes the NPC on the {@link Char} field, with the specified template id.

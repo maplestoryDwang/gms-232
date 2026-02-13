@@ -3,8 +3,8 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003500) #Ollie
-sm.sendSay("#face0#That wasn't pleasant, but the staff is charged now.")
-if sm.sendAskYesNo("#face0#Are you ready to use it?"):
+sm.sendSay("#face3#充能完成了。")
+if sm.sendAskYesNo("#face3#现在马上使用吗？\r\n#b（接受时立即移动。）#k"):
     sm.setParam(56)
     sm.sendSay("The Transcendent of Light has the power of creation and destruction...")
     sm.setParam(36)

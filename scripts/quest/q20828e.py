@@ -1,5 +1,5 @@
 sm.setSpeakerID(1102101)
 sm.removeEscapeButton()
-sm.sendNext("A knight's gotta be strong, right? I mean, you guys have some really tough missions. So, you ready for your next training session?")
+sm.sendNext("干得好。很简单吧？对于骑士团员来说，保持充沛的体力是必须的。因为需要执行很多艰难的任务。让我们继续下一项训练吧。")
 sm.completeQuest(parentID)
 sm.warpInstanceIn(130030103, 0)

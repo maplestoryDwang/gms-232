@@ -3,26 +3,18 @@
 LAVI = 2210000
 
 sm.setSpeakerID(LAVI)
-sm.sendNext("Kona tells me I'm on your debt. Just remember, you can help out all you want, just don't come crying when you lose a foot. "
-            "Now what do you want?")
+sm.sendNext("我从珂娜那里听说了。哎呀，真是麻烦你了。哈哈哈！\r\n总之谢谢你。我刚好因为怪物而头疼呢。对了，听珂娜说，你是来这里探险的……你想找什么东西呢？")
 
-sm.sendSay("You want my story? I guess I can do that...")
+sm.sendSay("你想听听故事吗？我可以随时告诉你。")
 
-sm.sendSay("I brought this expedition out to take a look into the earthquakes. "
-           "Had a pretty good team up here before the bugs drove them off.")
+sm.sendSay("相信你应该听村长说过了，这里是我们哈夫林的探查现场。在岩壁巨人出现之前，这里就一直是探查现场。原来这里聚集着很多哈夫林，比现在多好几倍。")
 
-sm.sendSay("Of course, we lost a few good explorers when they found out the mountain itself was moving. "
-           "you should've seen the look on Thumbo's face... But I don't scare so easily. "
-           "I've been studying this mountain since I was fifteen, and I'm gonna keep exploring it until I'm old and gray.")
+sm.sendSay("在探查什么东西？你可别吃惊。这里的山在动！在几百年的时间里，一点一点地在动。知道这一点的话，任何人都会感到好奇，不是吗？我从六岁开始一直到现在，从白色的毛变成灰色，都一直带领探查团员们在这里进行研究。")
 
-sm.sendSay("I'll tell you what though, fifteen year old me did not expect to see this mountain start moving by itself.")
+sm.sendSay("但是有一天，那件事突然发生了。我们一直以为是山的东西，其实不是山。")
 
-sm.sendSay("The shaking was so bad, I thought the whole world was ending. "
-           "I saw that big mouth start moving and thought we were all going into its belly, but I think it was trying to say something.")
+sm.sendSay("我当时想这下完了。我还以为会发生大灾难，但没想到谁也没受伤。因为那个岩壁巨人动了一下之后，就再也没动了。他好像在张嘴说话，但是我们根本听不懂他在说什么。")
 
-sm.sendSay("Then it just stopped. And the monsters came... "
-           "That's when most of my crew went back down the hill. "
-           "I couldn't let them stay in danger, but I couldn't give up either. "
-           "And that's my story.")
+sm.sendSay("还有，那天之后出现了很多危险的怪物，探查队员们一个个地离开了，现在就只剩下这么几个人……怎么样？现在你明白了吗？")
 
 sm.startQuest(parentID)

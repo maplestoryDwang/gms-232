@@ -6,9 +6,8 @@ jake = 1052006
 
 if sm.hasMobsInField():
     sm.setSpeakerID(1052128)
-    sm.sendSayOkay("(Eliminate all of the Shades before investigating the hat.)")
+    sm.sendSayOkay("它的脚本位于： #b /脚本/任务/#e")
 else:
     sm.setPlayerAsSpeaker()
-    sm.sendNext("Whose hat is this? Maybe it belongs to #p" + repr(jake) + "#? \r\n"
-    "(You pick up the hat.)")
+    sm.sendNext("#n.js#k你要立刻完成这个任务吗？")
     sm.completeQuest(parentID)

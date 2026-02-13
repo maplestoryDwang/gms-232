@@ -6,24 +6,16 @@ KUPO = 2210002
 KUPOS_RIDE = 1932165
 
 sm.setSpeakerID(KUPO)
-sm.sendNext("Who are you? Come to meet the famous driver, master of the wheel, Kupo?! I knew it. "
-            "My fame is spreading across Maple World. "
-            "It'll be a hundred million mesos for an autograph, but i'll let you take a picture with me for 75.")
+sm.sendNext("怎么？你是我的粉丝吗？看来我骑士卡布的名声终于在冒险岛世界中传扬开来了。我要事先申明，我的签名可是很贵的，大概1亿金币？")
 
-sm.sendSay("Not even a chuckle?\r\n"
-           "Let me introduce myself like a proper gent. The name's Kupo.\r\n"
-           "Rhymes with 'eww, slow'.")
+sm.sendSay("真是个没有幽默感的朋友。\r\n我来自我介绍一下。我叫卡布！注意发音。如果说成是“卡普”或“卡波”的话，小心屁股被我踢，哈哈哈！")
 
-sm.sendSay("You're not much for small talk, are you? I get it. I respect your need for speed.\r\n"
-           "Getting up to the Stone Colossus ain't exactly a walk in the park, but I've got the ride that will make it a trip to remember. "
-           "of course, nobody rides for free...")
+sm.sendSay("哎呀，长话短说，直奔主题？我喜欢像你这样的人。人生中最重要的是速度。\r\n到岩壁巨人那里去的路很高、很遥远，也很险峻，靠自己的两条腿是没办法过去的。不过有我卡布的骑宠的话，就另说了！当然，如果你能好好当我的助手的话。")
 
-response = sm.sendAskYesNo("Your job's simple enough. I keep the motor running, you do everything else. "
-                "Don't worry about messing up, just trust your instincts. "
-                "You think you can handle that?")
+response = sm.sendAskYesNo("很简单。往前走的事情交给我！你只要坐在助手座位上负责其他事情就行。百闻不如一见。要试试看吗，朋友？")
 
 if response:
-    sm.sendNext("That's right! Let's do this!")
+    sm.sendNext("我就喜欢你这样的人，朋友！那我们出发吧！")
     sm.startQuest(parentID)
     sm.warpInstanceIn(240090800) # Kupo's Ride  The Road Up
     sm.rideVehicle(KUPOS_RIDE)

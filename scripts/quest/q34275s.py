@@ -26,7 +26,7 @@ def acceptQuests():
             sm.startQuest(quests[i])
 
     sm.startQuest(parentID)
-    sm.sendSayOkay("Come to me when you've finished your missions. Remember, you have to turn them in before the end of the week. Well then, see you later.")
+    sm.sendSayOkay("你好，#h0#！今天的委托是这么")
 
 
 #prep selected quests for randomization
@@ -36,7 +36,7 @@ for i in range(QuestConstants.MORASS_WEEKLY_AMOUNT):
 
 def ensureExchange():
     sm.setParam(0)
-    if sm.sendAskYesNo("Arfe these tasks not to your liking? Well, I have other tasks that need doing... \r\n\r\n#b(You can swap out the missions of your choice, but it is possible to receive the same mission as the one being exchanged.)#k"):
+    if sm.sendAskYesNo("你只要完成所有委托，然后回到我这里就行！别忘了一定要在午夜之前回来！"):
         selectReplaceMissions()
     else:
         acceptQuests()

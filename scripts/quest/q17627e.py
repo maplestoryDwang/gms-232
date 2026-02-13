@@ -1,28 +1,28 @@
 # [Commerci Republic] Delfino Deleter 2
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("I was so much faster than you! But you're the sidekick for a reason.")
+sm.sendNext("这些家伙的抵抗好像比刚刚更强了。")
 
-sm.sendNext("C'mon! We can't let them get their buddies. We have to finish this now! I'll be waiting for you at #m865020200#") # Canal 3
+sm.sendNext("这样不行。就这样放走他们的话，待会儿肯定会有更多的家伙出现的。我们追击吧。我先出发去#m865020200#，你快点跟上。") # Canal 3
 
-sm.sendNext("What are you waiting for, my loyal sidekick?")
-
-sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("Hold up. I have a really bad feeling about this...")
-
-sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("Don't feel bad. I'm here for you, pal.")
+sm.sendNext("你干什么呢，快去追击啊。")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("No, listen. These fishmen seem like they're barely even trying...")
+sm.sendNext("等会。我有不好的预感。")
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("That's only because I'm totally awesome. So they look weak in comparison.")
+sm.sendNext("不好的预感？")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("But...")
+sm.sendNext("我觉得这些家伙的抵抗太弱了。")
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("Let's go!")
+sm.sendNext("你什么意思啊。应该抓住机会，横扫它们。")
+
+sm.setPlayerAsSpeaker() # Has to be Player Avatar
+sm.sendNext("快走吧！！")
+
+sm.setSpeakerID(9390256) # Leon Daniella
+sm.sendNext("但是……")
 sm.completeQuest(parentID)
 sm.dispose()

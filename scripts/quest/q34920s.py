@@ -3,6 +3,6 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001509) # Salvo
-sm.sendNext("#face2#We've got everything we need here now! I heard they need help repairing armor over at the temporary base camp.")
-sm.sendSay("#face1#You'll find that mean Ferret to the left of #m402000600#. He may annoy me, but I guess he's still part of my family!")
+sm.sendNext("#face2#到此结束↗ 你去帮着修理防具或临时住所吧↗")
+sm.sendSay("#face1#喔，你到#m402000600#左边去找维依。喔，虽然让人冒火，但他也是我的家人，耶～")
 sm.startQuest(parentID)

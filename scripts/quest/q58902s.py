@@ -7,13 +7,13 @@ if "1" in sm.getQRValue(58901): # Regards, Takeda Shingen
     sm.setSpeakerID(TAKEDA)
 
     sm.flipSpeaker()
-    sm.sendNext("Good, you're here! I was about to pick another fight")
+    sm.sendNext("嗯……我想不起来放哪儿了。那上面写着解除咒术的方法……反正不是什么重要的信。")
 
     sm.flipSpeaker()
-    sm.sendSay("We have a problem, and it's not a lack of conditioner. I'll tell ya that!")
+    sm.sendSay("哈哈哈哈，真正的男人丢了#fn12#小#fn10#东西的时候就不应该斤斤计较！")
 
     sm.flipSpeaker()
-    sm.sendSay("That warrior you found is in a coma. Lost their fight with consciousness. I guess. I had a letter somewhere here from Momijigaoka (He smashes boxes and chairs looking for the letter )")
+    sm.sendSay("我记得，信上写着最近织田军中连普通士兵都学习了咒术，因此武将即使把伤养好也醒不过来。")
 
     sm.setQRValue(58901, "2") # Regards, Takeda Shingen
 
@@ -21,15 +21,15 @@ elif "2" in sm.getQRValue(58901): # Regards, Takeda Shingen
     sm.setSpeakerID(TAKEDA)
 
     sm.flipSpeaker()
-    sm.sendNext("Hm... I don't remember where I left it. It had the instructions on how to lift the spell.. Well, it wasn't that important anyway")
+    sm.sendNext("为了解除那个咒术，需要做几件事。你能帮我吗？")
 
     sm.flipSpeaker()
-    sm.sendSay("Ha ha ha, a real man never sweats over losing such unimportant things!")
+    sm.sendSay("哈哈，我就知道你会帮我的。")
 
     sm.flipSpeaker()
-    sm.sendSay("As I recall, the Oda army is teaching wicked spells to it's soliders. Maybe one of them knocked our new friend out of commission.")
+    sm.sendSay("我们得先搜集有关咒术的情报。从这里的 #o9450024:#应该能获得一些线索吧？")
 
-    response = sm.sendAskYesNo("There are a couple things that need to get done to lift the spell.\r\nYou can help, right?")
+    response = sm.sendAskYesNo("不用很多，只要30个就够分析了。那就拜托你啦！")
 
     if response:
         sm.flipSpeaker()

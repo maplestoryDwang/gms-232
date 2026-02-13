@@ -2,12 +2,12 @@
 sm.setSpeakerID(9390236) # Leon Daniella
 sm.setParam(5)
 sm.setInnerOverrideSpeakerTemplateID(9390218) # Il Capo
-sm.sendNext("My deadly trap was broken... how?!")
+sm.sendNext("……我的黑影杀阵……居然被击破了。")
 sm.setParam(3)
-sm.sendSay("That was a close one. I thought that trap was going to get us. ")
+sm.sendSay("非同一般的杀阵。击破它是得花些力气。")
 sm.setParam(1)
-sm.sendSay("We lost him! Arg!")
+sm.sendSay("真可惜那家伙好像逃跑了。")
 sm.setParam(3)
-sm.sendSay("Don't worry about it, Leon. We have his boss. Isn't that right, Zion? I think it's time we had a little talk.")
+sm.sendSay("好了，那么叫西温什么的那位。现在该听听你说的了吧。")
 sm.completeQuestNoCheck(parentID)
 sm.warp(865030111)

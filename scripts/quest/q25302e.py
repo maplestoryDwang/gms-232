@@ -13,6 +13,6 @@ if sm.getMesos() >= rolls_cost:
         sm.completeQuest(parentID)
         sm.deductMesos(10000000)
         sm.giveSkill(royce)
-        sm.sendNext("Here's the convertible Mr.#p1401000# ordered! Feast your eyes on...Rolls! As requested, it's got a luxurious eggshell finish with slick turquoise stripes! Perfect, isn't she?")
+        sm.sendNext("获得了老爷车骑宠技能！")
         sm.sendSayOkay(
-            "I also added a few gold details to make up for my little slip up. It's cost me all my profits, but atleast I won't end up sleeping with the fishes")
+            "获得了<老爷车骑宠>技能。")

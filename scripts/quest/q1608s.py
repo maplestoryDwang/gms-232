@@ -3,10 +3,10 @@
 STARLING = 9120221
 
 sm.setSpeakerID(STARLING)
-response = sm.sendAskYesNo("I bet this weird gate has something to do with all the monsters going crazy. I think we oughtta take a closer look. You ready?")
+response = sm.sendAskYesNo("就是这个发着蓝色光的柱子让遗迹发掘地的怪物变得残暴起来的吗？不知道会发生什么，我要走近些看看。你准备好了吗？")
 
 if response:
-    sm.sendNext("I'm counting on you to keep me safe from the big, bad, scary monsters! Let's go!")
+    sm.sendNext("如果发生什么危险的话一定要保护我啊。那么，一…二…三！")
 
     sm.warpInstanceIn(931050410, 0)
     sm.startQuest(parentID)

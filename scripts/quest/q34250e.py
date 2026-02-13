@@ -2,9 +2,9 @@
 sm.setSpeakerType(3)
 sm.setParam(56)
 sm.setColor(1)
-sm.sendNext("They're much stronger than Xenoroids!")
+sm.sendNext("呼，简直比超级人造人强大多了。")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003409) # Flying Fish
-sm.sendSay("#face0#The Erda will take whatever form it thinks it needs to protect itself. Sometimes that includes incredible strength.")
+sm.sendSay("#face0#因为那些是艾尔达啊。")
 sm.completeQuest(parentID)
 

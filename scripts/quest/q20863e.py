@@ -12,6 +12,6 @@ if sm.canHold(1452002) and sm.canHold(2060000, 1000):
     sm.completeQuest(parentID)
     sm.giveItem(1452002) # War Bow
     sm.giveItem(2060000, 1000) # Bow Arrow
-    sm.sendSayOkay("Congratulations, you are now a Wind Archer! I have added 5 AP and 5 SP, enjoy your journey!")
+    sm.sendSayOkay("你已经选好了吗……？……一旦决定，就无法后悔。慎重的决定可以使人变得贤明。")
 else:
-    sm.sendSayOkay("Please make some room in your inventory")
+    sm.sendSayOkay("从现在开始，你就是风灵使者了。现在，我会分配给你一些能力……")

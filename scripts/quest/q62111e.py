@@ -11,26 +11,26 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("I'm so sorry to bother you, but could you tell me why you're here?")
+sm.sendNext("我从没见过你啊！你从哪里来的？来上海做什么？")
 
 sm.setParam(57)
 sm.sendNext(sm.join(["Sure. #p", repr(chiefTatamo), "# of Leafre sent me to search for a Halflinger called #p", repr(tomo), "#."]))
 
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("I'm so sorry to ask, but do you usually do favors for people in dangerous places just because they asked you to?")
+sm.sendNext("啊，我受神木村#p2081000#的委托，来寻找一个叫#p9310538#的哈夫林……")
 
 sm.setParam(57)
-sm.sendNext("Between you and me, I think that's the only reason people talk to me anymore.")
+sm.sendNext("嗯，这个理由太牵强了吧！你的意思是说，你是受人之托才到上海这座危险的城市来吗？")
 
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
 sm.sendNext(sm.join(["I'm so, so sorry, but that's just not convincing. "
 "If you want to visit #m", repr(yuGarden), "#, you have to pass a test. I mean, if you don't mind..."]))
-response = sm.sendAskYesNo("Will you... maybe... could I trouble you to take the test?")
+response = sm.sendAskYesNo("帮助陷入危机的人，是我义不容辞的责任……")
 if response:
     sm.completeQuest(parentID)
     sm.giveExp(170598)
-    sm.sendNext("Thank you for being so wonderfully cooperative! Talk to me again to take the test!")
+    sm.sendNext("虽然你看上去很可疑，但我还是暂且相信你吧。不过，要是你想留在#m701100000#的话，就必须先经受一项测试。如果无法通过测试，别说待在#m701100000#了，就连一秒钟都别想逗留！")
 else:
-    sm.sendNext("I can't just let you wander around here as you please if you don't take the test...")
+    sm.sendNext("很好，等你准备好接受测试后，再来和我说话吧。")

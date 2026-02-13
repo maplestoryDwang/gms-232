@@ -14,7 +14,7 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001350) # Illium
-sm.sendNext("#face6#What do you say, Ex? Want a friend?")
+sm.sendNext("快去外面看看！")
 sm.setInnerOverrideSpeakerTemplateID(3001300) # Ex
 sm.sendSay("#face0#Friends are not essential to my functions.")
 sm.setInnerOverrideSpeakerTemplateID(3001350) # Illium

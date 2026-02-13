@@ -3,7 +3,7 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001500) # Ark
-sm.sendNext("#face0#I nearly have the Specter power figure out, and I don't think he's discovered why my soul is special yet.")
+sm.sendNext("#face6#(哈,这个气息……是那个家伙。呃……好难受……不,必须振作精神。这次……必须把一切搞明白！)\r\n\r\n#b(接受时切换地图。)")
 sm.sendNext("#face0#The Specter's motives are easy to read. I can tell co-existing with me isn't enough for it.")
 sm.startQuest(parentID)
 sm.completeQuestNoCheck(parentID)

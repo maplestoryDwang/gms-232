@@ -1,5 +1,5 @@
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendNext("Grandis, Interdimensional Portal, another world... This is a lot to take in. But one thing is for sure... I can go back to Maple World! I'm sure Moonbeam was trying to hide that from me.")
-sm.sendSay("But I must go back. I must see my world again. I can't stay here any longer, knowing that it's still out there. But when that's done... I'll come back.")
-sm.sendSay("She's still worried. She worries for me even when she gave me her spirit. The best I can do is try to put her at ease. I'll bring some #r#t4009228##k items.")
+sm.sendNext("格兰蒂斯、异次元、次元之门…………各种信息突然一涌而来。虽然到现在还不能理解到底是什么意思，不过结论只有一个，那就是一定有办法再回到冒险岛世界！…………而且阿琅想隐藏的应该也是这个。")
+sm.sendSay("但是我必须回去。我必须亲眼确认一下。既然知道有办法回到冒险岛世界，就没有理由犹豫了。等解决了所有事情之后……到时再回来。")
+sm.sendSay("不过我还是很不安。她把自己的精灵送给了我，一直很关心我。我现在能做的，就是让她安心。把被称为勇敢狐狸的证物的#r#t4009228##k带过去，她应该就能放心一点了吧？")
 sm.startQuest(parentID)

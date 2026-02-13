@@ -10,20 +10,10 @@ isTigun = sm.getnOptionByCTS(CharacterTemporaryStat.Morph) == 6
 
 sm.setSpeakerID(karcasa)
 if isTigun:
-    sm.sendNext("...aren't you #p" + repr(tigun) + "#? "
-    "Long time! Thankfully, I was able to secure the silk that the queen has been desperately looking for. "
-    "As usual, the item is the finest you can find in this world... but why are you sweating so much? #b\r\n"
-    "#L0#(altering voice) No, it's just the sun...#l\r\n")
-    sm.sendNext("Well, since when was Ariant NOT hot? "
-    "It's always been like this, and I thought you never seemed to mind the heat, but... Why is your face rapidly turning red? "
-    "Are you okay? #b\r\n"
-    "#L0#(altering voice) I, I am okay. Don't worry about me...#l\r\n")
-    sm.sendNext("Are you sure you are okay? #p" + repr(tigun) + "#, you look like you are not feeling too well. "
-    "Do you need some medicine? I have some cold medicine from El Nath. I'll sell it to you for cheap. #b\r\n"
-    "#L0#I told you I am fine!#l\r\n")
-    response = sm.sendAskAccept("Are you sure? But the weird thing is you sound much different from the norm. "
-    "Are you sure you don't have the cold? I mean, you are not acting like yourself at all. "
-    "Normally you'd always bargain hard for Lidium Ore, and... are you really #p" + repr(tigun) + "#?")
+    sm.sendNext("这不是#p2101004#大人吗？真是好久不见，这次好不容易拿到了王妃爱不释手的丝绸喔！当然…品质也是一流！可是…您怎么一直在流汗啊？\r\n#L0##b(伪装声音)没什么，只是太热了点...#l")
+    sm.sendNext("阿里安特哪有没热过啊？不就一直都这样嘛~可是我还以为#p2101004#大人您都不会怕热呢！不对…您的脸...变得愈来愈红啰！真的没关系吗？\r\n#L0##b(伪装声音)没…没关系，不需要担心...#l")
+    sm.sendNext("真的没关系吗？我之前就觉得#p2101004#大人体质虚弱，是不是需要吃点什么药啊？刚好我有在冰封雪域那边採买来的感冒药，您要不要买些回去吃啊？我会算您便宜点的...\r\n#L0##b我说没关系啦！#l")
+    response = sm.sendAskAccept("真的吗？可是#p2101004#您的声音，和平常不太一样喔！是不是真的感冒啦？怎么看都不像是平时的#p2101004#大人喔！平常你都要我把#t4010007#算便宜一点给您…真是奇怪…您真的是#p2101004#大人吗？")
     if response:
         sm.sendNext("You don't act like you normally would. Normally, you'd be much more talkative than this... "
         "Is there something going on? Wait... how come your face is turning redder and redder?"

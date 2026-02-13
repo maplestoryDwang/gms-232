@@ -5,14 +5,13 @@ job = "Cleric"
 
 sm.setSpeakerID(1032001) # Grendel the Really Old
 if sm.hasItem(darkMarble, 30):
-    sm.sendNext("I am impressed, you surpassed the test. Only few are talented enough.\r\n"
-                "You have proven yourself to be worthy, I shall mold your body into a #b"+ str(job) + "#k.")
+    sm.sendNext("#t4031013#全部搜集到啦……我知道你一定很轻松就能通过。好的，终于……我来让你变成牧师。准备好了吗……？")
 else:
-    sm.sendSayOkay("You have not retrieved the #t"+ str(darkMarble)+"#s yet, I will be waiting.")
+    sm.sendSayOkay("冒险之书任务已完成。")
     sm.dispose()
 
 
 sm.consumeItem(darkMarble, 30)
 sm.jobAdvance(230) # Cleric
 sm.completeQuestNoRewards(parentID)
-sm.sendNext("You are now a #b"+ str(job) + "#k.")
+sm.sendNext("好的……从现在开始，你就是#b牧师#k了……牧师是用一颗虔诚的心，为万物注入生命力量的人……希望你能坚定自己的信仰……")

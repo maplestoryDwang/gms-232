@@ -2,12 +2,12 @@
 from net.swordie.ms.client.character.items import BodyPart
 from net.swordie.ms.constants import QuestConstants
 sm.setSpeakerID(3003209) # Gray Mask
-sm.sendNext("#h0#, I see you completed all your missions for the week. Please accept a level up on #i1712003:# #t1712003:# as a reward.")
+sm.sendNext("#ho#，你完成了今天的全部委托了啊。真是太谢谢你了。这是")
 
 if sm.levelArcaneSymbol(BodyPart.AFLachelein, 3):
     sm.completeQuestNoCheck(parentID)
     sm.createQuestWithQRValue(QuestConstants.LACHELEIN_COUNT_QUEST, "")
-    sm.sendSayOkay("I've leveled up your symbol. Please come back next week!")
+    sm.sendSayOkay(":#和1个#i2614029:# #t2614029:#，作为我的一份心意。")
 else:
     sm.sendSayOkay("Something went wrong.")
 

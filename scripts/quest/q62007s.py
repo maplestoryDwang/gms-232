@@ -7,43 +7,40 @@ BOOK_OF_DEMONS = 4034637
 sm.removeEscapeButton()
 sm.setSpeakerID(WISE_CHIEF_PRIEST)
 sm.setBoxChat()
-sm.sendNext("So the Demon B Gone didn't work? Oh well! Now, there's one other way...")
+sm.sendNext("这……妖怪驱散秘药没有什么效果？嗯，看来只剩下那个方法了。")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("(Why did the Head Priest send me to #b#p"+ str(ZHEUNG_GUAN) +"##k if he had so little faith in him?! What a waste of time!)")
+sm.sendNext(" (他看起来一点也不惊讶，似乎从一开始就没抱希望。#b#p9310046##k知道吗……")
 
-sm.sendNext("I hope your next idea is better than your last. You better fill me in.")
+sm.sendNext("那个方法？您还有什么妙计吗？")
 
 sm.setSpeakerID(WISE_CHIEF_PRIEST)
 sm.setBoxChat()
-sm.sendNext("Long ago, my master, #bMonk Laomo#k, researched demons. "
-            "He knew more about them than anyone He was the first to successfully seal the demons at the Sutra Depository.")
+sm.sendNext("从很久以前开始，我的师父#b老魔僧#k就在研究妖怪。师父比任何人都要了解妖怪。第一个成功在藏经阁设下封印的就是师父。")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("Let's ask HIM to help us!")
+sm.sendNext("那您的师父现在在哪里呢？我们能得到他的帮助就好了。")
 
 sm.setSpeakerID(WISE_CHIEF_PRIEST)
 sm.setBoxChat()
-sm.sendNext("We can't. He left a long time ago to train and has never returned. "
-            "But he did write a book about his research before he left, called #v"+ str(BOOK_OF_DEMONS) +"##b#t"+ str(BOOK_OF_DEMONS) +"##k.")
+sm.sendNext("他在很久以前就出发去修炼，再也没回来。师父研究妖怪，写下了#b#i4034637##t4034637##k。那本书就应该保存在藏经阁。")
 
-response = sm.sendAskYesNo("Can I entrust you with the task of searching for that book, #h0#?")
+response = sm.sendAskYesNo("#h0#能帮我去找一找吗？我相信你。")
 
 if response:
-    sm.sendNext("The #v"+ str(BOOK_OF_DEMONS) +"##b#t"+ str(BOOK_OF_DEMONS) +"##k must hold some clue about how to get rid of the demons. "
-                "Locate that book as soon as possible. The fate of the entire world is at stake!")
+    sm.sendNext("谢谢。在#b#i4034637##t4034637##k里似乎有能够消灭妖怪的线索。请你尽快找到它。如果放任妖怪继续兴风作浪，不光是嵩山镇，整个世界都会遭殃。")
 
     sm.flipBoxChat()
     sm.flipBoxChatPlayerAsSpeaker()
-    sm.sendNext("Hey, #b#p"+ str(WISE_CHIEF_PRIEST) +"##k... Why didn't your teacher impart any of his knowledge on you before he left?")
+    sm.sendNext("但是，#b#p9310053##k为什么没有继承师父的研究呢？")
 
     sm.setSpeakerID(WISE_CHIEF_PRIEST)
     sm.setBoxChat()
-    sm.sendNext("That's exactly what I intend to ask him, should we and I ever meet again.")
+    sm.sendNext("#fs20#我如果能再见到师父，最想问的问题就是这个。")
 
-    sm.sendNext("I've lived my entire life in #bMonk Laomo's#k shadow, but he didn't teach me even a single one of his lofty secrets.")
+    sm.sendNext("#fs20#我一生都活在师父#b老魔僧#k的阴影下！但是，#b师父#k什么都没留给我。也许他根本没把我当做弟子来看。")
 
-    sm.sendNext("But that has nothing to do with any of this. Hurry and find the #b#t"+ str(BOOK_OF_DEMONS) +"##k.")
+    sm.sendNext("啊……请你把我刚才那些话都忘了，快去找#b妖怪之书#k吧。")
     sm.startQuest(parentID)

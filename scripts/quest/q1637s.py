@@ -3,12 +3,9 @@
 STARLING = 9120221
 
 sm.setSpeakerID(STARLING)
-sm.sendNext("The Mystic Gates are connected to the Black Mage somehow. I'm sure of it! "
-            "The gates seem to control nearby monsters and drain the life right out of anyone who gets near them. "
-            "But why? At any rate, I need to tell Bastille about all this. Actually, why don't you tell him for me? "
-            "I'll follow you when I'm done here.")
+sm.sendNext("时空门肯定和黑魔法师有关系。他通过操纵时空门吸取怪物们的气息！但是为什么要这样呢？难道是为了给冒险岛世界制造混乱吗？不管怎样，赶紧把这一情况报告给格莱特吧。我还要再调查几个地方，所以你先去报告吧。")
 
-response = sm.sendAskYesNo("All right! I'll send you straight to Edelstein!")
+response = sm.sendAskYesNo("那么现在立刻把你送去埃德尔斯坦。准备好了吗？")
 
 if response:
     sm.warp(310000000)

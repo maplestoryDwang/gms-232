@@ -13,9 +13,9 @@ SUTRA_5_6F = 701220300
 sm.removeEscapeButton()
 sm.setSpeakerID(JANITOR_MONK)
 sm.setBoxChat()
-sm.sendNext("Oh. Huh. You really came back, and you brought the #bAntidote#k, too.")
+sm.sendNext("你真的帮我带来#b#t2050000##k了啊！")
 
-sm.sendNext("Well, I am pretty thirsty. (He gulps it down.)")
+sm.sendNext("(咕咚 咕咚……咕咚。)")
 
 sm.sendNext("(He feels his face.)")
 

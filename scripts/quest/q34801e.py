@@ -8,7 +8,7 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001300) # Ex
-sm.sendNext("#face0#Perfect! Now, let's move on and gather more.")
+sm.sendNext("#face0#你把所有配件都找到了！好，那就趁热打铁，前往下一个地区继续收集吧。")
 sm.createQuestWithQRValue(16700, "count=33;date=20190221")
 sm.createQuestWithQRValue(16700, "count=34;date=20190221")
 sm.createQuestWithQRValue(16700, "count=35;date=20190221")

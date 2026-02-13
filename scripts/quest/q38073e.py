@@ -1,24 +1,24 @@
 LIBRARIAN = 2500002
 
 sm.setSpeakerID(LIBRARIAN)
-sm.sendNext("Did you think of a keyword? What word do you want to search?\r\n\r\n#L0##bBlack Mage#l")
-sm.sendNext("Black Mage, huh? That's a pretty big topic. I'm seeing titles like The Sealing of the Black Mage, Commanders of the Black Mage, Appearance of the Black Mage... 3849 results.")
-sm.sendNext("You need to narrow down your search. What do you want to search for?\r\n\r\n#L0##bThe Black Mage's Resurrection#l")
-sm.sendNext("The Black Mage's Resurrection... Interesting, that's just one book. But uh... There's a problem.")
-sm.sendNext("This book isn't available to the public. I'm sorry, but I can't help you with this one. Do you happent o have another search in mind?\r\n\r\n#L0##bSeal of Time#l")
-sm.sendNext("Seal of Time... There's a book about the Seal of Time that locked up the Black Mage. Let's see, let's see... Ah, so that's what happened...")
-sm.sendNext("There's a book called #rThe Black Mage and the Five Heroes#k that's probably everything you're looking for. You want to search for anything else?\r\n\r\n#L0#(#bYou whisper something#k.)#l")
-sm.sendNext("Really? Is that your name? I love doing name searches for people! Let's see what your life is like...")
+sm.sendNext("你想好关键词了吗? 那就说出你想搜索的词语吧。\r\n\r\n#b#L0# 黑魔法师#l")
+sm.sendNext("黑魔法师......黑魔法师的搜索结果包括黑魔法师的封印、黑魔法师的军团长、黑魔法师的登场......等, 大概有3849个标题。")
+sm.sendNext("一定是词语太笼统了, 所以需要更具体的关键词。说出你想搜索的词语吧。\r\n\r\n#b#L0# 黑魔法师的复活#l")
+sm.sendNext("黑魔法师的复活......噢, 刚好搜出一本书。让我看看......嗯......嗯......这真是, 麻烦了。")
+sm.sendNext("看来从市面上无法买到有着相似内容的书籍......我不得不违背约定了。怎么办, 实在是太抱歉了?  你还有其他想好的关键词吗? \r\n\r\n#b#L0# 时间封印#l")
+sm.sendNext("时间封印......有一本名为‘禁锢着黑魔法师的时间封印’的书。好吧, 让我看看......嗯, 原来如此。嗯, 那时候原来是那样。那么这个......")
+sm.sendNext("好吧, 和这些内容最相近的书叫做#r黑魔法师和五个英雄#k, 你去书店买来就可以了。这两本书基本没什么区别。那么你还有别的词语想要搜索吗? \r\n\r\n#b#L0# ......(附耳低语。)#l")
+sm.sendNext("嗯? 你是说......? 啊啊, 莫非是你的名字? 搜索自己名字的事可不常见。也是, 作为人类当然想知道自己走过的轨迹了。那么稍等, 我这就为你搜索......")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("No, it's fine. Don't search my name.")
+sm.sendSay("......等等。算了, 请不必搜索了。")
 
 sm.setSpeakerID(LIBRARIAN)
-sm.sendSay("Why? You got a lot of secrets or something? Ah well, every one has secrets, I suppose. Very well.")
+sm.sendSay("嗯? 怎么突然? 哦吼, 莫非你也有什么不想为人所知的秘密? 也是, 有谁会没有秘密呢? 那我就当你没有要搜索的词了。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("(Maybe there are records of me here, if the library truly has ALL the records of the world. I have to keep pressing forward.)")
-sm.sendSay("(I won't dwell on the past, even if it means more pain!)")
+sm.sendSay("(既然是记录了世间万事, 说不定也有关于我的记录。可是, 事到如今那又有什么用呢? 反正摆在我面前的路只能是往前走。)")
+sm.sendSay("(我不会回头看。也许那只会让我更痛苦。)")
 
 sm.completeQuest(parentID)
 #sm.jobAdvance(2512)

@@ -4,7 +4,7 @@ AYAME = 9130106
 
 sm.setSpeakerID(AYAME)
 
-response = sm.sendAskYesNo("... How did I get here? It's a long story and I'm pretty tired... Are you SURE you wanna hear it now?")
+response = sm.sendAskYesNo("你想知道我来这里的过程？说来话长……啊，真是麻烦……你要听吗？")
 
 if response:
     sm.warp(811000009) # Master Room

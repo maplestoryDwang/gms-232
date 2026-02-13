@@ -1,9 +1,9 @@
 # 21301 - [Job Adv] (Lv.60)   Aran
 sm.setSpeakerID(1201002)
-if sm.sendAskYesNo("Did you slay the #o2600111#? Yippy! You're my master, indeed! Now, give me the Red Jade you fuond! I'll reattach it and... Wait, why aren't you saying anything? Don't tell me you didn't bring it back..."):
-    sm.sendNext("What? You didn't bring the Red Jade?! Why not?! Did you forget?! Yikes, I never thought the Black Mage's curse would turn you into a dummy...")
-    sm.sendNext("No, I can't let this drive me to despair. Now more than ever, I must stay optimistic and alert. Argh...")
-    sm.sendNext("You can go back if you want, but I'm sure the thief has already fled the scene. You'll just have to make a new Red Jade. You've made one before, so you remember the required materials, don't you? So hurry it up.")
+if sm.sendAskYesNo("抓到#o9001013#了吗？呵呵呵……真不愧是我的主人！很好，把你找到的#t4032312#给我吧……啊……？怎么不说话？难道……你没找到？"):
+    sm.sendNext("什么？！没找到#t4032312#？怎么会这样？！你忘了吗？啊，怎么……再怎么被黑魔法师诅咒，再怎么被封冻几百年也不能让你变得这么笨啊……")
+    sm.sendNext("不行。我不能绝望。主人糊里糊涂，我可不能糊涂……深呼吸……深呼吸……")
+    sm.sendNext("再去找找，反正小偷已经逃走。看来必须重新做#t4032312#了。以前也做过一次，你知道需要哪些材料吧？快去搜集材料……")
     sm.completeQuest(parentID)
     sm.dispose()
 else:

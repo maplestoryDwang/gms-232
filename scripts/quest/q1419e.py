@@ -7,14 +7,13 @@ sm.setSpeakerID(ATHENA_PIERCE)
 
 sm.setSpeakerID(1012100)
 if sm.hasItem(darkMarble, 30):
-    sm.sendNext("I am impressed, you surpassed the test. Only few are talented enough.\r\n"
-                "You have proven yourself to be worthy, I shall mold your body into a #b"+ str(job) + "#k.")
+    sm.sendNext("#t4031013#全部搜集到了啊。我确认了你的能力。从现在开始，我来把你引上猎人之路……准备好了吗？")
 else:
-    sm.sendSayOkay("You have not retrieved the #t"+ str(darkMarble)+"#s yet, I will be waiting.")
+    sm.sendSayOkay("冒险之书任务已完成。")
     sm.dispose()
 
 
 sm.consumeItem(darkMarble, 30)
 sm.jobAdvance(310) # Hunter
 sm.completeQuestNoRewards(parentID)
-sm.sendNext("You are now a #b"+ str(job) + "#k.")
+sm.sendNext("好的。从现在起，你就是#b猎人#k了。猎人是凭借锐利的眼睛，将箭射入敌人胸膛的贤明之人……希望你继续努力修炼。")

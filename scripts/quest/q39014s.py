@@ -26,7 +26,7 @@ def acceptQuests():
             sm.startQuest(quests[i])
 
     sm.startQuest(parentID)
-    sm.sendSayOkay("Come to me when you've finished your missions. Remember, you have to turn them in before the end of the week. Well then, see you later.")
+    sm.sendSayOkay("舔舔！快点处理今天的辅助工作！今天有")
 
 
 #prep selected quests for randomization
@@ -36,7 +36,7 @@ for i in range(QuestConstants.CHU_CHU_WEEKLY_AMOUNT):
 
 def ensureExchange():
     sm.setParam(0)
-    if sm.sendAskYesNo("Is there a mission on the list you aren't up for? Why not Exchange it for another one? \r\n\r\n#b(You can swap out the missions of your choice, but it is possible to receive the same mission as the one being exchanged.)#k"):
+    if sm.sendAskYesNo("件任务！\r\n\r\n"):
         selectReplaceMissions()
     else:
         acceptQuests()

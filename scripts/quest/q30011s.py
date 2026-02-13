@@ -2,7 +2,7 @@
 
 ALICIA = 1064002 # npc Id
 sm.setSpeakerID(ALICIA)
-sm.sendNext("I believe it's working. I can really feel the darkness weaken.")
+sm.sendNext("我在画着王冠的门外感觉到了很强的气息。绝对不能放松警惕！")
 
 response = sm.sendAskYesNo("Please take care of the seal guardian behind the crown door?")
 

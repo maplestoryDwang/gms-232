@@ -3,30 +3,30 @@ LILIN = 1201000
 
 sm.setSpeakerID(LILIN)
 sm.flipSpeaker()
-sm.sendNext("It seems like you're warmed up now. This is when rigorous training can really help you build a strong foundation. Let's proceed with the Basic Training, shall we?")
-sm.sendSay("Go defeat some #r#o0100133#s#k in #b#m140020200##k this time. I think about  #r20#k should do it. Go on ahead and... Hm? Do you have something you'd like to say?")
+sm.sendNext("#b(我们的英雄，你这是怎么了？)#k")
+sm.sendSay("现在，身体筋骨差不多舒展开了吧？这种时候还要进一步加强训练强度才能保证锻炼出过硬的基础体力。来吧，继续基础体力的锻炼吧。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Isn't the number getting bigger and bigger?")
+sm.sendSay("这次去#b#m140020200##k消灭#r#o0100133##k试试看。大概消灭#r20只#k就行，将会对你的体力增长大有帮助。快去快去……咦？你有什么话要说吗？")
 
 sm.setSpeakerID(LILIN)
 sm.flipSpeaker()
-sm.sendSay("Of course it is. What, are you not happy with 20? Would you like to defeat 100 of them instead? Oh, how about 999 of them? Someone in Sleepywood would be able to do it easily. After all, we are training...")
+sm.sendSay("……为什么消灭的怪兽数量越来越多了？")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Oh no, no, no. Twenty is plenty.")
+sm.sendSay("是要越来越多。难道说20只还不够吗？要不消灭100只试试？哦，这还不够，索性不如像林中之城那样，一口气消灭999只怪兽试试……")
 
 sm.setSpeakerID(LILIN)
-if sm.sendAskAccept("You don't have to be so modest. I understand your desire to quickly become the hero you once were. This sort of attitude is what makes you a hero."):
+if sm.sendAskAccept("不，不用了，这样就够了。"):
     sm.startQuest(parentID)
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("#b(If you keep listening, you might end up having to take down 999 of them.)#k")
+    sm.sendNext("哎呦哎呦，用不着这么谦虚。我充★分★理解英雄大人渴望赶紧变得厉害起来的心情。真不愧是英雄大人……")
 
     sm.setSpeakerID(LILIN)
     sm.flipSpeaker()
-    sm.sendSay("Please go ahead and slay 20 #o0100133#s.")
+    sm.sendSay("#b(再这么说下去，搞不好真得让我去消灭999这怪兽了，赶紧接任务得了。)#k")
 else:
     sm.setPlayerAsSpeaker()
-    sm.sendNext("#b(You declined out of fear, but it's not like you can run away like this. Take a big breath, calm down, and try again.)#k")
+    sm.sendNext("那就拜托你消灭20只#o0100133#。")
     sm.dispose()

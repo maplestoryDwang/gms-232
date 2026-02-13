@@ -2,19 +2,19 @@
 
 ALICIA = 1064002 # npc Id
 sm.setSpeakerID(ALICIA)
-sm.sendNext("I don't know what you did, but there have been more people through here than the Free Market")
+sm.sendNext("回来啦。在你离开的这段时间，来了很多人！")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("The Maple Alliance is going to help me get you out of here.")
+sm.sendNext("都是来帮助我解开封印的人。冒险岛联盟答应把你从这里救出去，现在可以不用担心了。")
 
-sm.sendNext("Unfortunately, that means I have to take out all these Seal Guardians. Do you have any ideas to help?")
+sm.sendNext("但是要想解开你的封印，必须消灭掉门外的封印守护者。你知道些什么吗？")
 
 sm.setSpeakerID(ALICIA)
-sm.sendNext("I've been trapped in here since they arrived. I don't know anything, but I can feel their power.")
+sm.sendNext("我没办法离开这里，所以什么都不知道。但是我可以感受到黑暗的力量。")
 
-response = sm.sendAskYesNo("The door with the clock on it seems to be the least threatening. Maybe that should be your first stop.")
+response = sm.sendAskYesNo("画着时钟的门外流出来的黑暗力量最弱。你先去消灭画着时钟的门外的封印守护者吧。")
 
 if response:
-    sm.sendNext("I know you're strong, but I don't think you can do this alone. Make sure to find an #rally that will help you#k!")
+    sm.sendNext("一个人可能会很困难。虽然说是最弱，但我还是感觉浑身直起鸡皮疙瘩。所以你一定要和#r志同道合的同伴#k一起去！")
     sm.startQuest(parentID)
 sm.dispose()

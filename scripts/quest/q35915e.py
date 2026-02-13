@@ -3,6 +3,6 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013351) # Gorgonz
-sm.sendNext("#face0#What's this? You already brought those Pottery Shards? Lessee...one, two... Yep, everything I wanted is here. I've got no doubt these are from ancient times.")
-sm.sendSay("#face1#H-Hey, what's with that face? I can practically see the words 'Will this guy just shut up and tell me where those parts are?' floating in a bubble over your head. But we're not quite done yet, my talented new associate, because I've still got one more favor to ask of you.")
+sm.sendNext("#face0#哦,陶瓷碎片已经搜集到了吗？一,二……\r\n哦,数量刚刚好。这种东西……毋庸置疑是古代的东西。")
+sm.sendSay("#face1#嗯,怎么回事？你是在想,“还不快告诉我碎片掉在什么地方了”吗？\r\n抱歉,我还有一个请求,嗯哼,嗯哼。")
 sm.completeQuestNoCheck(parentID)

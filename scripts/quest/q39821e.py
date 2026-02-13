@@ -5,11 +5,11 @@ from net.swordie.ms.client.character.items import BodyPart
 remainingTasks = sm.getRemainingDailyEntries(DailyEntry.Cernium)
 sm.setSpeakerID(3004419) # Flame Priest
 sm.setParam(2)
-sm.sendNext("#b(You gave the Flame Priest the information you obtained from observing the monsters up close.)#k")
+sm.sendNext("你回来啦，#b#y")
 sm.setParam(0)
-sm.sendSay("You have " + str(QuestConstants.CERNIUM_WEEKLY_AMOUNT - (remainingTasks - 1)) + " tasks completed this week. Thanks to you, we're one step closer to understanding this place.")
+sm.sendSay("##k任务完成了是吗。")
 if remainingTasks == 1:
-    sm.sendNext("You have completed all your tasks for the week. I will now level up your Sacred Symbol.")
+    sm.sendNext("已发放#e#b5个#i1713000##z1713000##k#n，请查看装备栏。")
     if sm.levelAuthSymbol(BodyPart.AUSCernium, 1):
         sm.completeQuestNoCheck(parentID)
         chr.getQuestManager().removeQuest(parentID)

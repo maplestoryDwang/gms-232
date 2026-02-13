@@ -2,13 +2,13 @@
 LILIN = 1201000
 
 sm.setSpeakerID(LILIN)
-sm.sendNext("Alright, I've done enough explaining for now. Let's move on to the next stage. What's the next stage, you ask? I just told you. Train as hard as you can until you become strong enough to defeat the Black Mage with a single blow.")
-sm.sendSay("You may have been a hero in the past, but that was hundreds of years ago. Even if it weren't for the curse of the Black Mage, all those years you spent frozen in time have stiffened your body. You must loosen up a bit and slowly regain your agility. How do you do that, you ask?")
+sm.sendNext("还没做好准备吗？那么准备好后再来跟我说一声。")
+sm.sendSay("好了，说明到这里就告一段落，我们要进入下一阶段了。下一阶段是什么？刚才我已经说过了。就是不断的磨练自己直到你拥有足以战胜黑魔法师的实力。")
 
-if sm.sendAskAccept("Don't you know that you must first master the fundamentals? So the wise thing to do is to begin with #bBasic Training#k. Oh, of course, I forgot that you lost your memory. Well, that's why I'm here. You'll just have to experience it yourself. Shall we begin?"):
+if sm.sendAskAccept("虽然在几年前你确实是英雄，但这毕竟是很久以前的事情了。就算没有黑魔法师的诅咒，在冰块里封冻了那么久，身体筋骨什么的也没那么灵活了吧？首先要做些准备活动。想知道是怎么样的准备活动？"):
     sm.startQuest(parentID)
 
     sm.removeEscapeButton()
-    sm.sendNext("The population of Rien may be mostly Penguins, but even this island has monsters. You'll find #o0100131#s if you go to #b#m140020000##k, located on the right side of the town. Please defeat #r10 of those #o0100131#s#k. I'm sure you'll have no trouble defeating the #o0100131#s that even the slowest penguins here can defeat.")
+    sm.sendNext("身体是革命的本钱。英雄也要从基本体力开始训练！……那句话你也知道吧？当然要从#b 基本体力锻炼#k开始练起……啊，你可能不记的了。不过也没关系。尝试一下你就明白了。现在就开始基础体力锻炼吧？")
 else:
-    sm.sendNext("What are you so hesitant about? You're a hero! You gotta strike while the iron is hot! Come on, let's do this!")
+    sm.sendNext("在这个几乎全是企鹅的岛上，也有几只怪兽。去村子右边的#b冰雪覆盖的原野1#k，就能看到许多香肠嘴雪精灵。请消灭#r10只香肠嘴雪精灵#k。我们这些苯拙的企鹅用啄都能抓的到香肠嘴雪精灵，你总不能还抓不到吧？")

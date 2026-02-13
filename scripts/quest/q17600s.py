@@ -1,12 +1,11 @@
 # [Commerci Republic] Neinheart's Call
 
 sm.setSpeakerID(1064026) # Neinheart
-response = sm.sendAskYesNo("Ah good, I've managed to reach you. The Empress has been asking for you. Could you come to Ereve?\r\n"
-                "#b(You will be moved to Ereve if you accept.)")
+response = sm.sendAskYesNo("你这段时间过得还好吗？女皇正在找你。你能来圣地吗？\r\n#b(接受时立刻前往圣地。)#k")
 
 
 if response:
-    sm.sendNext("I will be waiting for you.")
+    sm.sendNext("那我就在圣地等着你。")
 else:
     sm.sendSayOkay("Let me know once you are ready.")
     sm.dispose()

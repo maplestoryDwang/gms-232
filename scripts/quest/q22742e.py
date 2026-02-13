@@ -3,7 +3,7 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1531004) # Three Moon
-sm.sendNext("You have done well this day.")
+sm.sendNext("嗯，辛苦了。")
 sm.completeQuestNoCheck(parentID)
 sm.completeQuestNoCheck(parentID)
 sm.startQuest(11620)

@@ -1,10 +1,10 @@
 # id 31504 (Road to Treglow), field 401040000
 sm.setSpeakerID(3001100) # Edea
-sm.sendNext("You're here for your mission, correct?")
-sm.sendSay("I believe #rTreglow#k's laboratory should be our next target. I don't think there's much difference between #rVictor#k and #rTreglow#k in terms of power. However, #rTreglow#k has access to much more information.")
-sm.sendSay("I ask that you enter through #b#m401050000##k and head on over to #b#m401052000##k. According to the patrol report from #b#p3001107##k, the path to #bTreglow#k is guarded by chemically-enhanced creatures.")
-res = sm.sendAskAccept("For the time being, think of this as an investigation. As for #rTreglow#k's creations, please eliminate 100 #r#o2400118##k monsters. #b#p3001107##k cited them as the biggest threat. Also, bring me 50 #b#t4000737##k items, so that we might learn more about these things.\r\n\r\n#r#e(If you accept, you will automatically move to the relevant field.)")
+sm.sendNext("你好，你来执行任务啦。")
+sm.sendSay("经过考虑，我们决定将#r特雷格罗#k的实验室作为下一个进攻目标。其实#r维克特#k和#r特雷格罗#k的力量并没有多大差距，因为我们掌握了更多#r特雷格罗#k的情报，所以才做出了这个决定。")
+sm.sendSay("请你进入#b#m401050000##k，进攻#b#m401052000##k。根据#b#p3001107##k的侦察，通往#b特雷格罗#k那里的路上有许多被化学药品强化的创造物镇守。")
+res = sm.sendAskAccept("你就当是探索战吧。请你在#r特雷格罗#k的创造物中，消灭100只#b#p3001107##k侦察发现的#r#o2400118##k，并收集50个它们头顶上的#b#t4000737##k，以便我们对其特点进行研究。\r\n\r\n#r#e（接受时，将自动移至该区域。）")
 sm.startQuest(parentID)
 sm.setParam(1)
-sm.sendNext("Bring me the flasks, of course, but any other communication can be done through the #bD-02 Receiver#k. Let me give you one.")
+sm.sendNext("啊，在这次的任务中，你只要直接去搜集长颈瓶带回来就行。但在今后的任务中，请通过#b卡塔利安的D-02发报机#k跟我联系。现在你手上没有，我给你吧。")
 sm.warp(401052000)

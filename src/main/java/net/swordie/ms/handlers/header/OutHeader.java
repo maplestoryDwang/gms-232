@@ -2550,14 +2550,15 @@ public enum OutHeader {
 
     private static List<OutHeader> spam = Arrays.asList(
             ALIVE_REQ,
-            OPCODE_ENCRYPTION
 //            PRIVATE_SERVER_PACKET,
-//            MOB_CTRL_ACK,
+            MOB_CTRL_ACK,
+            MOB_MOVE,
+            OPCODE_ENCRYPTION
+
 //            CHAT_MSG,
 //            MOB_HP_INDICATOR,
 //            STAT_CHANGED,
 //            MOB_CHANGE_CONTROLLER,
-//            MOB_MOVE,
 //            FAMILIAR_MOVE,
 //            REMOTE_MOVE,
 //            REMOTE_EMOTION,

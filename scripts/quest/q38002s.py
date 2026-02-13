@@ -5,33 +5,33 @@ SWIFT_STRIKE = 25001000
 VULPES_LEAP = 25001204
 
 sm.setSpeakerID(SILVER)
-sm.sendNext("So, your name is Human, right? That's rather silly. You don't see any foxes named Fox, now do you?")
+sm.sendNext("这么说来，你的名字是‘人类’了？呵呵，真是个有趣的名字。嗯？你说不是名字？那你叫什么？")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("No, my name is... (What was it that Freud used to call me?)")
+sm.sendSay("我叫…………我叫…………(最早给无名无姓四处流浪的我起名字的是弗里德啊。现在的弗里德…………)")
 
 sm.setSpeakerID(SILVER)
-sm.sendSay("Now, now, don't strain yourself. I doubt you can give yourself a very good name. Here, leave it to me. Hm... You're a stranger we found in the woods... Mystery? Oddity? Ooh, how about Muddle? I always thought Muddle would be a great...")
+sm.sendSay("嗬，报个姓名怎么还磨磨蹭蹭的？莫非你有什么苦衷？好吧，看你的表情应该就是了。那么，我来给你起个好听的名字吧！你的毛发是黑色的，就叫玄氏吧？ 要么，你的身材高大，叫魁硕也不错。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("No, look, I have my own-")
+sm.sendSay("不，我有名字…………")
 
 sm.setSpeakerID(MOONBEAM)
-sm.sendSay("Geez, Grandpa! Those are terrible names! We have to name 'em something cool. Besides, I found 'em, so I get to name 'em. Now... You're all dark and mysterious, so I'm gonna call you Shade. How about that? You're the perfect compliment to a Moonbeam!")
+sm.sendSay("唉，什么呀！和人类一点都不相配。既然你是我捡回来的，名字也该由我来起。嗯…………嗯…………你说你来自那个只有一个月亮的地方，对吧？所以…………藏有一个月亮的地方。隐…………月…………嗯，隐月！隐月不错。意思是隐藏的月亮，怎么样？")
 
 sm.setSpeakerID(SILVER)
-sm.sendSay("That seems a little...dark. You sure you don't like Muddle?")
+sm.sendSay("哎呀，那个也太土了吧？黑仔和年糕之类的名字不更好吗……")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("I'll go with Shade.")
+sm.sendSay("我要叫隐月。")
 
 sm.setSpeakerID(SILVER)
-sm.sendSay("To each his own, I guess... So be it. I recognize you as Shade from this moment forward. That's going to take a little getting used to.")
+sm.sendSay("嗯？你是认真的？嗬，爱好还挺独特的。反正，既然你喜欢我也没办法…………好吧，那从现在开始你的名字就是隐月了。一开始可能会有些别扭，不过渐渐就会适应的。")
 
-if sm.sendAskAccept("So Shade, why don't you take a look around the house you'll be staying at? Might need some cleaning, seeing how it's been vacant for years."):
-    sm.sendNext("Follow the path to the left and you'll see a house with a large pot. That's the one. Make yourself at home, my tasty friend.")
+if sm.sendAskAccept("那么隐月，你要不要参观一下你今后生活的房子呢？因为那里已经很久都没有主人了，所以堆积了厚厚的尘埃。如果有什么不便的，不必见外，直接告诉我。"):
+    sm.sendNext("你沿着这条路往左径直走，就会看见一个摆着酱缸台的房子。那就是你以后住的地方，你仔细瞧瞧吧。因为房子的主人从不回来，所以比露宿街头强多了吧。所需物品我会为你准备的。")
 else:
-    sm.sendNext("No, no, it's no problem at all. The owner of the house has been gone for years. Just as well that someone get some use out of it.")
+    sm.sendNext("（好像失去了所有的力量。虽然大不如前，但感觉还在。暂时应该没事了。）")
     sm.dispose()
 
 sm.setJob(2500)

@@ -5,13 +5,12 @@ JAKE = 1052006
 SUBWAY_TRANSTICKET = 2030028
 
 sm.setSpeakerID(JAKE)
-response = sm.sendAskYesNo("Somebody! Anybody! Help!")
+response = sm.sendAskYesNo("大事不好了！请你帮帮忙！")
 
 if response:
-    sm.sendNext("A lady followed a bunch of creeps into the Subway. They looked really dangerous. "
-                "Can you head into the #bSubway Construction Site#k and make sure she's okay?")
+    sm.sendNext("有个女人追着一群奇怪的家伙进了地铁！那些人看起来非常危险……请你去确认一下那个女人的平安吧！他们应该是往#b修理中的地铁#k去了。")
 
-    sm.sendNext("Hurry to the Subway Ticket Booth!")
+    sm.sendNext("这是能一次性将你送到我所在的地铁售票口的车票，请赶紧过来。")
 
     if not sm.canHold(SUBWAY_TRANSTICKET):
         sm.sendSayOkay("Please make some room in your 'use' inventory.")

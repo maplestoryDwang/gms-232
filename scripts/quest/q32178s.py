@@ -4,50 +4,41 @@ frostWitchBarbara = 1510008
 noraTheExplorer = 1510007
 
 sm.setSpeakerID(frostWitchBarbara)
-sm.sendNext("What you still have something to say to me?")
+sm.sendNext("怎么，你还有话要说吗？")
 
 sm.setSpeakerID(noraTheExplorer)
-sm.sendNext("Granny, I have a question.")
+sm.sendNext("老奶奶，我有件事想问问您。")
 
 sm.setSpeakerID(frostWitchBarbara)
-sm.sendNext("What do you want to know? Are you curious when this old lady will die? "
-            "If you mention about defeating and sort one more time in front of me, boy, "
-            "I'll destroy that mouth of yours first.")
+sm.sendNext("你想问什么？想问问我这老婆子什么时候死吗？要是还想说些没用的废话，就给我闭嘴。")
 
 sm.setSpeakerID(noraTheExplorer)
-sm.sendNext("No.. What I am saying is that the penguins, the malamutes, and the seals here are doubting you. "
-            "Is it perhaps due to your magic that the glaciers are melting and the sea level is rising?")
+sm.sendNext("不是的……这个地区的企鹅族、阿拉斯加犬族和海象族全都对您怀有疑心，会不会是因为您的魔法，使得冰川融化，海平面上升的呢？")
 
 sm.setSpeakerID(frostWitchBarbara)
-sm.sendNext("Magic? What is that? Do you eat that?")
+sm.sendNext("魔法？那是什么东西？是能煮着吃的吗？")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("There also is a rumor that she is conducting some experiments with the children.")
+sm.sendNext("现在甚至还有传闻说，您把孩子们当做试验材料，正在制作某种东西。")
 
 sm.setSpeakerID(frostWitchBarbara)
-sm.sendNext("WHAT?! Shut your mouth! What makes you think that I would do such a thing to these cute little things?!")
+sm.sendNext("谁再那么胡说八道，看我不把他嘴缝起来！说我拿孩子们来做什么？我拿这些温顺可爱的小家伙来做试验材料？")
 
-sm.sendNext("These poor kids lost their home and parents as the glacier is melting"
-            "If no one takes care of them, its unimaginable how they will turn out!"
-            "They were floating on the sea pitifully, and I picked them up and am taking care of them.")
+sm.sendNext("它们都是些因为冰川融化，而失去家园，失去父母的孩子。要是没人去照顾一下，还不知道能不能活下去唉！就那样可怜巴巴地在大海上漂浮，是我一个个捞起来抚养的。")
 
 sm.setSpeakerID(noraTheExplorer)
-sm.sendNext("You have been raising the children?")
+sm.sendNext("您在抚养那些孩子们？")
 
 sm.setSpeakerID(frostWitchBarbara)
-sm.sendNext("I was just taking care of them temporarily..")
+sm.sendNext("我也就暂时照顾他们一段时间……")
 
-sm.sendNext("It is said, the penguins should grow with the penguins, "
-            "and the seals need to grow with the seals. "
-            "After curing a baby, and if it looks like it has recovered enough, "
-            "I would bring him to his people secretly at night.")
+sm.sendNext("自古以来，各种动物就该在同族群中成长。我把它们带回家后，为它们治疗伤口，等它们体力恢复得差不多了，就包在襁褓里，晚上偷偷放在村庄前面。")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("But why would you do such a thing despite all the misunderstandings?...")
+sm.sendNext("可是，你没必要冒着被冤枉的危险这样做啊……")
 
 sm.setSpeakerID(frostWitchBarbara)
-sm.sendNext("Whew.. That mouth of yours.. How does it help you to talk so much? "
-            "If you have time for talking, shut up and do me a favor.")
+sm.sendNext("行了，你这家伙废话真多！有这力气嚼舌头，不如帮我做点事。")
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
 sm.dispose()

@@ -4,12 +4,8 @@
 
 # A Hero, No More (Merc) is already awarded when auto-advancing to Merc's 1st job, so it won't be rewarded here
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendNext("How can this be? I can't be level 10! "
-"Even level 100 would be ridiculous, but 10?! This must be a nightmare! "
-"That's it! I'll pinch myself to wake up...")
-sm.sendSay("OW! Then this is real? Did the curse do this to me? "
-"I didn't like the Black Mage when he was destryoing Maple World, but this is UNFORGIVEABLE! \r\n\r\n"
-"#fUI/UIWindow2.img/QuestIcon/8/0# 500 exp")
+sm.sendNext("等等……好像有点奇怪？我的等级是多少？")
+sm.sendSay("……到底是怎么回事？我的等级……怎么这么低？！只有10级？10级？不是100级，是10级？我还在做梦吗？掐一下自己的话，会醒来吗？啊！")
 
 sm.giveExp(500)
 sm.completeQuest(parentID)

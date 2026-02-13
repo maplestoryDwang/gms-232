@@ -3,7 +3,7 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001508) # Zippy
-sm.sendNext("#face0#I'm glad you're here. Are you done with the preparations?")
+sm.sendNext("#face0#你来啦。都准备好了吗？")
 sm.completeQuestNoCheck(parentID)
 sm.startQuest(11620)
 sm.createQuestWithQRValue(15710, "lasttime=19/02/21/12/50")

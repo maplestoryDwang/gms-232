@@ -4,13 +4,13 @@ FANZY = 1040002 # NPC ID
 FAIRYNAPPERS = 32101 # QUEST ID
 
 sm.setSpeakerID(FANZY)
-sm.sendNext("Are you the one I invited to help out with the ruckus at the Ellinel Fairy Academy?")
+sm.sendNext("喵~ 你就是受邀前来解决妖精学院艾利涅里发生的骚乱的勇士吗，喵？")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Um, of course?")
+sm.sendSay("原……原来如此……不过你就是潘喜吗？")
 
 sm.setSpeakerID(FANZY)
-sm.sendNext("You don't look as strong as I'd hoped. But, you're famous, so I'll leave it to you.")
+sm.sendNext("你看上去好像并没有想象中的那么强哦，喵。但既然是有名的勇士，我就相信你一次吧，喵。")
 
 sm.startQuestNoCheck(FAIRYNAPPERS)
 sm.completeQuest(parentID)

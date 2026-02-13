@@ -8,18 +8,16 @@ heroSuccessor = 1142158
 mir = 1013000
 
 sm.setSpeakerID(mir)
-sm.sendNext("Master, master, look at this. There's something wrong with one of my scales!")
+sm.sendNext("(从米乐处获得了龙鳞，当鳞片落入手中之后，神奇地变成了#i1142158#。)")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("That's...?! \r\n\r\n"
-"Mir, one of your scales is showing the #bOnyx Dragon's Mark#k!")
+sm.sendSay("(学会了#b英雄之回声#k技能。)")
 
 sm.setSpeakerID(mir)
-sm.sendSay("Really? That's weird... \r\n\r\n"
-"Oh, I know! Then that means it's time.")
+sm.sendSay("哇！学会了全新的技能，作为龙神，有种成为了弗里德真正继承人的感觉呢。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("It's time?")
+sm.sendSay("嘻嘻，恭喜你，主人。日后你也要不断强大，试着超越前任哦！")
 
 sm.setSpeakerID(mir)
 sm.sendSay("It's time for us to inherit Freud and Afrien's powers. "

@@ -8,10 +8,10 @@ if "3" in sm.getQRValue(58901): # Regards, Takeda Shingen
     sm.setSpeakerID(TAKEDA)
 
     sm.flipSpeaker()
-    sm.sendNext("Not bad, not bad. Thanks.")
+    sm.sendNext("你比我想象中还要快啊。谢谢你。")
 
     sm.flipSpeaker()
-    sm.sendSay("Let me take a look and I'll surely find a way to lift the spell. Come back later.")
+    sm.sendSay("我来看一看，有没有能解除咒术的方法。你就待会再来吧。")
 
 
     sm.completeQuest(parentID) # Regards, Takeda Shingen

@@ -5,14 +5,13 @@ job = "Bandit"
 
 sm.setSpeakerID(DARK_LORD)
 if sm.hasItem(darkMarble, 30):
-    sm.sendNext("I am impressed, you surpassed the test. Only few are talented enough.\r\n"
-                "You have proven yourself to be worthy, I shall mold your body into a #b"+ str(job) + "#k.")
+    sm.sendNext("#t4031013#全部拿来啦。很能干嘛？让你成为侠客，好像不错。那么……我马上让你变成侠客。准备好了吗？")
 else:
-    sm.sendSayOkay("You have not retrieved the #t"+ str(darkMarble) +"#s yet, I will be waiting.")
+    sm.sendSayOkay("冒险之书任务已完成。")
     sm.dispose()
 
 
 sm.consumeItem(darkMarble, 30)
 sm.jobAdvance(420) # Bandit
 sm.completeQuestNoRewards(parentID)
-sm.sendNext("You are now a #b"+ str(job) + "#k.")
+sm.sendNext("好的，从现在开始你就是#b侠客#k。侠客是以快速行动和技巧压制敌人的人。希望你能更加努力修炼。")

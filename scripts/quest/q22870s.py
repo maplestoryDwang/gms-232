@@ -8,8 +8,7 @@ king = 1142867
 threeMoon = 1531004
 
 sm.setSpeakerID(threeMoon)
-sm.sendNext("You've gotten very strong, Kinesis. \r\n"
-"You're not the neophyte I saw when you first arrived at Ellinia.")
+sm.sendNext("可以说达到了超能力者的最高境界。亚乌准备了礼物给成为支配所有行动的支配者的人。")
 
 sm.sendSay("Your ability to manipulate your surroundings is peerless.")
 

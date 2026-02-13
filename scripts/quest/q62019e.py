@@ -9,14 +9,13 @@ SOFT_LEATHER = 4034724
 sm.removeEscapeButton()
 sm.setSpeakerID(DABAO)
 sm.setBoxChat()
-sm.sendNext("You got the leather! Now it's my turn.")
+sm.sendNext("真厉害，你居然把材料搜集来了。接下来就看看我的手艺吧！")
 
-sm.sendNext("All done!")
+sm.sendNext("……嗒嗒嗒嗒……")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("(The face on the mask looks very realistic, though you have the niggling feeling it may have been extracted from a real person. "
-            "No matter. Bring it to #p"+ str(GOBLIN_DEMON) +"# at the #m"+ str(SECRET_LIBRARY) +"#.)")
+sm.sendNext("……嗒嗒嗒嗒……")
 
 sm.completeQuest(parentID)
 sm.consumeItem(SOFT_LEATHER, 30)

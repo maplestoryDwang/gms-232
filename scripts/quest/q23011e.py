@@ -13,6 +13,6 @@ if chr.getJob() == 3000 and chr.getLevel() >= 10:
     sm.setAP(4 + chr.getLevel() * 5)
     sm.completeQuest(parentID)
     sm.giveItem(STAFF_ID, 1)
-    sm.sendSayOkay("Congratulations, you are now a battle mage! I have given you some SP and items to start out with, enjoy!")
+    sm.sendSayOkay("你决心成为一名唤灵斗师吗？现在还可以重新选择。只要停止对话，放弃任务，然后和其他人对话就行。你要考虑清楚。你真的要选择唤灵斗师吗？你觉得这个职业适合你的反抗者之路吗？")
 else:
-    sm.sendSayOkay("I don't think you are quite ready to become a Battle Mage.")
+    sm.sendSayOkay("很好！欢迎你正式成为反抗者。从现在开始你就是唤灵斗师了。作为一名战斗的魔法师，希望你能勇敢地冲在最前面和敌人战斗。")

@@ -3,5 +3,5 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(3003501) #Melange
-sm.sendSay("#face0#Over here.")
+sm.sendSay("#face0#就是这里。")
 sm.completeQuest(parentID)

@@ -10,15 +10,15 @@ MAPID = 807000000 # Momijigaoka
 sm.setSpeakerID(TAKEDA)
 
 sm.flipSpeaker()
-sm.sendNext("I've made the medicine. It stinks like burning hair, so take it to #p" + str(NPCID) + "# ASAP.")
+sm.sendNext("唤醒武将的药做好了。你代我转交给#p9130008:# 吧。")
 
 sm.flipSpeaker()
-sm.sendSay("No way, this stuff smells viel. You do it.")
+sm.sendSay("……没什么。反正现在也走不了，你帮我转交一下这个吧。然后告诉他新来的武将是怎么来到这里的。")
 
 sm.flipSpeaker()
-sm.sendSay("I can't go right now anyway, so just drop it off. Also ask her how and why she traveled all the way here.")
+sm.sendSay("请你把#i4034129:##t4034129:#交给#m783000000:#的#p9130008:#吧。")
 
-response = sm.sendAskYesNo("Please bring this #i" + str(ITEMID) + "##z " + str(ITEMID) + "# to #p" + str(NPCID) + "# in #m" + str(MAPID) + "#.")
+response = sm.sendAskYesNo("其实我要走了……。")
 
 if response:
     sm.giveItem(ITEMID, 1) # give mega bitter medicine

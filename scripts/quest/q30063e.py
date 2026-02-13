@@ -2,7 +2,7 @@
 sm.setSpeakerID(1302020) # James
 sm.setParam(32)
 sm.setColor(1)
-sm.sendNext("I-I'm scared... Please help...")
+sm.sendNext("我，我好害怕……求你帮帮我……")
 sm.createQuestWithQRValue(1470, "on=1;exp=142741503")
 sm.createQuestWithQRValue(1470, "on=1;exp=142742017")
 sm.createQuestWithQRValue(1470, "on=1;exp=142742531")

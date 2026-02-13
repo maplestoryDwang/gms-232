@@ -9,25 +9,25 @@ selectName = ["Aharon", "Baruch", "Binyamin"]
 sm.removeEscapeButton()
 sm.setSpeakerID(GOBLIN_DEMON)
 sm.setBoxChat()
-sm.sendNext("Wll, I've put on the mask and noth-- Hey... What is this feeling coming over me? Humans... HUMANS ARE GREAT!")
+sm.sendNext("我非常……喜欢这张脸~！怎么样，我真的变帅了吧？")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("I can't believe that worked. Anyway, #b#p"+ str(GOBLIN_DEMON) +"##k, a human sympathiser like you deserves a good #rNickname#k.")
+sm.sendNext("现在我感觉我的眼睛都好受多了。……嗯！！对了，#b#p9310578##k，你叫什么#r名字#k？")
 
 sm.setSpeakerID(GOBLIN_DEMON)
 sm.setBoxChat()
-sm.sendNext("What's a #rNickname#k?")
+sm.sendNext("#r名字#k？那是什么东东？")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("It's a name that I can use to address you. Just like my name is #r#h0##k.")
+sm.sendNext("嗯……就是别人在称呼你时使用的独一无二的词。我的名字叫#r#h0##k。名字就是用来区分自己和别人的一种称呼。")
 
-sm.sendNext("I want YOU to have a name. That way I don't have to use your demon name, which is really just the name of your species.")
+sm.sendNext("如果你不介意的话，我来帮你起#r名字#k吧！")
 
 sm.setSpeakerID(GOBLIN_DEMON)
 sm.setBoxChat()
-sm.sendNext("If it's a human thing, I'm in!")
+sm.sendNext("嗯……好吧……起得好听点就行！")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
@@ -40,15 +40,15 @@ sm.createQuestWithQRValue(62018, selectName[selection])
 
 sm.setSpeakerID(GOBLIN_DEMON)
 sm.setBoxChat()
-sm.sendNext("Hey, that sounds good! "+ sm.getQRValue(62018) +" the almost-human demon. Perfect!")
+sm.sendNext("那么~该起个什么名字呢？适合你的名字……\r\n#L0#大石脸#l\r\n#L1##h0##l\r\n#L2#贵鬼#l")
 
 sm.flipBoxChat()
 sm.flipBoxChatPlayerAsSpeaker()
-sm.sendNext("Cool, I'll call you #r"+ sm.getQRValue(62018) +" from now on!")
+sm.sendNext("贵鬼？不错啊，可爱，又有男子汉的气概，跟我的脸很相配呢！我喜欢这个#r名字#k。")
 
 sm.setSpeakerID(GOBLIN_DEMON)
 sm.setBoxChat()
-sm.sendNext("I feel like a whole new person!")
+sm.sendNext("我怎么感觉不太对劲……帮我起个别的#r名字#k吧。")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
@@ -61,11 +61,11 @@ sm.sendDelay(1000)
 
 sm.setSpeakerID(NINE_TAILED_FOX)
 sm.setBoxChat()
-sm.sendNext("I suppose some humans are all right.")
+sm.sendNext("那么，从现在开始，你的名字就是#r贵鬼#k咯？")
 
 sm.setSpeakerID(GOBLIN_DEMON)
 sm.setBoxChat()
-sm.sendNext("Oh, yes. I've learned so much about them.")
+sm.sendNext("谢谢你，我的名字叫#r贵鬼#k。我有名字了，好开心呀。")
 
 sm.setSpeakerID(NINE_TAILED_FOX)
 sm.setBoxChat()

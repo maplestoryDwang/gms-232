@@ -1,6 +1,6 @@
 # 22002 |   Sandwich for Breakfast (Evan intro)
 sm.setSpeakerID(1013100)
-sm.sendNext("Did you eat your breakfast, evan? Then, will you do me a favor? \r\n #fUI/UIWindow2.img/QuestIcon/4/0# \r\n #v1003028# 1 Straw Hat \r\n #fUI/UIWindow2.img/QuestIcon/8/0# 60 exp")
+sm.sendNext("早饭吃了吗，小不点？你能帮妈妈做件事吗？\r\n\r\n#fUI/UIWindow2.img/QuestIcon/4/0# \r\n#i1003028# #t1003028#1个 \r\n#i2022621# #t2022621#5个\r\n#i2022622# #t2022622# 5个\r\n\r\n#fUI/UIWindow2.img/QuestIcon/8/0# 60 exp")
 sm.giveExp(60)
 sm.giveItem(1003028)
 sm.completeQuest(parentID)

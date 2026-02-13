@@ -11,6 +11,6 @@ if remainingTasks <= 0:
 
 sm.setSpeakerID(3003152) # Rona
 sm.setParam(2)
-sm.sendNext("#b(You gave Lyck the information you obtained from defeating the monsters.)#k")
+sm.sendNext("舔舔！食材都收集好了吗？这是奖励！1个#i1712002:# #t1712002:#和1个#i2614029:# #t2614029:#！舔！")
 sm.setParam(0)
 sm.sendSay("You have " + str(QuestConstants.CHU_CHU_WEEKLY_AMOUNT -remainingTasks) + " tasks completed this week. Thanks to you, we're one step closer to understanding this place.")

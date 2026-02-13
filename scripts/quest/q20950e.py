@@ -1,7 +1,7 @@
 #The Alliance gathers
 sm.setSpeakerID(1540838)
-sm.sendNext("How did things go? Oh, I should tell you that the Empress just arrived on Victoria Island. All the other CHief Knights are here as well, but you should never lower your guard. Shall we head out?")
-sm.sendNext("Wait...Kiku? Why is Kiku here? Goodness, he's injured!")
+sm.sendNext("你来啦？女皇殿下刚到金银岛。其他骑士团长也都来了，不过希望你不要因此放松警惕。好了，你想现在出发吗？")
+sm.sendNext("咦，等等……奇库？奇库怎么突然到这里来了？而且……好像受伤了！大家先停下来！")
 sm.removeEscapeButton()
 sm.spawnNpc(1104311, 232, 97, True)
 sm.setSpeakerID(1104311)

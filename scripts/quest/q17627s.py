@@ -1,14 +1,12 @@
 # [Commerci Republic] Delfino Deleter 2
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("Is it just me, or am I totally awesome at fish-slaying?")
+sm.sendNext("它们比我们想象中的弱多了。看来传闻有点夸大了。")
 
-response = sm.sendAskYesNo("We successfully routed the #o9390808# group, but I doubt that was the end. "
-                "It seems like there are other groups around. "
-                "You're going to help again, right?")
+response = sm.sendAskYesNo("虽然击退了#o9390808#，但事情好像并没有就此结束。刚刚我接到报告，好像又发现了其他群体。你这次也会帮我的吧？")
 
 if response:
-    sm.sendNext("#b#o9390811##k group should be in #m865020100#. Let's see who can rout out #b#e30#k#n of them faster again! I'll be waiting in #m865020100#!")
+    sm.sendNext("#b#e#o9390811##k#n好像在#b#k#m865020100##k#n。我们这次也来打赌，看谁先击退#b#e30只#k#n吧！我先到#m865020100#等着你！")
     sm.startQuest(parentID)
 else:
     sm.sendSayOkay("Oh, I suppose we can rest for a little bit.")

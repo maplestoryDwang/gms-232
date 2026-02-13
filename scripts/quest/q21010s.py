@@ -2,18 +2,18 @@
 PUKA = 1202001
 
 sm.setSpeakerID(PUKA)
-sm.sendNext("Hm, what's a human doing on this island? Wait, it's #p1201000#. What are you doing here, #p1201000#? And who's that beside you? Is it someone you know, #p1201000#? What? The hero, you say?")
-sm.sendSay("     #i4001170#")
-sm.sendSay("Ah, this must be the hero you and your clan have been waiting for. Am I right, #p1201000#? Ah, I knew you weren't just accompanying an average passerby...")
+sm.sendNext("咦？什么人在岛上……？哎呦，这不是#p1201000#吗？#p1201000#来这里是为了……这人是#p1201000#的朋友吗？啊？你说这人是英雄？")
+sm.sendSay("这位原来就是#p1201000#一族数百年间苦苦守候的英雄啊！啊，乍一看倒是和普通人没什么两样……")
+sm.sendSay("但是可能是因为你被黑魔法师的诅咒困在冰里几百年时间，所以体力全都消耗完了。#b我给你一个体力恢复药水，请快点喝下去吧#k。")
 
-if sm.sendAskAccept("Oh, but it seems our hero has become very weak since the Black Mage's curse. It only makes sense, considering that the hero has been asleep for hundreds of years. #bHere, I'll give you a HP Recovery Potion.#k."):
+if sm.sendAskAccept("请先喝掉药水，然后再慢慢谈！"):
     sm.giveItem(2000022)
     sm.startQuest(parentID)
 
     sm.removeEscapeButton()
 
     sm.flipSpeaker()
-    sm.sendNext("Drink it first. Then we'll talk.")
+    sm.sendNext("#b（这药水怎么喝？……不记得了……）#k")
 
     sm.setPlayerAsSpeaker()
     sm.sendSay("#b(How do I drink the potion? I don't remember...)#k")

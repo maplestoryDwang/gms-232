@@ -1,8 +1,7 @@
 # [Commerci Republic] Neinheart's Request
 
 sm.setSpeakerID(9390200) # Parbell
-sm.sendNext("Well butter mah biscuits! You must be that #h0# I hears about from the long-haired feller. "
-            "Didn't yet pappy even learn you not t' keep an old man a' waitin'?")
+sm.sendNext("噢，好啊，你终于来啦！你就是那个人说的#h0#吧？你可让我这个老头等了很久啊！")
 
 sm.completeQuest(parentID)
 sm.dispose()

@@ -5,13 +5,13 @@
 claudine = 2151003
 
 sm.setSpeakerID(claudine)
-sm.sendNext("Hello, #b#h ##k? Do you have time to come by Edelstein?")
+sm.sendNext("你好，#b#h0##k。可以的话，你能到埃德尔斯坦来一趟吗？")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Is everything okay?")
+sm.sendSay("埃德尔斯坦发生什么事了吗？")
 
 sm.setSpeakerID(claudine)
-response = sm.sendAskAccept("Yes, we're fine, but I could use your help. Can you come right away?")
+response = sm.sendAskAccept("不，没发生什么事……但是有件事希望你能来一趟。你能现在过来吗？")
 if response:
     sm.startQuest(parentID)
-    sm.sendSayOkay("Come talk to me again later.")
+    sm.sendSayOkay("好的，请重新和我说话。")

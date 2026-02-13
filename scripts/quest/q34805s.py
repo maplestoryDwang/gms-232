@@ -3,16 +3,16 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001304) # Professor Citrine
-sm.sendNext("#face0#Let me know when you've found a partner, and I'll give you the assignment.")
+sm.sendNext("请先和利奥对话。")
 sm.setInnerOverrideSpeakerTemplateID(3001300) # Ex
-sm.sendSay("#face0#I will try to identify a good team matchup for you, Sir.")
+sm.sendSay("#face0#好，现在大家都组队完成了吧？\r\n为了制作大门，请采集20个#i4036164# #t4036164#！")
 sm.setInnerOverrideSpeakerTemplateID(3001350) # Illium
-sm.sendSay("#face0#Thanks, Ex.")
+sm.sendSay("#face0##i4036164##b#t4036164##k可在#r#o2400401##k那获得，一定别搞错了。\r\n好，我这就用魔法送你过去。一路平安哦。")
 sm.setSpeakerID(3001334) # Professor Citrine
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001304) # Professor Citrine
-if sm.sendAskAccept("#face0#Has everyone found a teammate?\r\nThen begin gathering 20 #i4036164# #t4036164# items, so you can craft your gates!"):
+if sm.sendAskAccept("#face0##b重新返回水晶学院时，建议你使用向导#k。"):
     sm.startQuest(parentID)
     sm.setSpeakerType(3)
     sm.setParam(37)

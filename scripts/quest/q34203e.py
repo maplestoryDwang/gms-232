@@ -3,6 +3,6 @@ sm.completeQuestNoCheck(parentID)
 sm.setSpeakerID(3003152) # Master Lyck
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(3003152) # Master Lyck
-sm.sendNext("Oh! That was quick! Now, I must prepare my #rsignature dish#k! Slurp!")
+sm.sendNext("#ho#！噢！你这么快就搜集到材料啦！好的，那现在来完成我的#r特制料理#k吧？！")
 sm.createQuestWithQRValue(18418, "B=34843")
-sm.sendSay("It should be ready in no time! Come back in a little bit, slurp!")
+sm.sendSay("我很快就能做好了，你稍后再来找我吧！哈！")

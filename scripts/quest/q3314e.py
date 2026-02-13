@@ -16,20 +16,10 @@ potions = [
 russellon = 2111009
 
 sm.setSpeakerID(russellon)
-sm.sendNext("Hahaha.... You're looking pale. That means it's working. "
-"This experiment is a major success! Muahaha! I knew this would work on someone that's strong enough to destroy Roids! #b\r\n"
-"#L0#(I knew this was a human experiment!)#l")
-sm.sendNext("You seem very surprised. Don't be! It's not a dangerous pill..."
-"except for the side effect of death...luckily, there's an antidote for this... #b\r\n"
-"#L0#(This is NOT what I need!)#l")
-sm.sendNext("So this proves that it's possible to temporarily change the human body state."
-"This will make it much easier to work on Life Alchemy. This... will finally make his wish come true... #b\r\n"
-"#L0#Who's he?#l")
-sm.sendNext("Yes, him. He was the best at Life Alchemy. As brilliant an alchemist as anyone I've ever met. "
-"If he was around, this would have been over much earlier, but... the truth is, he's missing... \r\n\r\n"
-"#fUI/UIWindow2.img/QuestIcon/5/0# \r\n\r\n"
-"#fUI/UIWindow2.img/QuestIcon/8/0# 12500 exp \r\n\r\n"
-"#fUI/UIWindow2.img/QuestIcon/11/0# Insight 40")
+sm.sendNext("呼呼呼呼.... 看你面色苍白看来真的很有效果啊．这次的实验成功了！呃哈哈哈哈！果然可以用在能打倒洛伊德的坚强的人身上！\r\n#L0##b(果然真的是人体实验嘛!)#k#l")
+sm.sendNext("很惊讶的表情嘛？不用太担心．不是很危险的药…不，虽然是危险的药但是有解毒药…呼呼呼呼...\r\n#L0##b(给病又给药…天啊!)#k#l")
+sm.sendNext("如此一来，任意改变人体的状态会变得更为容易…这样...搞不好可以帮那家伙达成愿望...\r\n#L0##b那家伙？#k#l")
+sm.sendNext("是的……在生命炼金方面，他是第一人，他的能力比任何人都要强……只要有他在的话，这种研究很快就能解决……但是他失踪了……\r\n\r\n#fUI/UIWindow2.img/QuestIcon/5/0#\r\n\r\n#fUI/UIWindow2.img/QuestIcon/8/0#  12500 exp\r\n\r\n#fUI/UIWindow2.img/QuestIcon/11/0# 洞察力 40")
 
 if sm.hasQuest(parentID):
     sm.giveExp(12500)
@@ -41,17 +31,7 @@ if sm.hasQuest(parentID):
     sm.giveItem(russellonPotion, 20)
     sm.completeQuest(parentID)
 
-sm.sendSay("No one knows how or why he went missing. He had been getting antsy in days before he went missing, "
-"and started secretly conducting experiments that no one knew existed...no matter how much we asked, "
-"he never divulged any information on it. He was conducting experiments like a mad man... "
-"research, research, more research. That's all he did, in the name of Life Alchemy... "
-"then, that's when #bthat#k happened...")
-sm.sendSay("Even in the town of alchemists like Magatia, no one ever witnessed an explosion that big... "
-"I can't even begin to fathom what kind of experiments he conducted. What kind of a monster was he digging up...? "
-"The head of the alchemist society had already searched his house, so he should know what happened... "
-"yet he's never revealed anything...")
-sm.sendSay("Even this experiment started off as joint research between him and myself. "
-"But he's missing now, and it was impossible to go further with the experiment. "
-"I knew what to do with potions and pills, but that was still tough. I'm continuing this on his behalf, but... "
-"I don't understand why he thought of conducting a study on altering the state of the body...")
+sm.sendSay("谁都不知道那家伙为什么会消失．不知从什么时候开始那家伙就变得暴躁，人们不知道他到底在做什么实验．那家伙大概半年左右一直是疯疯癫癫的状态．研究，研究，研究…不断地在做实验．有关生命炼金的...结果，#b那个事件#k终于发生了…")
+sm.sendSay("就算是号称练金术士之村的玛加提亚…也未曾发生过像那样的剧烈爆炸事件…不晓得那家伙到底做了什么实验，我怎么猜也猜不透…他到底是在做什么惊人的研究呢？既然已经对他家进行了调查，我想协会会长应该知道些什么，但他也不肯透露…")
+sm.sendSay("这项研究..其实一开始也是和他一起合作，但他却消失无踪，而这项研究也无法继续下去。我对药物虽然还算有自信，但还真不容易啊！既然是和那家伙一起开始的，虽然断断续续还在持续下去，但是…那家伙为什么会想要研究改变人体的状态呢？")
 sm.sendPrev("I am sure he's alive. There's a reason why he should be...")

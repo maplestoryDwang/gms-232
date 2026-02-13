@@ -7,21 +7,15 @@ sm.setSpeakerID(DANCES_WITH_BALROG)
 
 sm.setSpeakerID(1022000)
 
-sm.sendNext("You wish to become a #b"+ str(job) + "#k?\r\n"
-            "A #b"+ str(job) + "#k is specialised in long weapons such as #bSpears#k and #bPolearms#k. "
-            "There are many useful skills you can acquire with both weapons, but I strongly recommend that you focus on one and stick to it.")
+sm.sendNext("你想选择枪骑士之路吗？枪骑士就如同名字一样，是使用枪或矛等长柄武器的职业。在战士中攻击范围最远，动作最华丽。")
 
 
-sm.sendNext("Before I teach you the ways of the "+ str(job) + ", you will have to accomplish a very difficult test. "
-            "I will warp you into a special map, in which I require you to defeat #bSkeledogs#k "
-            "and return 30 #i"+ str(darkMarble) +"##z"+ str(darkMarble) +"#s to me.")
+sm.sendNext("作为战士，枪骑士的技能中有很多自我强化技能。让自己熟练使用武器的 #b精准武器#k，造成强力伤害的#b终极枪矛#k，提高攻击速度的#b快速武器#k，使身体变得强壮的#b物理训练#k等等。")
 
-response = sm.sendAskYesNo("Once you enter the map, you #rcannot#k return without the #b#t"+ str(darkMarble) +"#s#k, if you die you will lose your experience.\r\n"
-                           "Are you ready?")
+response = sm.sendAskYesNo("当然还有更强大的攻击技能。你知道#b贯穿刺透#k技能吗？它是攻击近距离敌人时会增加额外的暴击几率, 而攻击远距离敌人时会增加总体伤害的强大技能。")
 
 if response:
     sm.warp(910230000, 0)
     sm.startQuestNoCheck(parentID)
 else:
-    sm.sendSayOkay("You cannot stay a Swordman. You #bwill#k have to face up to the test.\r\n"
-                   "Talk to me when you are ready.")
+    sm.sendSayOkay("但是枪骑士的技能中最后名的应该是#b神圣之火#k。那是可以暂时提高包括自己在内的全体队员的最大血量和最大魔量的技能，在角色等级较高的时候仍然很有用。")

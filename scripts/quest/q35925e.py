@@ -3,7 +3,7 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013350) # Brie
-sm.sendNext("#face0#Phew. The path is finally clear. We should be able to get to wherever that sound is coming from now, so just follow me.")
+sm.sendNext("#face0#路打通了,勇士。\r\n我这就把你带到传来声音的地方去。好了,请跟我来。")
 sm.completeQuestNoCheck(parentID)
 sm.startQuest(11620)
 sm.createQuestWithQRValue(15710, "lasttime=19/07/08/13/58")

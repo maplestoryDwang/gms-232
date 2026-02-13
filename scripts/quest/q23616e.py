@@ -5,39 +5,30 @@ ROO_D = 2300000
 sm.setSpeakerID(ROO_D)
 if chr.getJob() == 3611 and chr.getLevel() >= 100:
 
-    sm.sendNext("Why the serious face? Wait, you always look serious. Why the more-serious face?")
+    sm.sendNext("有什么事吗，#h0#？干嘛一脸紧张……嗯，你原来就是这种表情吗？")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("#bRoo-D#k, what if I never get my memories back? What if I threw away my whole life for something I'll never see?")
+    sm.sendNext("#p2300000#，我想跟你谈谈。关于我的过去和记忆。\r\n从#p2154009#的研究所中逃出来的时候失去的力量已经恢复了相当一部分。但是记忆却一点都没有恢复……如果一直恢复不了记忆，我该怎么办呢？我为什么要抛弃力量，从那里逃出来呢？")
 
     sm.resetParam()
     sm.setSpeakerID(ROO_D)
-    sm.sendNext("What? That's crazy! If you had stayed in that lab, #bGelimer#k would have you... stomping on puppies or something! "
-                "What if he'd ordered you to destroy Edelstein?! That could have been you!")
+    sm.sendNext("你在为这个苦恼？别说啥话。如果留在研究所中，你一定会继续受到#p2154009#的操纵。也许会被#p2154009#派来破坏埃德尔斯坦！")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("I know that, I don't regret leaving. But I feel an emptiness inside that I do not know how to deal with. "
-                "You and Beryl do not seem to care about your past at all. Why does it trouble me so much? Am I... broken?")
+    sm.sendNext("……是的，你说的对。我不后悔从那里逃出来。\r\n但是#p2300000#你一定觉得我即使恢复不了记忆也没关系，#p2159391#应该也是这么想的。只有我才想知道自己过去到底是个什么样的人。我这么执着地想知道过去，你们是不是觉得我很奇怪？")
 
     sm.resetParam()
     sm.setSpeakerID(ROO_D)
-    sm.sendNext("No! You're great, just the way you are. There's nothing wrong with wanting to know who you are, #h #, "
-                "but you and I are different, you know? Not everybody wants the same thing.")
+    sm.sendNext("今天的你是有点奇怪，但是……想恢复记忆的想法一点都不奇怪。你是你，我是我。面对相同的情况，各自拥有不同的想法是很正常的。不是吗？")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("....")
+    sm.sendNext("是你告诉我，机械人不是普通的机器人。你，还有#p2159391#，从一开始想法就不一样。我们不可能是单纯的机器人。你比我更像人类，就像是人类和机械人的中间体。这就是你的个性。")
 
     sm.resetParam()
     sm.setSpeakerID(ROO_D)
-    sm.sendNext("You taught me that Xenoroids are different. You and Beryl couldn't be less alike. That means we were "
-                "meant to have different personalities. If anything, you wanting to find your memories makes you MORE "
-                "human than the rest of us.")
-    sm.sendNext("I know you're struggling. This isn't gonna be easy for you. It could take years. But if it's something "
-                "you want, I know you'll make the decision to persue it, no matter how much pain it comes with. And that "
-                "decision will always be yours to make. You're free now.")
-    sm.sendNext("Everybody can see that you're dong the right thing. That's why we all help you. It's not because they "
-                "feel sorry for you, it's because they believe it's the right thing to do. Don't ever forget the friends "
-                "you've found. You might have been enemies if you hadn't left the lab.")
+    sm.sendNext("你想找回记忆，我可以理解。你这么努力，却还是无法恢复记忆，感觉不安也是难免的。\r\n但是是否继续寻找记忆得由你自己决定。如果觉得太痛苦，就这样放弃也没关系。如果你觉得即使很痛苦也必须要寻找，那就继续。不管你的决定是什么，我都不会阻拦你。")
+    sm.sendNext("不仅是我，其他人也一样。不管你做出什么决定，只要是你真心所向，大家都会帮助你。从#p2154009#的研究所中逃出来之后，你获得的最重要的东西就是同伴。这一点请不要忘记。")
+    sm.sendNext("我找到了同伴，要不要寻找记忆全都由我自己决定……。谢谢你，#p2300000#。我好像明白了什么。")
 
     if sm.canHold(MEDAL):
         sm.setJob(3612)
@@ -48,7 +39,7 @@ if chr.getJob() == 3611 and chr.getLevel() >= 100:
         sm.completeQuest(parentID)
         sm.setPlayerAsSpeaker()
         sm.completeQuest(parentID)
-        sm.sendNext("Thank you for standing beside me, Roo-D. I hope that the choices I make will help you as much as they help me.")
+        sm.sendNext("别客气。你救过我的命。和那个相比，这点小事算什么。")
         sm.resetParam()
         sm.setSpeakerID(ROO_D)
         sm.sendNext("Don't mention it! I owe you a lot more than you owe me.")

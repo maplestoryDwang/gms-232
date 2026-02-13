@@ -3,18 +3,18 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001510) # Ferret
-sm.sendNext("#face2#It must be the Gale Foxes around here causing the sandstorm.")
-sm.sendSay("#face0#I guess we'll just have to wait for it to calm down again.")
+sm.sendNext("#face2#哎呀呀……好像是周围的旋风狐制造了沙暴，叽勒。")
+sm.sendSay("#face0#叽，叽勒……如果沙暴能稍微小一点，应该可以捕捉到电波……")
 sm.setInnerOverrideSpeakerTemplateID(3001500) # Ark
-sm.sendSay("#face0#If we clear some of them out, that should help the signal, right? I can do that.")
+sm.sendSay("#face0#我去把周围清理一下。那样就能接收到电波了吧？这件事就交给我吧。")
 sm.setSpeakerType(4)
 sm.setSpeakerID(3001409) # Ferret
 sm.setInnerOverrideSpeakerTemplateID(3001510) # Ferret
-res = sm.sendAskAccept("#face0#That's a good idea. Let's see if hunting about #b50#k #b#o2400356##k monsters does any good.")
+res = sm.sendAskAccept("#face0#好主意。好的……你能去消灭掉#b50只#k#b#o2400356##k吗，叽勒？")
 sm.setSpeakerType(3)
-sm.sendNext("#face0#I'll keep trying to pick up the signal. Everyone else should help Ark.")
+sm.sendNext("#face0#我在这里寻找电波，其他商队成员会帮助你的，叽勒……")
 sm.setInnerOverrideSpeakerTemplateID(3001509) # Salvo
-sm.sendSay("#face1#Well, if Mr. Bossy says we help Ark, I guess we help Ark. Let's get to it, everyone!")
+sm.sendSay("#face1#切，可恶，但是现在也没办法。大家快去消灭狐狸吧！")
 sm.startQuest(parentID)
 sm.startQuest(parentID)
 sm.createQuestWithQRValue(16700, "count=263;date=20190221")

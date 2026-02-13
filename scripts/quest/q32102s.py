@@ -4,33 +4,33 @@ FANZY = 1500010 # NPC ID
 YOU_CAN_DO_IT = 32102 # QUEST ID
 
 sm.setSpeakerID(FANZY)
-sm.sendNext("Are you asking where we are? Did you follow me without knowing where I was going? This is the forest path to the #b Ellinel Fairy Academy#k.")
+sm.sendNext("你问这里是哪里？你连这里是哪里都不知道就跟来了吗？\r\n这里是通往#b妖精学院艾利涅#k的森林深处。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Ellinel Fairy Academy?")
+sm.sendSay("没错，#b艾利涅#k是多年来教导妖精孩童们魔法的一种教育机构。")
 
 sm.setSpeakerID(FANZY)
-sm.sendSay("Yes. #b Ellinel#k is an academy where fairy children learn magic.")
+sm.sendSay("那为什么要藏在这种森林深处啊？")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("But why is it hidden so deep within the forest?")
+sm.sendSay("看你的表情，还真是一无所知的样子，你知道#b魔法密林#k原本曾是妖精的村庄吗？在数百年前和黑魔法师爆发过一场大型战争之后，人类进来开垦了村庄，便有了现如今的#b魔法密林#k。\r\n")
 
 sm.setSpeakerID(FANZY)
-sm.sendSay("Did you know that #bEllinia#k used to be a fairy town? Several hundred years ago, after a war with the Black Mage, humans came in and reclaimed the town and it became the #bEllinia#k we know now.")
+sm.sendSay("那么魔法密林外面也有妖精生活的地方咯。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Then that must mean that fairies live outside of Ellinia, too.")
+sm.sendSay("虽然也有一些愿意接受人类的妖精，但还是有很多并非如此相对保守的妖精，#b妖精学院艾利涅#k也曾如此。他们拒绝与人类为伍，独自消失在夜的领域中，而且为了拒绝外人的出入，他们还建在了湖的对面。\r\n")
 
 sm.setSpeakerID(FANZY)
-sm.sendSay("Some fairies are okay with humans, but others very much are not. It's the same in the #bEllinel Fairy Academy#k. They don't want to mix with humans, and so they disappeared into the forest. That's why the school is far across the lake.")
+sm.sendSay("你的意思是说魔法师库迪被那些艾利涅的妖精生擒了吗？")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("You think Cootie got captured by human-hating fairies?")
+sm.sendSay("没错，我也完全没有搞明白这到底是怎么一回事，虽然#b汉斯#k和我曾经多次尝试去联系，但他们很讨厌我们，并不听我们说话。所以我们需要你的帮忙，\r\n不过#b#h0##k，你游泳游得好吗？")
 
 sm.setSpeakerID(FANZY)
-response = sm.sendAskAccept("Most likely. I know I thought about using him as a scratching post a few times. Master #bGrendel#k and I tried to befriend the fairies, but they just weren't listening. I think we should use more... forceful methods.\r\n#b #h ##k, let me ask... are you a good swimmer?")
+response = sm.sendAskAccept("你先游到湖对面怎么样？相信你应该能做到！鼓起勇气跃入水中吧！\r\n#b(度过右边的湖。)#k")
 
 if response:
-    sm.sendNext("Why don't you go for a swim! Show us how brave you are, meow...\r\n#b (Cross the lake to the right.)#k'")
+    sm.sendNext("妖精学院艾利涅？")
     sm.startQuestNoCheck(YOU_CAN_DO_IT)
 sm.dispose()

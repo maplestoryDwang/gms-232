@@ -5,12 +5,12 @@ SAKUNO = 9130124
 sm.setSpeakerID(SAKUNO)
 
 sm.flipSpeaker()
-sm.sendNext("Please accept my gratitude for the medicine. Thanks to you I am able to see Ayame once again.")
+sm.sendNext("谢谢你做了药。多亏了你，我才能看到菖蒲平安无事的样子，真是太好了。")
 
 sm.flipSpeaker()
-sm.sendSay("You must have been suprised to see me like that. The truth is I have been indebted to Ayame.")
+sm.sendSay("让你看到我这么失态的样子，吓到你了吧。其实我一直很担心菖蒲。")
 
-response = sm.sendAskYesNo("Would you like to hear the whole story?")
+response = sm.sendAskYesNo("你要听听我说的话吗？")
 
 if response:
     sm.startQuest(58909) # Tears of Princess Sakuno

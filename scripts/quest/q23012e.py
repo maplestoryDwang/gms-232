@@ -16,6 +16,6 @@ if chr.getJob() == 3000 and chr.getLevel() >= 10:
     sm.setDEX(4)
     sm.setLUK(4)
     sm.setAP(4 + chr.getLevel() * 5)
-    sm.sendSayOkay("Congratulations, you are now a Wild Hunter! I have given you some SP and items to start out with, enjoy!")
+    sm.sendSayOkay("谢谢你这么爽快地接受……你真的经过深思熟虑了吗？豹弩游侠虽然很强，但也很难操作。在操作骑宠的同时，还必须进行攻击，因此在操控方面要求很高。你能做到吗？希望你仔细考虑清楚之后再回答我。")
 else:
-    sm.sendSayOkay("I don't think you are quite ready to become a Wild Hunter.")
+    sm.sendSayOkay("哈哈哈！很好！欢迎你正式成为反抗者。从现在开始，你就是豹弩游侠了。希望你能骑着骑宠，灵活机动地消灭敌人。")

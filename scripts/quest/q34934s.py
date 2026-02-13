@@ -3,9 +3,9 @@ sm.setSpeakerID(3001413) # Ferret
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001510) # Ferret
-res = sm.sendAskAccept("#face0#Just as I expected, these sand monsters are blocking our way. Ark, please defeat #b50#k #b#o2400359##k monsters, so we can get through.")
+res = sm.sendAskAccept("#face0#果然这里被沙怪们挡住了。亚克，请你到前面去消灭掉#b50个#k#b#o2400359##k，叽勒。")
 sm.setSpeakerType(3)
-sm.sendNext("#face2#The signal I'm picking up just got a lot stronger. I don't know what to make of it.")
+sm.sendNext("#face2#哎呀呀，不知道为什么，不祥的电波好像比刚才更强了……")
 sm.startQuest(parentID)
 sm.startQuest(parentID)
 sm.startQuest(parentID)

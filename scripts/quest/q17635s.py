@@ -2,28 +2,28 @@
 
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("How you feeling, #h0#? I'm so sore. You don't fight an awesome battle without getting a few bruises.")
+sm.sendNext("啊，#h0#你休息好了吗？我感觉还是有点累。看你的脸色，好像你的疲劳也没有完全消失呢。")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("I'm all right.")
+sm.sendNext("嗯，我还好啦。也因为这地方比较陌生，还没熟悉。")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("Prime Minister! Something awful has happened!")
+sm.sendNext("什么大事。又出了什么事？")
 
 sm.setSpeakerID(9390256) # Leon Daniella
-sm.sendNext("What? What's going on?")
+sm.sendNext("(好像又出了什么事情…… 要听听吗？)")
 
 sm.setPlayerAsSpeaker() # Has to be Player Avatar
-sm.sendNext("#b(I should go on in, and see what's up.)")
+sm.sendNext("这次又是什么事？")
 
 sm.setSpeakerID(9390203) # Gilberto Daniella
-sm.sendNext("What in the world is it now?")
+sm.sendNext("据说，我们派去罗萨进行贸易的船只，受到了普赛依的攻击！！")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("Our shop en route to Rosa has been attacked... by Captain Blood!")
+sm.sendNext("什么？！该死的 #r普赛依#k又来捣乱！！")
 
 sm.setSpeakerID(9390203) # Gilberto Daniella
-sm.sendNext("Blast it.. That vile man!")
+sm.sendNext("这次的损害好像比之前都要大。")
 
 sm.setSpeakerID(9390225) # Tepes
-sm.sendNext("I think they planned this attack")
+sm.sendNext("应该是的吧。因为那是去罗萨的商船。唉！")

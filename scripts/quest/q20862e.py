@@ -11,6 +11,6 @@ if sm.canHold(1382000):
     sm.setAP(4 + chr.getLevel() * 5)
     sm.completeQuest(parentID)
     sm.giveItem(1382000) # Wooden Staff
-    sm.sendSayOkay("Congratulations, you are now a Blaze Wizard! I have added 5 AP and 5 SP, enjoy your journey!")
+    sm.sendSayOkay("你已经做好选择了吗？选择之后是不能反悔的。请一定要慎重考虑……你真的要选择炎术士之路吗？")
 else:
-    sm.sendSayOkay("Please make more space in your inventory.")
+    sm.sendSayOkay("从现在开始，你就是一名炎术士了。啊，真让人高兴！我又有了新同伴……对了，我得先分配一些能力给你。")

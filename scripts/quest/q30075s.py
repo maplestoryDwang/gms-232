@@ -2,5 +2,5 @@
 sm.setSpeakerType(3)
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(1302007) # Head Security Officer
-res = sm.sendAskYesNo("I'll send you to the Castle's Rear Entrance.\r\nReady?\r\n\r\n#b(You will automatically travel to the Castle's Rear Entrance if you accept.)#k")
+res = sm.sendAskYesNo("我可以送你到城堡后门入口。\r\n要立即移动吗？\r\n\r\n#b（接受时，将移至城堡后门入口。）")
 sm.warp(106030302)

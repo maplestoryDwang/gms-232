@@ -4,41 +4,32 @@ CHIEF_TATOMO = 2081000
 GUWARU = 2210011
 
 sm.setSpeakerID(CHIEF_TATOMO)
-sm.sendNext("Minar Forest has always been known as a place of strange occurrences, but this one takes the proverbial peach pie. "
-            "A mountain that moves... amazing.")
+sm.sendNext("米纳尔森林南部一直以来就以经常发生奇怪的事情而闻名。但是像这样奇怪的事还是第一次发生。石头山竟然活了，突然站了起来……")
 
-sm.sendSay("I don't mind telling you, I was as shocked as you are. "
-            "My bread was practically standing on end. "
-            "But it's the truth, and that's a fact.")
+sm.sendSay("乍一听，你也没办法理解是怎么回事吧？但是这种事情确实发生了。")
 
-sm.sendSay("When times like these come around, I pray to the great spirit Guwaru for guidance. "
-           "Sure, sure maybe the Black Mage had control over him for a while, but he's rock-solid fella now, hehe")
+sm.sendSay("唯一能解释这种超自然现象的人，应该只有一个人。那就是大精灵古瓦洛……虽然他曾经被黑魔法师迷惑，成为了军团长，但现在已经不再是邪恶的人了。他正在某个地方休养生息。")
 
-response = sm.sendAskYesNo("We halflingers are kin to the sky, wind and forest. We know a few tricks to contact the great spirits. if you'd like, I could arrange a meeting right now.")
+response = sm.sendAskYesNo("我们哈夫林代代都是天空、风和森林的朋友。使用部落代代相传的秘术，就能暂时和大精灵古瓦洛接触……你想现在见见他吗？")
 
 if response:
-    sm.sendNext("All right then. Clear your noodle, focus on my topknot, and let's contact a spirit! Listen carefully...")
+    sm.sendNext("好的，请集中精神……听到他的声音了吗？")
 
     sm.setSpeakerID(GUWARU)
     sm.flipSpeaker()
-    sm.sendSay("This is my fault. I could never have known a being like this would awaken...\r\n"
-               "#b(You hear a strange and rumbling voice.)")
+    sm.sendSay("岩壁巨人……没想到造出了那种荒唐的东西。全都是我的错。\r\n#b(听到了古瓦洛的声音。)#k")
 
     sm.flipSpeaker()
-    sm.sendSay("I should have seen it coming. Long ago, when the Black Mage completed his betrayal, my powers were stolen from me. "
-               "Everything began then. I had to recover from the blow that I had been dealt, and I neglected my duties as guardian of the forest.")
+    sm.sendSay("我也料到了可能会发生这种事。几百年前，我加入了黑魔法师的势力，后来被其中的某人背叛，被他吸收了力量……\r\n一切都是从那时候开始的。我在很长的时间里丧失了对精灵们的支配力，所以导致了奇怪事件的发生。")
 
     sm.flipSpeaker()
-    sm.sendSay("This bizarre scenario is my sole responsibility, but I am no more use than an errant fly with my current powers. "
-               "Perhaps a mortal touch would be more appropriate. Please meet this colossus in my place.")
+    sm.sendSay("这是我的错误造成的，我本应该负起责任。但是我现在失去了力量……请到米纳尔森林南部去调查一个叫岩壁巨人的巨人。")
 
     sm.flipSpeaker()
-    sm.sendSay("You will need some of my power to understand the great beast... "
-               "The transfer should not hurt, so long as it doesn't make you grow roots.\r\n"
-               "#b(Guwaru's light washes over you. you feel different, more... earthy.)")
+    sm.sendSay("用普通的方法是无法和岩壁巨人对话的。不过我刚才已经把我的一部分力量分给了你，你现在应可以和岩壁巨人对话了。如果我的推测没错的话……\r\n#b(古瓦洛的神秘力量渗透进了身体。)#k")
 
     sm.flipSpeaker()
-    sm.sendSay("I will contact you again when I need you. Until then...")
+    sm.sendSay("好的，再见。需要的时候，我会再找你的。")
     sm.startQuest(parentID)
 else:
     sm.sendSayOkay("Wot? You don't want to contact a higher being?")

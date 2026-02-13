@@ -7,4 +7,4 @@ if sm.hasQuest(parentID):
         sm.completeQuest(parentID)
         sm.addSP(5)  # additional SP, allowing DBs to max out their skills
     else:
-        sm.sendSay("Empty one or more Equip slots before you can advance to Blade Acolyte.")
+        sm.sendSay("现在开始…你就是双刀侠了。")

@@ -11,6 +11,6 @@ if remainingTasks <= 0:
 
 sm.setSpeakerID(3003500) # Ollie
 sm.setParam(2)
-sm.sendNext("#b(You gave Ollie the information you obtained from observing the monsters up close.)#k")
+sm.sendNext("感谢你的努力工作。给，这是你的报酬，2个#i1712006:# #t1712006:#和1个#i2614029:# #t2614029:#。")
 sm.setParam(0)
 sm.sendSay("You have " + str(QuestConstants.ESFERA_WEEKLY_AMOUNT - remainingTasks) + " tasks completed this week. Thanks to you, we're one step closer to understanding this place.")

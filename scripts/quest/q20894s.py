@@ -1,15 +1,15 @@
 # 20893 - [Job Adv] (Lv.100)   The Empress' Chief Knight
 sm.setSpeakerID(1101000)
-sm.sendNext("#h #...  what is this?")
+sm.sendNext("#h0#……这是……？")
 sm.setPlayerAsSpeaker()
-sm.sendNext("This, milady, is the report from Neinheart about the activities of the Cygnus Knights.")
+sm.sendNext("啊，女皇，那是南哈特让我交给你的冒险骑士团活动报告书。")
 sm.setSpeakerID(1101000)
-sm.sendNext("Haha, is that wat Neinheart said? It is a recommendation about you. It's all about the process of you getting stronger and the activities done by you...")
+sm.sendNext("呵呵，南哈特是那么说的？这是推荐书。他说这段时间你比任何人都努力，变强了不少。还有，他说你为了骑士团尽了自己的全力。内容就是这些。")
 sm.setPlayerAsSpeaker()
-sm.sendNext("What did Neinheart write about me?")
+sm.sendNext("我认可你这段时间以来的努力、成就和功劳……我决定授予你新的职位。希望……你能接受。")
 sm.setSpeakerID(1101000)
-if sm.sendAskYesNo("I would like to appoint a title to you for your activities and effort. will you accept this?"):
-    sm.sendSay("#h #, with your braveness and courage, from now on you are a new captain of the knights. Please use your power to protect the Maple World.")
+if sm.sendAskYesNo("#h0#，你拥有面对黑魔法师的勇气。从现在开始，你就是冒险骑士团的信任骑士团长了。希望你能将你的力量用于冒险岛世界的和平……"):
+    sm.sendSay("嗯？南哈特大人？")
     if sm.canHold(1142069):
         chrJobID = sm.getChr().getJob()
         sm.jobAdvance(chrJobID+1)

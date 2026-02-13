@@ -2,30 +2,30 @@
 ATHENA = 1209007
 
 sm.setSpeakerID(ATHENA)
-if sm.sendAskYesNo("You made it back safely! What about the child?! Did you bring the child with you?!"):
+if sm.sendAskYesNo("呵呵，平安回来了？孩子呢？孩子也带回来了吗？"):
     sm.completeQuest(parentID)
     sm.consumeItem(4001271)
 
     sm.flipSpeaker()
-    sm.sendNext("Oh, what a relief. I'm so glad...")
+    sm.sendNext("太好了……真是太好了。")
 
     sm.setPlayerAsSpeaker()
-    sm.sendSay("Hurry and board the ship! We don't have much time!")
+    sm.sendSay("赶快上船！已经没时间了！")
 
     sm.setSpeakerID(ATHENA)
     sm.flipSpeaker()
-    sm.sendSay("We don't have any time to waste. The Black Mage's forces are getting closer and closer! We're doomed if we don't leave right this moment!")
+    sm.sendSay("啊，没错。现在不是感伤的时候。黑魔法师的气息越来越近！似乎他们已经察觉方舟的位置，得赶紧启航，不然就来不及了！")
 
     sm.setPlayerAsSpeaker()
-    sm.sendSay("Leave, now!")
+    sm.sendSay("立刻出发！")
 
     sm.setSpeakerID(ATHENA)
     sm.flipSpeaker()
-    sm.sendSay("Aran, please! I know you want to stay and fight the Black Mage, but it's too late! Leave it to the others and come to Victoria Island with us! ")
+    sm.sendSay("战神！请你也上船吧！我们理解你渴望战斗的心情……不过，现在已经晚了！战斗就交给你的那些同伴吧，和我们一起去金银岛吧！")
 
     sm.setPlayerAsSpeaker()
-    sm.sendSay("No, I can't!")
-    sm.sendSay("Athena Pierce, why don't you leave for Victoria Island first? I promise I'll come for you later. I'll be alright. I must fight the Black Mage with the other heroes!")
+    sm.sendSay("不行！")
+    sm.sendSay("赫丽娜，你先出发去金银岛。一定要活着，我们一定会再见的。我要和同伴们一起同黑魔法师战斗！")
 
     sm.lockInGameUI(True, False)
     sm.completeQuest(parentID)

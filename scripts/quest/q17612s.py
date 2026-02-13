@@ -3,78 +3,63 @@
 MAYOR_BERRY = 9390201
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("Excuse me, Mayor? A-are you busy?")
+sm.sendNext("那个，村长。我想话想对你说。")
 
 sm.setSpeakerID(MAYOR_BERRY)
-sm.sendNext("You stopped by at just the right time, kiddo. "
-            "It'd been a fishful day, and that's the best kinda day, if you ask me.")
+sm.sendNext("你来得正好。今天我们捕到了很多鱼。如果每天都像今天这样就好了。")
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("Oh, great! That's... I need to tell you something.")
+sm.sendNext("嗯…真是太好了…那个…我想跟你说……")
 
 sm.setSpeakerID(MAYOR_BERRY)
-selection = sm.sendNext("Well, go on and spit it out!\r\n"
-            "\r\n"
-            "#L0##b(I should rethink this.)#l\r\n"
-            "#L1##b(I've got to tell him the truth.)#l")
+selection = sm.sendNext("啊，对了。你说你有话要说，对吧。你说吧。是什么事情？\r\n#b\r\n#L0# (不…还是再仔细想想比较好。)#l\r\n#L1# (嗯，告诉他实情吧。)#l")
 
 
 sm.setPlayerAsSpeaker()
 if selection == 0:
-    sm.sendNext("Oh, I just wanted to tell you what a beautiful day it is")
+    sm.sendNext("啊，没什么。(我得先整理下思路，再跟他说。)")
     sm.setSpeakerID(MAYOR_BERRY)
-    sm.sendNext("Oh, ye. It truly is a gorgeous day, today")
+    sm.sendNext("其实我不是单纯的冒险家。我是奉冒险岛世界的希纳斯女皇的命令，为了和这里建立友好关系而来。")
 elif selection == 1:
-    sm.sendNext("The truth is... I lied to you. The sea didn't bring me here...")
+    sm.sendNext("你这是什么话啊？你不是冒险家，是冒险岛世界的女皇派来的？")
 
     sm.setSpeakerID(MAYOR_BERRY)
-    sm.sendNext("Well, unless you've got a set of wings curled up somewhere, "
-                "how'd you get here? And what do you mean you lied?")
+    sm.sendNext("没错。如果我一开始就说出事实，我担心会产生不必要的误会。所以打算在村长的身边多待一会儿再表明我们的立场，但是您对遭遇了暴风雨的我如此热情亲切，我也没有办法再隐瞒下去了。")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("I came across the northern barrier.")
+    sm.sendNext("等下，为什么会有误会呢……而且，你为什么要和我说这些呢？我只不过是个村长而已啊。")
 
     sm.setSpeakerID(MAYOR_BERRY)
-    sm.sendNext("What kinda hogwash is that? Nobody's been across the northern barrier in a hound's age. "
-                "Ain't nothin' but demons and evil up there anyway. "
-                "You sayin' you're some kinda demon?!")
+    sm.sendNext("但是，村长不是这个村子地位最高的人吗？这里是凯梅尔兹，那和凯梅尔兹地位最高的人……")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("No, no... the demons are... Look, I'm from a place called Maple World, and I guess technically you are too. "
-                "I traveled to Dawnveil from a different continent, far away.")
+    sm.sendNext("……哈哈哈哈哈！你，看来你是误会了啊。")
 
     sm.setSpeakerID(MAYOR_BERRY)
-    sm.sendNext("Well that's just plum silly. Another continent? "
-                "I was sure this sea just went on forever... "
-                "If this is all true, how'd you get across that barrier?")
+    sm.sendNext("……您这是……什么意思？")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("The barrier is breaking down... Where I came from, no one had even heard of Dawnveil, "
-                "and our leaders feared it might be a danger to the rest of Maple World.")
+    sm.sendNext("我在这个村子里确实是地位最高的人。不过凯梅尔兹可不只有我们贝里村啊。这里只是个小渔村啊。如果你是要传达这些话，那就应该去凯梅尔兹共和国的#e首都#n，#e#b桑凯梅尔兹#n#k啊！")
 
-    sm.sendNext("I was sent here to explore, investigate and to see if our two peoples could have a peace.")
+    sm.sendNext("没错！我看你不像是在说谎，你还是去找凯梅尔兹共和国的首领#b吉尔伯特·达尼尔拉#k大人吧。看来你对桑凯梅尔兹一无所知啊？")
 
     sm.setSpeakerID(MAYOR_BERRY)
-    sm.sendNext("Well, I'll be a toad on a hot plate. I don't much care for bein' on the other end of a lie, "
-                "but I can tell you wasn't tryin' to cause no trouble.")
+    sm.sendNext("所以说……除了这个村子，还有更大的村子啊。")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("Thanks... I'm really sorry.")
+    sm.sendNext("什么村子啊！桑凯梅尔兹是个很大的城市！那是凯梅尔兹共和国的首都，应有尽有！虽然我不知道为什么大家都喜欢去那个复杂的地方生活……这个贝里村真是最适合生活了……")
 
     sm.setSpeakerID(MAYOR_BERRY)
-    sm.sendNext("Let's let bygones go on down bygone way. Can I help you with your plan?")
+    sm.sendNext("这样吧。正好凯梅尔兹最大的商团#b达尼尔拉商团#k的船停泊在这里。船长是首领的二儿子，他正在就在村子里，你快去见见他吧。")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("Maybe you can... Your people really seem to be about the same as ours, "
-                "but I think the fear of what's beyond the barrier could stir up trouble. "
-                "They might perceive me as a threat...")
+    sm.sendNext("然后，你这段时间帮助了我们村子，这是谢礼。")
 
     sm.setSpeakerID(MAYOR_BERRY)
-    sm.sendNext("Well, people ain't always kind to the ones that come from afar, "
-                "and changing minds one by one will get you nowhere fast. I've got me another plan.")
+    sm.sendNext("这算是我给你的礼物。反正我也不需要这个东西了……")
 
     sm.setPlayerAsSpeaker()
-    sm.sendNext("Yes?")
+    sm.sendNext("桑……凯梅尔兹……？")
 
     sm.setSpeakerID(MAYOR_BERRY)
     sm.sendNext("Go on down to the docks. "

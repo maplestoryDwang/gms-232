@@ -3,11 +3,11 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001303) # Professor Andrada
-sm.sendNext("#face0#I think that's enough combat. You didn't meet your quota, but that'll have to do for today.")
+sm.sendNext("#face0#这种程度应该跟其他学生的水平差不多了。啊,当然算不上出众。")
 sm.setInnerOverrideSpeakerTemplateID(3001350) # Illium
-sm.sendSay("#face0#Okay...")
+sm.sendSay("#face0#那下次见喽。")
 sm.setInnerOverrideSpeakerTemplateID(3001303) # Professor Andrada
-sm.sendSay("#face0#See you next time.")
+sm.sendSay("#face0#带你前往下一个教室。")
 sm.completeQuestNoCheck(parentID)
 sm.createQuestWithQRValue(parentID, "kc=22;exp=1")
 sm.startQuest(11620)

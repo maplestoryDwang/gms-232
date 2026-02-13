@@ -2,22 +2,22 @@
 sm.setSpeakerType(3)
 sm.setParam(57)
 sm.setColor(1)
-sm.sendNext("#bHere you go, Alika. Leatty crystals. ")
+sm.sendNext("#b艾丽卡，这是小白雪鬼结晶。")
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(9400582) # Cayne
-sm.sendSay("#face0#I got most of them. Just so you know. ")
+sm.sendSay("#face0#我找到的更多！")
 sm.setInnerOverrideSpeakerTemplateID(9400580) # Alika
-sm.sendSay("#face1#Thank you! Thank you. ")
+sm.sendSay("#face0#谢谢-谢谢你们。")
 sm.setParam(57)
-sm.sendSay("#b... ")
-sm.sendSay("#bJanyt, it's truly amazing that you healed all these people. Aren't you tired? ")
+sm.sendSay("#b扎奈特，你能治疗这么多人，真是太厉害了，你不累吗？")
+sm.sendSay("#face0#没错，真是好厉害啊！坚定的信念和使命感……她真是个特别的人。")
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(9400584) # Janyt
-sm.sendSay("#face0#... ")
+sm.sendSay("#face0#……我只是将从亚皮纳斯那里获得的祝福分享给别人罢了。")
 sm.setInnerOverrideSpeakerTemplateID(9400580) # Alika
-sm.sendSay("#face1#Indeed, truly amazing! Firm beliefs and unwavering commitment... She is quite special. ")
+sm.sendSay("#face0#凯恩，你先休息吧。如果还需要什么我会叫你的。")
 sm.setInnerOverrideSpeakerTemplateID(9400584) # Janyt
-sm.sendSay("#face0#I merely share the blessings I receive from Afinas. ")
+sm.sendSay("#face0##h0#也是，请烤烤火，休息下吧。")
 sm.setInnerOverrideSpeakerTemplateID(9400582) # Cayne
 sm.sendSay("#face0#Truly, no one adores Afinas like our dear Janyt here. ")
 sm.setInnerOverrideSpeakerTemplateID(9400580) # Alika

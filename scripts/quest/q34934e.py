@@ -3,7 +3,7 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001510) # Ferret
-sm.sendNext("#face1#Perfect! Now we can get out of here.")
+sm.sendNext("#face1#啊，捕捉到电波了。快走吧。现在应该可以离开这里了，叽勒。")
 sm.completeQuestNoCheck(parentID)
 sm.startQuest(11620)
 sm.createQuestWithQRValue(15710, "lasttime=19/02/21/12/58")

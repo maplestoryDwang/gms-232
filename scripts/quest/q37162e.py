@@ -2,8 +2,8 @@
 sm.setSpeakerID(1501001) # Ruenna the Fairy
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(1501013) # Ruenna the Fairy
-sm.sendNext("Did you get everything?")
-sm.sendSay("This should be enough for me to turn the lights back on.")
+sm.sendNext("都搜集到了吗？")
+sm.sendSay("这么多，应该就能把房子全部照亮了。")
 sm.lockInGameUI(True, False)
 sm.removeAdditionalEffect()
 sm.blind(False, 0, 0, 0, 0, 1000)
@@ -16,8 +16,8 @@ sm.moveCamera(True, 0, 0, 0)
 sm.lockInGameUI(False, True)
 sm.setParam(5)
 sm.setInnerOverrideSpeakerTemplateID(1501010) # Baby Bird
-sm.sendNext("She's the one who said the forest's light was better.")
+sm.sendNext("切……自己说要想唱好歌，就必须得到森林之光的映照……")
 sm.setInnerOverrideSpeakerTemplateID(1501013) # Ruenna the Fairy
-sm.sendSay("I can hear you.")
+sm.sendSay("我听到了。")
 sm.setParam(3)
 sm.sendSay("......")

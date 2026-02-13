@@ -3,33 +3,33 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1040002) # Fanzy
-sm.sendNext("Meow. Huh? Who are you?")
+sm.sendNext("喵喵，嗯？你是谁啊喵喵？")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face2#Man... I never thought talking cats would be the norm for me.")
+sm.sendSay("#face2#哈哈哈，搞什么啊你，\r\n这里难道是会说话的猫的天堂吗？")
 sm.setInnerOverrideSpeakerTemplateID(1040002) # Fanzy
-sm.sendSay("(Sniff sniff) This smell... You are not #ba human from this world#k!")
+sm.sendSay("咳咳！这股味道……你不是#b这个世界的人类#k啊！")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face3#Hey, don't go smelling new people without asking. Now, where is Grendel the Really Old?")
+sm.sendSay("#face3#我也很想知道这到底是怎么一回事，\r\n那位叫汉斯的在哪儿啊？")
 sm.setInnerOverrideSpeakerTemplateID(1040002) # Fanzy
-sm.sendSay("Grendel the Really Old... is no more.")
+sm.sendSay("汉斯刚刚去了。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face4#Wait, what? What happened? How...")
+sm.sendSay("#face4#哎哟……怎么就。")
 sm.setInnerOverrideSpeakerTemplateID(1040002) # Fanzy
-sm.sendSay("Wait, wait, wait! HERE no more. He's not HERE no more. He just returned to the Magician Association!")
+sm.sendSay("我，我不是那个意思！\r\n我的意思是他刚刚去了魔法师协会！你不是刚从那里过来吗？")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face2#Oh, geez... Don't scare me like that, cat. I guess I just missed him.")
+sm.sendSay("#face2#搞什么，是这个意思啊？看来是我会错意了。")
 sm.setInnerOverrideSpeakerTemplateID(1040002) # Fanzy
-sm.sendSay("Hold up a moment, chief! I need your help. There's a student named #bCootie#k in our association. He wandered off into the woods and never came back. I'm worried about the little squirt...")
+sm.sendSay("话说回来，你能听我说两句吗？我们协会有个叫#b库迪#k的徒弟很有可能在森林里迷路了，我总觉得有点……")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face4#Wait, wait, wait... I'm sorry about Creepy or whatever his name is, but I just need to get back to my world.")
+sm.sendSay("#face4#等下，这里魔法师的问题不归我管，\r\n我想赶紧回到原来的世界去。")
 sm.setInnerOverrideSpeakerTemplateID(1040002) # Fanzy
-sm.sendSay("Sigh... You're right. I don't know why I thought an outsider would help.")
-sm.sendSay("By the way, what is WITH your clothes? I feel embarrassed for you. Here, would you like to use this? Someone left it in a ditch, but it's still an improvement.\r\n\r\n#b#i1082020#  #t1082020#")
+sm.sendSay("…………也对，就算我跟个异邦人说了，也不会帮我的忙的。")
+sm.sendSay("话说回来你这身衣服是什么鬼啊？实在是看不下去了，这个给你好吧？\r\n\r\n#b#i1082020#  #t1082020#")
 sm.completeQuestNoCheck(parentID)
 sm.completeQuestNoCheck(parentID)
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#face2#Actually, this looks pretty useful. Thanks, I guess.")
+sm.sendSay("#face2#看上去好像还挺管用啊？谢谢啦。")
 sm.setInnerOverrideSpeakerTemplateID(1040002) # Fanzy
-sm.sendSay("Hmph, don't mention it. Just hurry on back to wherever you're from.")
+sm.sendSay("哼，没什么的。\r\n赶紧回到你所在的世界吧。")
 sm.warp(101020400)

@@ -3,22 +3,22 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendNext("I analyzed those things you fought yesterday, but I can't figure them out. I want to say they're ghosts, but I mean, that's ridiculous. ")
+sm.sendNext("我分析过你昨天对付的那些东西了，但实在是搞不清楚那是什么。\r\n最为接近的应该就是鬼、幽灵那一类的吧。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("Whatever they are, I can take them. Don't worry about me. ")
+sm.sendSay("搞不清楚这一点确实有点可惜，不过应该能抓到一点线索吧，\r\n还有不管那是什么，有多少，我都会去对付的。")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("That confidence of yours will be your downfall. Also, get that cat away from my gear. It's been eyeing my mouse for the last hour, the mangy thing.")
-sm.sendSay("Still, this might be a good time for confidence. I got another one of those codes. ")
+sm.sendSay("你这自信心倒是挺好的……\r\n你好像离我太近了，希望你能带着那只猫离我稍微远一点。\r\n它的脚掌……你是消过毒之后再摸的吧？呃……")
+sm.sendSay("还有，我是看你好像还挺喜欢那些奇怪的幽灵才告诉你的，\r\n我又发现了另一条和昨天相似的暗号。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("Good. Point me at them and let me loose.")
+sm.sendSay("好啊，那今天就再去看看吧？")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("K, hold it. I want to ask you something first.")
-sm.sendSay("#face0#I know you're hiding something. I lost the uplink with you for just a moment, but your Psy-Limiter showed a spike.")
-res = sm.sendNext("#face0#What happened at the school?\r\n#b#L1#(Tell the truth about losing consciousness.)#l\r\n#L2#(Lie.)#l")
+sm.sendSay("等下，凯内西斯。\r\n在这之前我有话要说。")
+sm.sendSay("#face0#你，昨天的事情，你有些事情没有告诉我吧，\r\n虽然只是很短的片刻，但是我们的通信曾经断过，\r\n那时候我检测到你的ESP限制器有异常反应。")
+res = sm.sendNext("#face0#在学校里到底发生了什么事情？\r\n#b#L1#如实说出自己晕过去的事情#l\r\n#L2#说谎#l")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendNext("I lost consciousness for a second. And in that time, my control over my powers slipped. I think I was just exhausted.")
+sm.sendNext("我一时失去了意识，而且我也无法控制自己的能力了，估计是因为我身体状态不是很好吧。")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("#face0#I don't like the sound of that. Not at all. You should rest up today.")
+sm.sendSay("没什么事情，你不同太担心的。")
 sm.lockInGameUI(True, False)
 sm.changeBGM("Bgm00.img/Silence", 0, 0)
 sm.playSound("Sound/SoundEff.img/radionoise", 100)
@@ -30,7 +30,7 @@ sm.sendDelay(3500)
 sm.progressMessageFont(3, 20, 20, 0, "Citizens are advised to avoid the station.")
 sm.sendDelay(2000)
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendNext("#face0##fs30#!!")
+sm.sendNext("#face0#如此说来可就危险了，今天最好还是不要出行……")
 sm.changeBGM("Bgm40.img/SecretMission", 0, 0)
 sm.playSound("Sound/Voice3.img/Kinesis/news_02", 100)
 sm.progressMessageFont(3, 20, 20, 0, "Again, the authorities are requesting that all citizens stay away")
@@ -42,14 +42,14 @@ sm.progressMessageFont(3, 20, 20, 0, "Do not leave your homes.")
 sm.sendDelay(3000)
 sm.lockInGameUI(False, True)
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-res = sm.sendNext("#face1#...Kinesis, this is serious. I don't want you out there.\r\n#b#L1#I have to save those people!#l\r\n#L2#I want to know more about my abilities.#l\r\n#L3#I just want to enjoy this power while I have it.#l")
+res = sm.sendNext("#face0#……真的吗？你不会对你的搭档说谎了吧？")
 sm.createQuestWithQRValue(parentID, "done=1")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendNext("Didn't you hear? The monsters are attacking innocents now. I have to do something.")
+sm.sendNext("新闻速报,  在都市MS镇地铁历史上,  ")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("#face0#...Why do I even bother? Get going. I'll be with you on comms.")
+sm.sendSay("这是第一次有来历不明的生物对所有居民发动攻击. ")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("#b(Hurry to the subway.)#k")
+sm.sendSay("目前正在发生,  请附近居民小心外出. ")
 sm.createQuestWithQRValue(22700, "V01=1;V02=1;q21end=0;coNight=1;kinetuto=1;kinetuto2=1;E1=1;blackCat=0;E2=1;E3=1")
 sm.createQuestWithQRValue(22700, "V01=1;V02=1;q21end=0;coNight=0;kinetuto=1;kinetuto2=1;E1=1;blackCat=0;E2=1;E3=1")
 sm.startQuest(parentID)

@@ -12,6 +12,6 @@ if sm.canHold(1472000) and sm.canHold(2070000, 2000):
     sm.completeQuest(parentID)
     sm.giveItem(1472000) # Garnier
     sm.giveItem(2070000, 2000) # Subi Throwing Stars
-    sm.sendSayOkay("Congratulations, you are now a Night Walker! I have added 5 AP and 5 SP, enjoy your journey!")
+    sm.sendSayOkay("你真的决定了吗？……世上是没有后悔药的。希望你慎重考虑。你要选择夜行者之路吗？")
 else:
-    sm.sendSayOkay("Please make more room in your inventory.")
+    sm.sendSayOkay("从现在开始，你就是夜行者了。为了纪念你成为我们的同伴，我会给你分配一些能力。")

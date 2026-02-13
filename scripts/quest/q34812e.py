@@ -10,7 +10,7 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3001306) # Soldier
-sm.sendNext("#face0#Hey, kid! You running an errand for the Lady Agate?")
+sm.sendNext("#face0#抵达目的地。")
 sm.setInnerOverrideSpeakerTemplateID(3001350) # Illium
-sm.sendSay("#face0#Huh? Why? Do you need something?")
+sm.sendSay("#face0#听说最近水晶门乱事不断？")
 sm.lockInGameUI(False, True)

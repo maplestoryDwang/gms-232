@@ -1,25 +1,25 @@
 sm.setSpeakerID(1012100)
-sm.sendNext("Hello, #h #. I've heard plenty about you from Mai. You are interested in becoming a Bowman, right? My name is Athena Pierce, Bowman Job Instructor. Nice to meet you!")
-sm.sendSay("How much do you know about Bowmen? We use bows or crossbows to attack enemies at long range, mainly. We're a bit slower than others, but our arrows never miss their mark!")
-if sm.sendAskAccept("If you really wish to become a Bowman, I will bring you to the #bBowman Instructional School in Henesys#k using my power as the Job Instructor, #rif you are interested in other jobs, however, I will help you find your true path#k. Now, would you like to become a Bowman?"):
+sm.sendNext("你好，#h0#……我经常听麦加提起你的名字。听说你对弓箭手很感兴趣。我是弓箭手转职官赫丽娜。见到你很高兴……")
+sm.sendSay("你对弓箭手的了解有多少呢？弓箭手是使用弓或弩，在远距离攻击敌人的职业……虽然移动速度相对较慢，但锐利的箭矢从来不会射偏，每一发都非常具有威胁。")
+if sm.sendAskAccept("如果你真的想成为弓箭手，我就用转职官的特权，邀请你到#b射手村的弓箭手培训中心#k来。#r如果你想选择其他职业，可以拒绝。我会帮助你走上其他道路的#k……你想成为弓箭手吗？"):
     sm.warp(100000201)
     sm.startQuest(parentID)
 else:
-    choice = sm.sendNext("So, you have chosen another path. That is your decision, of course. Which path will you now choose?\r\n\r\n#b#L0#Warrior#l\r\n#L1#Magician#l\r\n#L2#Thief#l\r\n#L3#Pirate#l")
+    choice = sm.sendNext("你不想走弓箭手之路吗？不愿意的话，我就不能勉强。那你就去选择其他道路吧。除了弓箭手之外，还有四条道路可供选择。\r\n#b#L1#战士#l \r\n#b#L2#魔法师#l \r\n#b#L4#飞侠#l \r\n#b#L5#海盗#l")
     if choice == 0:
-        sm.sendNext("You seek the powerful strength of a Warrior, do you? Then I'll send you to #bDances with Balrog#k.")
+        sm.sendNext("你想走战士之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b武术教练#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "1")
         sm.warp(102000003)
     elif choice == 1:
-        sm.sendNext("You seek the powerful strength of a Magician, do you? Then I'll send you to #bGrendel the really Old#k.")
+        sm.sendNext("你想走弓箭手之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b汉斯#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "2")
         sm.warp(101000003)
     elif choice == 2:
-        sm.sendNext("You seek the powerful strength of a Thief, do you? Then I'll send you to #bthe Dark Lord#k.")
+        sm.sendNext("你想走飞侠之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b达克鲁#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "4")
         sm.warp(103000003)
     elif choice == 3:
-        sm.sendNext("You seek the powerful strength of a Pirate, do you? Then I'll send you to #bKyrin#k.")
+        sm.sendNext("你想走海盗之路吗？虽然很遗憾，但我尊重你的选择。我送你到#b凯琳#k那边吧。（确认后会自动传送到转职地图）")
         sm.createQuestWithQRValue(1406, "5")
         sm.warp(120000101)
-    sm.chatScript("Please CC.")
+    sm.chatScript("嗯？还想再考虑一下吗？")

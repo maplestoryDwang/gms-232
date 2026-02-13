@@ -2,19 +2,19 @@
 sm.setSpeakerType(3)
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(3003234) # Balloon Mask
-sm.sendNext("And the winner is... Pie Mask!")
+sm.sendNext("优胜者是派面具！")
 sm.setInnerOverrideSpeakerTemplateID(3003201) # Protective Mask
-sm.sendSay("They held the eating contest while you were gone.")
+sm.sendSay("在那期间食物大战已经展开了。")
 sm.setInnerOverrideSpeakerTemplateID(3003236) # Beauty Mask
-sm.sendSay("Wow! Did you see that? That was a lot of food!")
+sm.sendSay("哇！你看到了吗？真的是吃个没完啊！")
 sm.setInnerOverrideSpeakerTemplateID(3003238) # Huge Watermelon Mask
-sm.sendSay("I lost? How could I lose? I was so sure this would be my first victory!")
+sm.sendSay("输了，我居然输了！我一定要做一届优胜者的！")
 sm.setParam(2)
-sm.sendSay("I still don't understand how me breaking all the plates would have helped him win his first victory.")
+sm.sendSay("虽然打碎了盘子，但就这样成了冠军？")
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(3003201) # Protective Mask
-sm.sendSay("It's not like you broke ALL the plates anyway.")
+sm.sendSay("甚至还不是打碎了所有的盘子。")
 sm.setInnerOverrideSpeakerTemplateID(3003223) # Pie Mask
-sm.sendSay("I did it... Look at me. I'm the winner! Admire me. I'm so happy... Aren't I? ")
-sm.sendSay("I don't undestand... I should feel happy right now, shouldn't I? Ah!")
+sm.sendSay("终于胜利了……请看着我，仰视我。嗯，我好幸福。")
+sm.sendSay("不对啊？好奇怪…………我原本就很幸福啊？哦哦！")
 sm.warp(450003730)

@@ -3,7 +3,7 @@
 BASTILLE = 9073003
 
 sm.setSpeakerID(BASTILLE)
-sm.sendNext("Did you find anything in Leafre? Come, let's discuss this somewhere more private.")
+sm.sendNext("在神木村发现了什么吗？先找个安静的地方再说吧。")
 
 sm.warp(931050500)
 sm.completeQuest(parentID)

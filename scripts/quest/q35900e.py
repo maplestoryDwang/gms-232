@@ -8,4 +8,4 @@ sm.setSpeakerType(3)
 sm.setParam(548)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013358) # Pathfinder
-sm.sendNext("#face3#Hmm... An arrow and a potion? They look old enough, sure, but they don't seem particularly significant.")
+sm.sendNext("#face3#这不是箭和……药水吗？\r\n虽然看上去很古老，但好像不是什么了不起的东西。")

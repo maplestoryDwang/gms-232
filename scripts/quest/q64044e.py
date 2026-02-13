@@ -11,21 +11,21 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(9400587) # Kan
-sm.sendNext("#face0#Here, we brought Hellfang meat. This should last quite a while if you slice it thin and store it. ")
+sm.sendNext("#face0#给，这是野狼肉。切成薄片保存的话，够吃很长时间的。")
 sm.playSound("Sound/PL_MONAD.img/EP1/ACT2/open", 128)
 sm.sendDelay(250)
 sm.spawnNpc(9400597, 858, -45)
 sm.showNpcSpecialActionByTemplateId(9400597, "summon", 0)
 sm.sendDelay(1000)
 sm.setInnerOverrideSpeakerTemplateID(9400597) # Gurnardson
-sm.sendNext("#face0#Eh? Hellfang meat? ")
-sm.sendSay("#face0#Surely you don't expect us to eat this tough, tasteless meat, right? ")
-sm.sendSay("#face0#Ahh! No, of course not. This is your food. Providing for yourself, as expected. Good, good. ")
-sm.sendSay("#face0#Since we're on the topic, though... how about bringing back something for the rest of us to eat?")
+sm.sendNext("#face0#嗯？野狼肉？")
+sm.sendSay("#face0#这又老又难吃的肉，是给人吃的吗？")
+sm.sendSay("#face0#啊！抱歉，我搞错了。是因为我叫你们自带食物，所以你们弄来了野狼肉。是你们吃的~？我理解错了。")
+sm.sendSay("#face0#那么，这回你们去找些我们能吃的东西来吧？")
 sm.setInnerOverrideSpeakerTemplateID(9400587) # Kan
-sm.sendSay("#face0#... ")
+sm.sendSay("#face0#知道了。给你们打只花花象可以吗？")
 sm.setInnerOverrideSpeakerTemplateID(9400596) # Snowfield Archer
-sm.sendSay("... ")
+sm.sendSay("#face0#嗯，比野狼肉好多了。")
 sm.setInnerOverrideSpeakerTemplateID(9400581) # Butler
 sm.sendSay("#face0#... ")
 sm.setInnerOverrideSpeakerTemplateID(9400582) # Cayne

@@ -3,14 +3,14 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013350) # Brie
-sm.sendNext("#face1#Uh-oh. A bunch of stone sentries are blocking the way. I don't think they've-- Oh wait, no, they've definitely noticed us. Waaah! Why are these things still operational?!")
+sm.sendNext("#face1#啊,有好多石头做成的怪物……\r\n路被挡住了。它,它们好像想攻击我们,呃啊！")
 sm.setSpeakerType(4)
 sm.setSpeakerID(1013315) # Brie
-res = sm.sendAskAccept("#face1#As things stand, we can't continue on without doing something about those sentries. Hmm... I think if you clear out around #b50#k #r#o2300207##k, we should be able to make it through.")
+res = sm.sendAskAccept("#face1#勇士,好像没办法继续往前走了。\r\n如果能消灭掉#b50个#k#r#o2300207##k,应该就能把路打通……")
 sm.setSpeakerType(3)
 sm.setParam(548)
 sm.setInnerOverrideSpeakerTemplateID(1013358) # Pathfinder
-sm.sendNext("#face0#Just wait here. I should be able to make short work of those boisterous blocks.")
+sm.sendNext("#face0#在一边等着,小孩。我来搞定那些东西。")
 sm.startQuest(parentID)
 sm.startQuest(parentID)
 sm.createQuestWithQRValue(16700, "count=293;date=20190708")

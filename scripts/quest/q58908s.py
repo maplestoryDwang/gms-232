@@ -7,27 +7,26 @@ SUKUNO = 9130124
 sm.setSpeakerID(AYAME)
 
 sm.flipSpeaker()
-sm.sendNext("Ooh, I had SUCH a hard time getting here! I got to a really strange place and I was all tired and then...")
+sm.sendNext("哇，我还以为来这儿会死呢！我总是掉进奇怪的地方，真是累死了~")
 
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendSay("Speaking of wich, Takeda Shingen would like to know how you got here.")
+sm.sendSay("武田信玄大人想知道你是怎么来到这里的。")
 
 sm.setSpeakerID(AYAME)
 
 sm.flipSpeaker()
-sm.sendSay("Takeda Shingen? The same Takeda Shingen that I knew before?")
+sm.sendSay("武田信玄？我所知道的那个武田信玄？…… ")
 
 sm.flipSpeaker()
-sm.sendSay("Ugh, that old fart. Tell him that Ayame has NOTHING to say to HIM.\r\n"
-    "Does he even have a SPECK of compassion? It's his fault I ended up like this!")
+sm.sendSay("那个爷爷真可笑。你要告诉武田信玄！我菖蒲可没什么好说的！那个死老头真没良心，也不看看是因为谁才做成了那件事的。")
 
 sm.flipDialoguePlayerAsSpeaker()
-sm.sendSay("I get this impression you are not very fond of Takeda Shingen")
+sm.sendSay(" (她似乎对武田信玄大人没有好感……)")
 
 sm.setSpeakerID(AYAME)
 
 sm.flipSpeaker()
-sm.sendSay("Anyway, where is Sakuno? I have so much to tell her! Sakuno\r\nWhere are you! Sa-ku-no Sakuno? Sakuno!")
+sm.sendSay("话说回来，樱乃在哪儿？我有很多话要和她说呢。樱乃~樱乃~樱乃~你在哪儿~")
 
 sm.lockInGameUI(True)
 sm.removeEscapeButton()
@@ -41,22 +40,22 @@ sm.sendDelay(2500)
 sm.setSpeakerID(SUKUNO)
 
 sm.flipSpeaker()
-sm.sendNext("Ayame!")
+sm.sendNext("菖蒲！")
 
 sm.moveNpcByTemplateId(9130124, False, 100, 50)
 
 sm.setSpeakerID(AYAME)
 
 sm.flipSpeaker()
-sm.sendSay("Eee! Sakuno! hee hee, how have you been? I MISSED YOU SO MUCH!")
+sm.sendSay("啊！樱乃。哈哈，樱乃，你还好吗？我可想死你了！")
 
 sm.setSpeakerID(SUKUNO)
 
 sm.flipSpeaker()
-sm.sendSay("...")
+sm.sendSay("听说你回来了……我……我…………")
 
 sm.flipSpeaker()
-sm.sendSay("I heard you were back and I... I...")
+sm.sendSay("哎~哎？别哭啊，樱乃。我这不是回来了吗！")
 
 sm.setSpeakerID(AYAME)
 

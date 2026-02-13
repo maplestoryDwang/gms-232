@@ -8,15 +8,15 @@ sm.setSpeakerType(3)
 sm.setColor(1)
 sm.setParam(37)
 sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-sm.sendNext("Oh, you're a wonderful human being for not giving me any trouble! At least, I hope you are...")
+sm.sendNext("你想进行测试？嗯 ，好吧！不过，如果你不是人类，而是僵尸或者鬼怪的话，我劝你还是放弃吧。")
 response = sm.sendAskYesNo(sm.join(["The test is simple. Just go to #p", repr(huangZhen), "#, the chef in Yu Garden, "
 "and get some red bean porridge and garlic."]))
 if response:
     sm.startQuest(parentID)
     
     sm.setParam(57)
-    sm.sendNext("That's... the test? Isn't that a little too easy?")
+    sm.sendNext("测试很简单。去找豫园的厨师#p9310536#大叔，带来红豆粥和蒜就可以了。很简单吧？")
 
     sm.setParam(37)
     sm.setInnerOverrideSpeakerTemplateID(zhenLong)
-    sm.sendNext("I know, it is. It IS too easy. I'm so sorry!")
+    sm.sendNext("那也算测试？是不是太简单了啊？")

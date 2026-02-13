@@ -1,8 +1,8 @@
 # 20411 - [Job Adv] (Lv.100) Mihile 4rd job adv
 sm.setSpeakerID(1101002)
-sm.sendNext("Cygnus is safe and the knights will be back to normal soon, I've even heard some of them referring to you as the new Chief Knight. It looks like you have no choice but to take up my proposal.")
+sm.sendNext("米哈尔，你已经完成了考验吗？")
 if not sm.canHold(1142402):
-    sm.sendSayOkay("You need inventory space.")
+    sm.sendSayOkay("你已经觉醒了最终的力量，为了贯彻光之道路，今后继续努力吧!")
     sm.dispose()
 else:
     if chr.getJob() == 5111:

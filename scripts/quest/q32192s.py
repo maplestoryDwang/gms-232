@@ -3,8 +3,7 @@
 PUTAN = 1510000
 
 sm.setSpeakerID(PUTAN)
-response = sm.sendAskYesNo("I think we need to go to the house of witch Barbara. All of us need to. Hmm hmm.. I think it would be nice if you would come with us.\r\n\r\n"
-            "#b#e(Accepting will automatically move you.)#n#k")
+response = sm.sendAskYesNo("看来咱们得到魔女芭芭拉的家去一趟。嗯……希望勇士你也可以一起去。\r\n\r\n#b#e(接受时，将自动移动。)#n#k")
 
 if response:
     sm.warpInstanceIn(141040003, 0)

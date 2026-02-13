@@ -84,6 +84,7 @@ import org.python.core.PyDictionary;
 import org.python.core.PyTuple;
 
 import javax.script.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -94,6 +95,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -1327,9 +1329,9 @@ public class ScriptManagerImpl implements ScriptManager {
     }
 
     @Override
-    public void setPortalEnabled(String portalName, boolean enabled){
+    public void setPortalEnabled(String portalName, boolean enabled) {
         Portal portal = getField().getInfo().getPortalByName(portalName);
-        if(portal != null){
+        if (portal != null) {
             portal.setEnabled(enabled);
         }
     }
@@ -1570,6 +1572,28 @@ public class ScriptManagerImpl implements ScriptManager {
     }
 
     @Override
+    public void npc_ChangeController(int npcId, String npcTag, int x, int y, short fh, short rx0, short rx1, int faceLeft, boolean canMove, short fadeInTime, boolean forceSpawnNew) {
+        Npc var12 = NpcData.getNpcDeepCopyById(npcId);
+
+        if (var12 != null) {
+            var12.setPosition(new Position(x, y));
+            var12.setCy(y);
+            var12.setMove(canMove);
+            var12.setRx0(rx0);
+            var12.setRx1(rx1);
+            var12.setFlip(faceLeft == 0);
+            var12.setFh(fh);
+            var12.setObjectId(NpcData.getCount());
+            var12.setNotRespawnable(true);
+
+            getField().spawnLife(var12, getChr());
+
+
+        }
+//        }
+    }
+
+    @Override
     public void spawnNpc(int npcId, int x, int y, boolean flip) {
         Npc npc = NpcData.getNpcDeepCopyById(npcId);
         Position position = new Position(x, y);
@@ -1619,7 +1643,7 @@ public class ScriptManagerImpl implements ScriptManager {
         if (nsd != null) {
             if (getChr().getShop() == null) {
                 getChr().setShop(nsd);
-                if(shopID == 9001212) {
+                if (shopID == 9001212) {
                     getChr().write(ShopDlg.shopCollectorInit());
                 }
 
@@ -1633,7 +1657,7 @@ public class ScriptManagerImpl implements ScriptManager {
 
     @Override
     public void openTrunk(int npcTemplateID) {
-        if(getChr() == null || getChr().isOnline() == false) {
+        if (getChr() == null || getChr().isOnline() == false) {
             log.error(String.format("[CharId: %d] tried to open trunk while being offline.", chr.getId()));
             return;
         }
@@ -1950,10 +1974,10 @@ public class ScriptManagerImpl implements ScriptManager {
     @Override
     public Party createSoloParty() {
         Party party = Party.createNewParty(
-            false,
-            true,
-            getChr().getName() + "'s party",
-            getChr().getClient().getWorld()
+                false,
+                true,
+                getChr().getName() + "'s party",
+                getChr().getClient().getWorld()
         );
         party.addPartyMember(getChr());
         party.broadcast(WvsContext.partyResult(PartyResult.createNewParty(party)));
@@ -2899,7 +2923,7 @@ public class ScriptManagerImpl implements ScriptManager {
                     dragon = 9833111; // Golden Whelp
                 }
                 Mob mob = field.spawnMob(dragon, position.getX(), position.getY(), false, 50_000_000L);
-                if(getChr() != null) {
+                if (getChr() != null) {
                     mob.setLevel(getChr().getLevel());
                 }
             }
@@ -2966,6 +2990,7 @@ public class ScriptManagerImpl implements ScriptManager {
 
     @Override
     public int moveCamera(boolean back, int speed, int x, int y) {
+
         getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraMove(back, speed, new Position(x, y))));
         Object response = null;
@@ -3506,7 +3531,7 @@ public class ScriptManagerImpl implements ScriptManager {
         getChr().getFuncKeyMap().get(0).putKeyBinding(key, add ? (byte) 1 : (byte) 0, action);
     }
 
-    public void setActionBar(boolean show, ActionBarType type){
+    public void setActionBar(boolean show, ActionBarType type) {
         getChr().write(UserLocal.setActionBar(show, type));
     }
 
@@ -3833,15 +3858,15 @@ public class ScriptManagerImpl implements ScriptManager {
     }
 
     //DailyEntry methods
-    public int getRemainingDailyEntries(DailyEntry de){
+    public int getRemainingDailyEntries(DailyEntry de) {
         return getChr().getAccount().getRemainingEntries(de);
     }
 
-    public void addDailyEntry(DailyEntry de){
+    public void addDailyEntry(DailyEntry de) {
         getChr().getAccount().addDailyEntry(de);
     }
 
-    public void reduceDailyEntry(DailyEntry de){
+    public void reduceDailyEntry(DailyEntry de) {
         getChr().getAccount().reduceDailyEntry(de);
     }
 
@@ -3849,7 +3874,7 @@ public class ScriptManagerImpl implements ScriptManager {
     public boolean levelArcaneSymbol(BodyPart symbolPart, int levelAmount) {
         Item item = chr.getEquippedInventory().getFirstItemByBodyPart(symbolPart);
         if (item != null) {
-            Equip symbol = (Equip)item;
+            Equip symbol = (Equip) item;
             if (symbol.getSymbolLevel() < ItemConstants.MAX_ARCANE_SYMBOL_LEVEL) {
                 symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_ARCANE_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
                 symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), chr.getJob());
@@ -3866,7 +3891,7 @@ public class ScriptManagerImpl implements ScriptManager {
     public boolean levelAuthSymbol(BodyPart symbolPart, int levelAmount) {
         Item item = chr.getEquippedInventory().getFirstItemByBodyPart(symbolPart);
         if (item != null) {
-            Equip symbol = (Equip)item;
+            Equip symbol = (Equip) item;
             if (symbol.getSymbolLevel() < ItemConstants.MAX_AUTH_SYMBOL_LEVEL) {
                 symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_AUTH_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
                 symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), chr.getJob());

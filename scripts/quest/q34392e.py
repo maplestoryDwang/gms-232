@@ -11,6 +11,6 @@ if remainingTasks <= 0:
 
 sm.setSpeakerID(3003209) # Gray Mask
 sm.setParam(2)
-sm.sendNext("#b(You gave Gray Mask the information you obtained from observing the Blue-eyed Gargoyles up close.)#k")
+sm.sendNext("真是多亏了有你帮忙。请收下这1个#i1712003:# #t1712003:#和1个#i2614029:# #t2614029:#。")
 sm.setParam(0)
 sm.sendSay("You have " + str(QuestConstants.LACHELEIN_WEEKLY_AMOUNT - remainingTasks) + " tasks completed this week. Thanks to you, we're one step closer to understanding this place.")

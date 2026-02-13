@@ -3,7 +3,7 @@ sm.setSpeakerID(1013302) # Mascarpo
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013353) # Mascarpo
-res = sm.sendAskAccept("#face0#Unfortunately, I can't twist the villagers' stubby arms into coming out. Maybe you should have a chat with the chief over there. He usually knows what to do.")
+res = sm.sendAskAccept("#face0#我也没办法把村民们全都叫出来。\r\n你最好先去跟那边的村长谈谈。")
 sm.setSpeakerType(3)
-sm.sendNext("#face0#If you're on friendly terms with the chief, the others will start opening up to you too. That's why he's who you want to schmooze with first.")
+sm.sendNext("#face0#如果你能先跟他熟悉起来,其他的朋友们也很快就会向你敞开心扉。\r\n好了,快去见见村长吧。")
 sm.startQuest(parentID)

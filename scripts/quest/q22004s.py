@@ -1,8 +1,8 @@
 # 22004 |   Fixing the Fence (Evan intro)
 sm.setSpeakerID(1013103)
-sm.sendNext("The pigs at the farm have been acting strange these past couple days. They've been angry and irritable for no reason. I was worried so I came out to the farm early this morning and sure enough, it seems like a few of these Pigs got past the fence.")
-if sm.sendAskYesNo("Before I go and find the Pigs, I should mend the broken fence. Luckily, it wasn't damaged too badly. I just need a few Thick Branches to fix it right up. Will you bring me #b3 Thick Branches#k, Evan?"):
-    sm.sendNext("Oh, that's very nice of you. You'll be able to find the #bThick Branches#k from the nearby #rStumps#k. They're not too strong, but use your skills and items when you find yourself in danger.")
+sm.sendNext("最近农场上的#o1210100#有点奇怪。经常无缘无故地发脾气，做出一些烦人的事情。我对此很担心，所以今天很早就出来了。果然有一只#o1210100#钻过了篱笆，逃到外面去了。")
+if sm.sendAskYesNo("在找到#o1210100#之前，必须先把坏了的篱笆修好。还好坏得不是太严重，只要有几个#t4032498#应该就能修好了。小不点，要是你能帮我搜集#b3个#t4032498##k就好了……"):
+    sm.sendNext("哦，真是谢谢你。#b#t4032498##k可以从周围的#r#o0130100##k身上搜集到。它们虽然不是很强，但不小心的话，可能会遇到危险。你一定要好好使用技能道具。")
     sm.startQuest(parentID)
 else:
     sm.dispose()

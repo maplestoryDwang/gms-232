@@ -3,9 +3,9 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendNext("#face1#My money is on this being a trap. I'd advise against you going.")
+sm.sendNext("#face1#凯内西斯，说不定这就是针对你的陷阱。也许这件事你不管会比较好。")
 sm.setInnerOverrideSpeakerTemplateID(1531000) # Kinesis
-sm.sendSay("If I don't go, how am I supposed to stop the big bad dropping monsters on everyone?")
+sm.sendSay("但如果我们的猜测是对的，那就表示有坏人持续性地在城市里放出怪物啊？")
 sm.setInnerOverrideSpeakerTemplateID(1531001) # Jay
-sm.sendSay("You could always come up with a plan instead of winging it and hoping for the best. What's it going to be?")
-res = sm.sendNext("All signs point to the school, and soon. Are you going?\r\n#b#L1#Wing it and hope for the best. Time to go back to school.#l\r\n#b#L2#Tell me more of these 'plans'.#l")
+sm.sendSay("没错，这也只是猜测而已，不过你想怎么办？")
+res = sm.sendNext("信号正指向学校，要去吗？\r\n#b#L1#当然是去学校了。#l\r\n#b#L2#我再考虑看看。#l")

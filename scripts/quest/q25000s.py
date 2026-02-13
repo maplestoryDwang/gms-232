@@ -1,13 +1,13 @@
 sm.setSpeakerID(1402000)
-sm.sendNext("All preparations complete. The #m150000000# is anchored directly above the Knight's Chamber and it does not appear that we have been spotted from below. ")
-sm.sendSay("You will need to remain wary. The security in #m130000000# is currently on high alert. I suppose having this many of Maple World's leaders in one place warrants the rather excessive defense strategy they've adopted. ")
-sm.sendSay("Still, they are only guards. It should not prove too difficult for a seasoned thief like yourself to slip past them unnoticed. Keep a close watch on their eyelines and you will be fine.")
-sm.sendSay("The Lumiere will remain here until you return. Do not concern yourself with the pursuit. We'll keep the engine running.")
+sm.sendNext("准备好了吗，主人？#m150000000#现在正停泊在#m130000000#的骑士殿堂上方。当然，下面的人应该没有发现。")
+sm.sendSay("但是现在#m130000000#的警卫非常森严。情况好像和平常不太一样……骑士殿堂前面有很多警卫骑士正在待命。")
+sm.sendSay("光是避开警卫骑士应该并不难。只要按照主人的计划，掌握好幻影魔法的时机就行。")
+sm.sendSay("在主人完成行动回来之前，秘密花园会一直在这里待命。我不会关闭引擎，所以不必担心有人追踪。")
 
-response = sm.sendAskAccept("It is time for you to make your decision. Are you ready to infiltrate #m130000000#?")
+response = sm.sendAskAccept("一切都准备好了。现在就看主人的决定了……怎么样？你想现在开始#m130000000#潜入作战吗？")
 if response:
     sm.startQuestNoCheck(25000)
-    sm.sendSayOkay("I wish you luck.")
+    sm.sendSayOkay("祝你好运，主人。")
 else:
     sm.sendNext("The window of opportunity will not remain open forever.")
 sm.dispose()

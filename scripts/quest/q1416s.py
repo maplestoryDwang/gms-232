@@ -5,22 +5,15 @@ job = "Mage (Ice, Lightning)"
 monster = "Zombie Lupin"
 
 sm.setSpeakerID(1032001) # Grendel the Really Old
-sm.sendNext("You wish to become a #b"+ str(job) + "#k?\r\n"
-                    "A #b"+ str(job) + "#k is specialised in long ranged magic attacks and use #bice and lightning magic#k to defeat their enemies. "
-                    "There are many useful skills you can acquire.")
+sm.sendNext("你想选择冰雷法师吗？因为主要使用冰属性和电属性的攻击魔法，因此被称为冰雷法师。")
 
 
-sm.sendNext("Before I teach you the ways of the "+ str(job) + ", you will have to accomplish a very difficult test. "
-            "I will warp you into a special map, in which I require you to defeat #b"+ monster +"#k "
-            "and return 30 #i"+ str(darkMarble) +"##z"+ str(darkMarble) +"#s to me.")
+sm.sendNext("还蛮有魔法师的样子的么, 还会使用较高等级的魔法。如会吸收敌人魔量的#b魔力吸收#k或者可提高队员魔力的#b精神力#k, 还有可使用更强大之魔法的基本技能#b咒语精通#k和#b智慧激发#k等等。")
 
-response = sm.sendAskYesNo("Once you enter the map, you #rcannot#k return without the #b#t"+ str(darkMarble) +"#s#k, "
-                "if you die you will lose your experience.\r\n"
-                "Are you ready?")
+response = sm.sendAskYesNo("不过冰雷系法师的特点当属向敌人射出强大冰块的#b冰冻术#k和生成电场并向6个敌人施放强力闪电的#b雷电术#k。两者都是非常强大的攻击技能。")
 
 if response:
     sm.warp(910140000, 0) # Magician Test Site
     sm.startQuestNoCheck(parentID)
 else:
-    sm.sendSayOkay("You cannot be a Magician forever. You #bwill#k have to face up to the test.\r\n"
-                   "Talk to me when you are ready.")
+    sm.sendSayOkay("说明这样就够了吧……？魔法要直接使用才会体会到其中的乐趣。你想选择冰雷法师之路吗？选择的话，我就来考考你有没有成为法师的资格。")

@@ -2,7 +2,7 @@
 LOST_KID = 1209006
 
 sm.setSpeakerID(LOST_KID)
-if sm.sendAskAccept("*Sniff sniff* I was so scared... Please take me to Athena Pierce."):
+if sm.sendAskAccept("呃呃……吓死我了……快，快带到赫丽娜那边去！"):
     sm.startQuest(parentID)
     sm.warp(914000500, 1)
 else:

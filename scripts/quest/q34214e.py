@@ -5,7 +5,7 @@ sm.setMapTaggedObjectVisible("obj_05", True, 0, 0)
 sm.setSpeakerID(3003155) # Pidol
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(3003155) # Pidol
-sm.sendNext("Woooow! Sandwich... Com... plete! Wheeheehee!")
+sm.sendNext("哇啊啊~ 完成…啦~~转转转！")
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendSay("#h0#, our #bDelicious Beefy Tastesplosion Sandwich#k is finally complete! Yay!")
-sm.sendSay("We should all try a bite!")
+sm.sendSay("旅行者~ #b三明治#k终于完成了！你快看~~")
+sm.sendSay("好了~那现在我们一起用餐吧？")

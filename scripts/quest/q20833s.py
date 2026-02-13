@@ -2,16 +2,16 @@
 sm.removeEscapeButton()
 
 sm.setSpeakerID(1102113)
-sm.sendNext("(*chirp, chirp*)")
+sm.sendNext("(嘀哩哩哩……嘀嘀……)")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Look! It's a bird! Is it talking to me?")
+sm.sendSay("嗯？哪里突然出现了一只小鸟？")
 
 sm.setSpeakerID(1102113)
-sm.sendSay("*chirp, chirp, chirp*")
+sm.sendSay("(嘀哩哩，嘀嘀，嘀哩哩哩……)")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("OMIGOODNESS! I can understand birds! I must be some sort of superhero. It... wants me to follow it. I'm sure Kizan won't mind.")
+sm.sendSay("我难道有听懂鸟语的能力吗？！我好像听到它在说跟我走……反正在这里等着也挺无聊的，在奇赞回来之前，先跟过去看看吧？")
 
 sm.createQuestWithQRValue(parentID, "gardenIn")# must be sent this qr value
 sm.warp(130030104, 0)

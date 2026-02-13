@@ -3,10 +3,10 @@ sm.setSpeakerType(3)
 sm.setParam(36)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013350) # Brie
-sm.sendNext("#face1#Ooooh! We found the next part of the compass! Unfortunately, it looks like there are just as many bugs here as there were near the last part.")
+sm.sendNext("#face1#勇士,勇士！找,找到罗盘碎片啦！\r\n但,但是……这里也有好多虫子！")
 sm.setSpeakerType(4)
 sm.setSpeakerID(1013313) # Brie
-res = sm.sendAskAccept("#face1#I think we could enjoy some quality part-picking time if we just culled their numbers a bit. Get out there and make sure to beat the stuffing out of #r#o2300206##k x#b30#k!")
+res = sm.sendAskAccept("#face1#呃啊,看来这次还得消灭掉一些虫子,周围才能安静一点！\r\n请你去教训#b30个#k左右的#r#o2300206##k！")
 sm.startQuest(parentID)
 sm.startQuest(parentID)
 sm.createQuestWithQRValue(16700, "count=232;date=20190708")

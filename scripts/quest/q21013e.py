@@ -2,12 +2,12 @@
 PUTZKI = 1202005
 
 sm.setSpeakerID(PUTZKI)
-sm.sendNext("Ah, you've brought all the components. Give me a few seconds to assemble them... Like this... And like that... and...\r\n#fUI/UIWindow2.img/QuestIcon/4/0# \r\n#i3010062# 1 #t3010062# \r\n\r\n#fUI/UIWindow2.img/QuestIcon/8/0# 95 exp")
+sm.sendNext("材料都拿来了吗？请稍等。这么混合一样…… \r\n\r\n#fUI/UIWindow2.img/QuestIcon/4/0# \r\n#i3010062# #t3010062# 1个 \r\n\r\n#fUI/UIWindow2.img/QuestIcon/8/0# 95 exp")
 sm.giveItem(3010062)
 sm.giveExp(95)
 sm.completeQuest(parentID)
 
 sm.removeEscapeButton()
-sm.sendNext("Here, a fully-assembled chair, just for you! I've always wanted to give you a chair as a gift, because I know a hero can occasionally use some good rest. Tee hee. ")
-sm.sendSay("A hero is not invincible. A hero is human. I'm sure you will face challenges and even falter at times. But you are a hero because you have what it takes to overcome any obstacles you may encounter.")
+sm.sendNext("好了，椅子做好了！嘿嘿！就算是英雄肯定也会有需要歇歇的时候，所以我一直想送你一把椅子。")
+sm.sendSay("我想就算是英雄也不能永远活力充沛，肯定也有疲劳、困倦的时候。但真正的英雄是能够克服万难取得最后胜利的。")
 sm.tutorAutomatedMsg(19)

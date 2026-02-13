@@ -3,24 +3,24 @@
 STARLING = 9120221
 
 sm.setSpeakerID(STARLING)
-sm.sendNext("What are the odds... I didn't expect to see you again.")
+sm.sendNext("果然不出我所料，就知道你会来。虽然比我想象的晚了点。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("(Isn't that the woman I rescued in the Kerning City Subway?) Hey, long time no see!")
+sm.sendSay("(……早知道不来了，这女人真奇怪。) 你还有什么话要说来着？")
 
 sm.setSpeakerID(STARLING)
-sm.sendSay("I came here to help out the Excavation Site, but it looks like I'm too late. Say, did you see a strange gate around here by any chance?")
+sm.sendSay("据我之前认识的遗迹发掘现场里的#b发掘队长杉峰#k说，这附近发现了奇怪的门。你来的路上见过吗？")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("Yeah, I saw it when I was fighting the Commander Skeleton in the Prohibited Area. It gave me the creeps.")
+sm.sendSay("没有啊，来的路上没见过那样的东西。")
 
 sm.setSpeakerID(STARLING)
-response = sm.sendAskYesNo("Really? I'd love to see it! Mind showing me where it is?")
+response = sm.sendAskYesNo("最近遗迹发掘地的怪物不知怎么的，突然变得很凶残，开始攻击附近的居民。我觉得跟那道门有些关系。")
 
 if response:
-    sm.sendNext("All right! To the Prohibited Area!")
+    sm.sendNext("嗯，说不定真是那样。我也觉得有点巧合。")
 
-    sm.sendNext("Let's move")
+    sm.sendNext("你愿意跟我一起去看看吗？我对那道门可是相当好奇呢。不过我是路痴……我已经跟杉峰打听过去那里的路线，我们一起去的话，肯定很快就能找的的。")
 
     sm.warp(102040600, 1)
     sm.startQuest(parentID)

@@ -1,12 +1,12 @@
 #Murt's Letter | Lionheart Castle Questline
 sm.setSpeakerID(2160000)
-if sm.sendAskYesNo("Can anybody out there hear me?! Someebody, please listen up!"):
-    sm.sendNext("Can you hear me? That's great! I thought I was talking to thin air!")
-    sm.sendNext("I'm #b#p2160000##k, I came here looking for the legendary #bLion King's Medal#k, but I guess it didn't work out. I was searching the castle when everything started shaking and monsters started popping out of nowhere! I tried to run, when a man appeared in front of me.")
-    sm.sendNext("He was a real mopey lookin' guy who calimed to be #bVon Leon the Lion King#k. I don't remember much after that, but I guess I'm a ghost now. It must be a curse or something! I can still feel my body... and it's super itchy!")
-    sm.sendNext("I need to get this letter to #bAlcaster#k in El Nath, He acn get it to my family.")
+if sm.sendAskYesNo("要是……有谁听到了我的话……请过来跟我说会儿话……只要一小会儿就行！！"):
+    sm.sendNext("你听到我的话了？呼……太好了……我还在想，要是没人听见我的话的话，我该怎么办……")
+    sm.sendNext("我的名字叫#b#p2161004##k……为了寻找传说中的#b狮子王的勋章#k，我来到了这个地方……我在城堡的各处寻找勋章的时候……城堡突然开始摇晃，接着怪物就出现了……就在我慌慌张张地避开怪物逃走的时候……突然有个年轻人出现在了我的面前……")
+    sm.sendNext("那个年轻人说自己是#b狮子王班·雷昂#k，是这个城的主人……他说我未经允许就进入了城堡，然后把我变成了无法从这里离开的幽灵……可能是因为诅咒的缘故，虽然变成了幽灵，但感觉身体里有寒气在到处乱窜，身体像刀割一样地疼，从来都不会停歇……现在我光是这样说话，就已经非常痛苦了……")
+    sm.sendNext("虽然我变成了这副模样……但是我想把这封信送给在远方等待着我的家人……你能帮我把这封信交给冰峰雪域的#b阿尔卡斯特#k吗？阿尔卡斯特会帮我把信转交给我的家人的……")
     if sm.canHold(4032859):
-        sm.sendNext("I'd been saving this scroll to get back one day, but I guess you can have it. Just get to #bEl Nath#k and give my letter to Alcaster!")
+        sm.sendNext("为了方便自己回去，我留了一个珍贵的魔法卷轴。我会用它把你送到#b冰峰雪域#k，帮我把信交绐阿尔卡斯特！")
         sm.giveItem(4032859)
         sm.startQuest(parentID)
         sm.warp(211000000)

@@ -2,7 +2,7 @@
 sm.startQuest(parentID)
 sm.setSpeakerType(3)
 sm.setParam(2)
-sm.sendSayOkay("There are humans in the Arcane River? I should talk to them.")
+sm.sendSayOkay("神秘河有人出现?? 搭个话看看?")
 sm.setParam(4)
 sm.setInnerOverrideSpeakerTemplateID(3003225) # Rabbit Mask
 sm.sendNext("I'm happy, HAPPY I tell you!")

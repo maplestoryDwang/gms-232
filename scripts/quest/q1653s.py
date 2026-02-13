@@ -4,14 +4,12 @@ STARLING = 9120221
 HIDEOUT = 931050500
 
 sm.setPlayerAsSpeaker()
-sm.sendNext("(You come across a letter, but you're not sure where it came from.)\r\n"
-            "Hm, this symbol... This letter must be from the Silent Crusade. Might as well open it.")
+sm.sendNext("(有封不知从哪里来的信到了我的手里。)这是什么？看上面的十字图案，好像是十字猎人寄来的……打开看看吧。")
 
 sm.setSpeakerID(STARLING)
-sm.sendSay("If you're reading this. I need you to return to our hideout as soon as you can. I'll fill you in when you get here.\r\n\r\n"
-           "-Starling")
+sm.sendSay("你好，如果你看到这封信，就请尽快到我们的据点来吧。之前你成功地完成了任务，令人嘉赏，现在我们需要你的帮忙。详细的内容见面后再说吧。\r\n\r\n - 谢丽尔 -")
 
-sm.sendSay("P.S. - I've attached transportation to the hideout. Don't lose it, or you'll have to return the long way.")
+sm.sendSay("附言: 信里放了一张能移动到据点的移动券，你来的时候用它会很方便。得带好了，要是弄丢了，可就得自己想办法过来了。")
 
 sm.startQuest(parentID)
 sm.showFieldEffect("Map/Effect.img/crossHunter/chapter/start3")

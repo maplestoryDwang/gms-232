@@ -5,13 +5,10 @@
 ardin = 2101003
 
 sm.setSpeakerID(ardin)
-sm.sendNext("I didn't think you'd be this strong. I feel like you have what it takes to become a member of the Sand Bandits. "
-"The most important aspect of being a member is power, and I think you have that. "
-"I also... want to test you one more time, just to make sure you're the right one. What do you think? Can you handle it?")
-response = sm.sendAskAccept("To truly see your strength, I'll have to face you myself. "
-"Don't worry, I'll summon my other self to face off against you. Are you ready?")
+sm.sendNext("没想到你会这么的强…以你的水平也许可以成为沙子图团的团员也说不定。对沙子图团员来说，最重要的就是力量的强大，而你…看来已经具备了足够的实力！但我还是要再进行一次测试…如何？可以接受吗？")
+response = sm.sendAskAccept("若想要实际测试你的力量，应该需要亲自去体验吧？我想和你进行一场对战！别担心，我也不想伤害你…就用我的分身来对付你好了！可以马上进行对战吗？")
 if response:
-    sm.sendNext("Good. I like your confidence.")
+    sm.sendNext("好！充满自信是吗？")
     sm.startQuest(parentID)
     sm.warpInstanceIn(926000000, False)
 else:

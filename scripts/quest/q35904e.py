@@ -7,7 +7,7 @@ sm.setSpeakerType(3)
 sm.setParam(548)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(1013358) # Pathfinder
-sm.sendNext("#face3##b(You drizzled the seed oil over the unfortunate fellow until the ground itself was moist. Then, with a sucking sound and a loud pop, something rather strange popped out of the ground.)#k")
+sm.sendNext("#face3##b(把种子油洒上去之后，地面变得湿润起来。\r\n接着，突然从地下冒出了一个奇怪的东西。）#k")
 sm.setParam(36)
 sm.setInnerOverrideSpeakerTemplateID(1013353) # Mascarpo
 sm.sendSay("#face1#*huff* *puff* You really did it! You saved my life. What a kind soul! Your generosity is truly boundless!")

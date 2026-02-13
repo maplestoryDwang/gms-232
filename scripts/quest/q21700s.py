@@ -3,25 +3,25 @@ LILIN = 1201000
 
 sm.setSpeakerID(LILIN)
 sm.flipSpeaker()
-sm.sendNext("It seems like you've started to remember things. Your Polearm must have recognized you. This means you are surely #bAran, the wielder of Polearms#k. Is there anything else you remember? Skills you used with the Polearm perhaps? Anything?")
+sm.sendNext("你似乎在回想什么。这个长矛果然认出了你。那么你肯定就是#b使用长矛的英雄，战神#k了。你想起什么其他的了吗？有关长矛的技能之类……")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("#b(You tell her that you remember a few skills.)#k")
+sm.sendSay("#b（说技能倒是想起来了几个。）#k")
 
 sm.setSpeakerID(LILIN)
 sm.flipSpeaker()
-sm.sendSay("That's not a lot, but it's progress. Our focus, then, should be to get you back to the state before you were frozen. You may have lost your memory, but I'm sure it won't take long for you to recover the abilities that your body remembers.")
+sm.sendSay("虽然数量不多，不过也已经很不容易了。现在让我们集中精力来恢复过去的技能吧。虽然你失忆了，但毕竟是以前曾经烂熟于心的东西，要恢复起来应该很快。")
 
 sm.setPlayerAsSpeaker()
-sm.sendSay("How do I recover my abilities?")
+sm.sendSay("那个…………办法只有一个。就是修炼！修炼！修炼！只有不停地修炼才能找回曾经忘却的身体感觉！")
 
 sm.setSpeakerID(LILIN)
-if sm.sendAskAccept("There is only one way to do that. Train! Train! Train! Train! If you continue to train, your body will instinctively remember its abilities. To help you through the process, I'll introduce you to an instructor."):
+if sm.sendAskAccept("武器要是能使得更熟练就好了。送你一支#b长矛#k。希望你在修炼的时候能够进步得更快。带着这支长矛……"):
     # sm.giveItem(1442077)
     sm.startQuest(parentID)
     sm.completeQuest(parentID)
 
-    sm.sendNext("I thought it'd be better for you to use a familiar weapon for your training, so I gave you a #bPolearm#k. I hope you can handle it. Now, take that weapon and...")
+    sm.sendNext("嗯，等等。那现在要怎么做呢…………")
     sm.sendPrev("Hmm. Give me a second. I need to think about what you should do now...")
 else:
-    sm.sendNext("No? Are you saying you can train on your own? I'm just letting you know that you'll get better results if you train with an instructor. You can't live in this world alone. You must learn to get along with other people.")
+    sm.sendNext("怎么恢复过去的技能？")

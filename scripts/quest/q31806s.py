@@ -1,13 +1,13 @@
 #Securing the Front Lines | Magnus Prequest
 
 sm.setSpeakerID(3001000)
-sm.sendNext("Hey there. Glad to see you made it here with all your limbs. I called you out here to help me lock down the front.")
+sm.sendNext("见到你很高兴，格兰蒂斯大陆和反攻总部的环境你还适应吧？我叫你来，是为了扩大战线的事，还需要你帮帮忙。")
 sm.setPlayerAsSpeaker()
-sm.sendNext("I didn't think all those battle hounds were stopping supplies from getting through.")
+sm.sendNext("事实上，我觉得补给路线被截断的原因不仅仅是由于那些战斗犬。")
 sm.setSpeakerID(3001000)
-sm.sendNext("You got that right. We need to open up the supply lines if we want to make a difference. That means an attack on the #b#m401010010##k, where all those #r#o2400109##k monsters are holed up.")
-if sm.sendAskYesNo("It's tough to get through them with their High HP and defense. but I'm sure you'll figure out a way to take down their shields. \r\n \r\n #b#e(Press Accept to move automatically. You will have to forfeit the quest and restart if you fail.)#k#n"):
-    sm.sendNext("It shouldn't be too tough for you. You'll take care of business easy.")
+sm.sendNext("对，为了能顺利运输补给，需要对#b#m401010010##k，的#r#o2400109##k占领的地方发动攻击。你能帮我们消灭#r#o2400109##k吗？")
+if sm.sendAskYesNo("由于他们手持盾牌堵着通往森林的分岔路，令人十分恼火。那些盾牌兵的体力和防御力虽高，但攻击力较低。你去消灭那些盾牌兵吧？\r\n\r\n#b#e(接受后将立即移动到战场地图。如果想重新开始任务，请放弃任务后再重新开始。)#n#k"):
+    sm.sendNext("我觉得这个任务不是太难，你会做得很好的。")
     sm.startQuest(31806)
     sm.warpInstanceIn(401070100)
     sm.dispose()

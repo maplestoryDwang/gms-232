@@ -1,8 +1,8 @@
 # 20838 Certified Knight - Cygnus tutorial quest
 sm.setSpeakerID(1102007)
-sm.sendAskYesNo("Do you have the Proof of Exam items?")
+sm.sendAskYesNo("3个考试的证物拿来了吗？")
 if sm.hasItem(4033670, 3):
-    sm.sendNext("Yay! I'm so happy! You're every bit as amazing as I knew you'd be! Here, take this chair. I made it for you! Sit on it when you're tired, and you'll get your HP back faster! I slipped it into your Set-up inventory!")
+    sm.sendNext("啊哈～果然名不虚传。考试合格了。我送给你的椅子，是我亲手制作的。希望你能好好使用。累了的时候，可以坐在上面休息一下，血量就会快速回复。应该已经放到背包设置栏中了，你可以去确认一下。")
     sm.completeQuest(parentID)
     sm.giveItem(3010060)
 else:

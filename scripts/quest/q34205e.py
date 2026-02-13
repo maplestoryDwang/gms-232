@@ -4,52 +4,52 @@ sm.setSpeakerType(3)
 sm.setParam(37)
 sm.setColor(1)
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendNext("#face0#Looks like I've cooked another wonderful meal!")
+sm.sendNext("#face0#嗯~我今天做的料理好像也很赞！")
 sm.createQuestWithQRValue(18418, "B=34845")
 sm.setInnerOverrideSpeakerTemplateID(3003153) # Pibik
-sm.sendSay("We're the ones eating it, so we'll be the judges of that!")
+sm.sendSay("好不好吃得由我们来判断！")
 sm.setInnerOverrideSpeakerTemplateID(3003154) # Pimi
-sm.sendSay("#bPibik#k, are you going to keep on complaining about free food?")
+sm.sendSay("#b哔比#k哥哥~ 你怎么一直吐槽猴姐啊？")
 sm.setInnerOverrideSpeakerTemplateID(3003153) # Pibik
-sm.sendSay("Don't you talk back to me! I'm older than you.")
+sm.sendSay("你这小家伙不要一直顶嘴！我是你哥哥！")
 sm.setInnerOverrideSpeakerTemplateID(3003154) # Pimi
-sm.sendSay("That's all the more reason for you to #r#fs20#exercise common sense!")
+sm.sendSay("我知道~ 哥哥~不过，哥哥你总是这么没礼貌，所以我#r#fs20#有点点生气了！")
 sm.setInnerOverrideSpeakerTemplateID(3003155) # Pidol
-sm.sendSay("Pi... mi... #bPimi#k scary... Heeeheee.")
+sm.sendSay("哔……米#b哔美#k姐……姐好可怕…我害怕…… 哼哼哼~")
 sm.setInnerOverrideSpeakerTemplateID(3003153) # Pibik
-sm.sendSay("Ahem! Let's all enjoy this wonderful meal. ...Eat your food already!")
+sm.sendSay("哎…哎！这么开心的用餐时间，干嘛要这样！快点…吃饭吧！")
 sm.setInnerOverrideSpeakerTemplateID(3003154) # Pimi
-sm.sendSay("Of course #bPibik#k. Doesn't it feel nice behaving? You should keep being good for Simia, since she works so hard for us. Okay?")
-sm.sendSay("If you don't, you #fs20#might not like what happens.#fs15# (Sighs) I'll just leave it at that.")
+sm.sendSay("就是嘛~#b哔比#k哥哥~你早点像这样懂礼貌该有多好啊？就算是为了给我们辛苦做饭的猴姐，也请你以后一直~这么懂礼貌，知道了吗？")
+sm.sendSay("如若不然，#fs20#我就……。把你的……。头……#fs15#呼……。我就不跟你多说了，哥哥~")
 sm.setInnerOverrideSpeakerTemplateID(3003153) # Pibik
-sm.sendSay("O-okay!")
+sm.sendSay("我…我知道了！")
 sm.setInnerOverrideSpeakerTemplateID(3003155) # Pidol
-sm.sendSay("Heh, heehee. Pimi made Pibik quiet again.")
+sm.sendSay("呵呵呵，哔美姐……姐姐又教训……哔比哥哥了…呵呵呵")
 sm.setInnerOverrideSpeakerTemplateID(3003154) # Pimi
-sm.sendSay("Pidol, you need to eat too. You have to take care of yourself if you want your #bhead to heal#k...")
+sm.sendSay("哔嘟必须多吃一点，#b受伤的脑袋#k才能尽快好起来……")
 sm.setInnerOverrideSpeakerTemplateID(3003155) # Pidol
-sm.sendSay("Hehehe. I fine. I always like this.")
+sm.sendSay("我…我…本来就是这样啊…？呵呵呵")
 sm.setInnerOverrideSpeakerTemplateID(3003154) # Pimi
-sm.sendSay("Pidol... You need to focus on getting better... (Sighs)")
+sm.sendSay("哔嘟啊…你原来并不是傻瓜…不对，你原来是个#b正常的孩子#k…所以你要快点好起来……。哎……")
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendSay("#face0#Pibik! Pimi! Pidol! It's so nice to see you all looking after one another!")
-sm.sendSay("So few of us around here, myself included, #bhave a family#k to rely on... But #bthe three of you can always depend on each other#k. You must feel so happy!")
+sm.sendSay("#face0#哔比！哔美！哔嘟！你们这样吵吵闹闹，同时又互相关心对方的样子看起来很好！")
+sm.sendSay("这里的大部分人跟我一样，#b没有家人#k，你们#b三个可以相互依靠#k，真是太幸福了！")
 sm.setInnerOverrideSpeakerTemplateID(3003154) # Pimi
-sm.sendSay("Simia, you do have a family. You took us in when #bthe village kicked us out for having unusual tastes#k. We're your family!")
+sm.sendSay("猴姐，你怎么会没有家人呢~ 你收留了#b因为口味奇怪而被赶出村庄的#k我们啊~ 姐姐你就和我们的家人没有区别~")
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendSay("Hehe... Thanks Pimi! I don't have anywhere to go either. Let's stay together forever!")
+sm.sendSay("没错，哔美！虽然我也一样无家可归！我们像现在这样，永远生活在一起吧！")
 sm.setInnerOverrideSpeakerTemplateID(3003153) # Pibik
-sm.sendSay("Family? Yeah right... We don't even look alike...")
+sm.sendSay("切…什么家人啊…长得完全不一样啊……")
 sm.setInnerOverrideSpeakerTemplateID(3003154) # Pimi
-sm.sendSay("Hey... You should stop being mean #fs13#if you know what's good for you...")
+sm.sendSay("喂…适可而止…吧？")
 sm.setInnerOverrideSpeakerTemplateID(3003153) # Pibik
-sm.sendSay("W-what I meant was that I'm even more grateful! She had no reason to look after us short little weirdos... We have unusual tastes but she makes food we like...")
-sm.sendSay("(Mumbles) #fs13#Thanks... Simia...")
+sm.sendSay("我…我的意思是，所以我们更应该心怀感激！猴姐的个头比我们高很多，要照顾我们这些小不点…我们的口味这么奇特，她还要给我们做好吃的……。")
+sm.sendSay("谢谢你……猴姐……")
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendSay("#face0#Hehe. I know how much you like me Pibik. Pimi, stop bullying your brother. Families shouldn't threaten or fight with each other.")
+sm.sendSay("#face0#嘻嘻，我知道哔比你非常喜欢我~ 哔美啊，你也不要总这么对待你的哥哥~家人之间也是不能互相打骂的~")
 sm.setInnerOverrideSpeakerTemplateID(3003155) # Pidol
-sm.sendSay("We're not... hitting each other... Hehehe... #bIt's one-sided#k... Heehee.")
+sm.sendSay("应该不是…互相…打骂吧…？呵呵呵…… 好像是#b单方#k…呵呵呵")
 sm.setInnerOverrideSpeakerTemplateID(3003151) # Simia
-sm.sendSay("#face0#What are we doing sitting here gabbing, with this delicious food getting cold in front of us? I made your favorite, #bChewy Sole Soup#k! Bon apetit!")
+sm.sendSay("#face0#好啦~好啦~放着美味的食物不吃，我们这是在干嘛呢？今天我特意为你们准备了你们爱吃的#b劲道脚掌汤#k！快吃吧~")
 sm.setParam(57)
-sm.sendSay("So, that delicious smell was coming from here... Whatever they're eating, I hope they have enough to share...")
+sm.sendSay("这里有好香的味道……\r\n刚好是#b吃饭时间#k，应该去看看能不能要点吃的……")
