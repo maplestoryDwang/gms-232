@@ -27,6 +27,7 @@ UIWINDOW4
 StatusBar3
 
 3. 新增部分教程脚本
+4. 更新swordie 召唤NPC不能走路的问题
 
 
 
