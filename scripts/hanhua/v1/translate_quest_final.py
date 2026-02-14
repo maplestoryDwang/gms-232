@@ -182,36 +182,6 @@ def is_chinese_text(text):
     return len(chinese_chars) >= 2
 
 
-def is_chinese_text_old(text):
-    """
-    判断文本是否主要是中文
-    """
-    # 去除格式代码 - 只匹配完整的格式代码,如 #b#, #r#, #k#, #p123#, #m123#, #o123#, #t123#, #L123#, #e 等
-    # 格式代码格式: # + (单个字母或数字组合) + #
-    clean_text = re.sub(r'#[brke][^#]*#', '', text)  # #b#, #r#, #k#, #e# (可能带有参数)
-    clean_text = re.sub(r'#[pmot][0-9]+#', '', clean_text)  # #p123#, #m123#, #o123#, #t123#
-    clean_text = re.sub(r'#[L][0-9]+#', '', clean_text)  # #L123#
-    clean_text = re.sub(r'#l', '', clean_text)  # #l
-
-    # 如果文本太短或为空,跳过
-    if len(clean_text.strip()) < 2:
-        return False
-
-    # 检查中文比例
-    chinese_chars = len(re.findall(r'[\u4e00-\u9fff]', clean_text))
-    total_chars = len(clean_text.strip())
-
-    if total_chars == 0:
-        return False
-
-    chinese_ratio = chinese_chars / total_chars
-
-    # # 中文比例>50%认为是中文文本
-    # return chinese_ratio > 0.5
-    # 只要 ≥2 个中文，直接认为是中文
-    return chinese_chars >= 2
-
-
 # ==================== 步骤2: 提取quest文件夹下所有Python文件的双引号内容 ====================
 
 def extract_py_strings(folder_path):
