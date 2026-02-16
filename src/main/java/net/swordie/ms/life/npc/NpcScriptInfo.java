@@ -318,7 +318,7 @@ public class NpcScriptInfo {
 	public int getInnerOverrideSpeakerTemplateID() {
 		return innerOverrideSpeakerTemplateID;
 	}
-
+	// mask talk
 	public enum Param {
 		NotCancellable(0x1),
 		PlayerAsSpeaker(0x2),

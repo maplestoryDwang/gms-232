@@ -6,6 +6,7 @@ import net.swordie.ms.client.character.skills.TownPortal;
 import net.swordie.ms.constants.FieldConstants;
 import net.swordie.ms.constants.GameConstants;
 import net.swordie.ms.constants.OzConstants;
+import net.swordie.ms.enums.ClockType;
 import net.swordie.ms.enums.EliteState;
 import net.swordie.ms.enums.FieldType;
 import net.swordie.ms.life.Life;
@@ -16,10 +17,7 @@ import net.swordie.ms.scripts.ScriptManagerImpl;
 import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Rect;
 import net.swordie.ms.util.Util;
-import net.swordie.ms.world.field.Field;
-import net.swordie.ms.world.field.Foothold;
-import net.swordie.ms.world.field.MobGen;
-import net.swordie.ms.world.field.Portal;
+import net.swordie.ms.world.field.*;
 import net.swordie.ms.world.field.fieldownership.FieldOwnershipManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,6 +38,12 @@ public class FieldInfo {
     private int returnMap, forcedReturn, createMobInterval, timeOut, timeLimit, lvLimit, lvForceMove;
     private int consumeItemCoolTime, link;
     private boolean town, swim, fly, reactorShuffle, expeditionOnly, partyOnly, needSkillForFly;
+
+    // record clock in the map! eg:200000100 2000100
+    // write after needSkillForFly
+    private boolean clock;
+
+
     private final Set<Portal> portals;
     private final Map<Integer, Foothold> footholds;
     private final Map<Integer, Life> lifes;
@@ -279,6 +283,16 @@ public class FieldInfo {
         this.needSkillForFly = needSkillForFly;
     }
 
+
+    public boolean isClock() {
+        return clock;
+    }
+
+    public void setClock(boolean clock) {
+        this.clock = clock;
+    }
+
+
     public Set<Portal> getPortals() {
         return portals;
     }
@@ -491,6 +505,9 @@ public class FieldInfo {
         field.setProperties(new HashMap<>());
         field.setFieldOwnershipManager(new FieldOwnershipManager(field));
 
+        if (isClock()) {
+            field.setClock(new Clock(ClockType.HMSClock, field));
+        }
         return field;
     }
 

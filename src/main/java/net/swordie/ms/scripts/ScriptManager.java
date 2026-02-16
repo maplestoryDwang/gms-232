@@ -1634,6 +1634,8 @@ public interface ScriptManager {
 
 	int playVideoByScript(String videoPath);
 
+	int playVideoByScriptFromWeb(String videoUrl);
+
 
 	/**
 	 * Opens a nodestone from a given nodestone id.

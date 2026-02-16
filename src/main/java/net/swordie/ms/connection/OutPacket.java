@@ -236,6 +236,19 @@ public class OutPacket extends Packet {
 
     }
 
+    public void encodeString_swordie(String s) {
+        if (s == null) {
+            s = "";
+        }
+        if (s.length() > Short.MAX_VALUE) {
+            log.error("Tried to encode a string that is too big.");
+            return;
+        }
+        encodeShort((short) s.length());
+        encodeString(s, (short) s.length());
+    }
+
+
 //    public void encodeString(String s) {
 //        byte[] data = s != null ? s.getBytes(ServerConstants.ENCODING) : new byte[]{};
 //        if (data.length > Short.MAX_VALUE) {

@@ -43,7 +43,14 @@ public class ScriptHandler {
                     : NpcMessageType.None;
         }
 
-        if (nmt != NpcMessageType.Monologue) {
+
+        // 播放视频链接动画结束
+        if (nmt == NpcMessageType.PlayMovieClipURL) {
+//            chr.getScriptManager().dispose(false);
+            chr.getScriptManager().handleAction(nmt, (byte) 1, 1); // Doesn't use  response nor answer
+
+
+        } else if (nmt != NpcMessageType.Monologue) {
             if (nmt == NpcMessageType.SayOk
                     || nmt == NpcMessageType.SayNext
                     || nmt == NpcMessageType.SayPrev

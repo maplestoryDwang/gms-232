@@ -41,6 +41,7 @@ import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Rect;
 import net.swordie.ms.util.Util;
 import net.swordie.ms.world.Channel;
+import net.swordie.ms.world.field.fieldeffect.FieldEffect;
 import net.swordie.ms.world.field.fieldevents.FieldEvent;
 import net.swordie.ms.world.field.fieldownership.FieldOwnershipManager;
 import net.swordie.ms.world.field.instance.Instance;
@@ -589,7 +590,7 @@ public class Field {
     }
 
     public Set<Mob> getMobs() {
-        return (Set<Mob>) (Set<?>)lifeTypeMap.getOrDefault(Mob.class, Util.EMPTY_SET);
+        return (Set<Mob>) (Set<?>) lifeTypeMap.getOrDefault(Mob.class, Util.EMPTY_SET);
     }
 
     public Set<Summon> getSummons() {

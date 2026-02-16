@@ -308,7 +308,7 @@ public class ChannelHandler extends SimpleChannelInboundHandler<InPacket> {
 
     private void handleUnknown(InPacket inPacket, short opCode) {
         if (!InHeader.isSpamHeader(InHeader.getInHeaderByOp(opCode))) {
-            log.debug(String.format("Unhandled opcode %s/0x%s, packet %s", opCode, Integer.toHexString(opCode).toUpperCase(), inPacket));
+            log.debug(String.format("[In]\t Unhandled opcode %s/0x%s, packet %s", opCode, Integer.toHexString(opCode).toUpperCase(), inPacket));
         }
     }
 

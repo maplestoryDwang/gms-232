@@ -345,7 +345,7 @@ public class ScriptManagerImpl implements ScriptManager {
 
         // If script doesn't exist in normal scripts directory either. return the default script
         if (!exists) {
-            log.debug(String.format("[Error] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
+            log.error(String.format("[Error] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
             if (getChr() != null) {
                 getChr().chatMessage(Mob, String.format("[Script] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
             }
@@ -746,6 +746,20 @@ public class ScriptManagerImpl implements ScriptManager {
         getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipSpeaker);
     }
 
+
+    public void cancelFlipDialogue() {
+        getNpcScriptInfo().removeParam(NpcScriptInfo.Param.OverrideSpeakerID);
+    }
+    /**
+     * 是否覆盖说话人的ID
+     */
+    public void flipDialogue() {
+        getNpcScriptInfo().addParam(NpcScriptInfo.Param.OverrideSpeakerID);
+    }
+
+    /**
+     * 是否play作为说话者 + 反转
+     */
     public void flipDialoguePlayerAsSpeaker() {
         getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
     }
@@ -1668,6 +1682,7 @@ public class ScriptManagerImpl implements ScriptManager {
     public void setSpeakerID(int templateID) {
         NpcScriptInfo nsi = getNpcScriptInfo();
         nsi.removeParam(NpcScriptInfo.Param.PlayerAsSpeaker);
+        nsi.removeParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
         boolean isNotCancellable = nsi.hasParam(NpcScriptInfo.Param.NotCancellable);
         nsi.setTemplateID(templateID);
         if (isNotCancellable) {
@@ -2598,6 +2613,7 @@ public class ScriptManagerImpl implements ScriptManager {
             return;
         }
         if (ex) {
+            getChr().write(WvsContext.message(MessagePacket.questRecordMessage(quest)));
             getChr().write(WvsContext.message(MessagePacket.questRecordExMessage(quest)));
         } else {
             getChr().write(WvsContext.message(MessagePacket.questRecordMessage(quest)));
@@ -3514,7 +3530,22 @@ public class ScriptManagerImpl implements ScriptManager {
     @Override
     public int playVideoByScript(String videoPath) {
         getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClip);
-        getChr().write(UserLocal.videoByScript(videoPath, false));
+        getChr().write(UserLocal.videoByScript(videoPath, true));
+        Object response = null;
+        var lastActiveScriptType = getLastActiveScriptType();
+        if (isActive(lastActiveScriptType)) {
+            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
+        }
+        if (response == null) {
+            throw new NullPointerException(INTENDED_NPE_MSG);
+        }
+        return (int) response;
+    }
+
+    @Override
+    public int playVideoByScriptFromWeb(String videlUrl) {
+        getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
+        getChr().write(UserLocal.videoByScriptWeb(videlUrl));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
         if (isActive(lastActiveScriptType)) {

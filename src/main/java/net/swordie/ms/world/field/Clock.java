@@ -6,6 +6,7 @@ import net.swordie.ms.enums.ClockType;
 import net.swordie.ms.handlers.executors.EventManager;
 import net.swordie.ms.scripts.ScriptManagerImpl;
 
+import java.util.Calendar;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +24,11 @@ public class Clock {
     private int warpFieldId;
     private int portalId;
     private String warpMethod;
+
+    public Clock(ClockType clockType, Field field) {
+        this.clockType = clockType;
+        this.field = field;
+    }
 
     public Clock(ClockType clockType, Field field, int seconds) {
         this.clockType = clockType;
@@ -100,6 +106,10 @@ public class Clock {
                     break;
                 case TimerGauge:
                     chr.write(FieldPacket.clock(ClockPacket.timerGauge(seconds * 1000, seconds * 1000)));
+                    break;
+                case HMSClock:
+                    Calendar cal = Calendar.getInstance();
+                    chr.write(FieldPacket.clock(ClockPacket.hmsClock((byte) cal.get(Calendar.HOUR_OF_DAY), (byte) cal.get(Calendar.MINUTE), (byte) cal.get(Calendar.SECOND))));
                     break;
             }
         }

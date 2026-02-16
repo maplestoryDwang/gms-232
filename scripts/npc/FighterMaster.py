@@ -1,6 +1,6 @@
 # Athena Pierce (1012100)
 if sm.getChr().getLevel() >= 10 and sm.getChr().getJob() == 0:
-    if sm.sendAskYesNo("Would you like to become a Warrior?"):
+    if sm.sendAskYesNo("你想成为战士吗？"):
         sm.giveItem(1302077)
         sm.setJob(100)
         sm.addSP(5)

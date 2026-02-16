@@ -32,7 +32,9 @@ public enum NpcMessageType {
     AskSlideMenu(20, ResponseType.Answer),
     AskIngameDirection(21, ResponseType.Response),
     PlayMovieClip(22, ResponseType.Response),
-    AskCenter(23, ResponseType.Answer),
+    PlayMovieClipURL(23, ResponseType.Response),
+
+//    AskCenter(23, ResponseType.Answer),
     AskAvatar2(24, ResponseType.Answer),
     // 25
     AskSelectMenu(26, ResponseType.Answer),

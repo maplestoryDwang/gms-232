@@ -1,6 +1,6 @@
 # Grendel the Really Old (1032001) | Ellinia Magic Library
 if sm.getChr().getLevel() >= 10 and sm.getChr().getJob() == 0:
-    if sm.sendAskYesNo("Would you like to become a Magician?"):
+    if sm.sendAskYesNo("你想成为魔法师吗?"):
         sm.giveItem(1372005)
         sm.setJob(200)
         sm.addSP(5)

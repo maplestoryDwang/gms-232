@@ -1,6 +1,7 @@
 package net.swordie.ms.loaders;
 
 import net.swordie.ms.ServerConstants;
+import net.swordie.ms.connection.db.DatabaseManager;
 import net.swordie.ms.constants.FieldConstants;
 import net.swordie.ms.constants.GameConstants;
 import net.swordie.ms.enums.FieldType;
@@ -42,6 +43,8 @@ public class FieldData {
     private static final Logger log = LogManager.getLogger(FieldData.class);
 
     public static void main(String[] args) {
+        DatabaseManager.init();
+
         generateDatFiles();
     }
 
@@ -86,6 +89,9 @@ public class FieldData {
                 os.writeBoolean(field.isExpeditionOnly());
                 os.writeBoolean(field.isPartyOnly());
                 os.writeBoolean(field.isNeedSkillForFly());
+                os.writeBoolean(field.isClock());
+
+
                 os.writeInt(field.getFixedMobCapacity());
                 os.writeInt(field.getCreateMobInterval());
                 os.writeInt(field.getTimeOut());
@@ -200,7 +206,7 @@ public class FieldData {
                 field.setReactorShuffle(((WzProperty<Integer>) infoNode.getChild("reactorShuffle", 0)).getValue() != 0);
                 field.setExpeditionOnly(((WzProperty<Integer>) infoNode.getChild("expeditionOnly", 0)).getValue() != 0);
                 field.setPartyOnly(((WzProperty<Integer>) infoNode.getChild("partyOnly", 0)).getValue() != 0);
-                field.setPartyOnly(((WzProperty<Integer>) infoNode.getChild("isNeedSkillForFly", 0)).getValue() != 0);
+                field.setNeedSkillForFly(((WzProperty<Integer>) infoNode.getChild("isNeedSkillForFly", 0)).getValue() != 0);
 
                 field.setReturnMap(((WzProperty<Integer>) infoNode.getChild("returnMap", 0)).getValue());
                 field.setForcedReturn(((WzProperty<Integer>) infoNode.getChild("forcedReturn", 0)).getValue());
@@ -402,6 +408,16 @@ public class FieldData {
                     }
                 }
 
+
+                // clock
+                WzObject<?, ?> clockNode = map.getChild("clock");
+                if (clockNode != null) {
+                    field.setClock(true);
+                } else {
+                    field.setClock(false);
+                }
+
+
                 // reactor
                 WzObject<?, ?> reactorNode = map.getChild("reactor");
                 if (reactorNode != null) {
@@ -545,6 +561,8 @@ public class FieldData {
             field.setExpeditionOnly(raf.readBoolean());
             field.setPartyOnly(raf.readBoolean());
             field.setNeedSkillForFly(raf.readBoolean());
+            field.setClock(raf.readBoolean());
+
             field.setFixedMobCapacity(raf.readInt());
             field.setCreateMobInterval(raf.readInt());
             field.setTimeOut(raf.readInt());
@@ -762,6 +780,7 @@ public class FieldData {
     }
 
     public static void generateDatFiles() {
+
         log.info("Started generating field data.");
         long start = System.currentTimeMillis();
         loadFieldInfoFromWz();
