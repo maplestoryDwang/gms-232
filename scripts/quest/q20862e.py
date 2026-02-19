@@ -1,16 +1,36 @@
 # The Path of a Blaze Wizard - Completion
 
-sm.setSpeakerID(1101004) # Oz
-if sm.canHold(1382000):
-    sm.jobAdvance(1200) # Blaze Wizard 1st Job
-    sm.addSP(5)
-    sm.setSTR(4)
-    sm.setINT(4)
-    sm.setDEX(4)
-    sm.setLUK(4)
-    sm.setAP(4 + chr.getLevel() * 5)
-    sm.completeQuest(parentID)
-    sm.giveItem(1382000) # Wooden Staff
-    sm.sendSayOkay("你已经做好选择了吗？选择之后是不能反悔的。请一定要慎重考虑……你真的要选择炎术士之路吗？")
+sm.setSpeakerID(1101004) # Eckhart
+if (sm.sendAskYesNo("你已经做好选择了吗？选择之后是不能反悔的。请一定要慎重考虑……你真的要选择炎术士之路吗？")):
+    if sm.canHold(1382000):
+        sm.jobAdvance(1200) # Night Walker 1st Job
+        sm.sendSay("从现在开始，你就是一名炎术士了。啊，真让人高兴！我又有了新同伴……对了，我得先分配一些能力给你。")
+
+        sm.giveSkill(10000256, 0, -1)
+        sm.giveSkill(10001245, 1, 1)
+        sm.giveSkill(10000248, 1, 1)
+        sm.addSP(5)
+        sm.setSTR(4)
+        sm.setINT(4)
+        sm.setDEX(4)
+        sm.setLUK(4)
+        sm.setAP(4 + chr.getLevel() * 5)
+        sm.completeQuest(parentID)
+        sm.completeQuest(29906)
+
+        sm.giveItem(1372043,1)
+        sm.giveItem(1142066,1)
+
+        sm.sendSay("现在你已经是炎术士了。如果你想变得更强，可以在属性窗(S键)中提升相应的属性。如果觉得太难，可以使用#b自动分配#k。这对还不熟悉魔法师职业的人而言非常有用。")
+        sm.sendSay("我帮你增加了装备和其他道具的保管箱数量！希望能够派上用场。")
+        sm.sendSay("还有, 我给了你一些#bSP#k, 你可以打开#b技能菜单#k, 学习技能.这样打猎起来才会容易.啊, 当然, 有些技能必须在学会其他技能后, 才能学习.一开始先别去碰它.")
+        sm.sendSay("和初心者时期不同，你已经成为了炎术士，死亡时会损失之前积累的部分经验值。请务必小心……")
+        sm.sendSay("好了……作为冒险骑士团的骑士，让我们一同努力吧。")
+
+
+    else:
+        sm.sendSayOkay("检查你的背包是否足够")
 else:
-    sm.sendSayOkay("从现在开始，你就是一名炎术士了。啊，真让人高兴！我又有了新同伴……对了，我得先分配一些能力给你。")
+    sm.sendSayOkay("请谨慎选择，这条路并不轻松（重新选择请放弃任务）")
+
+

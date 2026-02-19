@@ -1,17 +1,39 @@
-# Path of a Wind Archer - Completion
+# The Path of a Blaze Wizard - Completion
 
-sm.setSpeakerID(1101005) # Irena
-if sm.canHold(1452002) and sm.canHold(2060000, 1000):
-    sm.jobAdvance(1300) # Wind Archer 1st Job
-    sm.addSP(5)
-    sm.setSTR(4)
-    sm.setINT(4)
-    sm.setDEX(4)
-    sm.setLUK(4)
-    sm.setAP(4 + chr.getLevel() * 5)
-    sm.completeQuest(parentID)
-    sm.giveItem(1452002) # War Bow
-    sm.giveItem(2060000, 1000) # Bow Arrow
-    sm.sendSayOkay("你已经选好了吗……？……一旦决定，就无法后悔。慎重的决定可以使人变得贤明。")
+sm.setSpeakerID(1101005) # Eckhart
+if (sm.sendAskYesNo("你已经选好了吗……？……一旦决定，就无法后悔。慎重的决定可以使人变得贤明。")):
+    if sm.canHold(1382000):
+        sm.jobAdvance(1300) # Night Walker 1st Job
+        sm.sendSay("从现在开始，你就是风灵使者了。现在，我会分配给你一些能力……")
+
+        sm.giveSkill(10000257, 0, -1)
+        sm.giveSkill(10001245, 1, 1)
+        sm.giveSkill(10000247, 1, 1)
+        sm.addSP(5)
+        sm.setSTR(4)
+        sm.setINT(4)
+        sm.setDEX(4)
+        sm.setLUK(4)
+        sm.setAP(4 + chr.getLevel() * 5)
+        sm.completeQuest(parentID)
+        sm.completeQuest(29906)
+
+        sm.giveItem(1452051,1)
+        sm.giveItem(2060000,9999)
+        sm.giveItem(2060000,9999)
+        sm.giveItem(2060000,9999)
+        sm.giveItem(1142066,1)
+
+        sm.sendSay("现在你已经是风灵使者了。如果你想变得更强，可以在属性窗(S键)中提升相应的属性。使用#b自动分配#k功能，可以使属性的分配变得更简单。")
+        sm.sendSay("作为风灵使者，需要的物品可不少呢。所以我帮你增加了你的装备和其他道具的保管箱数量。")
+        sm.sendSay("还有, 我给了你一些#bSP#k, 你可以打开#b技能菜单#k, 学习技能.这样打猎起来才会容易.啊, 当然, 有些技能必须在学会其他技能后, 才能学习.一开始先别去碰它.")
+        sm.sendSay("和初心者时期不同，成为风灵使者之后，死亡时会损失之前积累的部分经验值。请你务必留意……")
+        sm.sendSay("好了……作为冒险骑士团的骑士，希望你能尽忠职守……")
+
+
+    else:
+        sm.sendSayOkay("检查你的背包是否足够")
 else:
-    sm.sendSayOkay("从现在开始，你就是风灵使者了。现在，我会分配给你一些能力……")
+    sm.sendSayOkay("请谨慎选择，这条路并不轻松（重新选择请放弃任务）")
+
+

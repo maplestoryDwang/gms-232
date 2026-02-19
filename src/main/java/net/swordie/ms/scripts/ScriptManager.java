@@ -230,6 +230,20 @@ public interface ScriptManager {
 
 	// Start of param methods ------------------------------------------------------------------------------------------
 
+
+	/**
+	 * 是否覆盖NPC让人说话
+	 */
+	void flipDialogue();
+
+	/**
+	 * 是否play作为说话者 + 反转
+	 */
+	void flipDialoguePlayerAsSpeaker();
+
+
+
+
 	/**
 	 * Sets the player as the speaker instead of an npc.
 	 */

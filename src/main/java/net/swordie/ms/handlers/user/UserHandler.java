@@ -131,7 +131,7 @@ public class UserHandler {
         if (status == 0) {
             int mapleGuideMapId = inPacket.decodeInt();
 
-            if (!EtcData.getGrowthHelp().containsKey(mapleGuideMapId) || EtcData.getGrowthHelp().get(mapleGuideMapId) > chr.getLevel()) {
+            if (EtcData.checkMapIdCanNotMove(chr, mapleGuideMapId)) {
                 chr.getOffenseManager().addOffense(String.format("Tried going to %d, requires lv %d. Current lv: %d",
                         mapleGuideMapId, EtcData.getGrowthHelp().get(mapleGuideMapId), chr.getLevel()));
                 return;

@@ -20,7 +20,7 @@ sm.setSpeakerID(1102101)
 sm.sendSay("...")
 
 sm.setSpeakerID(1102102)
-sm.sendSay("#h0#! Do not move from that spot! I will return shortly.")
+sm.sendSay("#h0#，你在这里稍等一下。我很快就会回来。不要一个人到处乱逛！")
 
 sm.startQuest(parentID)
 sm.completeQuest(parentID)

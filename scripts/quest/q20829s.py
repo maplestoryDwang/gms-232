@@ -8,4 +8,4 @@ if sm.sendAskYesNo("我是负责战斗训练的奇赞。你叫#h0#，对吧？\r
     sm.playSound("Aran/balloon", 100)
     sm.avatarOriented("UI/tutorial.img/4")
 else:
-    sm.sendNext("What, you too good to fight?!")
+    sm.sendNext("什麽，你很擅長戰鬥?!")

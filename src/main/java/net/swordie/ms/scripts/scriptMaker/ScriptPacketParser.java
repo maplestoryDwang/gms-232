@@ -215,7 +215,7 @@ public class ScriptPacketParser {
             log.error(String.format("Could not find quest %d.", questID));
             return;
         }
-        if (questID == 7707 || questID == 36102) {
+        if (QuestConstants.isSpamQuest(questID)) {
             return;
         }
         QuestInfo qi = QuestData.getQuestInfoById(questID);

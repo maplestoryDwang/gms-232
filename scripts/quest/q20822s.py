@@ -10,7 +10,6 @@ if not response:
 
 sm.removeEscapeButton()
 
-sm.sendSay("Your first stop is Kimu. If you get lost, hit the #bQ key#k and check your #rQuest Info#k. "
-"That's tip number one: always check your quest info before you go running your mouth!")
+sm.sendSay("奇姆负责骑士团的各种训练。你再去见见奇姆。\r\n啊，按#e#b快捷键Q#k#n，可以通过#e#r任务信息窗#k#n再次确认任务内容。希望你能记住。有什么不清楚的地方，一定要确认一下，这样才不会出问题。")
 
 sm.startQuestNoCheck(parentID)

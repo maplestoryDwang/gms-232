@@ -2,6 +2,6 @@
 KIMU = 1102004
 sm.setSpeakerID(KIMU)
 
-sm.sendSayOkay("You can use the portal on the left side of the map to move to the training area. Follow the signs! I'll be there.")
+sm.sendSayOkay("你可以用地图左边的传送门前往训练区。跟着指示牌走！我马上到。")
 
 sm.startQuest(parentID)

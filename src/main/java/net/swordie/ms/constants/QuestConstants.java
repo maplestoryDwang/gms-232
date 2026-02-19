@@ -404,6 +404,12 @@ public class QuestConstants {
 //        return scriptName.contains("63360") || scriptName.contains("7707") || scriptName.contains("36102");
     }
 
+    public static boolean isSpamQuest(int questId) {
+        return questId == 63360 ||  questId == 36102 ;
+//        return scriptName.contains("63360") || scriptName.contains("7707") || scriptName.contains("36102");
+    }
+
+
     public static boolean isSurpriseMissionQuest(int questId) {
         return questId > 49_000 && questId < 50_000;
     }

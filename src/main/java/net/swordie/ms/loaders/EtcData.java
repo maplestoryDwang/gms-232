@@ -1,6 +1,7 @@
 package net.swordie.ms.loaders;
 
 import net.swordie.ms.ServerConstants;
+import net.swordie.ms.client.character.Char;
 import net.swordie.ms.constants.JobConstants;
 import net.swordie.ms.enums.BaseStat;
 import net.swordie.ms.enums.ScrollStat;
@@ -20,10 +21,8 @@ import org.apache.logging.log4j.Logger;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Sjonnie
@@ -38,6 +37,9 @@ public class EtcData {
     private static Map<Integer, Integer> androidOffsets;
     private static final Map<Integer, CommodityItem> commodityItems = new HashMap<>();
     private static final Map<Integer, Integer> growthHelp = new HashMap<>();
+    private static final Map<Integer, List<GrowHelpCareerInfo>> growthHelpCareer = new HashMap<>();
+
+
     private static final Map<Integer, SetItemInfo> setItemInfos = new HashMap<>();
     // MapleUnion
     private static final Map<Integer, Map<Integer, List<Position>>> unionCharacterSizeInfo = new HashMap<>(); // job -> grid piece
@@ -49,6 +51,32 @@ public class EtcData {
     // OX Quiz
     // private static final List<QuestionAnswer> oxQuestionAnswers = new ArrayList<>();
 
+
+
+    private static void loadGrowthHelpCareerFromWZ() {
+        WzFile file = new WzFile(ServerConstants.WZ_DIR + "/Etc.wz");
+        WzObject<?, ?> root = file.getChild("GrowHelp.img");
+        // add career quest
+        WzObject<?, ?> defaultFieldCareer = root.getChildByPath("career");
+        for (WzObject<?, ?> careerNode : defaultFieldCareer) {
+            String name = careerNode.getName();
+            int nameInt = Integer.parseInt(name);
+            Map<String, ?> children = careerNode.getChildren();
+            Collection<?> values = children.values();
+            List<GrowHelpCareerInfo> growHelpCareerInfos = new ArrayList<>();
+            for (Object value : values) {
+                WzProperty<?> node = (WzProperty<?>) value;
+                if (node.getChildren()!= null) {
+                    int field = node.getChild("field", 0).getIntValue();
+                    int quest = node.getChild("quest", 0).getIntValue();
+                    growHelpCareerInfos.add(new GrowHelpCareerInfo(field, quest));
+
+                }
+            }
+            growthHelpCareer.put(nameInt, growHelpCareerInfos);
+
+        }
+    }
 
 
     private static void loadGrowthHelpFromWz() {
@@ -77,6 +105,7 @@ public class EtcData {
 
     @Loader(varName = "growthHelp")
     public static void loadGrowthHelp(File file, boolean exists) {
+        loadGrowthHelpCareerFromWZ();
         if (!exists) {
             loadGrowthHelpFromWz();
             saveGrowthHelp(file);
@@ -97,6 +126,11 @@ public class EtcData {
     public static Map<Integer, Integer> getGrowthHelp() {
         return growthHelp;
     }
+
+    public static Map<Integer, List<GrowHelpCareerInfo>> getGrowthHelpCareer() {
+        return growthHelpCareer;
+    }
+
 
     @Saver(varName = "commodityItems")
     private static void saveCommodityItems(File file) {
@@ -979,6 +1013,8 @@ public class EtcData {
 
     public static void main(String[] args) {
         generateDatFiles();
+        loadGrowthHelpCareerFromWZ();
+
     }
 
     public static CommodityItem getCommodityItem(int itemSn) {
@@ -987,5 +1023,24 @@ public class EtcData {
 
     public static SetItemInfo getSetItemInfoById(Integer id) {
         return setItemInfos.get(id);
+    }
+
+    public static boolean checkMapIdCanNotMove(Char chr, int mapleGuideMapId) {
+        // 不存在或者等级不够不给飞
+        boolean result = !EtcData.getGrowthHelp().containsKey(mapleGuideMapId) || EtcData.getGrowthHelp().get(mapleGuideMapId) > chr.getLevel();
+
+        // 不在career里面不给飞
+        Collection<List<GrowHelpCareerInfo>> values = growthHelpCareer.values();
+        for (List<GrowHelpCareerInfo> value : values) {
+            for (GrowHelpCareerInfo growHelpCareerInfo : value) {
+                if (growHelpCareerInfo.getFieldId() == mapleGuideMapId) {
+                    return false;
+                }
+
+            }
+
+        }
+        return result;
+
     }
 }
