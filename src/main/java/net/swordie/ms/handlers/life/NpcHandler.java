@@ -53,9 +53,9 @@ public class NpcHandler {
             c.close();
             return;
         }
-        int npcID = inPacket.decodeInt();
+        int objectId = inPacket.decodeInt();
         Position playerPos = inPacket.decodePosition();
-        Life life = chr.getField().getLifeByObjectID(npcID);
+        Life life = chr.getField().getLifeByObjectID(objectId);
         if (!(life instanceof Npc)) {
             chr.chatMessage("Could not find that npc.");
             return;
@@ -91,7 +91,7 @@ public class NpcHandler {
         }
         if (!chr.isTalkingToNpc()) {
             chr.setTalkingToNpc(true);
-            chr.getScriptManager().startScript(npc.getTemplateId(), npcID, script, ScriptType.Npc);
+            chr.getScriptManager().startScript(npc.getTemplateId(), objectId, script, ScriptType.Npc);
         } else {
             chr.chatMessage("You already talking to an npc. Use @check if this is not intended.");
         }

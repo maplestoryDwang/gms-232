@@ -240,13 +240,77 @@ public class ScriptManagerImpl implements ScriptManager {
         startScript(parentId, objId, scriptName, scriptType, null);
     }
 
-    // 入口4： objId 调用脚本 + 自定义
+    // 入口4： objId 调用脚本 + 自定义 reactor field等
     public void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, String key, Object value) {
         Map<String, Object> props = new HashMap<>();
         props.put(key, value);
         startScript(parentID, objID, scriptName, scriptType, props);
     }
 
+
+
+
+    public void stop(ScriptType scriptType) {
+        setSpeakerID(0);
+        if (getLastActiveScriptType() == scriptType) {
+            setLastActiveScriptType(ScriptType.None);
+        }
+        ScriptInfo si = getScriptInfoByType(scriptType);
+        if (si != null) {
+            si.reset();
+        }
+        getNpcScriptInfo().reset();
+        getMemory().clear();
+        getScripts().remove(scriptType);
+        if (getChr() != null) {
+            getChr().dispose();
+        }
+    }
+
+    // 二次进入入口
+    public void handleAction(NpcMessageType lastType, byte response, int answer) {
+        handleAction(getLastActiveScriptType(), lastType, response, answer, null);
+    }
+
+    public void handleAction(NpcMessageType lastType, byte response, String text) {
+        handleAction(getLastActiveScriptType(), lastType, response, 0, text);
+    }
+
+    public void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
+        switch (response) {
+            case -1:
+            case 5:
+                stop(scriptType);
+                break;
+            default:
+                ScriptMemory sm = getMemory();
+                if (lastType.isPrevPossible() && response == 0) {
+                    // back button pressed
+                    NpcScriptInfo prev = sm.getPreviousScriptInfo();
+                    getChr().write(ScriptMan.scriptMessage(prev, prev.getMessageType()));
+                } else {
+                    if (getMemory().isInMemory()) {
+                        NpcScriptInfo next = sm.getNextScriptInfo();
+                        getChr().write(ScriptMan.scriptMessage(next, next.getMessageType()));
+                    } else {
+                        ScriptInfo si = getScriptInfoByType(scriptType);
+                        if (isActive(scriptType)) {
+                            switch (lastType.getResponseType()) {
+                                case Response:
+                                    si.addResponse((int) response);
+                                    break;
+                                case Answer:
+                                    si.addResponse(answer);
+                                    break;
+                                case Text:
+                                    si.addResponse(text);
+                                    break;
+                            }
+                        }
+                    }
+                }
+        }
+    }
 
     // 最终进入这里执行脚本 不应该暴露给其他调用
     private synchronized void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
@@ -438,66 +502,7 @@ public class ScriptManagerImpl implements ScriptManager {
         }
     }
 
-    public void stop(ScriptType scriptType) {
-        setSpeakerID(0);
-        if (getLastActiveScriptType() == scriptType) {
-            setLastActiveScriptType(ScriptType.None);
-        }
-        ScriptInfo si = getScriptInfoByType(scriptType);
-        if (si != null) {
-            si.reset();
-        }
-        getNpcScriptInfo().reset();
-        getMemory().clear();
-        getScripts().remove(scriptType);
-        if (getChr() != null) {
-            getChr().dispose();
-        }
-    }
 
-    public void handleAction(NpcMessageType lastType, byte response, int answer) {
-        handleAction(getLastActiveScriptType(), lastType, response, answer, null);
-    }
-
-    public void handleAction(NpcMessageType lastType, byte response, String text) {
-        handleAction(getLastActiveScriptType(), lastType, response, 0, text);
-    }
-
-    public void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
-        switch (response) {
-            case -1:
-            case 5:
-                stop(scriptType);
-                break;
-            default:
-                ScriptMemory sm = getMemory();
-                if (lastType.isPrevPossible() && response == 0) {
-                    // back button pressed
-                    NpcScriptInfo prev = sm.getPreviousScriptInfo();
-                    getChr().write(ScriptMan.scriptMessage(prev, prev.getMessageType()));
-                } else {
-                    if (getMemory().isInMemory()) {
-                        NpcScriptInfo next = sm.getNextScriptInfo();
-                        getChr().write(ScriptMan.scriptMessage(next, next.getMessageType()));
-                    } else {
-                        ScriptInfo si = getScriptInfoByType(scriptType);
-                        if (isActive(scriptType)) {
-                            switch (lastType.getResponseType()) {
-                                case Response:
-                                    si.addResponse((int) response);
-                                    break;
-                                case Answer:
-                                    si.addResponse(answer);
-                                    break;
-                                case Text:
-                                    si.addResponse(text);
-                                    break;
-                            }
-                        }
-                    }
-                }
-        }
-    }
 
     public boolean isActive(ScriptType scriptType) {
         return scriptType != null && getScriptInfoByType(scriptType) != null && getScriptInfoByType(scriptType).isActive();

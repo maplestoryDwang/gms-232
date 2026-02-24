@@ -4,6 +4,9 @@ import net.swordie.ms.util.Util;
 
 /**
  * Created on 2/19/2018.
+ *
+ * Response 就是不需要特定返回值。 读到的action
+ * Answer 需要返回值。例如选择列表 读到的字段就是answer
  */
 public enum NpcMessageType {
     SayOk(0, false, false, ResponseType.Response),
