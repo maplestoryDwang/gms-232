@@ -128,7 +128,7 @@ public class ZakumInstanceHelper extends InstanceHelper {
         toggleFootholdsAndArmClaps(field, false);
 
         var sm = chr.getScriptManager();
-        sm.setInstanceTime(1800);
+        sm.setInstanceTime(1800, 0);
         sm.setDeathCount(20);
     }
 

@@ -666,9 +666,9 @@ public class JobSkillHandler {
     public static void handleLoadedDiceSelectionResult(Char chr, InPacket inPacket) {
         int diceSelection = inPacket.decodeInt();
         if (chr.getQuestManager().getQuestById(GameConstants.LOADED_DICE_SELECTION) == null) {
-            chr.getScriptManager().createQuestWithQRValue(GameConstants.LOADED_DICE_SELECTION, diceSelection + "");
+            chr.createQuestWithQRValue(GameConstants.LOADED_DICE_SELECTION, diceSelection + "");
         } else {
-            chr.getScriptManager().setQRValue(GameConstants.LOADED_DICE_SELECTION, diceSelection + "");
+            chr.setQRValue(GameConstants.LOADED_DICE_SELECTION, diceSelection + "");
         }
     }
 
@@ -965,7 +965,7 @@ public class JobSkillHandler {
             return;
         }
         if (quest == null) {
-            chr.getScriptManager().createQuestWithQRValue(questId, String.format("%s%d=1", pre, lockId));
+            chr.createQuestWithQRValue(questId, String.format("%s%d=1", pre, lockId));
         } else {
             if (quest.getProperty(String.format("%s%d", pre, lockId)) == null) { // doesn't have the skill in qrValue yet
                 quest.setProperty(String.format("%s%d", pre, lockId), "1");

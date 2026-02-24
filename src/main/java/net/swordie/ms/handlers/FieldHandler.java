@@ -28,7 +28,7 @@ public class FieldHandler {
     public static void leaveFieldButtonPressed(Char chr, InPacket inPacket){
         if(chr == null) return; //logged out
         if(FieldConstants.isGooExplorationField(chr.getFieldID())){
-            chr.getScriptManager().warpInstanceOut(867155800);
+            chr.getScriptManager().warpInstanceOut(867155800,0);
         }
     }
 }

@@ -150,11 +150,11 @@ public class QuestHandler {
         ScriptManagerImpl sm = chr.getScriptManager();
         long actualMesoCost;
         int count = 0;
-        if (sm.getQRValue(QuestConstants.MEDAL_REISSUE_QUEST).contains("count=")) {
-            String countString = sm.getQRValue(QuestConstants.MEDAL_REISSUE_QUEST).replace("count=", "");
+        if (chr.getQRValue(QuestConstants.MEDAL_REISSUE_QUEST).contains("count=")) {
+            String countString = chr.getQRValue(QuestConstants.MEDAL_REISSUE_QUEST).replace("count=", "");
             count = Integer.parseInt(countString);
         } else {
-            sm.createQuestWithQRValue(QuestConstants.MEDAL_REISSUE_QUEST, "");
+            chr.createQuestWithQRValue(QuestConstants.MEDAL_REISSUE_QUEST, "");
         }
         switch (count) {
             case 0:
@@ -176,7 +176,7 @@ public class QuestHandler {
         if (!ItemConstants.isMedal(medalItemId) || QuestData.getQuestInfoById(questId).getMedalItemId() != medalItemId) {
             chr.getOffenseManager().addOffense(String.format("Character %d tried to reissue an item {%d} that isn't a medal or tried to reissue a medal from a quest {%d} that doesn't give the given medal", chr.getId(), medalItemId, questId));
 
-        } else if (!sm.hasQuestCompleted(questId)) {
+        } else if (!chr.hasQuestCompleted(questId)) {
             chr.getOffenseManager().addOffense(String.format("Character %d tried to reissue a medal from a quest {%d} which they have not completed.", chr.getId(), questId));
 
         } else if (ItemData.getItemDeepCopy(medalItemId) == null || QuestData.getQuestInfoById(questId) == null) {
@@ -193,7 +193,7 @@ public class QuestHandler {
 
         } else {
             count++;
-            sm.setQRValue(QuestConstants.MEDAL_REISSUE_QUEST, "count=" + count);
+            chr.setQRValue(QuestConstants.MEDAL_REISSUE_QUEST, "count=" + count);
             chr.deductMoney(actualMesoCost);
             chr.addItemToInventory(QuestData.getQuestInfoById(questId).getMedalItemId(), 1);
             chr.write(UserLocal.medalReissueResult(MedalReissueResultType.Success, medalItemId));

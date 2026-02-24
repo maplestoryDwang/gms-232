@@ -180,9 +180,9 @@ public class Pirate extends Beginner {
                 int diceThrow3 = 1;
                 if (chr.hasSkill(Job.LOADED_DICE)) {
                     if (chr.getQuestManager().getQuestById(GameConstants.LOADED_DICE_SELECTION) == null) {
-                        chr.getScriptManager().createQuestWithQRValue(GameConstants.LOADED_DICE_SELECTION, "1");
+                        chr.createQuestWithQRValue(GameConstants.LOADED_DICE_SELECTION, "1");
                     }
-                    diceThrow3 = Integer.parseInt(chr.getScriptManager().getQRValue(GameConstants.LOADED_DICE_SELECTION));
+                    diceThrow3 = Integer.parseInt(chr.getQRValue(GameConstants.LOADED_DICE_SELECTION));
 
                     chr.write(UserPacket.effect(Effect.skillAffectedSelect(LOADED_DICE, chr.getSkillLevel(LOADED_DICE), -1, 1, false)));
                     chr.write(UserPacket.effect(Effect.skillAffectedSelect(LOADED_DICE, chr.getSkillLevel(LOADED_DICE), diceThrow3, -1, false)));

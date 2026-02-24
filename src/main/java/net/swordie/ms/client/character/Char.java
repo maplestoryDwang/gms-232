@@ -754,6 +754,112 @@ public class Char {
         this.questManager = questManager;
     }
 
+    /*
+        以下为重复方法。目的是脚本作用域就在脚本里面，而不是在脚本外面,不知道为什么会脚本里面之前调用到外面导致封装性失效
+     */
+
+    public void createQuestWithQRValue(int questId, String qrValue, boolean ex) {
+        createQuestWithQRValue(this, questId, qrValue, ex);
+    }
+
+    public void createQuestWithQRValue(int questId, String qrValue) {
+        createQuestWithQRValue(this, questId, qrValue, true);
+    }
+
+    public void createQuestWithQRValue(Char chr, int questId, String qrValue) {
+        createQuestWithQRValue(chr, questId, qrValue, true);
+    }
+
+    public void createQuestWithQRValue(Char character, int questId, String qrValue, boolean ex) {
+        QuestManager qm = character.getQuestManager();
+        Quest quest = qm.getQuestById(questId);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questId);
+            quest.setQrValue(qrValue);
+            qm.addCustomQuest(quest);
+        }
+        quest.setQrValue(qrValue);
+        updateQRValue(questId, ex);
+    }
+
+
+    public void setQRValue(int questId, String qrValue) {
+        setQRValue(questId, qrValue, true);
+    }
+
+    public void setQRValue(int questId, String key, String value) {
+        QuestManager qm = getQuestManager();
+        Quest quest = qm.getQuestById(questId);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questId);
+            qm.addQuest(quest);
+        }
+        quest.setProperty(key, value);
+        write(WvsContext.message(MessagePacket.questRecordExMessage(quest)));
+    }
+
+    public void setQRValue(int questId, String qrValue, boolean ex) {
+        setQRValue(this, questId, qrValue, ex);
+    }
+
+    public void setQRValue(Char chr, int questId, String qrValue, boolean ex) {
+        Quest quest = chr.getQuestManager().getQuestById(questId);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questId);
+            chr.getQuestManager().addQuest(quest);
+        }
+        quest.setQrValue(qrValue);
+        updateQRValue(questId, ex);
+    }
+
+
+    public void updateQRValue(int questId, boolean ex) {
+        Quest quest = getQuestManager().getQuestById(questId);
+        if (quest == null) {
+            log.error(String.format("The user does not have the quest %d.", questId));
+            return;
+        }
+        if (ex) {
+            write(WvsContext.message(MessagePacket.questRecordMessage(quest)));
+            write(WvsContext.message(MessagePacket.questRecordExMessage(quest)));
+        } else {
+            write(WvsContext.message(MessagePacket.questRecordMessage(quest)));
+        }
+    }
+
+    public String getQRValue(int questId) {
+        return getQRValue(this, questId);
+    }
+
+    public String getQRValue(int questId, String questKey) {
+        Quest quest = getQuestManager().getQuestById(questId);
+        if (quest == null) {
+            return "";
+        }
+        return quest.getProperty(questKey);
+    }
+
+    public String getQRValue(Char chr, int questId) {
+        Quest quest = chr.getQuestManager().getQuestById(questId);
+        if (quest == null) {
+            return "";
+        }
+        return quest.getQRValue();
+    }
+
+
+    public boolean hasQuestCompleted(int id) {
+        return getQuestManager().hasQuestCompleted(id);
+    }
+
+    public void startQuestNoCheck(int id) {
+        QuestManager qm = getQuestManager();
+        qm.addQuest(QuestData.createQuestFromId(id));
+        chatMessage(String.format("Quest %d started by startQuestNoCheck", id));
+    }
+
+
+
     public List<ItemPot> getItemPots() {
         return null;
     }

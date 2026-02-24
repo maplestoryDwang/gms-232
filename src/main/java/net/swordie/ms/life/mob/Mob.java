@@ -400,7 +400,7 @@ public class Mob extends Life {
             }
             die(true);
             if (getTemplateId() == 9300811 && damageDealer.hasQuestInProgress(38022)) {
-                damageDealer.getScriptManager().setQRValue(38022, "clear", false);
+                damageDealer.setQRValue(38022, "clear", false);
             }
             if (mobInfo.isBoss() && mobInfo.getHpTagColor() != 0) {
                 getField().broadcastPacket(FieldPacket.fieldEffect(FieldEffect.mobHPTagFieldEffect(this)));

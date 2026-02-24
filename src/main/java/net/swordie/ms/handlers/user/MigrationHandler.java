@@ -197,7 +197,7 @@ public class MigrationHandler {
         c.requestResolution();
 
         if (chr.getQuestManager().getQuestById(QuestConstants.POWER_CRYSTAL_QUEST) == null) {
-            chr.getScriptManager().startQuestNoCheck(QuestConstants.POWER_CRYSTAL_QUEST);
+            chr.startQuestNoCheck(QuestConstants.POWER_CRYSTAL_QUEST);
         }
         chr.getQuestManager().getQuestById(QuestConstants.POWER_CRYSTAL_QUEST).setQrValue("count=" + chr.getAccount().getRemainingEntries(DailyEntry.PowerCrystal) +";max=" + QuestConstants.POWER_CRYSTAL_WEEKLY_COUNT +";type=2");
         chr.write(WvsContext.message(MessagePacket.questRecordExMessage(chr.getQuestManager().getQuestById(QuestConstants.POWER_CRYSTAL_QUEST))));

@@ -204,7 +204,7 @@ public class ScriptHandler {
         short tab = inPacket.decodeShort();
         HashMap<Item, Integer> itemMap = new HashMap<>();
 
-        if (chr.getScriptManager().getQRValue(QuestConstants.SILENT_CRUSADE_WANTED_TAB_1 + tab).contains("r=1")) {
+        if (chr.getQRValue(QuestConstants.SILENT_CRUSADE_WANTED_TAB_1 + tab).contains("r=1")) {
             chr.getOffenseManager().addOffense(String.format("Character %d tried to complete Silent Crusade Chapter %d, whilst already having claimed the reward.", chr.getId(), tab + 1));
             chr.dispose();
             return;
@@ -238,7 +238,7 @@ public class ScriptHandler {
             return;
         }
 
-        chr.getScriptManager().setQRValue(QuestConstants.SILENT_CRUSADE_WANTED_TAB_1 + tab, "r=1");
+        chr.setQRValue(QuestConstants.SILENT_CRUSADE_WANTED_TAB_1 + tab, "r=1");
         for (Map.Entry<Item, Integer> entry : itemMap.entrySet()) {
             Item item = entry.getKey();
             item.setQuantity(entry.getValue());
@@ -300,7 +300,7 @@ public class ScriptHandler {
         switch (us) {
             case UnionRaidStart:
                 //chr.getScriptManager().startScript(9010106, "unionRaid_IN", ScriptType.Npc);
-                chr.getScriptManager().createQuestWithQRValue(QuestConstants.UNION_MAP, "map=" + chr.getFieldID());
+                chr.createQuestWithQRValue(QuestConstants.UNION_MAP, "map=" + chr.getFieldID());
                 if (chr.getUnionRaid() != null) {
                     chr.getUnionRaid().enter(chr);
                 }

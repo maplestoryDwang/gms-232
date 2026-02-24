@@ -2275,7 +2275,7 @@ public class AdminCommands {
                 chr.chatMessage("Started quest " + args[1]);
             } else {
                 chr.chatMessage("Could not find quest with id " + args[1] + ", but still adding it.");
-                chr.getScriptManager().startQuestNoCheck(Integer.parseInt(args[1]));
+                chr.startQuestNoCheck(Integer.parseInt(args[1]));
             }
         }
     }

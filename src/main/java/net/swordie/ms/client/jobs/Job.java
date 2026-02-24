@@ -870,9 +870,9 @@ public abstract class Job {
 
                 case LUCKY_DICE:
                     if (chr.getQuestManager().getQuestById(GameConstants.LOADED_DICE_SELECTION) == null) {
-                        chr.getScriptManager().createQuestWithQRValue(GameConstants.LOADED_DICE_SELECTION, "1");
+                        chr.createQuestWithQRValue(GameConstants.LOADED_DICE_SELECTION, "1");
                     }
-                    int diceThrow1 = Integer.parseInt(chr.getScriptManager().getQRValue(GameConstants.LOADED_DICE_SELECTION));
+                    int diceThrow1 = Integer.parseInt(chr.getQRValue(GameConstants.LOADED_DICE_SELECTION));
 
                     chr.write(UserPacket.effect(Effect.skillAffectedSelect(skillId, slv, diceThrow1, false)));
                     chr.getField().broadcastPacket(UserRemote.effect(chr.getId(), Effect.skillAffectedSelect(skillId, slv, diceThrow1, false)));
