@@ -29,7 +29,10 @@ import net.swordie.orm.dao.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.script.ScriptEngine;
 import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 /**
@@ -89,6 +92,16 @@ public class Account {
     private List<SoulCollectionEntry> soulCollectionEntries;
 
     private AccountDailyEntries dailyEntries;
+
+    /**
+     * 脚本引擎
+     */
+    private final Map<String, ScriptEngine> scriptEngineMap = new HashMap();
+    /**
+     * NPC锁
+     */
+    private final Lock npcLock = new ReentrantLock();
+
 
     public Account(User user, int worldId) {
         this.user = user;
@@ -576,5 +589,26 @@ public class Account {
 
     public void setSoulCollectionEntries(List<SoulCollectionEntry> soulCollectionEntries) {
         this.soulCollectionEntries = soulCollectionEntries;
+    }
+
+    /**
+     * 当前存在的脚本引擎
+     * @param path
+     * @return
+     */
+    public ScriptEngine getScriptEngine(String path) {
+        return this.scriptEngineMap.get(path);
+    }
+
+    public void removeScriptEngine(String path) {
+        this.scriptEngineMap.remove(path);
+    }
+
+    public void setScriptEngine(String path, ScriptEngine scriptEngine) {
+        this.scriptEngineMap.put(path, scriptEngine);
+    }
+
+    public Lock getNpcLock() {
+        return npcLock;
     }
 }

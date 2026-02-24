@@ -84,15 +84,11 @@ import org.python.core.PyDictionary;
 import org.python.core.PyTuple;
 
 import javax.script.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -218,44 +214,48 @@ public class ScriptManagerImpl implements ScriptManager {
         return getScriptInfoByType(scriptType) != null ? getScriptInfoByType(scriptType).getObjectID() : 0;
     }
 
-    public void startScript(int parentID, ScriptType scriptType) {
-        startScript(parentID, 0, scriptType);
-    }
+    // 脚本也没有直接调用的
+//    public void startScript(int parentID, ScriptType scriptType) {
+//        startScript(parentID, 0, scriptType);
+//    }
 
+    // 入口1：脚本名 最主要的入口，点击NPC的任务从这里进
     public void startScript(int parentID, String scriptName, ScriptType scriptType) {
         startScript(parentID, 0, scriptName, scriptType, null);
     }
 
-    public void startScript(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
+    // 入口2：脚本名 + 自定义绑定关系
+    // 例如 地图绑定mob
+    public void startScriptCustomBindings(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
         startScript(parentID, 0, scriptName, scriptType, customBindings);
     }
 
+    // 脚本有使用
     public void startScript(int parentID, int objID, ScriptType scriptType) {
         startScript(parentID, objID, parentID + ".py", scriptType, null);
     }
 
+    // 入口3：地图上的 NPC REACTOR开始脚本从这里进
     public void startScript(int parentId, int objId, String scriptName, ScriptType scriptType) {
-        if (objId != 1000011) {
-            startScript(parentId, objId, scriptName, scriptType, null);
-        } else {
-            startScriptJs(parentId, objId, scriptName, scriptType, null);
-        }
-
+        startScript(parentId, objId, scriptName, scriptType, null);
     }
 
+    // 入口4： objId 调用脚本 + 自定义
     public void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, String key, Object value) {
         Map<String, Object> props = new HashMap<>();
         props.put(key, value);
         startScript(parentID, objID, scriptName, scriptType, props);
     }
 
-    public synchronized void startScriptJs(int parentID, int objID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
+
+    // 最终进入这里执行脚本 不应该暴露给其他调用
+    private synchronized void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
         if (scriptType == ScriptType.None || (scriptType == ScriptType.Quest && !isQuestScriptAllowed())) {
             log.debug(String.format("Did not allow script %s to go through (type %s)  |  Active Script Type: %s", scriptName, scriptType, getLastActiveScriptType()));
             return;
         }
 
-        var activeScriptType = getScriptInfoByType(scriptType);
+        ScriptInfo activeScriptType = getScriptInfoByType(scriptType);
 
         if (isActive(scriptType) && (scriptType != ScriptType.Field && scriptType != ScriptType.FirstEnterField)) { // because Field Scripts don't get disposed.
             if (activeScriptType != null && parentID != Shade.LIVER) { // Liver to prevent chat spam
@@ -284,152 +284,7 @@ public class ScriptManagerImpl implements ScriptManager {
             log.info(String.format("Starting script [%s], scriptType [%s].", scriptName, scriptType));
         }
 
-        resetParam();
-
-        Bindings bindings = getBindingsByType(scriptType);
-        if (bindings == null) {
-            bindings = scriptEngine.createBindings();
-            bindings.put("sm", this);
-            bindings.put("chr", getChr());
-        }
-        bindings.put("field", getChr() == null ? field : getField());
-        bindings.put("parentID", parentID);
-        bindings.put("scriptType", scriptType);
-        bindings.put("objectID", objID);
-
-        if (customBindings != null) {
-            bindings.putAll(customBindings);
-        }
-
-        if (scriptType == ScriptType.Reactor) {
-            bindings.put("reactor", getField().getLifeByObjectID(objID));
-        }
-
-        if (scriptType == ScriptType.Quest) {
-            bindings.put("startQuest",
-                    scriptName.charAt(scriptName.length() - 1) == QUEST_START_SCRIPT_END_TAG.charAt(0)); // biggest hack eu
-        }
-
-        ScriptInfo scriptInfo = new ScriptInfo(scriptType, bindings, parentID, scriptName);
-        scriptInfo.setActive(true);
-        if (scriptType == ScriptType.Npc) {
-            getNpcScriptInfo().setTemplateID(parentID);
-        }
-        scriptInfo.setObjectID(objID);
-        getScripts().put(scriptType, scriptInfo);
-        SCRIPT_EXECUTOR_SERVICE.execute(() -> startScriptByJs(scriptName, scriptType)); // makes the script execute async
-    }
-
-    private void startScriptByJs(String name, ScriptType scriptType) {
-        String dir = "E:\\oldmxd\\gms232\\swordie-232\\scripts\\dwang\\1002101.js";
-        ScriptInfo si = getScriptInfoByType(scriptType);
-        if (si == null) {
-            return;
-        }
-
-        getScriptInfoByType(scriptType).setFileDir(dir);
-        StringBuilder script = new StringBuilder();
-
-
-        ScriptEngine se = jsScriptEngine;
-        Bindings bindings = getBindingsByType(scriptType);
-        si.setInvocable((Invocable) se);
-        if (!scriptCache.containsKey(dir)) {
-            try {
-                fileReadLock.lock();
-                script.append(Util.readFile(dir, StandardCharsets.UTF_8));
-            } catch (IOException e) {
-                e.printStackTrace();
-                lockInGameUI(false); // so players don't get stuck if a script fails
-            } finally {
-                fileReadLock.unlock();
-            }
-        }
-        try {
-
-            jsScriptEngine.setBindings(bindings, ScriptContext.ENGINE_SCOPE);
-            jsScriptEngine.eval(script.toString());
-
-
-            // 4. 调用脚本函数
-            Invocable inv = (Invocable) jsScriptEngine;
-
-            // 👉 这一步等价于 NPC 对话开始
-            inv.invokeFunction("start");
-
-
-        } catch (Exception e) {
-            if (!e.getMessage().contains(INTENDED_NPE_MSG) && Server.DEBUG) {
-                log.error(String.format("Unable to compile script %s!", name));
-                log.error("script path:{}", dir);
-                log.error("script:\n{}", script.toString());
-
-                e.printStackTrace();
-                if (getChr() != null) {
-                    getChr().chatMessage(Mob, String.format("Unable to compile script %s!", name));
-                    getChr().chatMessage(Mob, e.getMessage());
-                }
-                lockInGameUI(false); // so players don't get stuck if a script fails
-            }
-        } finally {
-            if (si.isActive() && name.equals(si.getScriptName()) &&
-                    ((scriptType != ScriptType.Field && scriptType != ScriptType.FirstEnterField)
-                            || (getChr() != null && getChr().getFieldID() == si.getParentID()))) {
-                // gracefully stop script if it's still active with the same script info (scriptName, or scriptName +
-                // current chr fieldID == fieldscript's fieldID if scriptType == Field).
-                // This makes it so field scripts won't cancel new field scripts when having a warp() in them.
-                stop(scriptType);
-            }
-            FieldTransferInfo fti = getFieldTransferInfo();
-            if (!fti.isInit()) {
-                if (fti.isField()) {
-                    fti.warp(field);
-                } else {
-                    fti.warp(getChr());
-                }
-            }
-        }
-    }
-
-
-
-
-
-    public synchronized void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
-        if (scriptType == ScriptType.None || (scriptType == ScriptType.Quest && !isQuestScriptAllowed())) {
-            log.debug(String.format("Did not allow script %s to go through (type %s)  |  Active Script Type: %s", scriptName, scriptType, getLastActiveScriptType()));
-            return;
-        }
-
-        var activeScriptType = getScriptInfoByType(scriptType);
-
-        if (isActive(scriptType) && (scriptType != ScriptType.Field && scriptType != ScriptType.FirstEnterField)) { // because Field Scripts don't get disposed.
-            if (activeScriptType != null && parentID != Shade.LIVER) { // Liver to prevent chat spam
-                getChr().chatMessage(String.format("Already running a script of the same type (%s, id %d)! " +
-                                "Type @check if this is not intended.",
-                        scriptType.getDir(),
-                        activeScriptType.getParentID()));
-                log.debug(String.format("Could not run script %s because one of the same type is already running (%s, type %s)",
-                        scriptName,
-                        activeScriptType.getScriptName(),
-                        scriptType));
-            } else if (activeScriptType == null) {
-                getChr().chatMessage(String.format("Already running a script of the same type (%s)! Type @check if this" +
-                                " is not intended.",
-                        scriptType.getDir()));
-                log.debug(String.format("Could not run script %s because one of the same type is already running (type %s)",
-                        scriptName,
-                        scriptType));
-            }
-            return;
-        }
-        setLastActiveScriptType(scriptType);
-
-        if (!isField()) {
-            getChr().chatMessage(Mob, String.format("Starting script [%s] , scriptType [%s].", scriptName, scriptType));
-            log.info(String.format("Starting script [%s], scriptType [%s].", scriptName, scriptType));
-        }
-
+        // 重新设置对话参数
         resetParam();
 
         Bindings bindings = getBindingsByType(scriptType);
@@ -690,7 +545,11 @@ public class ScriptManagerImpl implements ScriptManager {
         return fieldTransferInfo;
     }
 
-    // Start of the sends/asks -----------------------------------------------------------------------------------------
+
+
+
+
+    //  the sends/asks -----------------------------------------------------------------------------------------
 
     @Override
     public int sendSay(String text) {
@@ -877,7 +736,7 @@ public class ScriptManagerImpl implements ScriptManager {
         return sendGeneralSay("", AskSelectMenu);
     }
 
-    // Start of param methods ------------------------------------------------------------------------------------------
+    //  param methods ------------------------------------------------------------------------------------------
 
     public void setParam(int param) {
         getNpcScriptInfo().setParam((short) param);

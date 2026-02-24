@@ -239,5 +239,11 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- commons-lang3-3.11.jar -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
     </dependencies>
 </project>

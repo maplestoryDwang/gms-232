@@ -232,6 +232,11 @@ public interface ScriptManager {
 
 
 	/**
+	 * 取消人物覆盖NPC说话
+	 */
+	void cancelFlipDialogue();
+
+	/**
 	 * 是否覆盖NPC让人说话
 	 */
 	void flipDialogue();
@@ -1411,6 +1416,8 @@ public interface ScriptManager {
 	 *
 	 */
 	void resetCamera();
+
+	void setCameraOnNpc(int npcTemplateId);
 
 	/**
 	 * sends a delay to the client, after the delay it'll send a response with which you can run action function in the script

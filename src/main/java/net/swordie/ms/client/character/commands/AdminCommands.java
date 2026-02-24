@@ -30,7 +30,6 @@ import net.swordie.ms.client.party.PartyResult;
 import net.swordie.ms.client.rankings.RankingModule;
 import net.swordie.ms.client.surprisemission.SurpriseMissionModule;
 import net.swordie.ms.connection.OutPacket;
-import net.swordie.ms.connection.db.DatabaseManager;
 import net.swordie.ms.connection.packet.*;
 import net.swordie.ms.connection.packet.field.FieldPacket;
 import net.swordie.ms.connection.packet.field.IdkBossFieldPacket;
@@ -2894,7 +2893,7 @@ public class AdminCommands {
             Map<String, Object> customBindings = new HashMap<String, Object>();
             customBindings.put("chr", targetChr);
             customBindings.put("acc", targetAccount);
-            chr.getScriptManager().startScript(2007, "adminNpc", ScriptType.Npc, customBindings);
+            chr.getScriptManager().startScriptCustomBindings(2007, "adminNpc", ScriptType.Npc, customBindings);
         }
     }
 

@@ -41,7 +41,6 @@ import net.swordie.ms.util.Position;
 import net.swordie.ms.util.Rect;
 import net.swordie.ms.util.Util;
 import net.swordie.ms.world.Channel;
-import net.swordie.ms.world.field.fieldeffect.FieldEffect;
 import net.swordie.ms.world.field.fieldevents.FieldEvent;
 import net.swordie.ms.world.field.fieldownership.FieldOwnershipManager;
 import net.swordie.ms.world.field.instance.Instance;
@@ -137,7 +136,7 @@ public class Field {
         }
         if (script != null && !"".equalsIgnoreCase(script)) {
             log.debug(String.format("Starting field script %s.", script));
-            getScriptManager().startScript(getId(), script, ScriptType.Field, props);
+            getScriptManager().startScriptCustomBindings(getId(), script, ScriptType.Field, props);
         }
     }
 
