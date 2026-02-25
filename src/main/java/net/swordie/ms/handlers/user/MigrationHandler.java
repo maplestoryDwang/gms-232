@@ -25,7 +25,6 @@ import net.swordie.ms.handlers.header.InHeader;
 import net.swordie.ms.life.npc.Npc;
 import net.swordie.ms.loaders.NpcData;
 import net.swordie.ms.scripts.ScriptType;
-import net.swordie.ms.util.container.Tuple;
 import net.swordie.ms.world.TransferInfo;
 import net.swordie.ms.world.field.Field;
 import net.swordie.ms.world.field.Portal;
@@ -245,7 +244,7 @@ public class MigrationHandler {
                 return;
             }
             if (portal.getScript() != null && !portal.getScript().equals("")) {
-                chr.getScriptManager().startScript(portal.getId(), portal.getScript(), ScriptType.Portal);
+                chr.getScriptManager().startScriptByScriptNameAndType(portal.getId(), portal.getScript(), ScriptType.Portal);
             } else {
                 Field toField = chr.getOrCreateFieldByCurrentInstanceType(portal.getTargetMapId());
                 if (toField == null) {
@@ -330,7 +329,7 @@ public class MigrationHandler {
         if (portal != null) {
             portalID = (byte) portal.getId();
             script = "".equals(portal.getScript()) ? portalName : portal.getScript();
-            chr.getScriptManager().startScript(portalID, script, ScriptType.Portal);
+            chr.getScriptManager().startScriptByScriptNameAndType(portalID, script, ScriptType.Portal);
         } else {
             chr.chatMessage("Could not find that portal.");
         }

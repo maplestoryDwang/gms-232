@@ -98,7 +98,7 @@ public class QuestHandler {
                 if (scriptName == null || scriptName.equalsIgnoreCase("")) {
                     scriptName = String.format("%d%s", questID, ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG);
                 }
-                chr.getScriptManager().startScript(questID, scriptName, ScriptType.Quest);
+                chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest);
                 break;
             case QuestReq_CompleteScript:
                 scriptName = qi.getEndScript();
@@ -109,7 +109,7 @@ public class QuestHandler {
                 if (scriptName == null || scriptName.equalsIgnoreCase("")) {
                     scriptName = String.format("%d%s", questID, ScriptManagerImpl.QUEST_COMPLETE_SCRIPT_END_TAG);
                 }
-                chr.getScriptManager().startScript(questID, scriptName, ScriptType.Quest);
+                chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest);
                 break;
             case QuestReq_LaterStep:
                 if (qi.getTransferFields() != null && qi.getTransferFields().size() > 0) {
@@ -134,7 +134,7 @@ public class QuestHandler {
                 if (scriptName == null || scriptName.equalsIgnoreCase("")) {
                     scriptName = String.format("%d%s", questID, ScriptManagerImpl.QUEST_RESIGN_SCRIPT_END_TAG);
                 }
-                chr.getScriptManager().startScript(questID, scriptName, ScriptType.Quest);
+                chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest);
                 chr.getQuestManager().removeQuest(questID);
                 break;
         }

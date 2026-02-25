@@ -336,6 +336,8 @@ public class NpcScriptInfo {
 		FlipBoxChatNoEscape(0x29),
 		FlipBoxChatAsPlayer(0x30),
 		FlipBoxChatAsPlayerNoEscape(0x31),
+		特殊文字不跟随UI(64), //新增
+		加高底部对话框(128)//新增
 		;
 
 		private int val;

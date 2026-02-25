@@ -2859,7 +2859,7 @@ public class AdminCommands {
                 chr.chatMessage(String.format("Unknown script type %s, known types: %s", args[1], res));
                 return;
             }
-            chr.getScriptManager().startScript(0, args[2], st);
+            chr.getScriptManager().startScriptByScriptNameAndType(0, args[2], st);
         }
     }
 

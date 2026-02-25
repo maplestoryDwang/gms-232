@@ -5,9 +5,15 @@ import dwang.script.js.action.AbstractPlayerInteraction;
 import dwang.script.js.manager.extend.NPCScriptManager;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.connection.packet.ScriptMan;
+import net.swordie.ms.life.npc.NpcMessageType;
+import net.swordie.ms.life.npc.NpcScriptInfo;
 import net.swordie.ms.scripts.ScriptType;
 
 import javax.script.Invocable;
+
+import static net.swordie.ms.life.npc.NpcMessageType.AskMenu;
+import static net.swordie.ms.life.npc.NpcMessageType.AskYesNo;
 
 
 /**
@@ -56,4 +62,19 @@ public class NPCConversationInteraction extends AbstractPlayerInteraction {
    public AbstractPlayerInteraction getAPI() {
       return this;
    }
+
+
+   public void askYesNo(String text) {
+      sendGeneralSay(text, AskYesNo);
+   }
+
+   private void sendGeneralSay(String text, NpcMessageType nmt) throws NullPointerException {
+      NpcScriptInfo npcScriptInfo = new NpcScriptInfo();
+      npcScriptInfo.setText(text);
+      npcScriptInfo.setMessageType(nmt);
+
+      getPlayer().write(ScriptMan.scriptMessage(npcScriptInfo, nmt));
+
+   }
+
 }

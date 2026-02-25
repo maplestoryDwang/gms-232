@@ -16,7 +16,7 @@ import java.util.concurrent.ScheduledFuture;
  */
 public interface ScriptManagerFun {
 
-    void startScript(int parentID, String scriptName, ScriptType scriptType);
+    void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType);
 
     void startScriptCustomBindings(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings);
 
@@ -30,14 +30,11 @@ public interface ScriptManagerFun {
 
     void handleAction(NpcMessageType lastType, byte response, int answer);
 
-    void handleAction(NpcMessageType lastType, byte response, String text);
-
-    void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text);
+    void handleActionText(NpcMessageType lastType, byte response, String text);
 
 
     NpcScriptInfo getNpcScriptInfo();
 
-    void dispose();
 
     void dispose(boolean stop);
 
@@ -72,8 +69,6 @@ public interface ScriptManagerFun {
     void teleportToPortal(int portalId);
 
     void setActionBar(boolean show, ActionBarType type);
-
-    void giveNewSecondary(int id);
 
     void setInstanceTime(int seconds, int forcedReturnFieldId);
 

@@ -111,6 +111,21 @@ public enum NpcMessageType {
         return Util.findWithPred(values(), v -> v.getVal() == val);
     }
 
+    public static boolean isSayType(NpcMessageType nmt) {
+        return nmt == NpcMessageType.Say
+                || nmt == NpcMessageType.SayNext
+                || nmt == NpcMessageType.SayPrev
+                || nmt == NpcMessageType.SayOk;
+    }
+
+    public static boolean isSelectionType(NpcMessageType nmt) {
+        return nmt == NpcMessageType.AskMenu
+                || nmt == NpcMessageType.AskNumber
+                || nmt == NpcMessageType.AskAvatar
+                || nmt == NpcMessageType.AskAvatarZero
+                || nmt == NpcMessageType.AskSlideMenu;
+    }
+
     public byte getVal() {
         return val;
     }

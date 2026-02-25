@@ -117,7 +117,7 @@ public class ZeroHandler {
         q.setProperty("number", rand);
         chr.write(WvsContext.message(MessagePacket.questRecordMessage(q)));
 
-        chr.getScriptManager().startScript(0, "ego_equip_talk_req", ScriptType.Npc);
+        chr.getScriptManager().startScriptByScriptNameAndType(0, "ego_equip_talk_req", ScriptType.Npc);
     }
 
     @Handler(op = InHeader.EGO_EQUIP_CREATE_UPGRADE_ITEM_COST_REQUEST)

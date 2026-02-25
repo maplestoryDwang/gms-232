@@ -71,7 +71,7 @@ public abstract class AbstractScriptManager {
             var8.put("rm", interaction);
             var8.put("pi", interaction);
             var8.put("qm", interaction);
-            invocable.invokeFunction(funName, param);
+                invocable.invokeFunction(funName, param);
             return invocable;
         } catch (Throwable var9) {
             this.pringLog(client, var9, scriptType, scriptDesc);

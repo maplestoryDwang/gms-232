@@ -127,7 +127,7 @@ public class NpcHandler {
                     chr.write(WvsContext.message(MessagePacket.questRecordExMessage(quest)));
                 }
             } else {
-                chr.getScriptManager().startScript(questID, scriptName, ScriptType.Quest);
+                chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest);
             }
         }
     }

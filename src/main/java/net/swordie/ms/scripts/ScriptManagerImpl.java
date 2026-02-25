@@ -1,111 +1,18 @@
 package net.swordie.ms.scripts;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import dwang.script.ScriptManagerFun;
+import dwang.script.js.JsScriptManagerImp;
 import dwang.script.python.PyScriptManagerImp;
-import net.swordie.ms.Server;
-import net.swordie.ms.ServerConstants;
-import net.swordie.ms.client.AccountBossCooldown;
-import net.swordie.ms.client.Client;
-import net.swordie.ms.client.alliance.Alliance;
-import net.swordie.ms.client.alliance.AllianceResult;
 import net.swordie.ms.client.character.Char;
-import net.swordie.ms.client.character.MonsterPark;
-import net.swordie.ms.client.character.avatar.AvatarLook;
-import net.swordie.ms.client.character.commerce.voyage.Voyage;
-import net.swordie.ms.client.character.items.*;
-import net.swordie.ms.client.character.modules.InventoryModule;
-import net.swordie.ms.client.character.quest.Quest;
-import net.swordie.ms.client.character.quest.QuestManager;
-import net.swordie.ms.client.character.scene.Scene;
-import net.swordie.ms.client.character.skills.Option;
-import net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat;
-import net.swordie.ms.client.character.skills.temp.TemporaryStatBase;
-import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
-import net.swordie.ms.client.character.skills.vmatrix.MatrixRecord;
-import net.swordie.ms.client.character.skills.vmatrix.NodestoneModule;
-import net.swordie.ms.client.character.union.Union;
-import net.swordie.ms.client.character.union.UnionMember;
-import net.swordie.ms.client.character.union.UnionRaid;
-import net.swordie.ms.client.guild.Guild;
-import net.swordie.ms.client.guild.GuildMember;
-import net.swordie.ms.client.guild.result.GuildResult;
-import net.swordie.ms.client.guild.result.GuildType;
-import net.swordie.ms.client.jobs.legend.Shade;
-import net.swordie.ms.client.party.Party;
-import net.swordie.ms.client.party.PartyMember;
-import net.swordie.ms.client.party.PartyResult;
-import net.swordie.ms.client.trunk.TrunkDlg;
-import net.swordie.ms.connection.packet.*;
-import net.swordie.ms.connection.packet.field.FieldPacket;
-import net.swordie.ms.connection.packet.field.LucidFieldPacket;
-import net.swordie.ms.connection.packet.field.PapulatusFieldPacket;
-import net.swordie.ms.connection.packet.model.MessagePacket;
-import net.swordie.ms.constants.*;
 import net.swordie.ms.enums.*;
-import net.swordie.ms.handlers.executors.EventManager;
-import net.swordie.ms.life.DeathType;
-import net.swordie.ms.life.Life;
-import net.swordie.ms.life.Reactor;
-import net.swordie.ms.life.drop.Drop;
-import net.swordie.ms.life.drop.DropInfo;
-import net.swordie.ms.life.mob.Mob;
-import net.swordie.ms.life.mob.boss.papulatus.PapulatusFieldObject;
-import net.swordie.ms.life.mob.boss.papulatus.PapulatusLaserInfo;
-import net.swordie.ms.life.mob.boss.papulatus.PapulatusTweezerInfo;
-import net.swordie.ms.life.mob.boss.will.WillModule;
-import net.swordie.ms.life.mob.skill.MobSkillID;
-import net.swordie.ms.life.npc.Npc;
 import net.swordie.ms.life.npc.NpcMessageType;
 import net.swordie.ms.life.npc.NpcScriptInfo;
-import net.swordie.ms.loaders.*;
-import net.swordie.ms.loaders.containerclasses.ItemInfo;
-import net.swordie.ms.util.FileTime;
-import net.swordie.ms.util.Position;
-import net.swordie.ms.util.Rect;
-import net.swordie.ms.util.Util;
-import net.swordie.ms.util.container.Tuple;
-import net.swordie.ms.world.World;
 import net.swordie.ms.world.field.*;
-import net.swordie.ms.world.field.bosses.gollux.FallingCatcher;
-import net.swordie.ms.world.field.bosses.gollux.GolluxMiniMapFieldClearType;
-import net.swordie.ms.world.field.fieldeffect.FieldEffect;
-import net.swordie.ms.world.field.fieldeffect.GreyFieldType;
-import net.swordie.ms.world.field.instance.Instance;
-import net.swordie.ms.world.field.obstacleatom.ObstacleAtomFactory;
-import net.swordie.ms.world.field.obstacleatom.ObstacleAtomInfo;
-import net.swordie.ms.world.field.obstacleatom.ObstacleInRowInfo;
-import net.swordie.ms.world.field.obstacleatom.ObstacleRadianInfo;
-import net.swordie.ms.world.shop.NpcShopDlg;
-import net.swordie.orm.dao.AllianceDao;
-import net.swordie.orm.dao.CharDao;
-import net.swordie.orm.dao.SworDaoFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.python.core.PyDictionary;
-import org.python.core.PyTuple;
 
-import javax.script.*;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.*;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
-import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.PapulatusTimeLock;
-import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.RideVehicle;
-import static net.swordie.ms.enums.ChatType.*;
-import static net.swordie.ms.life.npc.NpcMessageType.*;
 
 /**
  * Created on 2/19/2018.
@@ -122,7 +29,7 @@ public class ScriptManagerImpl implements ScriptManagerFun{
     public static final String QUEST_START_SCRIPT_END_TAG = "s";
     public static final String QUEST_RESIGN_SCRIPT_END_TAG = "x";
 
-    private ScriptManagerFun pyScriptManager;
+    private ScriptManagerFun scriptManager;
 
 
     private ScriptManagerFun jsScriptManager;
@@ -137,8 +44,16 @@ public class ScriptManagerImpl implements ScriptManagerFun{
 //        this.fieldTransferInfo = new FieldTransferInfo();
 //        fieldTransferInfo.setField(isField);
 
-        pyScriptManager = new PyScriptManagerImp(chr, field);
+        scriptManager = new PyScriptManagerImp(chr, field);
+        jsScriptManager = new JsScriptManagerImp(chr, field);
     }
+
+    public void setScriptManager(ScriptManagerFun scriptManager) {
+        this.scriptManager = scriptManager;
+    }
+
+
+
 
     public ScriptManagerImpl(Char chr) {
         this(chr, null);
@@ -155,145 +70,137 @@ public class ScriptManagerImpl implements ScriptManagerFun{
 
 
     // 入口1：脚本名 最主要的入口，点击NPC的任务从这里进
-    public void startScript(int parentID, String scriptName, ScriptType scriptType) {
-        pyScriptManager.startScript(parentID, scriptName, scriptType);
+    public void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType) {
+            scriptManager.startScriptByScriptNameAndType(parentID, scriptName, scriptType);
     }
 
     // 入口2：脚本名 + 自定义绑定关系
     // 例如 地图绑定mob
     public void startScriptCustomBindings(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
-        pyScriptManager.startScriptCustomBindings(parentID, scriptName, scriptType, customBindings);
+        scriptManager.startScriptCustomBindings(parentID, scriptName, scriptType, customBindings);
     }
 
     // 脚本有使用
     public void startScript(int parentID, int objID, ScriptType scriptType) {
-        pyScriptManager.startScript(parentID, objID, scriptType);
+        scriptManager.startScript(parentID, objID, scriptType);
     }
 
     // 入口3：地图上的 NPC REACTOR开始脚本从这里进
     public void startScript(int parentId, int objId, String scriptName, ScriptType scriptType) {
-        pyScriptManager.startScript(parentId, objId, scriptName, scriptType);
+        if (parentId == 1002101) {
+            jsScriptManager.startScript(parentId, objId, scriptName, scriptType);
+        } else {
+            scriptManager.startScript(parentId, objId, scriptName, scriptType);
+        }
+
     }
 
     // 入口4： objId 调用脚本 + 自定义 reactor field等
     public void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, String key, Object value) {
-        pyScriptManager.startScript(parentID, objID, scriptName, scriptType, key, value);
+        scriptManager.startScript(parentID, objID, scriptName, scriptType, key, value);
     }
 
 
     public void stop(ScriptType scriptType) {
-        pyScriptManager.stop(scriptType);
+        scriptManager.stop(scriptType);
     }
 
-    // 二次进入入口
+    // 二次进入入口1
     public void handleAction(NpcMessageType lastType, byte response, int answer) {
-        pyScriptManager.handleAction(lastType, response, answer);
+        scriptManager.handleAction(lastType, response, answer);
     }
 
-    public void handleAction(NpcMessageType lastType, byte response, String text) {
-        pyScriptManager.handleAction(lastType, response, text);
-    }
-
-    public void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
-        pyScriptManager.handleAction(scriptType, lastType, response, answer, text);
+    // 二次进入入口2
+    public void handleActionText(NpcMessageType lastType, byte response, String text) {
+        scriptManager.handleActionText(lastType, response, text);
     }
 
     @Override
     public NpcScriptInfo getNpcScriptInfo() {
-       return pyScriptManager.getNpcScriptInfo();
-    }
-
-    @Override
-    public void dispose() {
-        pyScriptManager.dispose();
+       return scriptManager.getNpcScriptInfo();
     }
 
     @Override
     public void dispose(boolean stop) {
-        pyScriptManager.dispose(stop);
+        scriptManager.dispose(stop);
 
     }
 
     @Override
     public void dispose(ScriptType scriptType) {
-        pyScriptManager.dispose(scriptType);
+        scriptManager.dispose(scriptType);
 
     }
 
     @Override
     public void setCurNodeEventEnd(boolean curNodeEventEnd) {
-        pyScriptManager.setCurNodeEventEnd(curNodeEventEnd);
+        scriptManager.setCurNodeEventEnd(curNodeEventEnd);
     }
 
     @Override
     public void stopEvents() {
-        pyScriptManager.stopEvents();
+        scriptManager.stopEvents();
     }
 
     @Override
     public void stopFieldEvents() {
-        pyScriptManager.stopFieldEvents();
+        scriptManager.stopFieldEvents();
     }
 
     @Override
     public void addEvent(ScheduledFuture event, boolean isFieldEvent) {
-        pyScriptManager.addEvent(event, isFieldEvent);
+        scriptManager.addEvent(event, isFieldEvent);
     }
 
     @Override
     public void warp(int fieldID, int portalID) {
-        pyScriptManager.warp(fieldID, portalID);
+        scriptManager.warp(fieldID, portalID);
     }
 
     @Override
     public void warpInstanceIn(int id, int portal) {
-        pyScriptManager.warpInstanceIn(id, portal);
+        scriptManager.warpInstanceIn(id, portal);
     }
 
     @Override
     public void warpInstanceOut(int id, int portal) {
-        pyScriptManager.warpInstanceOut(id, portal);
+        scriptManager.warpInstanceOut(id, portal);
     }
 
 
     @Override
     public int getRemainingBossCooldownMinutes(BossCooldown bc) {
-        return pyScriptManager.getRemainingBossCooldownMinutes(bc);
+        return scriptManager.getRemainingBossCooldownMinutes(bc);
     }
 
     @Override
     public void openShop(int shopID) {
-        pyScriptManager.openShop(shopID);
+        scriptManager.openShop(shopID);
     }
 
     @Override
     public void teleportToPortal(int portalId) {
-        pyScriptManager.teleportToPortal(portalId);
+        scriptManager.teleportToPortal(portalId);
     }
 
     @Override
     public void setActionBar(boolean show, ActionBarType type) {
-        pyScriptManager.setActionBar(show, type);
-    }
-
-    @Override
-    public void giveNewSecondary(int id) {
-        pyScriptManager.giveNewSecondary(id);
+        scriptManager.setActionBar(show, type);
     }
 
     @Override
     public void setInstanceTime(int seconds, int forcedReturnFieldId) {
-        pyScriptManager.setInstanceTime(seconds, forcedReturnFieldId);
+        scriptManager.setInstanceTime(seconds, forcedReturnFieldId);
     }
 
     @Override
     public void setDeathCount(int deathCount) {
-        pyScriptManager.setDeathCount(deathCount);
+        scriptManager.setDeathCount(deathCount);
     }
 
     @Override
     public void setReturnField(int returnField) {
-        pyScriptManager.setReturnField(returnField);
+        scriptManager.setReturnField(returnField);
     }
 
 

@@ -1044,6 +1044,6 @@ public class Ark extends Job {
         cs.setMp(231);
         //chr.setJob(JobConstants.JobEnum.ARK_1.getJobId());
         chr.addSpToJobByCurrentJob(5);
-        chr.getScriptManager().giveNewSecondary(1353600); // secondary
+        chr.giveNewSecondary(1353600); // secondary
     }
 }

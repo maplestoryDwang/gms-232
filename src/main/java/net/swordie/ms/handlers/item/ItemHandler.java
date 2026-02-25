@@ -365,7 +365,7 @@ public class ItemHandler {
         if (ii.getScript() != null && !"".equals(ii.getScript())) {
             script = ii.getScript();
         }
-        chr.getScriptManager().startScript(itemID, script, ScriptType.Item);
+        chr.getScriptManager().startScriptByScriptNameAndType(itemID, script, ScriptType.Item);
         chr.dispose();
     }
 

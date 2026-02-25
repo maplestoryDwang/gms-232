@@ -134,6 +134,7 @@ import java.util.stream.Collectors;
 import static net.swordie.ms.client.character.skills.BypassCooldownCheckType.BypassCheck;
 import static net.swordie.ms.client.character.skills.BypassCooldownCheckType.BypassCheckAndCooldown;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.*;
+import static net.swordie.ms.enums.ChatType.GameDesc;
 import static net.swordie.ms.enums.ChatType.SystemNotice;
 import static net.swordie.ms.enums.InvType.*;
 import static net.swordie.ms.enums.InventoryOperation.*;
@@ -858,6 +859,36 @@ public class Char {
         chatMessage(String.format("Quest %d started by startQuestNoCheck", id));
     }
 
+    public void giveItem(int id, int quantity) {
+        addItemToInventory(id, quantity);
+        String itemName = StringData.getItemStringById(id);
+        if (itemName != null) {
+            chatMessage(GameDesc, String.format("You've gained items: %s. (%d)", itemName, quantity));
+        }
+    }
+
+    public void giveNewSecondary(int id) {
+        if (!ItemConstants.isEquip(id)) {
+            giveItem(id,1);
+        }
+        Item newEquipItem = ItemData.getItemDeepCopy(id);
+        if (newEquipItem == null) {
+            return;
+        }
+
+        var newEquip = (Equip) newEquipItem;
+        // replace the old equip if there was any
+        Inventory equipInv = getEquippedInventory();
+        int bodyPart = ItemConstants.getBodyPartFromItem(id, getAvatarData().getAvatarLook().getGender());
+        Item oldEquip = equipInv.getItemBySlot(bodyPart);
+        if (oldEquip != null) {
+            newEquip.setOptions(new ArrayList<>(((Equip) oldEquip).getOptions()));
+            consumeItemFull(oldEquip);
+        }
+        newEquip.setBagIndex(bodyPart);
+        equip(newEquip, bodyPart);
+        newEquip.updateToChar(this);
+    }
 
 
     public List<ItemPot> getItemPots() {
@@ -3049,7 +3080,7 @@ public class Char {
                 if (ii.getScript() != null && !"".equals(ii.getScript())) {
                     script = ii.getScript();
                 }
-                getScriptManager().startScript(itemID, script, ScriptType.Item);
+                getScriptManager().startScriptByScriptNameAndType(itemID, script, ScriptType.Item);
                 Events.onItemLooted(this, item, item.getQuantity());
                 return true;
             } else if (canHold(item)) {

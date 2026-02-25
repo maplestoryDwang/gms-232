@@ -1217,7 +1217,7 @@ public class Field {
             script = CustomFieldScripts.getByVal(getId()).toString();
         }
         if (script != null) {
-            chr.getScriptManager().startScript(getId(), script, ScriptType.Field);
+            chr.getScriptManager().startScriptByScriptNameAndType(getId(), script, ScriptType.Field);
         }
     }
 

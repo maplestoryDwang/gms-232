@@ -220,7 +220,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 //    }
 
     // 入口1：脚本名 最主要的入口，点击NPC的任务从这里进
-    public void startScript(int parentID, String scriptName, ScriptType scriptType) {
+    public void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType) {
         startScript(parentID, 0, scriptName, scriptType, null);
     }
 
@@ -272,11 +272,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         handleAction(getLastActiveScriptType(), lastType, response, answer, null);
     }
 
-    public void handleAction(NpcMessageType lastType, byte response, String text) {
+    public void handleActionText(NpcMessageType lastType, byte response, String text) {
         handleAction(getLastActiveScriptType(), lastType, response, 0, text);
     }
 
-    public void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
+    private void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
         switch (response) {
             case -1:
             case 5:
@@ -2208,11 +2208,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public void giveItem(int id, int quantity) {
-        getChr().addItemToInventory(id, quantity);
-        String itemName = StringData.getItemStringById(id);
-        if (itemName != null) {
-            getChr().chatMessage(GameDesc, String.format("You've gained items: %s. (%d)", itemName, quantity));
-        }
+        getChr().giveItem(id, quantity);
     }
 
     public void giveItemWithExpiry(int id, int hours) {
@@ -2252,26 +2248,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void giveNewSecondary(int id) {
-        if (!ItemConstants.isEquip(id)) {
-            giveItem(id);
-        }
-        Item newEquipItem = ItemData.getItemDeepCopy(id);
-        if (newEquipItem == null) {
-            return;
-        }
-
-        var newEquip = (Equip) newEquipItem;
-        // replace the old equip if there was any
-        Inventory equipInv = getChr().getEquippedInventory();
-        int bodyPart = ItemConstants.getBodyPartFromItem(id, getChr().getAvatarData().getAvatarLook().getGender());
-        Item oldEquip = equipInv.getItemBySlot(bodyPart);
-        if (oldEquip != null) {
-            newEquip.setOptions(new ArrayList<>(((Equip) oldEquip).getOptions()));
-            getChr().consumeItemFull(oldEquip);
-        }
-        newEquip.setBagIndex(bodyPart);
-        getChr().equip(newEquip, bodyPart);
-        newEquip.updateToChar(getChr());
+        getChr().giveNewSecondary(id);
     }
 
     public String enumerateInventory(InvType invType) {

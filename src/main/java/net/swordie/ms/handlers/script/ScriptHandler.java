@@ -30,7 +30,7 @@ public class ScriptHandler {
     private static final Logger log = LogManager.getLogger(ScriptHandler.class);
 
 
-    @Handler(op = InHeader.USER_SCRIPT_MESSAGE_ANSWER)
+/*    @Handler(op = InHeader.USER_SCRIPT_MESSAGE_ANSWER)
     public static void handleUserScriptMessageAnswer(Client c, InPacket inPacket) {
         Char chr = c.getChr();
         ScriptManagerImpl smi = chr.getScriptManager();
@@ -108,6 +108,129 @@ public class ScriptHandler {
         } else {
             chr.getScriptManager().handleAction(nmt, (byte) 1, 1); // Doesn't use  response nor answer
         }
+    }*/
+
+
+    @Handler(op = InHeader.USER_SCRIPT_MESSAGE_ANSWER)
+    public static void handleUserScriptMessageAnswer(Client c, InPacket inPacket) {
+        Char chr = c.getChr();
+        ScriptManagerImpl smi = chr.getScriptManager();
+
+        // type = 0 的 scriptMessage 会带一个 serverType，目前未使用
+        inPacket.decodeInt();
+
+        byte lastType = inPacket.decodeByte();
+
+        // 当前 NPC 消息类型（优先取脚本记录的）
+        NpcMessageType nmt = smi.getNpcScriptInfo().getMessageType();
+        if (nmt == null) {
+            nmt = Arrays.stream(NpcMessageType.values())
+                    .filter(t -> t.getVal() == lastType)
+                    .findFirst()
+                    .orElse(NpcMessageType.None);
+        }
+
+        /* =========================
+         * 1️⃣ 特殊类型：播放视频
+         * ========================= */
+        if (nmt == NpcMessageType.PlayMovieClipURL) {
+            // 播放完成后，客户端只回一个“完成事件”
+            smi.handleAction(nmt, (byte) 1, 1);
+            return;
+        }
+
+        /* =========================
+         * 2️⃣ 独白（没有选项）
+         * ========================= */
+        if (nmt == NpcMessageType.Monologue) {
+            smi.handleAction(nmt, (byte) 1, 1);
+            return;
+        }
+
+        /* =========================
+         * 3️⃣ 普通对话类消息
+         * ========================= */
+
+        // Say / SayNext / SayOk 等会额外带两个无用字段（客户端协议如此）
+        if (NpcMessageType.isSayType(nmt)) {
+            inPacket.decodeInt();      // serverArg2（未使用）
+            inPacket.decodeString();   // 客户端回传的文本（未使用）
+        }
+
+        byte action = inPacket.decodeByte(); // 客户端操作：下一步 / 确认 / 取消
+
+        int answer = 0;          // 数值类答案（菜单 / 数字）
+        boolean hasAnswer = false;
+        String textAnswer = null;
+
+        /* =========================
+         * 4️⃣ InGameDirection（镜头/演出控制）
+         * ========================= */
+        if (nmt == NpcMessageType.AskIngameDirection) {
+            InGameDirectionAsk askType = InGameDirectionAsk.getByVal(action);
+            if (askType == null || askType == InGameDirectionAsk.NOT) {
+                return;
+            }
+
+            boolean success = inPacket.decodeByte() == 1;
+            if (askType == InGameDirectionAsk.CAMERA_MOVE_TIME && success) {
+                int delay = inPacket.decodeInt();
+                chr.write(UserLocal.inGameDirectionEvent(
+                        InGameDirectionEvent.delay(delay)));
+                return;
+            }
+
+            smi.handleAction(nmt, (byte) 1, askType.getVal());
+            return;
+        }
+
+        /* =========================
+         * 5️⃣ 各种“提问型”消息解析
+         * ========================= */
+
+        // 输入文本
+        if (nmt == NpcMessageType.AskText && action == 1) {
+            textAnswer = inPacket.decodeString();
+        }
+        // 选择外观（包含 Zero）
+        else if (nmt == NpcMessageType.AskAvatar || nmt == NpcMessageType.AskAvatarZero) {
+            inPacket.decodeByte();           // 未知字段
+            hasAnswer = inPacket.decodeByte() != 0;
+            if (hasAnswer) {
+                inPacket.decodeByte();       // 未知字段
+                answer = inPacket.decodeByte();
+            }
+        }
+        // 普通数值 / 菜单类（只要包里还有 int）
+        else if (inPacket.getUnreadAmount() >= 4) {
+            answer = inPacket.decodeInt();
+            hasAnswer = true;
+        }
+
+        /* =========================
+         * 6️⃣ 统一处理脚本回调
+         * ========================= */
+
+        // AskText：确认才回调
+        if (nmt == NpcMessageType.AskText && action != 0) {
+            smi.handleActionText(nmt, action, textAnswer);
+            return;
+        }
+
+        // AskSlideMenu：特殊，直接传送
+        if (nmt == NpcMessageType.AskSlideMenu && hasAnswer) {
+            chr.warp(DimensionalPortalTownType.getByVal(answer).getMapID());
+            chr.dispose();
+            return;
+        }
+
+        // 其他可选择类
+        if (!NpcMessageType.isSelectionType(nmt) || hasAnswer) {
+            smi.handleAction(nmt, action, answer);
+        } else {
+            // 玩家在选择界面按了 ESC
+            smi.dispose(false);
+        }
     }
 
     @Handler(op = InHeader.DIRECTION_NODE_COLLISION)
@@ -129,7 +252,7 @@ public class ScriptHandler {
         }
         chr.increaseCurrentDirectionNode(node);
         chr.getScriptManager().setCurNodeEventEnd(false);
-        chr.getScriptManager().startScript(field.getId(), script, ScriptType.Field);
+        chr.getScriptManager().startScriptByScriptNameAndType(field.getId(), script, ScriptType.Field);
     }
 
     @Handler(op = InHeader.USER_CONTENTS_MAP_REQUEST)
@@ -195,7 +318,7 @@ public class ScriptHandler {
         int bookId = inPacket.decodeByte();
         if (chr.getQuestManager().hasQuestCompleted(32662)) {
             int questID = QuestConstants.DIMENSION_LIBRARY + bookId;
-            chr.getScriptManager().startScript(questID, "q" + questID + "s", ScriptType.Quest);
+            chr.getScriptManager().startScriptByScriptNameAndType(questID, "q" + questID + "s", ScriptType.Quest);
         }
     }
 
@@ -318,6 +441,6 @@ public class ScriptHandler {
         if (chr.getParty() == null) {
             return;
         }
-        chr.getScriptManager().startScript(0, "GiantBossQuit1", ScriptType.Portal);
+        chr.getScriptManager().startScriptByScriptNameAndType(0, "GiantBossQuit1", ScriptType.Portal);
     }
 }

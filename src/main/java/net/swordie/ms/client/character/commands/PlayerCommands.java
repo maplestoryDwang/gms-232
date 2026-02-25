@@ -219,7 +219,7 @@ public class PlayerCommands {
     public static class QuickMoveBoat extends PlayerCommand {
         public static void execute(Char chr, String[] args) {
             if (chr.getInstance() == null) {
-                chr.getScriptManager().startScript(9072302, "9072302", ScriptType.Npc);
+                chr.getScriptManager().startScriptByScriptNameAndType(9072302, "9072302", ScriptType.Npc);
             } else {
                 chr.chatMessage("You cannot use that right now.");
             }
@@ -229,7 +229,7 @@ public class PlayerCommands {
     @Command(names = {"sale", "sell"}, requiredType = AccountType.Player)
     public static class ShopCommand extends PlayerCommand {
         public static void execute(Char chr, String[] args) {
-            chr.getScriptManager().startScript(9062008, "mesoMarket", ScriptType.Npc);
+            chr.getScriptManager().startScriptByScriptNameAndType(9062008, "mesoMarket", ScriptType.Npc);
         }
     }
 

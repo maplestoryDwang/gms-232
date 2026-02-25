@@ -4,12 +4,17 @@ import dwang.script.js.JSScriptType;
 import dwang.script.js.action.npc.NPCConversationInteraction;
 import dwang.script.js.manager.AbstractScriptManager;
 import net.swordie.ms.client.Account;
+import net.swordie.ms.connection.packet.ScriptMan;
+import net.swordie.ms.life.npc.NpcMessageType;
 
 import javax.script.Invocable;
 import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
+
+import static net.swordie.ms.life.npc.NpcMessageType.AskMenu;
+import static net.swordie.ms.life.npc.NpcMessageType.AskYesNo;
 
 /**
  * @author dwang
@@ -66,21 +71,27 @@ public class NPCScriptManager extends AbstractScriptManager {
 
                 NPCConversationInteraction interaction = new NPCConversationInteraction(account, npcId, -1, specialScriptName, var6, (Invocable) null);
                 this.npcConversationManagerMap.put(account, interaction);
-                getAccountAtomicIntegerMap().get(account.getCurrentChr()).set(1);
+                AtomicInteger atomicInteger = getAccountAtomicIntegerMap().get(account.getCurrentChr());
+                if (atomicInteger == null) {
+                    atomicInteger = new AtomicInteger(1);
+                    getAccountAtomicIntegerMap().put(account.getCurrentChr(), atomicInteger);
+                }
 
 
                 // 调用
 //                String scriptDesc = (new StringBuilder()).insert(0, "NPC：").append(npcId).append(var3 == 0 ? "" : (new StringBuilder()).insert(0, "_").append(var3).toString()).append(specialScriptName == null ? "" : (new StringBuilder()).insert(0, " 特殊：").append(specialScriptName).toString()).append(" ").append(account.getPlayer().getMap()).toString();
-//                String[] var71 = {specialScriptName, Integer.toString(npcId), NameInfoCache.getNpcName(npcId), Integer.toString(account.getPlayer().getMapId()), account.getPlayer().getMap().getMapName(), M.L()};
-//                String[] var61 = {"%SCRIPT_PATH%", "%NPCID%", "%NPC名称%", "%所在地图ID%", "%所在地图名称%", "%创建时间%"};
+//                String[] tempValue = {specialScriptName, Integer.toString(npcId), NameInfoCache.getNpcName(npcId), Integer.toString(account.getPlayer().getMapId()), account.getPlayer().getMap().getMapName(), M.L()};
+//                String[] tempKey = {"%SCRIPT_PATH%", "%NPCID%", "%NPC名称%", "%所在地图ID%", "%所在地图名称%", "%创建时间%"};
 
                 String scriptDesc = null;
-                String[] var71 = null;
-                String[] var61 = null;
-                Invocable var10 = this.invokeFun(account, specialScriptName, "脚本/NPC模板.js", var6.name(), scriptDesc, var61, var71, interaction, "start", new Object[0]);
+                String[] tempValue = null;
+                String[] tempKey = null;
+                Invocable var10 = this.invokeFun(account, specialScriptName, "脚本/NPC模板.js", var6.name(), scriptDesc, tempKey, tempValue, interaction, "start", new Object[0]);
                 if (var10 == null) {
                     this.dispose(account);
                 } else {
+
+                    // 存储当前脚本的调用
                     interaction.setIv(var10);
                 }
             } finally {
@@ -98,7 +109,6 @@ public class NPCScriptManager extends AbstractScriptManager {
             account.removeScriptEngine(interaction.getScript());
         }
 
-//        if (account.getCurrentChr() != null && account.getPlayer().getConversation() == 1) {
         // 谈话结束
         if (account.getCurrentChr() != null && getAccountAtomicIntegerMap().get(account.getCurrentChr()).get() == 1) {
             getAccountAtomicIntegerMap().get(account.getCurrentChr()).set(0);
@@ -106,9 +116,9 @@ public class NPCScriptManager extends AbstractScriptManager {
 
         // 发送dispose
         account.getCurrentChr().dispose();
-//        account.getCurrentChr().write();
-//        account.announce(da.D(account.getPlayer()));
     }
+
+
 
 
 }

@@ -744,7 +744,7 @@ public class ItemHandlerModule {
                 chr.deductMoney(cost);
                 c.write(FieldPacket.showUpgradeResult(oldEquip, equip, success, boom, canDegrade));
                 chr.dispose();
-                chr.getScriptManager().startScript(0, "ego_equip_boom", ScriptType.Npc);
+                chr.getScriptManager().startScriptByScriptNameAndType(0, "ego_equip_boom", ScriptType.Npc);
                 return;
             }
 
@@ -1086,7 +1086,7 @@ public class ItemHandlerModule {
         switch (itemId) {
             case ItemConstants.RANDOM_CHAIR_BOX:
                 var script = "consume_" + itemId;
-                chr.getScriptManager().startScript(itemId, script, ScriptType.Item);
+                chr.getScriptManager().startScriptByScriptNameAndType(itemId, script, ScriptType.Item);
                 break;
         }
     }
