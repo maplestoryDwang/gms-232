@@ -135,10 +135,10 @@ public class ScriptManagerImpl {
 //    private static final ScriptEngine scriptEngine = new ScriptEngineManager().getEngineByName(SCRIPT_ENGINE_NAME);
 
     // 包装类
-    private static IScriptEngineWrap scriptEngineWrap;
+    private final IScriptEngineWrap scriptEngineWrap;
 
     // 共享的数据
-    private ScriptInitData initData;
+    private final ScriptInitData initData;
 
     private ScriptManagerImpl(Char chr, Field field) {
         initData = new ScriptInitData(chr, field);
@@ -230,7 +230,7 @@ public class ScriptManagerImpl {
 
         var activeScriptType = getScriptInfoByType(scriptType);
 
-        Char chrFromMethods = getChr();
+         Char chrFromMethods = getChr();
         if (isActive(scriptType) && (scriptType != ScriptType.Field && scriptType != ScriptType.FirstEnterField)) { // because Field Scripts don't get disposed.
             if (activeScriptType != null && parentID != Shade.LIVER) { // Liver to prevent chat spam
                 chrFromMethods.chatMessage(String.format("Already running a script of the same type (%s, id %d)! " +
@@ -273,7 +273,7 @@ public class ScriptManagerImpl {
         ScriptInfo scriptInfo = new ScriptInfo(scriptType, bindings, parentID, scriptName);
         scriptInfo.setActive(true);
         if (scriptType == ScriptType.Npc) {
-            getNpcScriptInfo().setTemplateID(parentID);
+            getNpcScriptInfo().setTemplateID(parentID); //设置说话人
         }
         scriptInfo.setObjectID(objID);
         getScripts().put(scriptType, scriptInfo);
