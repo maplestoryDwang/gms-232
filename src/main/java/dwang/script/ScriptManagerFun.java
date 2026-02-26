@@ -18,9 +18,7 @@ public interface ScriptManagerFun {
 
     void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType);
 
-    void startScriptCustomBindings(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings);
-
-    void startScript(int parentID, int objID, ScriptType scriptType);
+    void startScriptByScriptNameAndTypeBinding(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings);
 
     void startScript(int parentId, int objId, String scriptName, ScriptType scriptType);
 

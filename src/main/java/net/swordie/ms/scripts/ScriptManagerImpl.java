@@ -71,19 +71,15 @@ public class ScriptManagerImpl implements ScriptManagerFun{
 
     // 入口1：脚本名 最主要的入口，点击NPC的任务从这里进
     public void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType) {
-            scriptManager.startScriptByScriptNameAndType(parentID, scriptName, scriptType);
+        scriptManager.startScriptByScriptNameAndType(parentID, scriptName, scriptType);
     }
 
     // 入口2：脚本名 + 自定义绑定关系
     // 例如 地图绑定mob
-    public void startScriptCustomBindings(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
-        scriptManager.startScriptCustomBindings(parentID, scriptName, scriptType, customBindings);
+    public void startScriptByScriptNameAndTypeBinding(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
+        scriptManager.startScriptByScriptNameAndTypeBinding(parentID, scriptName, scriptType, customBindings);
     }
 
-    // 脚本有使用
-    public void startScript(int parentID, int objID, ScriptType scriptType) {
-        scriptManager.startScript(parentID, objID, scriptType);
-    }
 
     // 入口3：地图上的 NPC REACTOR开始脚本从这里进
     public void startScript(int parentId, int objId, String scriptName, ScriptType scriptType) {

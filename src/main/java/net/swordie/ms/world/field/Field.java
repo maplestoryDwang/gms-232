@@ -136,7 +136,7 @@ public class Field {
         }
         if (script != null && !"".equalsIgnoreCase(script)) {
             log.debug(String.format("Starting field script %s.", script));
-            getScriptManager().startScriptCustomBindings(getId(), script, ScriptType.Field, props);
+            getScriptManager().startScriptByScriptNameAndTypeBinding(getId(), script, ScriptType.Field, props);
         }
     }
 

@@ -96,7 +96,7 @@ public class PlayerCommands {
             Map<String, Object> customBindings = new HashMap<String, Object>();
             customBindings.put("chr", chr);
             customBindings.put("acc", chr.getAccount());
-            chr.getScriptManager().startScriptCustomBindings(2007, "ShowPlayerInv", ScriptType.Npc, customBindings);
+            chr.getScriptManager().startScriptByScriptNameAndTypeBinding(2007, "ShowPlayerInv", ScriptType.Npc, customBindings);
         }
     }
 

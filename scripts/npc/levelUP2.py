@@ -95,6 +95,6 @@ if (isBeginnerJob(jobId) and chr.getLevel() >= 10 and chr.getSubJob() == 0) or (
                 else:
                     # executes the current script again
                     sm.dispose()
-                    sm.startScript(0, "job_advance", ScriptType.Npc)
+                    sm.startScriptFromScript(0, "job_advance", ScriptType.Npc)
 else:
      sm.sendSayOkay("You're not an #bExplorer#k or you're not supposed to job advance.")

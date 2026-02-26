@@ -897,7 +897,7 @@ public class ItemHandlerModule {
         var props = new HashMap<String, Object>();
         props.put("equip", equip);
 
-        chr.getScriptManager().startScriptCustomBindings(0, "custom_reapply_helper_scrolls", ScriptType.Npc, props);
+        chr.getScriptManager().startScriptByScriptNameAndTypeBinding(0, "custom_reapply_helper_scrolls", ScriptType.Npc, props);
     }
 
     public static void handleBeastTamerSpReset(Char chr, InPacket inPacket, Item item) {

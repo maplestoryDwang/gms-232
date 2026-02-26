@@ -2893,7 +2893,7 @@ public class AdminCommands {
             Map<String, Object> customBindings = new HashMap<String, Object>();
             customBindings.put("chr", targetChr);
             customBindings.put("acc", targetAccount);
-            chr.getScriptManager().startScriptCustomBindings(2007, "adminNpc", ScriptType.Npc, customBindings);
+            chr.getScriptManager().startScriptByScriptNameAndTypeBinding(2007, "adminNpc", ScriptType.Npc, customBindings);
         }
     }
 

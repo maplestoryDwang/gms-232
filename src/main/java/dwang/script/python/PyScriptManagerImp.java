@@ -226,14 +226,10 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     // 入口2：脚本名 + 自定义绑定关系
     // 例如 地图绑定mob
-    public void startScriptCustomBindings(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
+    public void startScriptByScriptNameAndTypeBinding(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
         startScript(parentID, 0, scriptName, scriptType, customBindings);
     }
 
-    // 脚本有使用
-    public void startScript(int parentID, int objID, ScriptType scriptType) {
-        startScript(parentID, objID, parentID + ".py", scriptType, null);
-    }
 
     // 入口3：地图上的 NPC REACTOR开始脚本从这里进
     public void startScript(int parentId, int objId, String scriptName, ScriptType scriptType) {
@@ -247,72 +243,8 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         startScript(parentID, objID, scriptName, scriptType, props);
     }
 
-
-
-
-    public void stop(ScriptType scriptType) {
-        setSpeakerID(0);
-        if (getLastActiveScriptType() == scriptType) {
-            setLastActiveScriptType(ScriptType.None);
-        }
-        ScriptInfo si = getScriptInfoByType(scriptType);
-        if (si != null) {
-            si.reset();
-        }
-        getNpcScriptInfo().reset();
-        getMemory().clear();
-        getScripts().remove(scriptType);
-        if (getChr() != null) {
-            getChr().dispose();
-        }
-    }
-
-    // 二次进入入口
-    public void handleAction(NpcMessageType lastType, byte response, int answer) {
-        handleAction(getLastActiveScriptType(), lastType, response, answer, null);
-    }
-
-    public void handleActionText(NpcMessageType lastType, byte response, String text) {
-        handleAction(getLastActiveScriptType(), lastType, response, 0, text);
-    }
-
-    private void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
-        switch (response) {
-            case -1:
-            case 5:
-                stop(scriptType);
-                break;
-            default:
-                ScriptMemory sm = getMemory();
-                if (lastType.isPrevPossible() && response == 0) {
-                    // back button pressed
-                    NpcScriptInfo prev = sm.getPreviousScriptInfo();
-                    getChr().write(ScriptMan.scriptMessage(prev, prev.getMessageType()));
-                } else {
-                    if (getMemory().isInMemory()) {
-                        NpcScriptInfo next = sm.getNextScriptInfo();
-                        getChr().write(ScriptMan.scriptMessage(next, next.getMessageType()));
-                    } else {
-                        ScriptInfo si = getScriptInfoByType(scriptType);
-                        if (isActive(scriptType)) {
-                            switch (lastType.getResponseType()) {
-                                case Response:
-                                    si.addResponse((int) response);
-                                    break;
-                                case Answer:
-                                    si.addResponse(answer);
-                                    break;
-                                case Text:
-                                    si.addResponse(text);
-                                    break;
-                            }
-                        }
-                    }
-                }
-        }
-    }
-
-    // 最终进入这里执行脚本 不应该暴露给其他调用
+    // 最终进入这里执行脚本 不应该暴露给其他调用,所有的脚本都在这里开始执行
+    // 核心方法！
     private synchronized void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
         if (scriptType == ScriptType.None || (scriptType == ScriptType.Quest && !isQuestScriptAllowed())) {
             log.debug(String.format("Did not allow script %s to go through (type %s)  |  Active Script Type: %s", scriptName, scriptType, getLastActiveScriptType()));
@@ -384,6 +316,80 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         getScripts().put(scriptType, scriptInfo);
         SCRIPT_EXECUTOR_SERVICE.execute(() -> startScript(scriptName, scriptType)); // makes the script execute async
     }
+
+
+
+    public void stop(ScriptType scriptType) {
+        setSpeakerID(0);
+        if (getLastActiveScriptType() == scriptType) {
+            setLastActiveScriptType(ScriptType.None);
+        }
+        ScriptInfo si = getScriptInfoByType(scriptType);
+        if (si != null) {
+            si.reset();
+        }
+        getNpcScriptInfo().reset();
+        getMemory().clear();
+        getScripts().remove(scriptType);
+        if (getChr() != null) {
+            getChr().dispose();
+        }
+    }
+
+    // 二次进入入口1 USER_SCRIPT_MESSAGE_ANSWER入口进
+    public void handleAction(NpcMessageType lastType, byte response, int answer) {
+        handleAction(getLastActiveScriptType(), lastType, response, answer, null);
+    }
+
+    // 二次进入入口2
+    public void handleActionText(NpcMessageType lastType, byte response, String text) {
+        handleAction(getLastActiveScriptType(), lastType, response, 0, text);
+    }
+
+    private void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
+        switch (response) {
+            case -1:
+            case 5:
+                stop(scriptType);
+                break;
+            default:
+                ScriptMemory sm = getMemory();
+                if (lastType.isPrevPossible() && response == 0) {
+                    // back button pressed
+                    NpcScriptInfo prev = sm.getPreviousScriptInfo();
+                    getChr().write(ScriptMan.scriptMessage(prev, prev.getMessageType()));
+                } else {
+                    if (getMemory().isInMemory()) {
+                        NpcScriptInfo next = sm.getNextScriptInfo();
+                        getChr().write(ScriptMan.scriptMessage(next, next.getMessageType()));
+                    } else {
+                        ScriptInfo si = getScriptInfoByType(scriptType);
+                        if (isActive(scriptType)) {
+                            // do action
+                            switch (lastType.getResponseType()) {
+                                case Response:
+                                    si.addResponse((int) response);
+                                    break;
+                                case Answer:
+                                    si.addResponse(answer);
+                                    break;
+                                case Text:
+                                    si.addResponse(text);
+                                    break;
+                            }
+                        }
+                    }
+                }
+        }
+    }
+
+
+    // 脚本有使用
+    public void startScriptFromScript(int parentID, int objID, ScriptType scriptType) {
+        startScript(parentID, objID, parentID + ".py", scriptType, null);
+    }
+
+
 
     private boolean isQuestScriptAllowed() {
         return getLastActiveScriptType() == ScriptType.None;
@@ -819,6 +825,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     // Start helper methods for scripts --------------------------------------------------------------------------------
 
+    // dispose all type
     @Override
     public void dispose() {
         dispose(true);

@@ -165,20 +165,10 @@ public class JsScriptManagerImp implements ScriptManagerFun {
     }
 
     @Override
-    public void startScriptCustomBindings(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
+    public void startScriptByScriptNameAndTypeBinding(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
 
     }
 
-    @Override
-    public void startScript(int parentID, int objID, ScriptType scriptType) {
-        switch (scriptType) {
-            case Npc:
-                NPCScriptManager.getInstance().start(chr.getAccount(), parentID, null);
-
-                break;
-        }
-
-    }
 
     @Override
     public void startScript(int parentId, int objId, String scriptName, ScriptType scriptType) {
@@ -202,6 +192,7 @@ public class JsScriptManagerImp implements ScriptManagerFun {
 
     @Override
     public void handleAction(NpcMessageType lastType, byte response, int answer) {
+//        NPCScriptManager.getInstance().action(this, response, 0, answer);
 
     }
 
