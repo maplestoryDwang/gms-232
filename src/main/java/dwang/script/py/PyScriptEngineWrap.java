@@ -1,8 +1,7 @@
-package dwang.script.python;
+package dwang.script.py;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import dwang.script.ScriptManagerFun;
-import net.swordie.ms.Server;
+import dwang.script.IScriptEngineWrap;
+import dwang.script.ScriptInitData;
 import net.swordie.ms.ServerConstants;
 import net.swordie.ms.client.AccountBossCooldown;
 import net.swordie.ms.client.Client;
@@ -95,7 +94,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
@@ -104,38 +104,31 @@ import java.util.stream.Collectors;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.PapulatusTimeLock;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.RideVehicle;
 import static net.swordie.ms.enums.ChatType.*;
+import static net.swordie.ms.enums.ChatType.GameDesc;
 import static net.swordie.ms.life.npc.NpcMessageType.*;
-
+import static net.swordie.ms.life.npc.NpcMessageType.AskSelectMenu;
 
 /**
  * @author dwang
- * @date 2026/2/24
- * @description python脚本使用
+ * @version 1.0.0
+ * @Title
+ * @ClassName PyScriptEngineWrap.java
+ * @Description TODO
+ * @createTime 2026-02-26 15:38
  */
-public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
+public class PyScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
+
+    public static final String INTENDED_NPE_MSG = "Intended NPE by forceful script stop.";
+
+    private static final Pattern listPattern = Pattern.compile("(.)*#[lL][0-9]+#(.)*");
     private static final AllianceDao allianceDao = (AllianceDao) SworDaoFactory.getByClass(Alliance.class);
     private static final CharDao charDao = (CharDao) SworDaoFactory.getByClass(Char.class);
-
-    public static final String SCRIPT_ENGINE_NAME = "python";
-    public static final String QUEST_COMPLETE_SCRIPT_END_TAG = "e";
-    public static final String QUEST_START_SCRIPT_END_TAG = "s";
-    public static final String QUEST_RESIGN_SCRIPT_END_TAG = "x";
-
-    private static final ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("script-%d").build();
-    private static final ExecutorService SCRIPT_EXECUTOR_SERVICE = Executors.newCachedThreadPool(namedThreadFactory);
-    private static final Pattern listPattern = Pattern.compile("(.)*#[lL][0-9]+#(.)*");
+    private static final Logger log = LogManager.getLogger(PyScriptEngineWrap.class);
+    private final ScriptEngine scriptEngine = new ScriptEngineManager().getEngineByName("python");
     private static final String SCRIPT_ENGINE_EXTENSION = ".py";
     private static final String DEFAULT_SCRIPT = "undefined";
-    public static final String INTENDED_NPE_MSG = "Intended NPE by forceful script stop.";
-    private static  final Map<String, CompiledScript> scriptCache = new HashMap<>();
-    public static final Logger log = LogManager.getRootLogger();
     private static final Lock fileReadLock = new ReentrantLock();
-
-    private static final ScriptEngine scriptEngine = new ScriptEngineManager().getEngineByName(SCRIPT_ENGINE_NAME);
-
-
-    private static final Random random = new Random();
 
     private static final String[] fieldEventMethodNames = new String[]{
             "createObstacleAtom",
@@ -146,36 +139,27 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         return Arrays.asList(fieldEventMethodNames).contains(methodName);
     }
 
-    private final Char chr;
-    private final Field field;
-    private final boolean isField;
-    private final NpcScriptInfo npcScriptInfo;
-    private final Map<ScriptType, ScriptInfo> scripts;
-    private final FieldTransferInfo fieldTransferInfo;
+    private ScriptInitData initData;
 
-    private int returnField = 0;
-    private ScriptType lastActiveScriptType;
-    private Map<ScheduledFuture, Boolean> events = new HashMap<>();
-    private ScriptMemory memory = new ScriptMemory();
-    private boolean curNodeEventEnd;
+    private static final Random random = new Random();
 
-    public PyScriptManagerImp(Char chr, Field field) {
-        this.chr = chr;
-        this.field = field;
-        this.npcScriptInfo = new NpcScriptInfo();
-        this.scripts = new HashMap<>();
-        this.isField = chr == null;
-        this.lastActiveScriptType = ScriptType.None;
-        this.fieldTransferInfo = new FieldTransferInfo();
-        fieldTransferInfo.setField(isField);
+
+
+    public PyScriptEngineWrap(ScriptInitData initData) {
+        this.initData = initData;
     }
 
-    public PyScriptManagerImp(Char chr) {
-        this(chr, null);
+
+    public ScriptEngine getScriptEngine() {
+        return scriptEngine;
     }
 
-    public PyScriptManagerImp(Field field) {
-        this(null, field);
+    public ScriptType getLastActiveScriptType() {
+        return initData.getLastActiveScriptType();
+    }
+
+    public void setLastActiveScriptType(ScriptType lastActiveScriptType) {
+        initData.setLastActiveScriptType(lastActiveScriptType);
     }
 
     private Bindings getBindingsByType(ScriptType scriptType) {
@@ -183,19 +167,8 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         return si == null ? null : si.getBindings();
     }
 
-
-
     public ScriptInfo getScriptInfoByType(ScriptType scriptType) {
-        return scripts.getOrDefault(scriptType, null);
-    }
-
-    @Override
-    public Char getChr() {
-        var charr = chr;
-        if (charr == null && getField().getChars().size() > 0) {
-            charr = getField().getChars().get(0);
-        }
-        return charr;
+        return initData.getScripts().getOrDefault(scriptType, null);
     }
 
     public String getScriptNameByType(ScriptType scriptType) {
@@ -214,110 +187,6 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         return getScriptInfoByType(scriptType) != null ? getScriptInfoByType(scriptType).getObjectID() : 0;
     }
 
-    // 脚本也没有直接调用的
-//    public void startScript(int parentID, ScriptType scriptType) {
-//        startScript(parentID, 0, scriptType);
-//    }
-
-    // 入口1：脚本名 最主要的入口，点击NPC的任务从这里进
-    public void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType) {
-        startScript(parentID, 0, scriptName, scriptType, null);
-    }
-
-    // 入口2：脚本名 + 自定义绑定关系
-    // 例如 地图绑定mob
-    public void startScriptByScriptNameAndTypeBinding(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
-        startScript(parentID, 0, scriptName, scriptType, customBindings);
-    }
-
-
-    // 入口3：地图上的 NPC REACTOR开始脚本从这里进
-    public void startScript(int parentId, int objId, String scriptName, ScriptType scriptType) {
-        startScript(parentId, objId, scriptName, scriptType, null);
-    }
-
-    // 入口4： objId 调用脚本 + 自定义 reactor field等
-    public void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, String key, Object value) {
-        Map<String, Object> props = new HashMap<>();
-        props.put(key, value);
-        startScript(parentID, objID, scriptName, scriptType, props);
-    }
-
-    // 最终进入这里执行脚本 不应该暴露给其他调用,所有的脚本都在这里开始执行
-    // 核心方法！
-    private synchronized void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
-        if (scriptType == ScriptType.None || (scriptType == ScriptType.Quest && !isQuestScriptAllowed())) {
-            log.debug(String.format("Did not allow script %s to go through (type %s)  |  Active Script Type: %s", scriptName, scriptType, getLastActiveScriptType()));
-            return;
-        }
-
-        ScriptInfo activeScriptType = getScriptInfoByType(scriptType);
-
-        if (isActive(scriptType) && (scriptType != ScriptType.Field && scriptType != ScriptType.FirstEnterField)) { // because Field Scripts don't get disposed.
-            if (activeScriptType != null && parentID != Shade.LIVER) { // Liver to prevent chat spam
-                getChr().chatMessage(String.format("Already running a script of the same type (%s, id %d)! " +
-                                "Type @check if this is not intended.",
-                        scriptType.getDir(),
-                        activeScriptType.getParentID()));
-                log.debug(String.format("Could not run script %s because one of the same type is already running (%s, type %s)",
-                        scriptName,
-                        activeScriptType.getScriptName(),
-                        scriptType));
-            } else if (activeScriptType == null) {
-                getChr().chatMessage(String.format("Already running a script of the same type (%s)! Type @check if this" +
-                                " is not intended.",
-                        scriptType.getDir()));
-                log.debug(String.format("Could not run script %s because one of the same type is already running (type %s)",
-                        scriptName,
-                        scriptType));
-            }
-            return;
-        }
-        setLastActiveScriptType(scriptType);
-
-        if (!isField()) {
-            getChr().chatMessage(Mob, String.format("Starting script [%s] , scriptType [%s].", scriptName, scriptType));
-            log.info(String.format("Starting script [%s], scriptType [%s].", scriptName, scriptType));
-        }
-
-        // 重新设置对话参数
-        resetParam();
-
-        Bindings bindings = getBindingsByType(scriptType);
-        if (bindings == null) {
-            bindings = scriptEngine.createBindings();
-            bindings.put("sm", this);
-            bindings.put("chr", getChr());
-        }
-        bindings.put("field", getChr() == null ? field : getField());
-        bindings.put("parentID", parentID);
-        bindings.put("scriptType", scriptType);
-        bindings.put("objectID", objID);
-
-        if (customBindings != null) {
-            bindings.putAll(customBindings);
-        }
-
-        if (scriptType == ScriptType.Reactor) {
-            bindings.put("reactor", getField().getLifeByObjectID(objID));
-        }
-
-        if (scriptType == ScriptType.Quest) {
-            bindings.put("startQuest",
-                    scriptName.charAt(scriptName.length() - 1) == QUEST_START_SCRIPT_END_TAG.charAt(0)); // biggest hack eu
-        }
-
-        ScriptInfo scriptInfo = new ScriptInfo(scriptType, bindings, parentID, scriptName);
-        scriptInfo.setActive(true);
-        if (scriptType == ScriptType.Npc) {
-            getNpcScriptInfo().setTemplateID(parentID);
-        }
-        scriptInfo.setObjectID(objID);
-        getScripts().put(scriptType, scriptInfo);
-        SCRIPT_EXECUTOR_SERVICE.execute(() -> startScript(scriptName, scriptType)); // makes the script execute async
-    }
-
-
 
     public void stop(ScriptType scriptType) {
         setSpeakerID(0);
@@ -328,82 +197,57 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         if (si != null) {
             si.reset();
         }
-        getNpcScriptInfo().reset();
+        initData.getNpcScriptInfo().reset();
         getMemory().clear();
-        getScripts().remove(scriptType);
+        initData.getScripts().remove(scriptType);
         if (getChr() != null) {
             getChr().dispose();
         }
     }
 
-    // 二次进入入口1 USER_SCRIPT_MESSAGE_ANSWER入口进
-    public void handleAction(NpcMessageType lastType, byte response, int answer) {
-        handleAction(getLastActiveScriptType(), lastType, response, answer, null);
-    }
 
-    // 二次进入入口2
-    public void handleActionText(NpcMessageType lastType, byte response, String text) {
-        handleAction(getLastActiveScriptType(), lastType, response, 0, text);
-    }
-
-    private void handleAction(ScriptType scriptType, NpcMessageType lastType, byte response, int answer, String text) {
-        switch (response) {
-            case -1:
-            case 5:
-                stop(scriptType);
-                break;
-            default:
-                ScriptMemory sm = getMemory();
-                if (lastType.isPrevPossible() && response == 0) {
-                    // back button pressed
-                    NpcScriptInfo prev = sm.getPreviousScriptInfo();
-                    getChr().write(ScriptMan.scriptMessage(prev, prev.getMessageType()));
-                } else {
-                    if (getMemory().isInMemory()) {
-                        NpcScriptInfo next = sm.getNextScriptInfo();
-                        getChr().write(ScriptMan.scriptMessage(next, next.getMessageType()));
-                    } else {
-                        ScriptInfo si = getScriptInfoByType(scriptType);
-                        if (isActive(scriptType)) {
-                            // do action
-                            switch (lastType.getResponseType()) {
-                                case Response:
-                                    si.addResponse((int) response);
-                                    break;
-                                case Answer:
-                                    si.addResponse(answer);
-                                    break;
-                                case Text:
-                                    si.addResponse(text);
-                                    break;
-                            }
-                        }
-                    }
-                }
+    public int getParentID() {
+        int res = 0;
+        for (ScriptType type : ScriptType.values()) {
+            if (getScriptInfoByType(type) != null) {
+                res = getScriptInfoByType(type).getParentID();
+            }
         }
+        return res;
     }
 
 
-    // 脚本有使用
-    public void startScriptFromScript(int parentID, int objID, ScriptType scriptType) {
-        startScript(parentID, objID, parentID + ".py", scriptType, null);
-    }
-
-
-
-    private boolean isQuestScriptAllowed() {
-        return getLastActiveScriptType() == ScriptType.None;
-    }
-
-    private void notifyMobDeath(Mob mob) {
-        if (isActive(ScriptType.FirstEnterField)) {
-            getScriptInfoByType(ScriptType.FirstEnterField).addResponse(mob);
-        } else if (isActive(ScriptType.Field)) {
-            getScriptInfoByType(ScriptType.Field).addResponse(mob);
+    @Override
+    public Bindings buildScriptBindings(Bindings bindings, ScriptType scriptType, Char chr, Field scriptFiled, int parentID, int objID, Life scriptReactor, boolean scriptQuestTag, Map<String, Object> customBindings) {
+        if (bindings == null) {
+            bindings = scriptEngine.createBindings();
+            bindings.put("sm", this);
+            bindings.put("chr", chr);
         }
+        bindings.put("field", scriptFiled);
+        bindings.put("parentID", parentID);
+        bindings.put("scriptType", scriptType);
+        bindings.put("objectID", objID);
+
+        if (customBindings != null) {
+            bindings.putAll(customBindings);
+        }
+
+        if (scriptType == ScriptType.Reactor) {
+            bindings.put("reactor", scriptReactor);
+        }
+
+        if (scriptType == ScriptType.Quest) {
+            bindings.put("startQuest",
+                    scriptQuestTag); // biggest hack eu
+        }
+
+
+        return bindings;
     }
 
-    private String getScriptDir(String name, ScriptType scriptType) {
+    @Override
+    public String getScriptDir(Char chr, Map<String, CompiledScript> scriptCache, String name, ScriptType scriptType) {
         var isTespia = ServerConstants.IS_TESPIA;
 
         // First check if script is in scripts_tespia directory
@@ -430,8 +274,8 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         // If script doesn't exist in normal scripts directory either. return the default script
         if (!exists) {
             log.error(String.format("[Error] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
-            if (getChr() != null) {
-                getChr().chatMessage(Mob, String.format("[Script] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
+            if (chr != null) {
+                chr.chatMessage(Mob, String.format("[Script] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
             }
             // 不存在就不保存
 //            scriptCache.put(dir, null);
@@ -441,127 +285,80 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         return dir;
     }
 
-    private void startScript(String name, ScriptType scriptType) {
-        String dir = getScriptDir(name, scriptType); // Grab directory. if tespia, first look in tespia folder. otherwise normal folder. otherwise default script
-        ScriptInfo si = getScriptInfoByType(scriptType);
-        if (si == null) {
-            return;
-        }
-
-        getScriptInfoByType(scriptType).setFileDir(dir);
+    @Override
+    public String buildScriptStr(Map<String, CompiledScript> scriptCache, String dir) {
         StringBuilder script = new StringBuilder();
+        // python汉化必须
         script.append("from __future__ import unicode_literals\n\n");
         script.append("# -*- coding: utf-8 -*-\n");
 
 
-        ScriptEngine se = scriptEngine;
-        Bindings bindings = getBindingsByType(scriptType);
-        si.setInvocable((Invocable) se);
         if (!scriptCache.containsKey(dir)) {
             try {
                 fileReadLock.lock();
                 script.append(Util.readFile(dir, StandardCharsets.UTF_8));
             } catch (IOException e) {
                 e.printStackTrace();
-                lockInGameUI(false); // so players don't get stuck if a script fails
+//                lockInGameUI(false); // so players don't get stuck if a script fails
             } finally {
                 fileReadLock.unlock();
             }
         }
-        try {
-            var cs = scriptCache.getOrDefault(dir, null);
-            if (cs == null) {
-                cs = ((Compilable) se).compile(script.toString());
+        return script.toString();
+    }
+
+    @Override
+    public void evalAndRunStart(Map<String, CompiledScript> scriptCache, String dir, String scriptStr, Bindings bindings) throws ScriptException {
+        var cs = scriptCache.getOrDefault(dir, null);
+        if (cs == null) {
+            cs = ((Compilable) scriptEngine).compile(scriptStr);
 //                scriptCache.put(dir, cs);
-            }
-            cs.eval(bindings);
-        } catch (ScriptException e) {
-            if (!e.getMessage().contains(INTENDED_NPE_MSG) && Server.DEBUG) {
-                log.error(String.format("Unable to compile script %s!", name));
-                log.error("script path:{}", dir);
-                log.error("script:\n{}", script.toString());
+        }
 
-                e.printStackTrace();
-                if (getChr() != null) {
-                    getChr().chatMessage(Mob, String.format("Unable to compile script %s!", name));
-                    getChr().chatMessage(Mob, e.getMessage());
-                }
-                lockInGameUI(false); // so players don't get stuck if a script fails
-            }
-        } finally {
-            if (si.isActive() && name.equals(si.getScriptName()) &&
-                    ((scriptType != ScriptType.Field && scriptType != ScriptType.FirstEnterField)
-                            || (getChr() != null && getChr().getFieldID() == si.getParentID()))) {
-                // gracefully stop script if it's still active with the same script info (scriptName, or scriptName +
-                // current chr fieldID == fieldscript's fieldID if scriptType == Field).
-                // This makes it so field scripts won't cancel new field scripts when having a warp() in them.
-                stop(scriptType);
-            }
-            FieldTransferInfo fti = getFieldTransferInfo();
-            if (!fti.isInit()) {
-                if (fti.isField()) {
-                    fti.warp(field);
-                } else {
-                    fti.warp(getChr());
-                }
-            }
+        cs.eval(bindings);
+    }
+
+    @Override
+    public void runAction(ScriptInfo si, NpcMessageType lastType, byte response, int answer, String text) {
+        switch (lastType.getResponseType()) {
+            case Response:
+                si.addResponse((int) response);
+                break;
+            case Answer:
+                si.addResponse(answer);
+                break;
+            case Text:
+                si.addResponse(text);
+                break;
         }
     }
 
 
-
-    public boolean isActive(ScriptType scriptType) {
-        return scriptType != null && getScriptInfoByType(scriptType) != null && getScriptInfoByType(scriptType).isActive();
-    }
-
-    public boolean hasClashingScriptTypeActive(ScriptType scriptType) {
-        return Arrays.stream(scriptType.getClashingScriptTypes()).anyMatch(this::isActive);
-    }
-
-    public NpcScriptInfo getNpcScriptInfo() {
-        return npcScriptInfo;
-    }
-
-    public Map<ScriptType, ScriptInfo> getScripts() {
-        return scripts;
-    }
-
-    public int getParentID() {
-        int res = 0;
-        for (ScriptType type : ScriptType.values()) {
-            if (getScriptInfoByType(type) != null) {
-                res = getScriptInfoByType(type).getParentID();
-            }
+    @Override
+    public Char getChr() {
+        var charr = initData.getChr();
+        if (charr == null && getField().getChars().size() > 0) {
+            charr = getField().getChars().get(0);
         }
-        return res;
+        return charr;
     }
 
-    public boolean isField() {
-        return isField;
-    }
-
+    @Override
     public Field getField() {
-        return isField ? field : getChr().getField();
+        return initData.isField() ? initData.getField() : getChr().getField();
     }
 
-    public ScriptType getLastActiveScriptType() {
-        return lastActiveScriptType;
-    }
-
-    public void setLastActiveScriptType(ScriptType lastActiveScriptType) {
-        this.lastActiveScriptType = lastActiveScriptType;
-    }
-
-    public FieldTransferInfo getFieldTransferInfo() {
-        return fieldTransferInfo;
+    @Override
+    public boolean isField() {
+        return initData.isField();
     }
 
 
+    /**
+     * 脚本执行方法
+     */
 
-
-
-    //  the sends/asks -----------------------------------------------------------------------------------------
-
+    // Start of the sends/asks -----------------------------------------------------------------------------------------
     @Override
     public int sendSay(String text) {
         if (getLastActiveScriptType() == ScriptType.None) {
@@ -577,7 +374,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
      * @param nmt
      */
     private int sendGeneralSay(String text, NpcMessageType nmt) throws NullPointerException {
-        var npcScriptInfo = getNpcScriptInfo();
+        var npcScriptInfo = initData.getNpcScriptInfo();
         npcScriptInfo.setText(text);
         String checkText = text.replaceAll("[\r\n]", "");
         if (listPattern.matcher(checkText).matches()) {
@@ -588,7 +385,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         getMemory().addMemoryInfo(npcScriptInfo);
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -619,8 +416,8 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int sendSayImage(String[] images) {
-        getNpcScriptInfo().setImages(images);
-        getNpcScriptInfo().setMessageType(SayImage);
+        initData.getNpcScriptInfo().setImages(images);
+        initData.getNpcScriptInfo().setMessageType(SayImage);
         return sendGeneralSay("", SayImage);
     }
 
@@ -640,7 +437,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public String sendAskText(String text, String defaultText, short minLength, short maxLength) throws NullPointerException {
-        var npcScriptInfo = getNpcScriptInfo();
+        var npcScriptInfo = initData.getNpcScriptInfo();
         npcScriptInfo.setMin(minLength);
         npcScriptInfo.setMax(maxLength);
         npcScriptInfo.setDefaultText(defaultText);
@@ -650,7 +447,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         getMemory().addMemoryInfo(npcScriptInfo);
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -661,9 +458,9 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int sendAskNumber(String text, int defaultNum, int min, int max) {
-        getNpcScriptInfo().setDefaultNumber(defaultNum);
-        getNpcScriptInfo().setMin(min);
-        getNpcScriptInfo().setMax(max);
+        initData.getNpcScriptInfo().setDefaultNumber(defaultNum);
+        initData.getNpcScriptInfo().setMin(min);
+        initData.getNpcScriptInfo().setMax(max);
         var num = sendGeneralSay(text, AskNumber);
 
         if (num < min || num > max) {
@@ -675,7 +472,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int sendInitialQuiz(byte type, String title, String problem, String hint, int min, int max, int time) {
-        NpcScriptInfo nsi = getNpcScriptInfo();
+        NpcScriptInfo nsi = initData.getNpcScriptInfo();
         nsi.setType(type);
         if (type != 1) {
             nsi.setTitle(title);
@@ -690,7 +487,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int sendInitialSpeedQuiz(byte type, int quizType, int answer, int correctAnswers, int remaining, int time) {
-        NpcScriptInfo nsi = getNpcScriptInfo();
+        NpcScriptInfo nsi = initData.getNpcScriptInfo();
         nsi.setType(type);
         if (type != 1) {
             nsi.setQuizType(quizType);
@@ -704,9 +501,9 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int sendICQuiz(byte type, String text, String hintText, int time) {
-        getNpcScriptInfo().setType(type);
-        getNpcScriptInfo().setHintText(hintText);
-        getNpcScriptInfo().setTime(time);
+        initData.getNpcScriptInfo().setType(type);
+        initData.getNpcScriptInfo().setHintText(hintText);
+        initData.getNpcScriptInfo().setTime(time);
         return sendGeneralSay(text, ICQuiz);
     }
 
@@ -720,9 +517,9 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         }
 
         if (safeOptions.size() > 0) {
-            getNpcScriptInfo().setAngelicBuster(angelicBuster);
-            getNpcScriptInfo().setZeroBeta(zeroBeta);
-            getNpcScriptInfo().setOptions(safeOptions.stream().mapToInt(i -> i).toArray());
+            initData.getNpcScriptInfo().setAngelicBuster(angelicBuster);
+            initData.getNpcScriptInfo().setZeroBeta(zeroBeta);
+            initData.getNpcScriptInfo().setOptions(safeOptions.stream().mapToInt(i -> i).toArray());
             var safeIdx = sendGeneralSay(text, AskAvatar);
             return safeOptions.get(safeIdx);
         } else {
@@ -732,7 +529,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public int sendAskSlideMenu(int dlgType) {
-        getNpcScriptInfo().setDlgType(dlgType);
+        initData.getNpcScriptInfo().setDlgType(dlgType);
         return sendGeneralSay("", AskSlideMenu);
     }
 
@@ -741,60 +538,61 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public int sendAskSelectMenu(int dlgType, int defaultSelect, String[] text) {
-        getNpcScriptInfo().setDlgType(dlgType);
-        getNpcScriptInfo().setDefaultSelect(defaultSelect);
-        getNpcScriptInfo().setSelectText(text);
+        initData.getNpcScriptInfo().setDlgType(dlgType);
+        initData.getNpcScriptInfo().setDefaultSelect(defaultSelect);
+        initData.getNpcScriptInfo().setSelectText(text);
         return sendGeneralSay("", AskSelectMenu);
     }
 
-    //  param methods ------------------------------------------------------------------------------------------
+    // Start of param methods ------------------------------------------------------------------------------------------
 
     public void setParam(int param) {
-        getNpcScriptInfo().setParam((short) param);
+        initData.getNpcScriptInfo().setParam((short) param);
     }
 
     public void setColor(int color) {
-        getNpcScriptInfo().setColor((byte) color);
+        initData.getNpcScriptInfo().setColor((byte) color);
     }
 
     public void resetParam() {
-        getNpcScriptInfo().resetParam();
+        initData.getNpcScriptInfo().resetParam();
     }
 
     public void removeEscapeButton() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.NotCancellable);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.NotCancellable);
     }
 
     public void addEscapeButton() {
-        if (getNpcScriptInfo().hasParam(NpcScriptInfo.Param.NotCancellable)) {
-            getNpcScriptInfo().removeParam(NpcScriptInfo.Param.NotCancellable);
+        if (initData.getNpcScriptInfo().hasParam(NpcScriptInfo.Param.NotCancellable)) {
+            initData.getNpcScriptInfo().removeParam(NpcScriptInfo.Param.NotCancellable);
         }
     }
 
     public void flipSpeaker() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipSpeaker);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipSpeaker);
     }
 
 
     public void cancelFlipDialogue() {
-        getNpcScriptInfo().removeParam(NpcScriptInfo.Param.OverrideSpeakerID);
+        initData.getNpcScriptInfo().removeParam(NpcScriptInfo.Param.OverrideSpeakerID);
     }
+
     /**
      * 是否覆盖说话人的ID
      */
     public void flipDialogue() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.OverrideSpeakerID);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.OverrideSpeakerID);
     }
 
     /**
      * 是否play作为说话者 + 反转
      */
     public void flipDialoguePlayerAsSpeaker() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
     }
 
     public void setPlayerAsSpeaker() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeaker);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeaker);
     }
 
     public void setBoxChat() {
@@ -802,30 +600,29 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void setBoxChat(boolean color) { // true = Standard BoxChat  |  false = Zero BoxChat
-        getNpcScriptInfo().setColor((byte) (color ? 1 : 0));
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChat);
+        initData.getNpcScriptInfo().setColor((byte) (color ? 1 : 0));
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChat);
     }
 
     public void flipBoxChat() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChat);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChat);
     }
 
     public void boxChatPlayerAsSpeaker() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChatAsPlayer);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChatAsPlayer);
     }
 
     public void flipBoxChatPlayerAsSpeaker() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayer);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayer);
     }
 
     public void flipBoxChatPlayerNoEscape() {
-        getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayerNoEscape);
+        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayerNoEscape);
     }
 
 
     // Start helper methods for scripts --------------------------------------------------------------------------------
 
-    // dispose all type
     @Override
     public void dispose() {
         dispose(true);
@@ -835,7 +632,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         if (getChr() != null) {
             getChr().setTalkingToNpc(false);
         }
-        getNpcScriptInfo().reset();
+        initData.getNpcScriptInfo().reset();
         getMemory().clear();
         stop(ScriptType.Npc);
         stop(ScriptType.Portal);
@@ -1106,7 +903,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void setCurNodeEventEnd(boolean curNodeEventEnd) {
-        this.curNodeEventEnd = curNodeEventEnd;
+        this.initData.setCurNodeEventEnd(curNodeEventEnd);
     }
 
     public void progressMessageFont(int fontNameType, int fontSize, int fontColorType, int fadeOutDelay, String message) {
@@ -1162,7 +959,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     public void warp(int fieldId, int portalId, boolean executeAfterScript, boolean instanceField) {
         if (executeAfterScript) {
-            FieldTransferInfo fti = getFieldTransferInfo();
+            FieldTransferInfo fti = initData.getFieldTransferInfo();
             fti.setFieldId(fieldId);
             fti.setPortal(portalId);
             fti.setIsInstanceField(instanceField);
@@ -1173,7 +970,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     public void changeChannelAndWarp(int channel, int fieldID, boolean executeAfterScript, boolean instanceField) {
         if (executeAfterScript) {
-            FieldTransferInfo fti = getFieldTransferInfo();
+            FieldTransferInfo fti = initData.getFieldTransferInfo();
             fti.setChannel(channel);
             fti.setFieldId(fieldID);
             fti.setIsInstanceField(instanceField);
@@ -1278,6 +1075,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     @Override
     public int getReturnField() {
         // Do this to prevent infinite returnField Loop
+        int returnField = initData.getReturnField();
         if (getField().getId() == returnField || returnField < 100000000) {
             return 100000000;
         }
@@ -1286,7 +1084,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public void setReturnField(int returnField) {
-        this.returnField = returnField;
+        initData.setReturnField(returnField);
     }
 
     @Override
@@ -1325,7 +1123,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void killMobs() {
-        List<Mob> mobs = new ArrayList<>(getField().getMobs());
+        List<net.swordie.ms.life.mob.Mob> mobs = new ArrayList<>(getField().getMobs());
         for (Mob mob : mobs) {
             mob.die(false);
         }
@@ -1652,7 +1450,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         }
         npc.setNotRespawnable(true);
         if (npc.getField() == null) {
-            npc.setField(field);
+            npc.setField(initData.getField());
         }
 
         getField().spawnLife(npc, getChr());
@@ -1678,7 +1476,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         } else {
             script = String.valueOf(npc.getTemplateId());
         }
-       startScript(npc.getTemplateId(), npcId, script, ScriptType.Npc, null);
+        getChr().getScriptManager().startScript(npc.getTemplateId(), npcId, script, ScriptType.Npc, null);
     }
 
     @Override
@@ -1702,7 +1500,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     @Override
     public void openTrunk(int npcTemplateID) {
         if (getChr() == null || getChr().isOnline() == false) {
-            log.error(String.format("[CharId: %d] tried to open trunk while being offline.", chr.getId()));
+            log.error(String.format("[CharId: %d] tried to open trunk while being offline.",  initData.getChr().getId()));
             return;
         }
         getChr().write(FieldPacket.trunkDlg(TrunkDlg.open(npcTemplateID, getChr().getAccount().getTrunk())));
@@ -1710,7 +1508,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public void setSpeakerID(int templateID) {
-        NpcScriptInfo nsi = getNpcScriptInfo();
+        NpcScriptInfo nsi = initData.getNpcScriptInfo();
         nsi.removeParam(NpcScriptInfo.Param.PlayerAsSpeaker);
         nsi.removeParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
         boolean isNotCancellable = nsi.hasParam(NpcScriptInfo.Param.NotCancellable);
@@ -1721,12 +1519,12 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void setInnerOverrideSpeakerTemplateID(int templateID) {
-        getNpcScriptInfo().setInnerOverrideSpeakerTemplateID(templateID);
+        initData.getNpcScriptInfo().setInnerOverrideSpeakerTemplateID(templateID);
     }
 
     @Override
     public void setSpeakerType(byte speakerType) {
-        NpcScriptInfo nsi = getNpcScriptInfo();
+        NpcScriptInfo nsi = initData.getNpcScriptInfo();
         nsi.setSpeakerType(speakerType);
     }
 
@@ -2079,7 +1877,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
                         chat(name + " is already in their own instance.");
                         res = false;
                     } else if (bossCooldown != null && pmChr.getAccount().isOnBossCooldown(bossCooldown)) {
-                        int totalMinutes = getRemainingBossCooldownMinutes(bossCooldown);
+                        int totalMinutes = pmChr.getScriptManager().getRemainingBossCooldownMinutes(bossCooldown);
                         int hours = totalMinutes / 60;
                         int minutes = totalMinutes % 60;
 
@@ -2215,7 +2013,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public void giveItem(int id, int quantity) {
-        getChr().giveItem(id, quantity);
+        getChr().addItemToInventory(id, quantity);
+        String itemName = StringData.getItemStringById(id);
+        if (itemName != null) {
+            getChr().chatMessage(GameDesc, String.format("You've gained items: %s. (%d)", itemName, quantity));
+        }
     }
 
     public void giveItemWithExpiry(int id, int hours) {
@@ -2255,7 +2057,26 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void giveNewSecondary(int id) {
-        getChr().giveNewSecondary(id);
+        if (!ItemConstants.isEquip(id)) {
+            giveItem(id);
+        }
+        Item newEquipItem = ItemData.getItemDeepCopy(id);
+        if (newEquipItem == null) {
+            return;
+        }
+
+        var newEquip = (Equip) newEquipItem;
+        // replace the old equip if there was any
+        Inventory equipInv = getChr().getEquippedInventory();
+        int bodyPart = ItemConstants.getBodyPartFromItem(id, getChr().getAvatarData().getAvatarLook().getGender());
+        Item oldEquip = equipInv.getItemBySlot(bodyPart);
+        if (oldEquip != null) {
+            newEquip.setOptions(new ArrayList<>(((Equip) oldEquip).getOptions()));
+            getChr().consumeItemFull(oldEquip);
+        }
+        newEquip.setBagIndex(bodyPart);
+        getChr().equip(newEquip, bodyPart);
+        newEquip.updateToChar(getChr());
     }
 
     public String enumerateInventory(InvType invType) {
@@ -2436,7 +2257,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void batchRemoveItems(List<Item> items) {
-        InventoryModule.removeItems(chr, items.stream().collect(Collectors.toMap(item -> item, Item::getQuantity)));
+        InventoryModule.removeItems( initData.getChr(), items.stream().collect(Collectors.toMap(item -> item, Item::getQuantity)));
     }
 
 
@@ -2472,7 +2293,9 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public void startQuestNoCheck(int id) {
-        getChr().startQuestNoCheck(id);
+        QuestManager qm = getChr().getQuestManager();
+        qm.addQuest(QuestData.createQuestFromId(id));
+//        chr.chatMessage(String.format("Quest %d started by startQuestNoCheck", id));
     }
 
     @Override
@@ -2481,7 +2304,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         if (qm.canStartQuest(id)) {
             qm.addQuest(QuestData.createQuestFromId(id));
         } else {
-            chr.chatMessage("You don't fit the requirements to start this quest, if you think this is unintended, please report this to the Bug-reports channel in the discord.");
+             initData.getChr().chatMessage("You don't fit the requirements to start this quest, if you think this is unintended, please report this to the Bug-reports channel in the discord.");
         }
     }
 
@@ -2512,7 +2335,15 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void createQuestWithQRValue(Char character, int questId, String qrValue, boolean ex) {
-        character.createQuestWithQRValue(character, questId, qrValue, ex);
+        QuestManager qm = character.getQuestManager();
+        Quest quest = qm.getQuestById(questId);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questId);
+            quest.setQrValue(qrValue);
+            qm.addCustomQuest(quest);
+        }
+        quest.setQrValue(qrValue);
+        updateQRValue(questId, ex);
     }
 
     public void deleteQuest(int questId) {
@@ -2561,7 +2392,14 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void setQRValue(int questId, String key, String value) {
-        getChr().setQRValue(questId, key, value);
+        QuestManager qm = getChr().getQuestManager();
+        Quest quest = qm.getQuestById(questId);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questId);
+            qm.addQuest(quest);
+        }
+        quest.setProperty(key, value);
+        getChr().write(WvsContext.message(MessagePacket.questRecordExMessage(quest)));
     }
 
     public void setQRValue(int questId, String qrValue, boolean ex) {
@@ -2569,7 +2407,13 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void setQRValue(Char chr, int questId, String qrValue, boolean ex) {
-        getChr().setQRValue(chr, questId, qrValue, ex);
+        Quest quest = chr.getQuestManager().getQuestById(questId);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questId);
+            chr.getQuestManager().addQuest(quest);
+        }
+        quest.setQrValue(qrValue);
+        updateQRValue(questId, ex);
     }
 
     public void addQRValue(int questId, String qrValue) {
@@ -2591,7 +2435,17 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void updateQRValue(int questId, boolean ex) {
-        getChr().updateQRValue(questId, ex);
+        Quest quest = getChr().getQuestManager().getQuestById(questId);
+        if (quest == null) {
+            log.error(String.format("The user does not have the quest %d.", questId));
+            return;
+        }
+        if (ex) {
+            getChr().write(WvsContext.message(MessagePacket.questRecordMessage(quest)));
+            getChr().write(WvsContext.message(MessagePacket.questRecordExMessage(quest)));
+        } else {
+            getChr().write(WvsContext.message(MessagePacket.questRecordMessage(quest)));
+        }
     }
 
     public String getCurrentDateAsString() {
@@ -2760,7 +2614,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     private Map<ScheduledFuture, Boolean> getEvents() {
-        return events;
+        return initData.getEvents();
     }
 
     public void addEvent(ScheduledFuture event) {
@@ -2829,8 +2683,8 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     public void addUnionCoin(int amount, boolean fromRaid) {
         if (fromRaid) {
-            if (chr.getUnionRaid() != null) {
-                chr.getUnionRaid().addUnclaimedCoins(chr, -amount);
+            if ( initData.getChr().getUnionRaid() != null) {
+                 initData.getChr().getUnionRaid().addUnclaimedCoins( initData.getChr(), -amount);
             } else {
                 return;
             }
@@ -2970,8 +2824,8 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public void consumeLiver() {
-        if (JobConstants.isShade(chr.getJob())) {
-            ((Shade) chr.getJobHandler()).extendSpiritBondMax();
+        if (JobConstants.isShade( initData.getChr().getJob())) {
+            ((Shade)  initData.getChr().getJobHandler()).extendSpiritBondMax();
         }
     }
 
@@ -2981,11 +2835,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     @Override
     public int moveCamera(boolean back, int speed, int x, int y) {
 
-        getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraMove(back, speed, new Position(x, y))));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -3007,11 +2861,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public int zoomCamera(int time, int scale, int timePos, int x, int y) {
-        getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraZoom(time, scale, timePos, new Position(x, y))));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -3022,11 +2876,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int zoomCamera(int inZoomDuration, int scale, int x, int y) {
-        getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraZoom(inZoomDuration, scale, 1000, new Position(x, y))));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -3050,11 +2904,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int sendDelay(int delay) {
-        getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.delay(delay)));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -3141,11 +2995,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public int sayMonologue(String text, boolean isEnd) {
-        getNpcScriptInfo().setMessageType(NpcMessageType.Monologue);
+        initData.getNpcScriptInfo().setMessageType(NpcMessageType.Monologue);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.monologue(text, isEnd)));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -3178,8 +3032,8 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     public Clock createStopWatchForChrOnly(int seconds) {
-        if (chr != null) {
-            return new Clock(ClockType.StopWatch, chr, seconds);
+        if ( initData.getChr() != null) {
+            return new Clock(ClockType.StopWatch,  initData.getChr(), seconds);
         }
 
         return null;
@@ -3233,7 +3087,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public boolean addDamageSkin(int itemID) {
-        return chr.addDamageSkin(itemID);
+        return  initData.getChr().addDamageSkin(itemID);
     }
 
     @Override
@@ -3503,11 +3357,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int playVideoByScript(String videoPath) {
-        getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClip);
+        initData.getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClip);
         getChr().write(UserLocal.videoByScript(videoPath, true));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -3518,11 +3372,11 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public int playVideoByScriptFromWeb(String videlUrl) {
-        getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
+        initData.getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
         getChr().write(UserLocal.videoByScriptWeb(videlUrl));
         Object response = null;
         var lastActiveScriptType = getLastActiveScriptType();
-        if (isActive(lastActiveScriptType)) {
+        if (initData.isActive(lastActiveScriptType)) {
             response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
         }
         if (response == null) {
@@ -3651,7 +3505,7 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
     }
 
     private ScriptMemory getMemory() {
-        return memory;
+        return initData.getMemory();
     }
 
     public void setBossCooldown(BossCooldown bc) {
@@ -3857,11 +3711,6 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
         Voyage.finishHorde(getChr());
     }
 
-
-    public static void clear() {
-        scriptCache.clear();
-    }
-
     //DailyEntry methods
     public int getRemainingDailyEntries(DailyEntry de) {
         return getChr().getAccount().getRemainingEntries(de);
@@ -3877,36 +3726,37 @@ public class PyScriptManagerImp implements ScriptManager , ScriptManagerFun {
 
     @Override
     public boolean levelArcaneSymbol(BodyPart symbolPart, int levelAmount) {
-        Item item = chr.getEquippedInventory().getFirstItemByBodyPart(symbolPart);
+        Item item =             initData.getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
         if (item != null) {
             Equip symbol = (Equip) item;
             if (symbol.getSymbolLevel() < ItemConstants.MAX_ARCANE_SYMBOL_LEVEL) {
                 symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_ARCANE_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
-                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), chr.getJob());
-                symbol.updateToChar(chr);
+                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(),             initData.getChr().getJob());
+                symbol.updateToChar(            initData.getChr());
                 return true;
             }
         } else {
-            chr.chatMessage("Please equip your symbol before you try to complete the weekly.");
+            initData.getChr().chatMessage("Please equip your symbol before you try to complete the weekly.");
         }
         return false;
     }
 
     @Override
     public boolean levelAuthSymbol(BodyPart symbolPart, int levelAmount) {
-        Item item = chr.getEquippedInventory().getFirstItemByBodyPart(symbolPart);
+        Item item = initData.getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
         if (item != null) {
             Equip symbol = (Equip) item;
             if (symbol.getSymbolLevel() < ItemConstants.MAX_AUTH_SYMBOL_LEVEL) {
                 symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_AUTH_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
-                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), chr.getJob());
-                symbol.updateToChar(chr);
+                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(),             initData.getChr().getJob());
+                symbol.updateToChar(            initData.getChr());
                 return true;
             }
         } else {
-            chr.chatMessage("Please equip your symbol before you try to complete the weekly.");
+            initData.getChr().chatMessage("Please equip your symbol before you try to complete the weekly.");
         }
         return false;
     }
+
 
 }
