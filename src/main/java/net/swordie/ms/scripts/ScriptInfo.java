@@ -24,6 +24,12 @@ public class ScriptInfo {
     private String fileDir;
     private boolean isActive;
 
+    public ScriptInfo(ScriptType scriptType, int parentID, String scriptName) {
+        this.scriptType = scriptType;
+        this.parentID = parentID;
+        this.scriptName = scriptName;
+    }
+
     public ScriptInfo(ScriptType scriptType, Bindings bindings, int parentID, String scriptName) {
         this.scriptType = scriptType;
         this.parentID = parentID;

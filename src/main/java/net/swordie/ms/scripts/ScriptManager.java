@@ -111,7 +111,6 @@ public interface ScriptManager {
 	 * 		The text to display inside of the message box.
 	 */
 	boolean sendAskYesNo(String text);
-
 	/**
 	 * Sends a message box with accept / decline buttons.<br>
 	 * Example: "sm.sendAskAccept("Do you want to accept my quest?")"

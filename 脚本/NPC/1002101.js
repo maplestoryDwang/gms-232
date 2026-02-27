@@ -17,7 +17,7 @@ function action(c, b, a) {
         cm.askYesNo("Would you like to head back?")
     } else {
         if (status == 1) {
-            // cm.warp(193000000);
+            cm.warp(193000000);
             cm.dispose()
         }
     }

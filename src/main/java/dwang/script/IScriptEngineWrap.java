@@ -9,7 +9,6 @@ import net.swordie.ms.world.field.Field;
 
 import javax.script.Bindings;
 import javax.script.CompiledScript;
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.util.Map;
 
@@ -21,20 +20,12 @@ import java.util.Map;
 public interface IScriptEngineWrap {
 
 
-    ScriptEngine getScriptEngine();
-
-    Bindings buildScriptBindings(Bindings oldBinding, ScriptType scriptType, Char chr, Field scriptFiled, int parentID, int objID, Life scriptReactor, boolean scriptQuestTag, Map<String, Object> customBindings);
-
     /**
      * 获取脚本路径
      *
-     * @param chr
-     * @param scriptCache
-     * @param name
-     * @param scriptType
      * @return
      */
-    String getScriptDir(Char chr, Map<String, CompiledScript> scriptCache, String name, ScriptType scriptType);
+    String genScriptDirAndEngine(Char chr, Map<String, CompiledScript> scriptCache, ScriptInfo si);
 
     /**
      * 构建脚本
@@ -44,6 +35,12 @@ public interface IScriptEngineWrap {
      * @return
      */
     String buildScriptStr(Map<String, CompiledScript> scriptCache, String dir);
+
+    /**
+     * 构建参数绑定
+     * @return
+     */
+    Bindings buildScriptBindings(Bindings oldBinding, ScriptType scriptType, Char chr, Field scriptFiled, ScriptInfo si, Life scriptReactor, boolean scriptQuestTag, Map<String, Object> customBindings);
 
     /**
      * 执行脚本
@@ -64,4 +61,12 @@ public interface IScriptEngineWrap {
      * @param text
      */
     void runAction(ScriptInfo si, NpcMessageType lastType, byte response, int answer, String text);
+
+
+    /**
+     * 停止
+     * @param scriptType
+     */
+    void stop(ScriptType scriptType);
+
 }

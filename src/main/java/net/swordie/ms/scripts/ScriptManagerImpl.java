@@ -3,114 +3,37 @@ package net.swordie.ms.scripts;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import dwang.script.IScriptEngineWrap;
 import dwang.script.ScriptInitData;
+import dwang.script.js.JsScriptEngineWrap;
 import dwang.script.py.PyScriptEngineWrap;
 import net.swordie.ms.Server;
-import net.swordie.ms.ServerConstants;
 import net.swordie.ms.client.AccountBossCooldown;
-import net.swordie.ms.client.Client;
-import net.swordie.ms.client.alliance.Alliance;
-import net.swordie.ms.client.alliance.AllianceResult;
 import net.swordie.ms.client.character.Char;
-import net.swordie.ms.client.character.MonsterPark;
-import net.swordie.ms.client.character.avatar.AvatarLook;
-import net.swordie.ms.client.character.commerce.voyage.Voyage;
-import net.swordie.ms.client.character.items.*;
-import net.swordie.ms.client.character.modules.InventoryModule;
-import net.swordie.ms.client.character.quest.Quest;
-import net.swordie.ms.client.character.quest.QuestManager;
-import net.swordie.ms.client.character.scene.Scene;
-import net.swordie.ms.client.character.skills.Option;
-import net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat;
-import net.swordie.ms.client.character.skills.temp.TemporaryStatBase;
-import net.swordie.ms.client.character.skills.temp.TemporaryStatManager;
-import net.swordie.ms.client.character.skills.vmatrix.MatrixRecord;
-import net.swordie.ms.client.character.skills.vmatrix.NodestoneModule;
-import net.swordie.ms.client.character.union.Union;
-import net.swordie.ms.client.character.union.UnionMember;
-import net.swordie.ms.client.character.union.UnionRaid;
-import net.swordie.ms.client.guild.Guild;
-import net.swordie.ms.client.guild.GuildMember;
-import net.swordie.ms.client.guild.result.GuildResult;
-import net.swordie.ms.client.guild.result.GuildType;
 import net.swordie.ms.client.jobs.legend.Shade;
 import net.swordie.ms.client.party.Party;
-import net.swordie.ms.client.party.PartyMember;
-import net.swordie.ms.client.party.PartyResult;
-import net.swordie.ms.client.trunk.TrunkDlg;
 import net.swordie.ms.connection.packet.*;
 import net.swordie.ms.connection.packet.field.FieldPacket;
-import net.swordie.ms.connection.packet.field.LucidFieldPacket;
-import net.swordie.ms.connection.packet.field.PapulatusFieldPacket;
-import net.swordie.ms.connection.packet.model.MessagePacket;
-import net.swordie.ms.constants.*;
 import net.swordie.ms.enums.*;
 import net.swordie.ms.handlers.executors.EventManager;
-import net.swordie.ms.life.DeathType;
 import net.swordie.ms.life.Life;
-import net.swordie.ms.life.Reactor;
-import net.swordie.ms.life.drop.Drop;
-import net.swordie.ms.life.drop.DropInfo;
 import net.swordie.ms.life.mob.Mob;
-import net.swordie.ms.life.mob.boss.papulatus.PapulatusFieldObject;
-import net.swordie.ms.life.mob.boss.papulatus.PapulatusLaserInfo;
-import net.swordie.ms.life.mob.boss.papulatus.PapulatusTweezerInfo;
-import net.swordie.ms.life.mob.boss.will.WillModule;
-import net.swordie.ms.life.mob.skill.MobSkillID;
-import net.swordie.ms.life.npc.Npc;
 import net.swordie.ms.life.npc.NpcMessageType;
 import net.swordie.ms.life.npc.NpcScriptInfo;
 import net.swordie.ms.loaders.*;
-import net.swordie.ms.loaders.containerclasses.ItemInfo;
 import net.swordie.ms.util.FileTime;
 import net.swordie.ms.util.Position;
-import net.swordie.ms.util.Rect;
-import net.swordie.ms.util.Util;
-import net.swordie.ms.util.container.Tuple;
-import net.swordie.ms.world.World;
 import net.swordie.ms.world.field.*;
-import net.swordie.ms.world.field.bosses.gollux.FallingCatcher;
-import net.swordie.ms.world.field.bosses.gollux.GolluxMiniMapFieldClearType;
-import net.swordie.ms.world.field.fieldeffect.FieldEffect;
-import net.swordie.ms.world.field.fieldeffect.GreyFieldType;
 import net.swordie.ms.world.field.instance.Instance;
-import net.swordie.ms.world.field.obstacleatom.ObstacleAtomFactory;
-import net.swordie.ms.world.field.obstacleatom.ObstacleAtomInfo;
-import net.swordie.ms.world.field.obstacleatom.ObstacleInRowInfo;
-import net.swordie.ms.world.field.obstacleatom.ObstacleRadianInfo;
 import net.swordie.ms.world.shop.NpcShopDlg;
-import net.swordie.orm.dao.AllianceDao;
-import net.swordie.orm.dao.CharDao;
-import net.swordie.orm.dao.SworDaoFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.python.core.PyDictionary;
-import org.python.core.PyTuple;
 
 import javax.script.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.*;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
-import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.PapulatusTimeLock;
-import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.RideVehicle;
 import static net.swordie.ms.enums.ChatType.*;
-import static net.swordie.ms.life.npc.NpcMessageType.*;
 
 /**
  * Created on 2/19/2018.
@@ -135,14 +58,16 @@ public class ScriptManagerImpl {
 //    private static final ScriptEngine scriptEngine = new ScriptEngineManager().getEngineByName(SCRIPT_ENGINE_NAME);
 
     // 包装类
-    private final IScriptEngineWrap scriptEngineWrap;
+    private final IScriptEngineWrap pyScriptEngineWrap;
+    private final IScriptEngineWrap jsScriptEngineWrap;
 
     // 共享的数据
     private final ScriptInitData initData;
 
     private ScriptManagerImpl(Char chr, Field field) {
         initData = new ScriptInitData(chr, field);
-        scriptEngineWrap = new PyScriptEngineWrap(initData);
+        pyScriptEngineWrap = new PyScriptEngineWrap(initData);
+        jsScriptEngineWrap = new JsScriptEngineWrap(initData);
 
     }
 
@@ -192,7 +117,16 @@ public class ScriptManagerImpl {
     }
 
 
-
+    /**
+     * 进入js脚本解析条件
+     *
+     * @param scriptInfo
+     * @return
+     */
+    public boolean selectJsCondition(ScriptInfo scriptInfo) {
+        int parentID = scriptInfo.getParentID();
+        return parentID == 1002101;
+    }
 
 
     public void startScript(int parentID, ScriptType scriptType) {
@@ -254,30 +188,38 @@ public class ScriptManagerImpl {
         setLastActiveScriptType(scriptType);
 
         if (!isField()) {
-            chrFromMethods.chatMessage(Mob, String.format("Starting script [%s] , scriptType [%s].", scriptName, scriptType));
-            log.info(String.format("Starting script [%s], scriptType [%s].", scriptName, scriptType));
+            String format = String.format("Starting script [%s] , templateID [%d] scriptType [%s].", scriptName, parentID, scriptType);
+            chrFromMethods.chatMessage(Mob, format);
+            log.info(String.format(format, scriptName, scriptType));
         }
 
+        // 清空之前的参数
         initData.getNpcScriptInfo().resetParam();
 
-        Field scriptFiled = chrFromMethods == null ? initData.getField() : getField();
-        Life scriptReactor = getField().getLifeByObjectID(objID);
-        boolean scriptQuestTag = scriptName.charAt(scriptName.length() - 1) == QUEST_START_SCRIPT_END_TAG.charAt(0);
 
-        Bindings oldBinding = getBindingsByType(scriptType);
-        Bindings bindings = scriptEngineWrap.buildScriptBindings(oldBinding, scriptType, chrFromMethods, scriptFiled, parentID, objID, scriptReactor, scriptQuestTag, customBindings);
+//        Field scriptFiled = chrFromMethods == null ? initData.getField() : getField();
+//        Life scriptReactor = getField().getLifeByObjectID(objID);
+//        boolean scriptQuestTag = scriptName.charAt(scriptName.length() - 1) == QUEST_START_SCRIPT_END_TAG.charAt(0);
+//
+//        Bindings oldBinding = getBindingsByType(scriptType);
+//        Bindings bindings = scriptEngineWrap.buildScriptBindings(oldBinding, scriptType, chrFromMethods, scriptFiled, parentID, objID, scriptReactor, scriptQuestTag, customBindings);
 
 
 
-
-        ScriptInfo scriptInfo = new ScriptInfo(scriptType, bindings, parentID, scriptName);
+        ScriptInfo scriptInfo = new ScriptInfo(scriptType, parentID, scriptName);
         scriptInfo.setActive(true);
         if (scriptType == ScriptType.Npc) {
             getNpcScriptInfo().setTemplateID(parentID); //设置说话人
         }
         scriptInfo.setObjectID(objID);
         getScripts().put(scriptType, scriptInfo);
-        SCRIPT_EXECUTOR_SERVICE.execute(() -> startScript(scriptName, scriptType)); // makes the script execute async
+
+        if (selectJsCondition(scriptInfo)) {
+            SCRIPT_EXECUTOR_SERVICE.execute(() -> startScript(scriptName, scriptType, customBindings, jsScriptEngineWrap)); // makes the script execute async
+        } else {
+            SCRIPT_EXECUTOR_SERVICE.execute(() -> startScript(scriptName, scriptType, customBindings, pyScriptEngineWrap)); // makes the script execute async
+        }
+
     }
 
     private boolean isQuestScriptAllowed() {
@@ -292,27 +234,50 @@ public class ScriptManagerImpl {
         }
     }
 
-
-    private void startScript(String name, ScriptType scriptType) {
+    /**
+     * 脚本会有调用？ 不过现在应该调用不了这个方法了，出现问题再说
+     * 20260227
+     * dwang
+     *
+     * todo 需要添加脚本执行参数param
+     *
+     * @param name
+     * @param scriptType
+     * @param customBindings
+     */
+    private void startScript(String name, ScriptType scriptType, Map<String, Object> customBindings, IScriptEngineWrap scriptEngineWrap) {
         Char charFromMethods = getChr();
-        String dir = scriptEngineWrap.getScriptDir(charFromMethods, scriptCache, name, scriptType); // Grab directory. if tespia, first look in tespia folder. otherwise normal folder. otherwise default script
         ScriptInfo si = getScriptInfoByType(scriptType);
+        // step1: 设置路径和引擎
+        String dir = scriptEngineWrap.genScriptDirAndEngine(charFromMethods, scriptCache, si); // Grab directory. if tespia, first look in tespia folder. otherwise normal folder. otherwise default script
         if (si == null) {
             return;
         }
 
         si.setFileDir(dir);
-        ScriptEngine se = scriptEngineWrap.getScriptEngine();
-        si.setInvocable((Invocable) se);
 
+//        python里面设置
+//        ScriptEngine se = scriptEngineWrap.getScriptEngine();
+//        si.setInvocable((Invocable) se);
 
-
+        // step2: 获取脚本内容
         String scriptStr = scriptEngineWrap.buildScriptStr(scriptCache, dir);
+
+
+        // step3: 绑定脚本参数
+        int objID = si.getObjectID();
+        Field scriptFiled = charFromMethods == null ? initData.getField() : getField();
+        Life scriptReactor = getField().getLifeByObjectID(objID);
+        boolean scriptQuestTag = name.charAt(name.length() - 1) == QUEST_START_SCRIPT_END_TAG.charAt(0);
+
+        Bindings oldBinding = getBindingsByType(scriptType);
+        Bindings bindings = scriptEngineWrap.buildScriptBindings(oldBinding, scriptType, charFromMethods, scriptFiled,  si, scriptReactor, scriptQuestTag, customBindings);
+        si.setBindings(bindings);
 
         try {
 
-            // 执行
-            Bindings bindings = getBindingsByType(scriptType);
+            // step4: 执行
+//            Bindings bindings = getBindingsByType(scriptType);
             scriptEngineWrap.evalAndRunStart(scriptCache, dir, scriptStr, bindings);
 
         } catch (ScriptException e) {
@@ -327,6 +292,7 @@ public class ScriptManagerImpl {
                     charFromMethods.chatMessage(Mob, e.getMessage());
                 }
                 lockInGameUI(false); // so players don't get stuck if a script fails
+                dispose(true);
             }
         } finally {
             if (si.isActive() && name.equals(si.getScriptName()) &&
@@ -335,7 +301,9 @@ public class ScriptManagerImpl {
                 // gracefully stop script if it's still active with the same script info (scriptName, or scriptName +
                 // current chr fieldID == fieldscript's fieldID if scriptType == Field).
                 // This makes it so field scripts won't cancel new field scripts when having a warp() in them.
-                stop(scriptType);
+
+                // step 5 停止
+                scriptEngineWrap.stop(scriptType);
             }
             FieldTransferInfo fti = getFieldTransferInfo();
             if (!fti.isInit()) {
@@ -390,12 +358,14 @@ public class ScriptManagerImpl {
                         NpcScriptInfo next = sm.getNextScriptInfo();
                         getChr().write(ScriptMan.scriptMessage(next, next.getMessageType()));
                     } else {
-                        ScriptInfo si = getScriptInfoByType(scriptType);
 
                         if (isActive(scriptType)) {
-                            scriptEngineWrap.runAction(si, lastType, response, answer, text);
-
-
+                            ScriptInfo si = getScriptInfoByType(scriptType);
+                            if (selectJsCondition(si)) {
+                                jsScriptEngineWrap.runAction(si, lastType, response, answer, text);
+                            } else {
+                                pyScriptEngineWrap.runAction(si, lastType, response, answer, text);
+                            }
                         }
                     }
                 }
@@ -466,10 +436,33 @@ public class ScriptManagerImpl {
     }
 
 
-    public void dispose(boolean stop) {
-        dispose(stop);
+    public void dispose() {
+        dispose(true);
 
     }
+
+    public void dispose(boolean stop) {
+        if (getChr() != null) {
+            getChr().setTalkingToNpc(false);
+        }
+        initData.getNpcScriptInfo().reset();
+        getMemory().clear();
+        stop(ScriptType.Npc);
+        stop(ScriptType.Portal);
+        stop(ScriptType.Item);
+        stop(ScriptType.Quest);
+        stop(ScriptType.Reactor);
+        if (getLastActiveScriptType() == ScriptType.Field) {
+            // only fields are able to stop themselves, otherwise things like npcs would stop field scripts
+            // like magnus leave script would make the orbs disappear if you don't actually leave
+            stop(ScriptType.Field);
+        }
+        if (stop) {
+            throw new NullPointerException(INTENDED_NPE_MSG); // makes the underlying script stop
+        }
+        setCurNodeEventEnd(false);
+    }
+
 
     public void dispose(ScriptType scriptType) {
         getMemory().clear();
@@ -661,6 +654,8 @@ public class ScriptManagerImpl {
     public void setReturnField(int returnField) {
         initData.setReturnField(returnField);
     }
+
+
 
 
 }
