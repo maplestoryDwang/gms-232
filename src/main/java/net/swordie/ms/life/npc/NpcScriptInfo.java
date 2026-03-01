@@ -5,10 +5,10 @@ package net.swordie.ms.life.npc;
  */
 public class NpcScriptInfo {
 	private int[] options;
-	private byte speakerType = 4; // ?
+	private byte speakerType = 4; // todo 有人说和param是一样的？
 	private int overrideSpeakerTemplateID;
 	private short param;
-	private byte color;
+	private byte color;   // bottom type
 	private String text;
 	private NpcMessageType messageType;
 	private String[] images;
@@ -32,6 +32,12 @@ public class NpcScriptInfo {
 	private String[] selectText;
 	private int templateID;
 	private int innerOverrideSpeakerTemplateID;
+	// 是否左边
+	private int bIsLeft;
+	// 消耗的物品ID
+	private int consumeItemId;
+
+
 
 	public NpcScriptInfo deepCopy() {
 		NpcScriptInfo nsi = new NpcScriptInfo();
@@ -67,6 +73,8 @@ public class NpcScriptInfo {
 		nsi.defaultSelect = defaultSelect;
 		nsi.selectText = selectText;
 		nsi.templateID = templateID;
+		nsi.bIsLeft = bIsLeft;
+		nsi.consumeItemId = consumeItemId;
 		return nsi;
 	}
 
@@ -270,7 +278,25 @@ public class NpcScriptInfo {
 		return selectText;
 	}
 
-    public void addParam(Param param) {
+
+	public int getbIsLeft() {
+		return bIsLeft;
+	}
+
+	public void setbIsLeft(int bIsLeft) {
+		this.bIsLeft = bIsLeft;
+	}
+
+
+	public int getConsumeItemId() {
+		return consumeItemId;
+	}
+
+	public void setConsumeItemId(int consumeItemId) {
+		this.consumeItemId = consumeItemId;
+	}
+
+	public void addParam(Param param) {
 		setParam((byte) (getParam() | param.getVal()));
 	}
 

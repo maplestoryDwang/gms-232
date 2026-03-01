@@ -12,7 +12,7 @@ import net.swordie.ms.enums.TSIndex;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.RideVehicle;
 
 /**
- * @author 橘子
+ * @author  dwang
  * @date 2026/2/27
  * @description
  */

@@ -125,7 +125,7 @@ public class ScriptManagerImpl {
      */
     public boolean selectJsCondition(ScriptInfo scriptInfo) {
         int parentID = scriptInfo.getParentID();
-        return parentID == 1002101;
+        return parentID == 1002101 || parentID == 1013207;
     }
 
 

@@ -50,7 +50,7 @@ import java.util.stream.Collectors;
 import static net.swordie.ms.client.character.skills.temp.CharacterTemporaryStat.PapulatusTimeLock;
 
 /**
- * @author 橘子
+ * @author  dwang
  * @date 2026/2/27
  * @description
  */

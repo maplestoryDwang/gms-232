@@ -16,18 +16,27 @@ import static net.swordie.ms.life.npc.NpcMessageType.*;
 import static net.swordie.ms.life.npc.NpcMessageType.AskSelectMenu;
 
 /**
- * @author 橘子
+ * @author  dwang
  * @date 2026/2/27
  * @description
  */
 public interface PySendAskAPI extends DwangScriptBaseApi {
 
-
+    // 匹配是#L的列表
     Pattern listPattern = Pattern.compile("(.)*#[lL][0-9]+#(.)*");
+
+
     String INTENDED_NPE_MSG = "Intended NPE by forceful script stop.";
 
     // Start of the sends/asks -----------------------------------------------------------------------------------------
-    
+
+    default int sendSayIll(String text) {
+        if (getLastActiveScriptType() == ScriptType.None) {
+            return 0;
+        }
+        return sendGeneralSay(text, SayIllustration);
+    }
+
     default int sendSay(String text) {
         if (getLastActiveScriptType() == ScriptType.None) {
             return 0;

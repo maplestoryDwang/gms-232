@@ -25,8 +25,8 @@ public class ScriptMan {
             outPacket.encodeInt(overrideTemplate);
         }
         outPacket.encodeByte(nmt.getVal());
-        outPacket.encodeShort(nsi.getParam());
-        outPacket.encodeByte(nsi.getColor()); // idk why these are flipped
+        outPacket.encodeShort(nsi.getParam()); // 样式
+        outPacket.encodeByte(nsi.getColor()); // idk why these are flipped   todo bms里面是bottmStyle
 
         switch (nmt) {
             case Say: // 0
@@ -115,7 +115,7 @@ public class ScriptMan {
                 outPacket.encodeByte(nsi.isAngelicBuster());
                 outPacket.encodeByte(nsi.isZeroBeta());
                 outPacket.encodeString(nsi.getText());
-                outPacket.encodeInt(0); // consumed itemId
+                outPacket.encodeInt(nsi.getConsumeItemId()); // consumed itemId
                 outPacket.encodeInt(0); // new 209
                 outPacket.encodeInt(0); // new 209
                 outPacket.encodeByte(options.length);
@@ -226,7 +226,7 @@ public class ScriptMan {
                     outPacket.encodeInt(0); // bIsLeft
                     outPacket.encodeInt(0); // nFaceIndex2
                 } else {
-                    outPacket.encodeByte(0); // bIsLeft
+                    outPacket.encodeByte(nsi.getbIsLeft()); // bIsLeft
                 }
                 break;
             case AskYesNoIllustration:
@@ -243,7 +243,7 @@ public class ScriptMan {
                     outPacket.encodeInt(0); // bIsLeft
                     outPacket.encodeInt(0); // nFaceIndex2
                 } else {
-                    outPacket.encodeByte(0); // bIsLeft
+                    outPacket.encodeByte(nsi.getbIsLeft()); // bIsLeft
                 }
                 break;
             case AskMenuIllustration:
@@ -255,7 +255,7 @@ public class ScriptMan {
                     outPacket.encodeInt(0); // bIsLeft
                     outPacket.encodeInt(0); // nFaceIndex2
                 } else {
-                    outPacket.encodeByte(0); // bIsLeft
+                    outPacket.encodeByte(nsi.getbIsLeft()); // bIsLeft
                 }
                 break;
             case AskAvatarZero:
@@ -263,7 +263,7 @@ public class ScriptMan {
                 outPacket.encodeByte(nsi.isAngelicBuster());
                 outPacket.encodeByte(nsi.isZeroBeta());
                 outPacket.encodeString(nsi.getText());
-                outPacket.encodeInt(0); // consumed itemId
+                outPacket.encodeInt(nsi.getConsumeItemId()); // consumed itemId
                 outPacket.encodeInt(0); // new 209
                 outPacket.encodeInt(0); // new 209
                 outPacket.encodeByte(options.length);

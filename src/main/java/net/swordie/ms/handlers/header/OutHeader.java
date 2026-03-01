@@ -2101,9 +2101,10 @@ public enum OutHeader {
     UNK212_1788(1894),
     UNK212_1789(1895),
     UNK212_1790(1896),
+    UNK232_1897(1897), //sub_141944B80
 
     // CScriptMan::OnPacket
-    SCRIPT_MESSAGE(1898),
+    SCRIPT_MESSAGE(1898),  //sub_1422BFB20
 
     // CShopDlg::OnPacket
     SHOP_OPEN(1899),

@@ -362,9 +362,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
                 // lastType
                 int unused = 0;
                 inv.invokeFunction("action", response, unused, answer);
-            } catch (ScriptException e) {
-                throw new RuntimeException(e);
-            } catch (NoSuchMethodException e) {
+            } catch (ScriptException | NoSuchMethodException e) {
+                dispose();
                 throw new RuntimeException(e);
             }
         }

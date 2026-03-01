@@ -192,9 +192,10 @@ public class QuestManager {
             chr.chatMessage("Your inventory is full. Please make more space before trying to accept this quest.");
             return false;
         }
-        return hasQuest && qi.getQuestStartRequirements().stream()
+        boolean b = qi.getQuestStartRequirements().stream()
                 .filter(qsr -> !(qsr instanceof QuestStartCompletionRequirement))
                 .allMatch(qsr -> qsr.hasRequirements(chr));
+        return hasQuest && b;
     }
 
     public Char getChr() {

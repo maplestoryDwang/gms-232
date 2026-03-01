@@ -9,7 +9,7 @@ import static net.swordie.ms.enums.ChatType.Notice2;
 import static net.swordie.ms.enums.ChatType.SystemNotice;
 
 /**
- * @author 橘子
+ * @author  dwang
  * @date 2026/2/27
  * @description
  */

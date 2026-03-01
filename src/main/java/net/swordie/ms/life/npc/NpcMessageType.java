@@ -13,6 +13,9 @@ public enum NpcMessageType {
     SayNext(0, false, true, ResponseType.Response),
     SayPrev(0, true, false, ResponseType.Response),
     Say(0, true, true, ResponseType.Response),
+
+
+
     SayUnk(1, ResponseType.Response),
     SayImage(2, ResponseType.Response),
     AskYesNo(3, ResponseType.Response),
@@ -29,6 +32,8 @@ public enum NpcMessageType {
     AskPetAll(14, ResponseType.Answer),
     AskActionPetEvolution(15, ResponseType.Answer),
     // 16
+    AskScript(16, ResponseType.Answer), // unused
+
     AskAccept2(17, ResponseType.Response),
     AskAccept(18, ResponseType.Response),
     AskBoxtext(19, ResponseType.Answer),
@@ -36,13 +41,11 @@ public enum NpcMessageType {
     AskIngameDirection(21, ResponseType.Response),
     PlayMovieClip(22, ResponseType.Response),
     PlayMovieClipURL(23, ResponseType.Response),
-
-//    AskCenter(23, ResponseType.Answer),
-    AskAvatar2(24, ResponseType.Answer),
-    // 25
+    AskCenter(24, ResponseType.Answer),
+    AskAvatar2(25, ResponseType.Answer),     // 25
     AskSelectMenu(26, ResponseType.Answer),
     AskAngelicBuster(27, ResponseType.Answer),
-    SayIllustration(28, ResponseType.Answer),
+    SayIllustration(28, ResponseType.Answer),                 // 插图说话
     SayDualIllustration(29, ResponseType.Answer),
     AskYesNoIllustration(30, ResponseType.Answer),
     AskAcceptIllustration(31, ResponseType.Answer), // bQuest=True
@@ -54,6 +57,7 @@ public enum NpcMessageType {
     AskAvatarZero(37, ResponseType.Answer),
     Unk37(38, ResponseType.Answer), // Avatar stuff
     Unk38(39, ResponseType.Answer), // Avatar stuff
+    要求输入文本_特殊UI(40, ResponseType.Text),
 
     AskWeaponBox(41, ResponseType.Answer),
     AskBoxTextBgImg(42, ResponseType.Answer),
@@ -85,6 +89,11 @@ public enum NpcMessageType {
     Unk67(68, ResponseType.Answer),
     Unk68(69, ResponseType.Answer),
     Unk69(70, ResponseType.Answer),
+
+    // 以下type从176来，暂时未知
+    带人物立绘II_选择是否(73,  ResponseType.Response),
+    带人物立绘II_选择接受拒绝(74, ResponseType.Response), // 确定
+    带人物立绘II_自定义选择(75, ResponseType.Answer),
     None(-1, ResponseType.Answer),
     ;
 
