@@ -45,12 +45,8 @@ public interface IScriptEngineWrap {
     /**
      * 执行脚本
      *
-     * @param scriptCache
-     * @param dir
-     * @param scriptStr
-     * @param bindings
      */
-    void evalAndRunStart(Map<String, CompiledScript> scriptCache, String dir, String scriptStr, Bindings bindings) throws ScriptException;
+    void evalAndRunStart(Map<String, CompiledScript> scriptCache, String scriptStr, ScriptInfo si) throws ScriptException;
 
     /**
      * 执行脚本后续方法

@@ -247,6 +247,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         ScriptType scriptType = si.getScriptType();
 
         // If script doesn't exist in scripts_tespia directory. Look into normal scripts directory
+        // todo 需要加各种类型的路径
         String dir = getDirByType(si);
 
 
@@ -280,6 +281,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
 
     /**
      * 路径
+     *
      * @param si
      * @return
      */
@@ -324,15 +326,11 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
     }
 
     @Override
-    public void evalAndRunStart(Map<String, CompiledScript> scriptCache, String dir, String scriptStr, Bindings bindings) throws ScriptException {
-//        ScriptEngine cs = (ScriptEngine) scriptCache.getOrDefault(dir, null);
-//        if (cs == null) {
-//            cs = ((Compilable) scriptEngine).compile(scriptStr);
-////                scriptCache.put(dir, cs);
-//        }
-//
-//        cs.eval(bindings);
+    public void evalAndRunStart(Map<String, CompiledScript> scriptCache, String scriptStr, ScriptInfo si) throws ScriptException {
+        String dir = si.getFileDir();
+        ScriptType scriptType = si.getScriptType();
 
+        boolean startQuestTag = dir.charAt(dir.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
 
         ScriptEngine scriptEngine = scriptEngineMap.get(dir);
 
@@ -341,7 +339,23 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
 
         // 👉 这一步等价于 NPC 对话开始
         try {
-            inv.invokeFunction("start");
+            switch (scriptType) {
+                case Npc -> {
+                    inv.invokeFunction("start");
+                    break;
+                }
+                case Quest -> {
+                    if (startQuestTag) {
+                        inv.invokeFunction("start");
+                    } else {
+                        inv.invokeFunction("end");
+                    }
+                    break;
+                }
+
+            }
+
+
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }

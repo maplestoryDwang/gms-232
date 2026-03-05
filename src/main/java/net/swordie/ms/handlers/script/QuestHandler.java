@@ -35,10 +35,10 @@ public class QuestHandler {
         int questID = 0;
         int npcTemplateID = 0;
         Position position = null;
-        QuestType qt = QuestType.getQTFromByte(type);
+        QuestType questType = QuestType.getQTFromByte(type);
         boolean success = false;
-        if (qt != null) {
-            switch (qt) {
+        if (questType != null) {
+            switch (questType) {
                 case QuestReq_AcceptQuest: // Quest start
                 case QuestReq_CompleteQuest: // Quest end
                 case QuestReq_OpeningScript: // Scripted quest start
@@ -58,11 +58,11 @@ public class QuestHandler {
                     questID = inPacket.decodeInt();
                     break;
                 default:
-                    log.error(String.format("Unhandled quest request %s!", qt));
+                    log.error(String.format("Unhandled quest request %s!", questType));
                     break;
             }
         }
-        if (questID == 0 || qt == null) {
+        if (questID == 0 || questType == null) {
             chr.chatMessage(String.format("Could not find quest %d.", questID));
             return;
         }
@@ -72,7 +72,7 @@ public class QuestHandler {
             return;
         }
 
-        switch (qt) {
+        switch (questType) {
             case QuestReq_AcceptQuest:
                 if (qm.canStartQuest(questID)) {
                     qm.addQuest(QuestData.createQuestFromId(questID));

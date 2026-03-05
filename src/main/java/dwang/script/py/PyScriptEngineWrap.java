@@ -207,7 +207,7 @@ public class PyScriptEngineWrap implements IScriptEngineWrap {
 
 
     @Override
-    public Bindings buildScriptBindings(Bindings bindings, ScriptType scriptType, Char chr, Field scriptFiled, ScriptInfo si, Life scriptReactor, boolean scriptQuestTag, Map<String, Object> customBindings) {
+    public Bindings buildScriptBindings(Bindings bindings, ScriptType scriptType, Char chr, Field scriptFiled, ScriptInfo si, Life scriptReactor, boolean startQuestTag, Map<String, Object> customBindings) {
         int parentID = si.getParentID();
         int objID = si.getObjectID();
 
@@ -236,7 +236,7 @@ public class PyScriptEngineWrap implements IScriptEngineWrap {
 
         if (scriptType == ScriptType.Quest) {
             bindings.put("startQuest",
-                    scriptQuestTag); // biggest hack eu
+                    startQuestTag); // biggest hack eu
         }
 
 
@@ -312,7 +312,9 @@ public class PyScriptEngineWrap implements IScriptEngineWrap {
     }
 
     @Override
-    public void evalAndRunStart(Map<String, CompiledScript> scriptCache, String dir, String scriptStr, Bindings bindings) throws ScriptException {
+    public void evalAndRunStart(Map<String, CompiledScript> scriptCache, String scriptStr, ScriptInfo si) throws ScriptException {
+        String dir = si.getFileDir();
+        Bindings bindings = si.getBindings();
         var cs = scriptCache.getOrDefault(dir, null);
         if (cs == null) {
             cs = ((Compilable) scriptEngine).compile(scriptStr);

@@ -133,6 +133,7 @@ public class ScriptManagerImpl {
         startScript(parentID, 0, scriptType);
     }
 
+    // 任务从这里进
     public void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType) {
         startScript(parentID, 0, scriptName, scriptType, null);
     }
@@ -157,6 +158,7 @@ public class ScriptManagerImpl {
     }
 
     public synchronized void startScript(int parentID, int objID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
+        // 存在未处理的任务脚本，不能执行其他的
         if (scriptType == ScriptType.None || (scriptType == ScriptType.Quest && !isQuestScriptAllowed())) {
             log.debug(String.format("Did not allow script %s to go through (type %s)  |  Active Script Type: %s", scriptName, scriptType, getLastActiveScriptType()));
             return;
@@ -164,7 +166,7 @@ public class ScriptManagerImpl {
 
         var activeScriptType = getScriptInfoByType(scriptType);
 
-         Char chrFromMethods = getChr();
+        Char chrFromMethods = getChr();
         if (isActive(scriptType) && (scriptType != ScriptType.Field && scriptType != ScriptType.FirstEnterField)) { // because Field Scripts don't get disposed.
             if (activeScriptType != null && parentID != Shade.LIVER) { // Liver to prevent chat spam
                 chrFromMethods.chatMessage(String.format("Already running a script of the same type (%s, id %d)! " +
@@ -205,11 +207,10 @@ public class ScriptManagerImpl {
 //        Bindings bindings = scriptEngineWrap.buildScriptBindings(oldBinding, scriptType, chrFromMethods, scriptFiled, parentID, objID, scriptReactor, scriptQuestTag, customBindings);
 
 
-
         ScriptInfo scriptInfo = new ScriptInfo(scriptType, parentID, scriptName);
         scriptInfo.setActive(true);
         if (scriptType == ScriptType.Npc) {
-            getNpcScriptInfo().setTemplateID(parentID); //设置说话人
+            getNpcScriptInfo().setTemplateID(parentID); //设置当前的类型的主Id
         }
         scriptInfo.setObjectID(objID);
         getScripts().put(scriptType, scriptInfo);
@@ -238,7 +239,7 @@ public class ScriptManagerImpl {
      * 脚本会有调用？ 不过现在应该调用不了这个方法了，出现问题再说
      * 20260227
      * dwang
-     *
+     * <p>
      * todo 需要添加脚本执行参数param
      *
      * @param name
@@ -248,37 +249,35 @@ public class ScriptManagerImpl {
     private void startScript(String name, ScriptType scriptType, Map<String, Object> customBindings, IScriptEngineWrap scriptEngineWrap) {
         Char charFromMethods = getChr();
         ScriptInfo si = getScriptInfoByType(scriptType);
-        // step1: 设置路径和引擎
-        String dir = scriptEngineWrap.genScriptDirAndEngine(charFromMethods, scriptCache, si); // Grab directory. if tespia, first look in tespia folder. otherwise normal folder. otherwise default script
-        if (si == null) {
-            return;
-        }
-
-        si.setFileDir(dir);
-
-//        python里面设置
-//        ScriptEngine se = scriptEngineWrap.getScriptEngine();
-//        si.setInvocable((Invocable) se);
-
-        // step2: 获取脚本内容
-        String scriptStr = scriptEngineWrap.buildScriptStr(scriptCache, dir);
-
-
-        // step3: 绑定脚本参数
-        int objID = si.getObjectID();
-        Field scriptFiled = charFromMethods == null ? initData.getField() : getField();
-        Life scriptReactor = getField().getLifeByObjectID(objID);
-        boolean scriptQuestTag = name.charAt(name.length() - 1) == QUEST_START_SCRIPT_END_TAG.charAt(0);
-
-        Bindings oldBinding = getBindingsByType(scriptType);
-        Bindings bindings = scriptEngineWrap.buildScriptBindings(oldBinding, scriptType, charFromMethods, scriptFiled,  si, scriptReactor, scriptQuestTag, customBindings);
-        si.setBindings(bindings);
-
+        String dir = null;
+        String scriptStr = null;
         try {
+
+            // step1: 设置路径和引擎
+            dir = scriptEngineWrap.genScriptDirAndEngine(charFromMethods, scriptCache, si); // Grab directory. if tespia, first look in tespia folder. otherwise normal folder. otherwise default script
+            if (si == null) {
+                return;
+            }
+
+            si.setFileDir(dir);
+
+            // step2: 获取脚本内容
+            scriptStr = scriptEngineWrap.buildScriptStr(scriptCache, dir);
+
+
+            // step3: 绑定脚本参数
+            int objID = si.getObjectID();
+            Field scriptFiled = charFromMethods == null ? initData.getField() : getField();
+            Life scriptReactor = getField().getLifeByObjectID(objID);
+            boolean startQuestTag = name.charAt(name.length() - 1) == QUEST_START_SCRIPT_END_TAG.charAt(0); // start or end
+
+            Bindings oldBinding = getBindingsByType(scriptType);
+            Bindings bindings = scriptEngineWrap.buildScriptBindings(oldBinding, scriptType, charFromMethods, scriptFiled, si, scriptReactor, startQuestTag, customBindings);
+            si.setBindings(bindings);
 
             // step4: 执行
 //            Bindings bindings = getBindingsByType(scriptType);
-            scriptEngineWrap.evalAndRunStart(scriptCache, dir, scriptStr, bindings);
+            scriptEngineWrap.evalAndRunStart(scriptCache,  scriptStr, si);
 
         } catch (ScriptException e) {
             if (!e.getMessage().contains(INTENDED_NPE_MSG) && Server.DEBUG) {
@@ -387,7 +386,6 @@ public class ScriptManagerImpl {
     public Map<ScriptType, ScriptInfo> getScripts() {
         return initData.getScripts();
     }
-
 
 
     public boolean isField() {
@@ -510,7 +508,8 @@ public class ScriptManagerImpl {
 
         for (var st : removedTimers) {
             events.remove(st);
-        }    }
+        }
+    }
 
     public void addEvent(ScheduledFuture event, boolean isFieldEvent) {
         initData.getEvents().put(event, isFieldEvent);
@@ -578,7 +577,6 @@ public class ScriptManagerImpl {
             }
         }
     }
-
 
 
     public int getRemainingBossCooldownMinutes(BossCooldown bc) {
@@ -654,8 +652,6 @@ public class ScriptManagerImpl {
     public void setReturnField(int returnField) {
         initData.setReturnField(returnField);
     }
-
-
 
 
 }
