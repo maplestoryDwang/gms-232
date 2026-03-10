@@ -260,7 +260,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         if (!exists) {
             log.error(String.format("[Error] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
             if (chr != null) {
-                chr.chatMessage(Mob, String.format("[Script] Could not find script %s/%s", scriptType.getDir().toLowerCase(), name));
+                chr.chatMessage(Mob, String.format("[Script] Could not find  script %s/%s", scriptType.getDir().toLowerCase(), name));
             }
 
             // 不存在就不保存
@@ -285,7 +285,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
      * @param si
      * @return
      */
-    private String getDirByType(ScriptInfo si) {
+    public String getDirByType(ScriptInfo si) {
         ScriptType scriptType = si.getScriptType();
 
         String scriptDir = null;
@@ -293,7 +293,39 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
             case Npc -> {
                 int npcId = si.getParentID();
                 scriptDir = (new StringBuilder()).insert(0, "脚本/NPC/").append(npcId).append(".js").toString();
+                break;
             }
+            case Field -> {
+                String name = si.getScriptName();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/地图/进入地图/").append(name).append(".js").toString();
+                break;
+            }
+            case FirstEnterField -> {
+                String name = si.getScriptName();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/地图/首位进入地图/").append(name).append(".js").toString();
+                break;
+            }
+            case Portal -> {
+                String name = si.getScriptName();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/传送点/").append(name).append(".js").toString();
+                break;
+            }
+            case Reactor -> {
+                String name = si.getScriptName();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/反应堆/").append(name).append(".js").toString();
+                break;
+            }
+            case Item -> {
+                String name = si.getScriptName();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/道具/").append(name).append(".js").toString();
+                break;
+            }
+            case Quest -> {
+                int npcId = si.getNpcTemplateID();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/任务/").append(npcId).append(".js").toString();
+                break;
+            }
+
         }
         return scriptDir;
     }
@@ -340,18 +372,28 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         // 👉 这一步等价于 NPC 对话开始
         try {
             switch (scriptType) {
-                case Npc -> {
+                case Npc:
+                case Field:
                     inv.invokeFunction("start");
                     break;
-                }
-                case Quest -> {
+
+                case Quest:
+                    Bindings bindings = si.getBindings();
+                    Integer npcId = (Integer) bindings.get("npcTemplateID");
+                    if (npcId != null) {
+                        si.setParentID(npcId);
+                    }
+
                     if (startQuestTag) {
-                        inv.invokeFunction("start");
+                        Object[] param = {1, 0, 0};
+                        inv.invokeFunction("start", param);
                     } else {
-                        inv.invokeFunction("end");
+                        Object[] param = {1, 0, 0};
+                        inv.invokeFunction("end", param);
                     }
                     break;
-                }
+                default:
+                    inv.invokeFunction("start");
 
             }
 
@@ -368,14 +410,37 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
 
         String fileDir = si.getFileDir();
         ScriptEngine scriptEngine = scriptEngineMap.get(fileDir);
+        String dir = si.getFileDir();
+        boolean startQuestTag = dir.charAt(dir.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
 
         if (scriptEngine != null) {
             // 4. 调用脚本函数
             Invocable inv = (Invocable) scriptEngine;
             try {
-                // lastType
+                ScriptType scriptType = si.getScriptType();
                 int unused = 0;
-                inv.invokeFunction("action", response, unused, answer);
+
+                switch (scriptType) {
+                    case Npc:
+                    case Field:
+                        // lastType
+                        inv.invokeFunction("action", response, unused, answer);
+                        break;
+
+                    case Quest:
+                        // 还是执行
+                        if (startQuestTag) {
+                            inv.invokeFunction("start", response, unused, answer);
+                        } else {
+                            inv.invokeFunction("end", response, unused, answer);
+                        }
+
+                        break;
+                    default:
+                        inv.invokeFunction("action", response, unused, answer);
+                }
+
+
             } catch (ScriptException | NoSuchMethodException e) {
                 dispose();
                 throw new RuntimeException(e);

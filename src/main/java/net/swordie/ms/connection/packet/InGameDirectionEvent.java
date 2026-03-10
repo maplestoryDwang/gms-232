@@ -295,6 +295,19 @@ public class InGameDirectionEvent implements Encodable {
         return igdr;
     }
 
+    public static InGameDirectionEvent forcedFlip15(int arg1, int arg2, int arg3, int arg4, int arg5) {
+        InGameDirectionEvent igdr = new InGameDirectionEvent(InGameDirectionEventType.ForcedFlip);
+
+        igdr.arg1 = arg1 ;
+        igdr.arg2 = arg2;
+        igdr.arg3 = arg3;
+        igdr.arg4 = arg4;
+        igdr.arg5 = arg4;
+
+        return igdr;
+    }
+
+
     public static InGameDirectionEvent inputUI(int idx) {
         InGameDirectionEvent igdr = new InGameDirectionEvent(InGameDirectionEventType.ForcedAction);
 

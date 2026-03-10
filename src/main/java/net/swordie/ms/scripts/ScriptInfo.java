@@ -23,6 +23,14 @@ public class ScriptInfo {
     private int objectID;
     private String fileDir;
     private boolean isActive;
+    private int npcTemplateID;
+    private EngineType type;
+
+
+    enum EngineType {
+        JS,
+        PYTHON
+    }
 
     public ScriptInfo(ScriptType scriptType, int parentID, String scriptName) {
         this.scriptType = scriptType;
@@ -44,6 +52,16 @@ public class ScriptInfo {
         this.scriptName = scriptName;
         this.invocable = invocable;
     }
+
+    public void reset() {
+        addResponse(null);
+        setParentID(0);
+        setScriptName("");
+        setNpcTemplateID(0);
+        setInvocable(null);
+        setActive(false);
+    }
+
 
     public ScriptType getScriptType() {
         return scriptType;
@@ -93,13 +111,7 @@ public class ScriptInfo {
         this.isActive = active;
     }
 
-    public void reset() {
-        addResponse(null);
-        setParentID(0);
-        setScriptName("");
-        setInvocable(null);
-        setActive(false);
-    }
+
 
     public int getObjectID() {
         return objectID;
@@ -140,5 +152,21 @@ public class ScriptInfo {
 
     public String getFileDir() {
         return fileDir;
+    }
+
+    public int getNpcTemplateID() {
+        return npcTemplateID;
+    }
+
+    public void setNpcTemplateID(int npcTemplateID) {
+        this.npcTemplateID = npcTemplateID;
+    }
+
+    public EngineType getType() {
+        return type;
+    }
+
+    public void setType(EngineType type) {
+        this.type = type;
     }
 }

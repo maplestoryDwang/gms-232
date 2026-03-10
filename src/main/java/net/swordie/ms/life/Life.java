@@ -34,6 +34,9 @@ public class Life {
     private Position homePosition;
     private Position vPosition;
 
+    // 自定义标识
+    private String customTag;
+
     public Life(int templateId) {
         this.templateId = templateId;
         this.position = new Position(0, 0);
@@ -432,5 +435,13 @@ public class Life {
         } catch(ClassCastException e) {
             return null;
         }
+    }
+
+    public String getCustomTag() {
+        return customTag;
+    }
+
+    public void setCustomTag(String customTag) {
+        this.customTag = customTag;
     }
 }

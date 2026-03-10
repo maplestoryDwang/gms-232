@@ -4,46 +4,182 @@ import dwang.script.DwangScriptBaseApi;
 
 public interface CashAPI extends DwangScriptBaseApi {
 
-    default void useNebuliteGachapon() { }
+    /**
+         * @出自类 CashAPI
+    */
+    default void addHyPay(int hypay, int b) { }
 
-    default void setViptime(int time) { }
 
-    default void getRMB() { }
 
-    default void gainNX(int type, int amount) { }
-
-    default void getTotalRMB() { }
-
-    default void 敲敲乐奖励(int rank) { }
-
-    default void showCashItemEffect(int itemId, int v1) { }
-
-    default void getSevenDayPayLog(int day) { }
-
-    default void gainGachaponItem(int id, int quantity, String msg, int rareness, int buy) { }
-
-    default void getHyPay(int type) { }
-
-    default void gainGachaponItem(int id, int quantity, String msg, int rareness) { }
-
-    default void gainNX(int amount) { }
-
-    default void getVip() { }
-
+    /**
+         * @出自类 CashAPI
+    */
     default void gainGachaponItem(int id, int quantity) { }
 
+
+
+    /**
+         * @出自类 CashAPI
+    */
     default void gainGachaponItem(int id, int quantity, String msg) { }
 
-    default void isVip() { }
 
-    default void setVip(int vip, int period) { }
 
-    default void 魔女森林() { }
+    /**
+         * @出自类 CashAPI
+    */
+    default void gainGachaponItem(int id, int quantity, String msg, int rareness) { }
 
+
+
+    /**
+         * @出自类 CashAPI
+    */
+    default void gainGachaponItem(int id, int quantity, String msg, int rareness, int buy) { }
+
+
+
+    /**
+         * @出自类 CashAPI
+    */
     default void gainGachaponItem(int id, int quantity, String msg, int rareness, int buy, int period) { }
 
+
+
+    /**
+         * 获得点券
+         *
+         * @param amount 数量，可正可负
+         * @出自类 CashAPI
+         */
+    default void gainNX(int amount) { }
+
+
+
+    /**
+         * 获得点券
+         *
+         * @param type   类型，0=点券 1=抵用券
+         * @param amount 数量，可正可负
+         * @出自类 CashAPI
+         */
+    default void gainNX(int type, int amount) { }
+
+
+
+    /**
+         * @出自类 CashAPI
+    */
+    default void getHyPay(int type) { }
+
+
+
+    /**
+         * 获取玩家充值的RMB
+         *
+         * @return
+         * @出自类 CashAPI
+         */
+    default void getRMB() { }
+
+
+
+    /**
+         * 获取最近充值记录
+         *
+         * @param day 天数
+         * @return
+         * @出自类 CashAPI
+         */
+    default void getSevenDayPayLog(int day) { }
+
+
+
+    /**
+         * 获取累计充值金额
+         *
+         * @return
+         * @出自类 CashAPI
+         */
+    default void getTotalRMB() { }
+
+
+
+    /**
+         * 获取VIP等级
+         *
+         * @return
+         * @出自类 CashAPI
+         */
+    default void getVip() { }
+
+
+
+    /**
+         * @出自类 CashAPI
+    */
+    default void isVip() { }
+
+
+
+    /**
+         * 设置玩家VIP等级
+         *
+         * @param vip VIP等级
+         * @出自类 CashAPI
+         */
     default void setVip(int vip) { }
 
-    default void addHyPay(int hypay, int b) { }
+
+
+    /**
+         * 设置玩家VIP等级
+         *
+         * @param vip    VIP等级
+         * @param period 时间
+         * @出自类 CashAPI
+         */
+    default void setVip(int vip, int period) { }
+
+
+
+    /**
+         * @出自类 CashAPI
+    */
+    default void setViptime(int time) { }
+
+
+
+    /**
+         * 掉血效果
+         *
+         * @param itemId
+         * @param v1
+         * @出自类 CashAPI
+         */
+    default void showCashItemEffect(int itemId, int v1) { }
+
+
+
+    /**
+         * @出自类 CashAPI
+    */
+    default void useNebuliteGachapon() { }
+
+
+
+    /**
+         * @出自类 CashAPI
+    */
+    default void 敲敲乐奖励(int rank) { }
+
+
+
+    /**
+         * @出自类 CashAPI
+    */
+    default void 魔女森林() { }
+
+
 
 }

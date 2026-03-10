@@ -98,7 +98,7 @@ public class QuestHandler {
                 if (scriptName == null || scriptName.equalsIgnoreCase("")) {
                     scriptName = String.format("%d%s", questID, ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG);
                 }
-                chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest);
+                chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest, npcTemplateID);
                 break;
             case QuestReq_CompleteScript:
                 scriptName = qi.getEndScript();

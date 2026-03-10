@@ -5,7 +5,7 @@
 sm.curNodeEventEnd(True)
 sm.setTemporarySkillSet(0)
 sm.setInGameDirectionMode(True, True, False, False)
-sm.playURLVideoByScript("http://nxcache.nexon.net/maplestory/video/yt/adventurer.html")
+sm.playVideoByScriptFromWeb("http://nxcache.nexon.net/maplestory/video/yt/adventurer.html")
 
 
 sm.setTemporarySkillSet(0)

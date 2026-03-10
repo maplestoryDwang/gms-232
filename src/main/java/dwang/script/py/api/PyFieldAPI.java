@@ -1,6 +1,5 @@
 package dwang.script.py.api;
 
-import dwang.script.DwangScriptBaseApi;
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.character.Char;
 import net.swordie.ms.client.party.Party;
@@ -37,7 +36,7 @@ import java.util.Set;
  * @date 2026/2/27
  * @description
  */
-public interface PyFieldreAPI extends PyBossAPI {
+public interface PyFieldAPI extends PyBossAPI {
     default void warpField(int fieldId, int portalId) {
         for (Char chrz : new HashSet<>(getField().getChars())) {
             chrz.warp(fieldId, portalId);

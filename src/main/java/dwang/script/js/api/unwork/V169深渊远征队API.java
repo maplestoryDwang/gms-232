@@ -1,8 +1,11 @@
 package dwang.script.js.api.unwork;
 
-public interface V169深渊远征队API {
+import dwang.script.DwangScriptBaseApi;
 
-    default void fakeInit(){};
+public interface V169深渊远征队API  extends DwangScriptBaseApi {
+
+
+    default void fakeInit(){}
 
    default void setAbyssTime(int ms){};
 

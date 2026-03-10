@@ -28,6 +28,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.script.*;
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
@@ -124,8 +125,25 @@ public class ScriptManagerImpl {
      * @return
      */
     public boolean selectJsCondition(ScriptInfo scriptInfo) {
-        int parentID = scriptInfo.getParentID();
-        return parentID == 1002101 || parentID == 1013207;
+
+
+        // 判断如果js脚本有就走JS脚本，
+        ScriptInfo.EngineType type = scriptInfo.getType();
+        if (type == null) {
+            JsScriptEngineWrap jsScriptEngineWrap1 = (JsScriptEngineWrap) jsScriptEngineWrap;
+            String dirByType = jsScriptEngineWrap1.getDirByType(scriptInfo);
+            File file = new File(dirByType);
+            if (file.exists()) {
+                scriptInfo.setType(ScriptInfo.EngineType.JS);
+                return true;
+            }
+
+            // 否则走python
+            scriptInfo.setType(ScriptInfo.EngineType.PYTHON);
+            return false;
+        }
+        return type.equals(ScriptInfo.EngineType.JS);
+
     }
 
 
@@ -137,6 +155,15 @@ public class ScriptManagerImpl {
     public void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType) {
         startScript(parentID, 0, scriptName, scriptType, null);
     }
+
+    // 传递npcId
+    public void startScriptByScriptNameAndType(int parentID, String scriptName, ScriptType scriptType, Integer npcTemplateID) {
+        HashMap<String, Object> stringIntegerHashMap = new HashMap<>();
+        // npcID需要给JS的任务
+        stringIntegerHashMap.put("npcTemplateID", npcTemplateID);
+        startScript(parentID, 0, scriptName, scriptType, stringIntegerHashMap);
+    }
+
 
     public void startScriptByScriptNameAndTypeBinding(int parentID, String scriptName, ScriptType scriptType, Map<String, Object> customBindings) {
         startScript(parentID, 0, scriptName, scriptType, customBindings);
@@ -211,7 +238,16 @@ public class ScriptManagerImpl {
         scriptInfo.setActive(true);
         if (scriptType == ScriptType.Npc) {
             getNpcScriptInfo().setTemplateID(parentID); //设置当前的类型的主Id
+            scriptInfo.setNpcTemplateID(parentID);
         }
+        if (customBindings != null) {
+            Integer npcTemplateID = (Integer) customBindings.get("npcTemplateID");
+            if (npcTemplateID != null) {
+                scriptInfo.setNpcTemplateID(npcTemplateID);
+            }
+        }
+
+
         scriptInfo.setObjectID(objID);
         getScripts().put(scriptType, scriptInfo);
 
@@ -277,7 +313,7 @@ public class ScriptManagerImpl {
 
             // step4: 执行
 //            Bindings bindings = getBindingsByType(scriptType);
-            scriptEngineWrap.evalAndRunStart(scriptCache,  scriptStr, si);
+            scriptEngineWrap.evalAndRunStart(scriptCache, scriptStr, si);
 
         } catch (ScriptException e) {
             if (!e.getMessage().contains(INTENDED_NPE_MSG) && Server.DEBUG) {

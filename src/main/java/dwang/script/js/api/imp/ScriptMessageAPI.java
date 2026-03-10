@@ -87,9 +87,18 @@ public interface ScriptMessageAPI extends DwangScriptBaseApi {
 
 
         npcScriptInfo.setParam(style);
-        if (diffNPC != -1) {
-            npcScriptInfo.setOverrideSpeakerTemplateID(diffNPC);
-            npcScriptInfo.setInnerOverrideSpeakerTemplateID(diffNPC);
+        int templateID = npcScriptInfo.getTemplateID();
+
+        if (diffNPC != -1){
+            if (templateID == 0) {
+                npcScriptInfo.setTemplateID(diffNPC);
+                npcScriptInfo.setOverrideSpeakerTemplateID(diffNPC);
+                npcScriptInfo.setInnerOverrideSpeakerTemplateID(diffNPC);
+            } else {
+                npcScriptInfo.setOverrideSpeakerTemplateID(diffNPC);
+                npcScriptInfo.setInnerOverrideSpeakerTemplateID(diffNPC);
+            }
+
         }
 
         npcScriptInfo.setColor(bottomSytle);

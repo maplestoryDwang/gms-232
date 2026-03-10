@@ -97,6 +97,11 @@ public class NpcHandler {
         }
     }
 
+    /**
+     * 判断和多少个NPC对话过了
+     * @param c
+     * @param inPacket
+     */
     @Handler(op = InHeader.USER_COMPLETE_NPC_SPEECH)
     public static void handleUserCompleteNpcSpeech(Client c, InPacket inPacket) {
         Char chr = c.getChr();

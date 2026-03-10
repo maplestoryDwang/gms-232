@@ -22,7 +22,7 @@ import static net.swordie.ms.enums.ChatType.SystemNotice;
  */
 
 public class PyScriptInteraction implements PyNPCAPI, PyBossAPI, PyCharacterStatAPI, PyCharacterTemporaryStatAPI,
-        PyChatAPI, PyClockAPI, PyFieldreAPI, PyGuildAllianceAPI, PyInGameDirectionEventAPI, PyInventoryAPI, PyMobAPI,
+        PyChatAPI, PyClockAPI, PyFieldAPI, PyGuildAllianceAPI, PyInGameDirectionEventAPI, PyInventoryAPI, PyMobAPI,
         PyOtherAPI, PyPartyAPI, PyPartyQuestAPI, PyQuestAPI, PyReactorAPI, PySendAskAPI, PyUnionAPI {
 
 

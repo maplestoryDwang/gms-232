@@ -42,7 +42,8 @@ sm.sendDelay(2000)
 sm.reservedEffect("Effect/Direction3.img/adventureStory/Scene2")
 sm.setSpeakerID(10306)
 sm.sendNext("看来现在船要出发了！")
-sm.playVideoByScriptFromWeb("http://127.0.0.1/video/adventurer.webm")
+# sm.playVideoByScriptFromWeb("http://127.0.0.1/video/adventurer.webm")
+sm.playVideoByScriptFromWeb("http://nxcache.nexon.net/maplestory/video/yt/adventurer.html")
 
 sm.lockInGameUI(False, False)
 

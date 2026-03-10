@@ -457,6 +457,11 @@ public class Field {
         return getLifes().values().stream().filter(l -> l.getTemplateId() == templateId).findFirst().orElse(null);
     }
 
+    public Life getLifeByCustomTag(String customTag ) {
+        return getLifes().values().stream().filter(l -> customTag.equals(l.getCustomTag())).findFirst().orElse(null);
+    }
+
+
     public Life getLifeByTemplateIds(int... templateIds) {
         var set = Util.makeSet(templateIds);
         return getLifes().values().stream().filter(l -> set.contains(l.getTemplateId())).findFirst().orElse(null);

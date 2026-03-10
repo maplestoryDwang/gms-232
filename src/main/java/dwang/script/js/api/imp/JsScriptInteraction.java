@@ -20,7 +20,7 @@ import static net.swordie.ms.enums.ChatType.SystemNotice;
  * @createTime 2026-02-27 10:33
  */
 
-public class JsScriptInteraction implements CashAPI, EventAPI, ItemAPI, JobAPI, MapAPI, MapEffectAPI, MaplePortal, MessageAPI, MissionAPI, MonsterAPI, MovieEffectAPI, NpcAPI, PartyAPI, PetAPI, PlayerAPI, PyramidAPI, QuestAPI, ScriptMessageAPI, SkillAPI, SqlAPI, ToolAPI, UserInterfaceAPI, V167日冕API, V168荣耀API, V169深渊远征队API, V170鬼怪夜市API, V171拟真机器人API, V172新复古API, WeddingAPI, 主题副本API, 修仙API, 冒险岛联盟API, 冒险岛英雄API, 外星异次元API, 好友故事API, 异逝界API, 成就系统API, 我的小屋API, 杂项API, 武陵道场API, 版本活动API, 痛苦迷宫API, 莫奈德API, 赏金猎人API, 镜世界API, 黎曼API, 黑色天堂API {
+public class JsScriptInteraction implements CashAPI, EventAPI, ItemAPI, JobAPI, MapAPI, MapEffectAPI, MessageAPI, MissionAPI, MonsterAPI, MovieEffectAPI, NpcAPI, PartyAPI, PetAPI, PlayerAPI, PyramidAPI, QuestAPI, ScriptMessageAPI, SkillAPI, SqlAPI, ToolAPI, UserInterfaceAPI, V167日冕API, V168荣耀API, V169深渊远征队API, V170鬼怪夜市API, V171拟真机器人API, V172新复古API, WeddingAPI, 主题副本API, 修仙API, 冒险岛联盟API, 冒险岛英雄API, 外星异次元API, 好友故事API, 异逝界API, 成就系统API, 我的小屋API, 杂项API, 武陵道场API, 痛苦迷宫API, 莫奈德API, 赏金猎人API, 镜世界API, 黎曼API, 黑色天堂API {
 
 
     private ScriptInitData initData;

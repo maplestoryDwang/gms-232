@@ -313,6 +313,7 @@ public class ScriptHandler {
                 script, ScriptType.Portal);
     }
 
+    // [次元圖書館] 請拜訪次元圖書館
     @Handler(op = InHeader.LIBRARY_START_SCRIPT)
     public static void handleLibraryStartScript(Char chr, InPacket inPacket) {
         int bookId = inPacket.decodeByte();
