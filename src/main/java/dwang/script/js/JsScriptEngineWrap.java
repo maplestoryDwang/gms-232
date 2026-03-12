@@ -321,8 +321,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
                 break;
             }
             case Quest -> {
-                int npcId = si.getNpcTemplateID();
-                scriptDir = (new StringBuilder()).insert(0, "脚本/任务/").append(npcId).append(".js").toString();
+                int questId = si.getParentID();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/任务/").append(questId).append(".js").toString();
                 break;
             }
 

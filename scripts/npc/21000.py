@@ -1,1 +1,1 @@
-sm.sendNext("欢迎你来到快乐老家!!!!!")
+sm.sendNext("欢迎你来到快乐老家! \r\bdwang")

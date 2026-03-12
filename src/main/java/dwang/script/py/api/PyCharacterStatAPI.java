@@ -277,6 +277,9 @@ public interface PyCharacterStatAPI extends DwangScriptBaseApi {
         }
     }
 
+    default void setTemporarySkillSet(int skillSet) {
+    }
+
     default void curNodeEventEnd(boolean enable) {
         setCurNodeEventEnd(enable);
         getChr().write(FieldPacket.curNodeEventEnd(enable));

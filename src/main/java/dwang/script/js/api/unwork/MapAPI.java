@@ -42,7 +42,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * 获得玩家当前地图ID
          * @出自类 MapAPI
          */
-    default void getMapId() { }
+    default int getMapId() {
+        return getField().getId();
+    }
 
 
 
@@ -196,7 +198,10 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param fadeIn 冻结淡入效果
          * @出自类 MapAPI
          */
-    default void warp(int map, int portal, int fadeIn) { }
+    default void warp(int map, int portal, boolean fadeIn) {
+        getChr().warp(map, portal);
+
+    }
 
 
 
@@ -206,7 +211,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param portal 传送门
          * @出自类 MapAPI
          */
-    default void warpMap(int mapId, int portal) { }
+    default void warpMap(int mapId, int portal) {
+
+    }
 
 
 

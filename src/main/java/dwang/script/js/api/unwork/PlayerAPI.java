@@ -1,6 +1,7 @@
 package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.client.character.Char;
 
 public interface PlayerAPI extends DwangScriptBaseApi {
 
@@ -375,7 +376,9 @@ public interface PlayerAPI extends DwangScriptBaseApi {
     /**
          * @出自类 PlayerAPI
     */
-    default void getLevel() { }
+    default short getLevel() {
+        return getChr().getLevel();
+    }
 
 
 
@@ -465,7 +468,9 @@ public interface PlayerAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 PlayerAPI
          */
-    default void getPlayer() { }
+    default Char getPlayer() {
+        return getChr();
+    }
 
 
 

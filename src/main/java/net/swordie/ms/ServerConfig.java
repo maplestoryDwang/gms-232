@@ -14,5 +14,6 @@ public class ServerConfig {
     public static final String RECOMMEND_MSG = "I recommend this world to you.";
     public static final int MAX_CHARACTERS = 30;
     public static final String HEAP_DUMP_DIR = "../heapdumps";
+    public static final Integer EXP = 100;
 
 }

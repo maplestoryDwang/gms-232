@@ -216,11 +216,6 @@ public class ScriptManagerImpl {
         }
         setLastActiveScriptType(scriptType);
 
-        if (!isField()) {
-            String format = String.format("Starting script [%s] , templateID [%d] scriptType [%s].", scriptName, parentID, scriptType);
-            chrFromMethods.chatMessage(Mob, format);
-            log.info(String.format(format, scriptName, scriptType));
-        }
 
         // 清空之前的参数
         initData.getNpcScriptInfo().resetParam();
@@ -252,8 +247,22 @@ public class ScriptManagerImpl {
         getScripts().put(scriptType, scriptInfo);
 
         if (selectJsCondition(scriptInfo)) {
+            if (!isField()) {
+                String format = String.format("[JS] - Starting script [%s] , templateID [%d] scriptType [%s].", scriptName, parentID, scriptType);
+                chrFromMethods.chatMessage(Mob, format);
+                log.info(String.format(format, scriptName, scriptType));
+            }
+
+
             SCRIPT_EXECUTOR_SERVICE.execute(() -> startScript(scriptName, scriptType, customBindings, jsScriptEngineWrap)); // makes the script execute async
         } else {
+
+            if (!isField()) {
+                String format = String.format("[Python] - Starting script [%s] , templateID [%d] scriptType [%s].", scriptName, parentID, scriptType);
+                chrFromMethods.chatMessage(Mob, format);
+                log.info(String.format(format, scriptName, scriptType));
+            }
+
             SCRIPT_EXECUTOR_SERVICE.execute(() -> startScript(scriptName, scriptType, customBindings, pyScriptEngineWrap)); // makes the script execute async
         }
 

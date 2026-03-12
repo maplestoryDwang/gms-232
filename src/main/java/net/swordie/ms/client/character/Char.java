@@ -7560,4 +7560,19 @@ public class Char {
         }
         return record;
     }
+
+    // 升级
+    public void levelUp() {
+        int curLevel = getLevel();
+        int level = 1;
+        for (int i = curLevel + 1; i <= curLevel + level; i++) {
+            setStat(Stat.level, i);
+            Map<Stat, Object> stats = new HashMap<>();
+            stats.put(Stat.level, i);
+            stats.put(Stat.exp, (long) 0);
+            write(WvsContext.statChanged(stats));
+            getJobHandler().handleLevelUp();
+            getField().broadcastPacket(UserRemote.effect(getId(), Effect.levelUpEffect()));
+        }
+    }
 }

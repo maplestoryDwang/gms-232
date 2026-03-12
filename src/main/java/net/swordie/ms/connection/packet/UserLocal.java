@@ -623,6 +623,13 @@ public class UserLocal {
         return outPacket;
     }
 
+    public static OutPacket setDirectionMode(boolean show, int unk) {
+        OutPacket outPacket = new OutPacket(OutHeader.SET_DIRECTION_MODE);
+        outPacket.encodeByte(show);
+        outPacket.encodeInt(unk);
+        return outPacket;
+    }
+
     public static OutPacket setInGameDirectionMode(boolean lockUI, boolean blackFrame, boolean forceMouseOver) {
         OutPacket outPacket = new OutPacket(OutHeader.SET_IN_GAME_DIRECTION_MODE);
 
@@ -635,6 +642,15 @@ public class UserLocal {
 
         return outPacket;
     }
+
+    public static OutPacket setStandAloneMode(boolean enabled) {
+        OutPacket outPacket = new OutPacket(OutHeader.SET_STAND_ALONE_MODE);
+
+        outPacket.encodeByte(enabled);
+
+        return outPacket;
+    }
+
 
     public static OutPacket inGameDirectionEvent(InGameDirectionEvent igdr) {
         OutPacket outPacket = new OutPacket(OutHeader.IN_GAME_DIRECTION_EVENT);

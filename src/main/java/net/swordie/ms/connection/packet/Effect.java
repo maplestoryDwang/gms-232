@@ -1149,15 +1149,20 @@ public class Effect {
         return effect;
     }
 
-    public static Effect reservedEffect(String effectPath) {
+    public static Effect reservedEffect(String effectPath, int arg1, int arg2, int arg3) {
         Effect effect = new Effect(ReservedEffect);
 
-        effect.setArg1(0);// bShow
-        effect.setArg2(0);
-        effect.setArg3(0);
+        effect.setArg1(arg1);// bShow
+        effect.setArg2(arg2);
+        effect.setArg3(arg3);
         effect.setString(effectPath);
 
         return effect;
+
+    }
+
+    public static Effect reservedEffect(String effectPath) {
+        return reservedEffect(effectPath, 0 ,0,0);
     }
 
     public static Effect reservedEffect(boolean screenCoord, int x, int y, String effectName) {

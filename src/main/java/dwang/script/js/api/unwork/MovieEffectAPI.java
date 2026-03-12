@@ -2,8 +2,11 @@ package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
 import dwang.script.js.bean.JsInGameDirectionEvent;
+import net.swordie.ms.client.character.scene.Scene;
+import net.swordie.ms.connection.packet.Effect;
 import net.swordie.ms.connection.packet.InGameDirectionEvent;
 import net.swordie.ms.connection.packet.UserLocal;
+import net.swordie.ms.connection.packet.UserPacket;
 import net.swordie.ms.connection.packet.field.FieldPacket;
 import net.swordie.ms.life.Life;
 import net.swordie.ms.life.npc.Npc;
@@ -89,13 +92,23 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_Direction(String data) {
+        effect_Direction(data, 0, 0,0);
     }
 
 
     /**
      * @出自类 MovieEffectAPI
      */
-    default void effect_Direction(String data, int value0, int value1, int value2) {
+    default void effect_Direction(String effectPath, int value0, int value1, int value2) {
+        getChr().write(UserPacket.effect(Effect.reservedEffect(effectPath, value0, value1, value2)));
+
+        String[] splitted = effectPath.split("/");
+        String sceneName = splitted[splitted.length - 2];
+        String sceneNumber = splitted[splitted.length - 1];
+        String xmlPath = effectPath.replace("/" + sceneName, "").replace("/" + sceneNumber, "").replace("Effect/", "Effect.wz/");
+
+        Scene scene = new Scene(getChr(), xmlPath, sceneName, sceneNumber);
+        scene.setTransferField();
     }
 
 
@@ -461,8 +474,12 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_PlayFieldSound(String path) {
+        fieldEffect_PlayFieldSound(false, path,100);
     }
 
+    default void fieldEffect_PlayFieldSound(String broadcast, int path) {
+        fieldEffect_PlayFieldSound(false, broadcast,path);
+    }
 
     /**
      * 播放音效
@@ -471,7 +488,12 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param path      地址，比如 "Sound/Field.img/flowervioleta/cheer"
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_PlayFieldSound(int broadcast, String path) {
+    default void fieldEffect_PlayFieldSound(boolean broadcast, String path, int vol) {
+        if (broadcast) {
+            getChr().getField().broadcastPacket(FieldPacket.fieldEffect(FieldEffect.playSound(path, vol)));
+        } else {
+            getChr().write(FieldPacket.fieldEffect(FieldEffect.playSound(path, 100)));
+        }
     }
 
 
@@ -943,6 +965,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_隐藏头顶图片(String tag) {
+
     }
 
 
@@ -966,6 +989,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void onHireTutorById(int bSet, int nSkillID, int dwAbleFieldId) {
+
     }
 
 
@@ -975,6 +999,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void onNewSpecialEffect(int type, int args) {
+
     }
 
 
@@ -1038,6 +1063,8 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void playVideoByHttp(String url) {
+        getInitData(). getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
+        getChr().write(UserLocal.videoByScriptWeb(url));
     }
 
 
@@ -1048,6 +1075,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void playVideoByScript(String data) {
+
     }
 
 
@@ -1085,7 +1113,11 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
     /**
      * @出自类 MovieEffectAPI
      */
-    default void setDirectionMode(int enabled) {
+    default void setDirectionMode(boolean enabled) {
+        if (getChr() != null) {
+
+            getChr().write(UserLocal.setDirectionMode(enabled, 0));
+        }
     }
 
 
@@ -1140,8 +1172,10 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void setInGameDirectionMode(boolean lock, boolean showMovieBorder) {
+        if (getChr() != null) {
+            setInGameDirectionMode(lock, showMovieBorder, true);
+        }
 
-        setInGameDirectionMode(lock, showMovieBorder, true);
     }
 
 
@@ -1217,7 +1251,10 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param enabled 开关
      * @出自类 MovieEffectAPI
      */
-    default void setStandAloneMode(int enabled) {
+    default void setStandAloneMode(boolean enabled) {
+        if (getChr() != null) {
+            getChr().write(UserLocal.setStandAloneMode(enabled));
+        }
     }
 
 
