@@ -1,6 +1,7 @@
 package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.connection.packet.field.FieldPacket;
 
 public interface UserInterfaceAPI extends DwangScriptBaseApi {
 
@@ -8,7 +9,10 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * 关闭UI
          * @出自类 UserInterfaceAPI
          */
-    default void closeUI(int type) { }
+    default void closeUI(int type) {
+        getChr().write(FieldPacket.closeUI(type));
+
+    }
 
 
 
@@ -66,7 +70,10 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * 显示指定UI
          * @出自类 UserInterfaceAPI
          */
-    default void openUI(int type) { }
+    default void openUI(int type) {
+        getChr().write(FieldPacket.openUI(type));
+
+    }
 
 
 

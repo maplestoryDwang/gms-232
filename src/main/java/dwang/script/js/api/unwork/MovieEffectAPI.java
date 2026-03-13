@@ -3,17 +3,18 @@ package dwang.script.js.api.unwork;
 import dwang.script.DwangScriptBaseApi;
 import dwang.script.js.bean.JsInGameDirectionEvent;
 import net.swordie.ms.client.character.scene.Scene;
-import net.swordie.ms.connection.packet.Effect;
-import net.swordie.ms.connection.packet.InGameDirectionEvent;
-import net.swordie.ms.connection.packet.UserLocal;
-import net.swordie.ms.connection.packet.UserPacket;
+import net.swordie.ms.connection.OutPacket;
+import net.swordie.ms.connection.packet.*;
 import net.swordie.ms.connection.packet.field.FieldPacket;
-import net.swordie.ms.life.Life;
+import net.swordie.ms.enums.Stat;
 import net.swordie.ms.life.npc.Npc;
 import net.swordie.ms.life.npc.NpcMessageType;
 import net.swordie.ms.util.Position;
 import net.swordie.ms.world.field.Field;
 import net.swordie.ms.world.field.fieldeffect.FieldEffect;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public interface MovieEffectAPI extends DwangScriptBaseApi {
     public static final String INTENDED_NPE_MSG = "Intended NPE by forceful script stop.";
@@ -92,7 +93,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_Direction(String data) {
-        effect_Direction(data, 0, 0,0);
+        effect_Direction(data, 0, 0, 0);
     }
 
 
@@ -320,7 +321,8 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
     /**
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_BackgroundCanvas(int v1, int v2, int v3, int v4, int v5, int v6) {
+    default void fieldEffect_BackgroundCanvas(short v1, short v2, short v3, short v4, int v5, int v6) {
+        fieldEffect_BackgroundCanvas(v1, v2, v3, v4, v5, v6,0);
     }
 
 
@@ -336,7 +338,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param npc
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_BackgroundCanvas(int v1, int R, int G, int B, int alpha, int v6, int npc) {
+    default void fieldEffect_BackgroundCanvas(short v1, short R, short G, short B, int alpha, int v6, int npc) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.setFieldColor2(v1, R, G, B, alpha, v6, npc)));
+
     }
 
 
@@ -344,6 +348,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_Clear(String path) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.effectScreen(path)));
+
+
     }
 
 
@@ -351,6 +358,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_Effect14(String s1, int b1, int b2) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.fieldEffectType20(s1, b1, b2)));
+
+
     }
 
 
@@ -364,21 +374,27 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param 方向 0=左 1=右
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_HalfScreenBlack(int b1, int v1, int v2, int v3, int 方向) {
+    default void fieldEffect_HalfScreenBlack(byte b1, int v1, int v2, int v3, byte 方向) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.effect半边黑屏(b1, v1, v2, v3, 方向)));
+
     }
 
 
     /**
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_Hero8(int value0) {
+    default void fieldEffect_Hero8(byte value0) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.bgmVolumeOnly(value0 == 1)));
+
     }
 
 
     /**
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_Hero9(int value0, int value1) {
+    default void fieldEffect_Hero9(int volume, int fadingDuration) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.bgmVolume(volume, fadingDuration)));
+
     }
 
 
@@ -388,6 +404,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_InsertCanvas(int enable, int alpha, int R, int G, int B, int duration) {
+        fieldEffect_InsertCanvas(enable, alpha, R, G, B, duration, 0);
     }
 
 
@@ -404,20 +421,25 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_InsertCanvas(int enable, int alpha, int R, int G, int B, int duration, int value6) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.blind(enable, alpha, R, G, B, duration)));
+
     }
 
 
     /**
+     * todo 因为type不一样，没有搞
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_InsertCanvas11(int value0, int value1, int value2, int value3, int value4, int value5) {
+
     }
 
 
     /**
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_KinesisEXP(int value0) {
+    default void fieldEffect_KinesisEXP(int expGiven) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.showClearStageExpWindow((int) expGiven)));
     }
 
 
@@ -425,14 +447,13 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_LimanB(int value0) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.effectLiman(value0)));
+
+
     }
 
 
-    /**
-     * @出自类 MovieEffectAPI
-     */
-    default void fieldEffect_OverlapScreenDetail(int value0, int value1, int value2, int value3) {
-    }
+
 
 
     /**
@@ -445,15 +466,18 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_PlayBGM(String path) {
+        fieldEffect_PlayBGM(path, 0, 0);
     }
 
 
     /**
      * @param path
-     * @param value0 音量
+     * @param startTime 音量
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_PlayBGM(String path, int value0) {
+    default void fieldEffect_PlayBGM(String path, int startTime) {
+        fieldEffect_PlayBGM(path, startTime, 0);
+
     }
 
 
@@ -463,7 +487,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param value1 0
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_PlayBGM(String path, int value0, int value1) {
+    default void fieldEffect_PlayBGM(String path, int startTime, int idk) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.changeBGM(path, startTime, idk)));
+
     }
 
 
@@ -474,11 +500,11 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_PlayFieldSound(String path) {
-        fieldEffect_PlayFieldSound(false, path,100);
+        fieldEffect_PlayFieldSound(false, path, 100);
     }
 
     default void fieldEffect_PlayFieldSound(String broadcast, int path) {
-        fieldEffect_PlayFieldSound(false, broadcast,path);
+        fieldEffect_PlayFieldSound(false, broadcast, path);
     }
 
     /**
@@ -499,8 +525,10 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
 
     /**
      * @出自类 MovieEffectAPI
+     * todo 没有调用了现在
      */
     default void fieldEffect_PlaySummonSound(int value0, int value1, int value2) {
+
     }
 
 
@@ -508,6 +536,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_ProcessOnOffLayer(String tag, String path, int operation, int loadTime, int x, int y, int value4, int dimension, int value6) {
+        fieldEffect_ProcessOnOffLayer(tag, path, operation, loadTime, x, y, value4, dimension, value6,  0,1,0,0);
     }
 
 
@@ -528,7 +557,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param value6
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_ProcessOnOffLayer(String tag, String path, int operation, int loadTime, int x, int y, int value4, int dimension, int value6, int v7, int b1, int v8, int v9) {
+    default void fieldEffect_ProcessOnOffLayer(String tag, String path, int operation, int loadTime, int x, int y, int z, int dimension, int value6, int v7, int b1, int v8, int v9) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.onOffLayerV2(tag, path, operation, loadTime, x, y, z,  dimension, value6, v7, b1, v8, v9)));
+
     }
 
 
@@ -536,6 +567,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_RemoveOverlapScreenDetail(int value0) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.removeOverlapScreen(value0)));
     }
 
 
@@ -546,6 +578,8 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_SaveEff(String path) {
+        getField().broadcastPacket(FieldPacket.fieldEffect(FieldEffect.effect16(path)));
+
     }
 
 
@@ -559,12 +593,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_ScreenMsg(String path) {
-        showFieldEffect(path, 0);
+        fieldEffect_ScreenMsg(false, path);
     }
 
-    default void showFieldEffect(String dir, int delay) {
-        getField().broadcastPacket(FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromWz(dir, delay)));
-    }
 
 
     /**
@@ -578,10 +609,12 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_ScreenMsg(boolean broadcast, String path) {
+//        OutPacket outPacket = FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromWz(path, 0));
+        OutPacket outPacket = FieldPacket.fieldEffect(FieldEffect.getFieldBackgroundEffectFromWz(path, 0));
         if (broadcast) {
-            getField().broadcastPacket(FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromWz(path, 0)));
+            getField().broadcastPacket(outPacket);
         } else {
-            getChr().write(FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromWz(path, 0)));
+            getChr().write(outPacket);
         }
     }
 
@@ -590,20 +623,32 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_SetObjectState(String path) {
+        fieldEffect_SetObjectState(false, path);
     }
 
 
     /**
      * @出自类 MovieEffectAPI
      */
-    default void fieldEffect_SetObjectState(int broadcast, String path) {
+    default void fieldEffect_SetObjectState(boolean broadcast, String path) {
+        OutPacket outPacket = FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromObject(path));
+        if (broadcast) {
+            getField().broadcastPacket(outPacket);
+        } else {
+            getChr().write(outPacket);
+        }
     }
 
 
     /**
+     * 屏幕抖动
+     *
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_Tremble(int type, int delay, int time) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.effectTremble(type, delay, time)));
+
+
     }
 
 
@@ -616,6 +661,8 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_取消复合图片动画(String tag, int v1, int timeInMs) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.offSpineScreen(tag, v1, "", timeInMs)));
+
     }
 
 
@@ -623,7 +670,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      * @see FieldEffect复合图片动画Param
      */
-    default void fieldEffect_复合图片动画(Object strs, Object nums) {
+    default void fieldEffect_复合图片动画(String[] strs, int[] nums) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.spineScreenV2(strs, nums)));
+
     }
 
 
@@ -807,7 +856,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
             back = true;
         }
 
-        getInitData(). getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraMove(back, speed, new Position(x, y))));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
@@ -1043,6 +1092,8 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void OverlapScreenDetail19(int value0, int value1, int value2, int value3) {
+        getChr().write(FieldPacket.fieldEffect(FieldEffect.takeSnapShotOfClient2(value0, value1, value2, value3 == 1)));
+
     }
 
 
@@ -1063,7 +1114,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void playVideoByHttp(String url) {
-        getInitData(). getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
+        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
         getChr().write(UserLocal.videoByScriptWeb(url));
     }
 
@@ -1199,7 +1250,13 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      *
      * @出自类 MovieEffectAPI
      */
-    default void setMaxHp(int maxhp) {
+    default void setMaxHp(int amount) {
+        getChr().setStat(Stat.mhp, amount);
+        getChr().setStat(Stat.hp, amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.mhp, amount);
+        stats.put(Stat.hp, amount);
+        getChr().write(WvsContext.statChanged(stats));
     }
 
 

@@ -23,16 +23,27 @@ public class FieldEffect {
     private long arg8;
     private int arg9;
     private int arg10;
+    private int arg11;
+
 
     public void encode(OutPacket outPacket) {
         outPacket.encodeByte(getFieldEffectType().getVal());
         switch (getFieldEffectType()) {
+            case Tremble:
+                outPacket.encodeByte(getArg1());
+                outPacket.encodeInt(getArg2());
+                outPacket.encodeShort(getArg3());
+
+                break;
             case Object: // CWKPQ 2pt, 3pt, 4pt, 5pt  Portals in CWKPQ
                 outPacket.encodeString(getString());// String
                 break;
             case ObjectDisable:
                 outPacket.encodeString(getString());// String
                 outPacket.encodeByte(getArg1());    // boolean: ON/OFF
+                break;
+            case Screen:
+                outPacket.encodeString(getString());
                 break;
             case PlaySound:
                 outPacket.encodeString(getString());// Sound
@@ -57,6 +68,9 @@ public class FieldEffect {
                 outPacket.encodeInt(getArg1());     // nVolume
                 outPacket.encodeInt(getArg2());     // nFadingDuration
                 break;
+            case LimanB:
+                outPacket.encodeInt(getArg1());
+                break;
             case RewardRoulette:
                 outPacket.encodeInt(getArg1());     // Reward Job ID
                 outPacket.encodeInt(getArg2());     // Reward Part ID
@@ -77,6 +91,12 @@ public class FieldEffect {
                 outPacket.encodeString(getString());// Path to the Effect
                 outPacket.encodeInt(getArg1());     // Delay in ms
                 outPacket.encodeInt(0); // new 232
+                break;
+            case FloatingUI:
+                outPacket.encodeString(getString());
+                outPacket.encodeInt(getArg1());
+                outPacket.encodeInt(getArg2());
+
                 break;
             case Blind:
                 outPacket.encodeByte(getArg1());
@@ -102,13 +122,20 @@ public class FieldEffect {
                     outPacket.encodeString(getString2()); // pOrigin
                     outPacket.encodeInt(getArg6()); // nOrigin
                     outPacket.encodeByte((byte) getArg7()); // bPostRender
-                    outPacket.encodeInt(getArg9()); // idk
-                    outPacket.encodeByte(5); // bRepeat?
-                    outPacket.encodeInt(0);         // new 209
-                    outPacket.encodeInt(getArg10());         // duration
+//                    outPacket.encodeInt(getArg9()); // idk
+//                    outPacket.encodeByte(5); // bRepeat?
+//                    outPacket.encodeInt(0);         // new 209
+//                    outPacket.encodeInt(getArg10());         // duration
+
+                    outPacket.encodeInt((int)getArg8()); // idk
+                    outPacket.encodeByte(getArg9()); // bRepeat?
+                    outPacket.encodeInt(getArg10());         // new 209
+                    outPacket.encodeInt(getArg11());         // duration
+
                 } else if (getArg1() == 1) {
                     outPacket.encodeInt(getArg3()); // nDX
                     outPacket.encodeInt(getArg4()); // nDY
+                    outPacket.encodeInt(getArg5()); // nDZ
                 } else if (getArg1() == 2) {
                     outPacket.encodeByte((byte) getArg8()); // ?
                 } else if (getArg1() == 3) {
@@ -135,9 +162,9 @@ public class FieldEffect {
                 outPacket.encodeShort(getArg3());   // green    (255 is normal value)
                 outPacket.encodeShort(getArg4());   // blue     (255 is normal value)
                 outPacket.encodeInt(getArg5());     // time in ms, that it takes to transition from old colours to the new colours
-                outPacket.encodeInt(0);          // is in queue
+                outPacket.encodeInt(getArg6());          // is in queue
                 if (getArg1() == 4) {// Npc
-                    outPacket.encodeInt(getArg6()); // Npc Id (?)
+                    outPacket.encodeInt((int)getArg7()); // Npc Id (?)
                 }
                 break;
             case StageClear:
@@ -155,8 +182,8 @@ public class FieldEffect {
                 outPacket.encodeByte(getArg5() != 0); // bIdk
                 outPacket.encodeInt(getArg6()); // nIdk1
                 outPacket.encodeInt((int) getArg7()); // nIdk2
-                outPacket.encodeInt(0);
-                outPacket.encodeInt(0);
+                outPacket.encodeInt((int)getArg8());
+                outPacket.encodeInt(getArg9());
 
                 boolean hasKey = getString3() != null && !"".equals(getString3());
                 outPacket.encodeByte(hasKey);
@@ -172,6 +199,14 @@ public class FieldEffect {
                 } else if (getArg1() == 2) {
                     outPacket.encodeString(getString2()); // sAnimationName
                 }
+                break;
+            case 半边黑屏:
+                outPacket.encodeByte(getArg1());
+                outPacket.encodeInt(getArg2());
+                outPacket.encodeInt(getArg3());
+                outPacket.encodeInt(getArg4());
+                outPacket.encodeByte(getArg5());
+
                 break;
         }
     }
@@ -215,6 +250,21 @@ public class FieldEffect {
         return fieldEffect;
     }
 
+    public static FieldEffect effectLiman(int param1) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.LimanB);
+        fieldEffect.setArg1(param1);
+        return fieldEffect;
+    }
+
+
+    public static FieldEffect effect16(String param1) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.TopScreen);
+        fieldEffect.setString(param1);
+        return fieldEffect;
+    }
+
+
+
     public static FieldEffect getFieldEffectFromWz(String dir, int delay) {
         FieldEffect fieldEffect = new FieldEffect(FieldEffectType.ScreenAutoLetterBox);
 
@@ -223,6 +273,17 @@ public class FieldEffect {
 
         return fieldEffect;
     }
+
+    public static FieldEffect fieldEffectType20(String s1, int b1, int b2) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.FloatingUI);
+
+        fieldEffect.setString(s1);
+        fieldEffect.setArg1(b1);
+        fieldEffect.setArg1(b2);
+
+        return fieldEffect;
+    }
+
 
     public static FieldEffect getFieldEffectFromObject(String dir) {
         FieldEffect fieldEffect = new FieldEffect(FieldEffectType.Object);
@@ -279,6 +340,21 @@ public class FieldEffect {
         return fieldEffect;
     }
 
+    public static FieldEffect setFieldColor2(short var0, short var1, short var2, short var3, int var4, int var5, int var6) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.ColorChange);
+
+        fieldEffect.setArg1(var0);
+        fieldEffect.setArg2(var1);
+        fieldEffect.setArg3(var2);
+        fieldEffect.setArg4(var3);
+        fieldEffect.setArg5(var4);
+        fieldEffect.setArg6(var5);
+        fieldEffect.setArg7(var6);
+
+        return fieldEffect;
+    }
+
+
     public static FieldEffect showClearStageExpWindow(int expNumber) {
         FieldEffect fieldEffect = new FieldEffect(FieldEffectType.StageClear);
 
@@ -297,18 +373,43 @@ public class FieldEffect {
 
     public static FieldEffect onOffLayer(int type, int duration, String key, int x, int y, int z, String origin, int org, boolean postRender, int idk, boolean repeat) {
         FieldEffect fieldEffect = new FieldEffect(FieldEffectType.OnOffLayer);
+        fieldEffect.setString(key);
+        fieldEffect.setString2(origin);
+
 
         fieldEffect.setArg1(type);
         fieldEffect.setArg2(duration);
-        fieldEffect.setString(key);
         fieldEffect.setArg3(x);
         fieldEffect.setArg4(y);
         fieldEffect.setArg5(z);
-        fieldEffect.setString2(origin);
         fieldEffect.setArg6(org);
         fieldEffect.setArg7(postRender ? 1 : 0);
-        fieldEffect.setArg9(idk);
-        fieldEffect.setArg8(repeat ? 1 : 0); // unsure if it's repeat
+        fieldEffect.setArg8(0);
+        fieldEffect.setArg9(repeat ? 1 : 0); // unsure if it's repeat
+        fieldEffect.setArg10(idk);
+        fieldEffect.setArg11(idk);
+
+        return fieldEffect;
+    }
+
+
+    public static FieldEffect onOffLayerV2(String key, String origin, int type, int duration,int x, int y, int z, int org, int var7, int var8, int var9, int var10, int var11) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.OnOffLayer);
+        fieldEffect.setString(key);
+        fieldEffect.setString2(origin);
+
+
+        fieldEffect.setArg1(type);
+        fieldEffect.setArg2(duration);
+        fieldEffect.setArg3(x);
+        fieldEffect.setArg4(y);
+        fieldEffect.setArg5(z);
+        fieldEffect.setArg6(org);
+        fieldEffect.setArg7(var7);
+        fieldEffect.setArg8(var8);
+        fieldEffect.setArg9(var9); // unsure if it's repeat
+        fieldEffect.setArg10(var10);
+        fieldEffect.setArg11(var11);
 
         return fieldEffect;
     }
@@ -331,6 +432,33 @@ public class FieldEffect {
 
         return fieldEffect;
     }
+
+    /**
+     * 晃动
+     * @param type
+     * @param delay
+     * @param time
+     * @return
+     */
+    public static FieldEffect effectTremble(int type, int delay, int time) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.Tremble);
+
+        fieldEffect.setArg1(type);
+        fieldEffect.setArg2(delay);
+        fieldEffect.setArg3(time);
+
+        return fieldEffect;
+    }
+
+
+    public static FieldEffect effectScreen(String s) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.Screen);
+
+        fieldEffect.setString(s);
+        return fieldEffect;
+    }
+
+
 
     public static FieldEffect playSound(String sound, int vol) {
         FieldEffect fieldEffect = new FieldEffect(FieldEffectType.PlaySound);
@@ -369,6 +497,45 @@ public class FieldEffect {
         return fieldEffect;
     }
 
+    public static FieldEffect spineScreenV2(String[] strs, int[] nums) {
+        SpineScreenBean bean = new SpineScreenBean();
+        bean.string1 = bean.getNextStr(strs);
+        bean.string2 = bean.getNextStr(strs);
+        bean.string3 = bean.getNextStr(strs);
+        bean.string4 = bean.getNextStr(strs);
+        bean.arg1 = (byte)bean.getNextInt(nums);
+        bean.arg2 = (byte)bean.getNextInt(nums);
+        bean.arg3 = (byte)bean.getNextInt(nums);
+        bean.arg4 = bean.getNextInt(nums);
+        bean.arg5 = (byte)bean.getNextInt(nums);
+        bean.arg6 = bean.getNextInt(nums);
+        bean.arg7 = bean.getNextInt(nums);
+        bean.arg8 = (byte)bean.getNextInt(nums);
+        bean.arg9 = bean.getNextInt(nums);
+        bean.arg10 = bean.getNextInt(nums);
+
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.SpineScreen);
+        fieldEffect.string = bean.string1;
+        fieldEffect.string2 = bean.string2;
+        fieldEffect.string3 = bean.string3;
+        fieldEffect.string4 = bean.string4;
+
+        fieldEffect.arg1 = bean.arg1;
+        fieldEffect.arg2 = bean.arg2;
+        fieldEffect.arg3 = bean.arg3;
+        fieldEffect.arg4 = bean.arg4;
+        fieldEffect.arg5 = bean.arg5;
+        fieldEffect.arg6 = bean.arg6;
+        fieldEffect.arg7 = bean.arg7;
+        fieldEffect.arg8 = bean.arg8;
+        fieldEffect.arg9 = bean.arg9;
+        fieldEffect.arg10 = bean.arg10;
+
+
+        return fieldEffect;
+    }
+
+
     public static FieldEffect offSpineScreen(String keyName, int type, String aniName, int alphaDecayTime) {
         FieldEffect fieldEffect = new FieldEffect(FieldEffectType.OffSpineScreen);
 
@@ -379,6 +546,20 @@ public class FieldEffect {
 
         return fieldEffect;
     }
+
+    public static FieldEffect effect半边黑屏(byte var0, int var1, int var2, int var3, byte var4) {
+        FieldEffect fieldEffect = new FieldEffect(FieldEffectType.半边黑屏);
+
+        fieldEffect.arg1 = var0;
+        fieldEffect.arg2 = var1;
+        fieldEffect.arg3 = var2;
+        fieldEffect.arg4 = var3;
+        fieldEffect.arg5 = var4;
+
+        return fieldEffect;
+    }
+
+
 
     public static FieldEffect of(int fieldEffectType,
         String string,
@@ -537,5 +718,17 @@ public class FieldEffect {
 
     public void setString4(String string4) {
         this.string4 = string4;
+    }
+
+    public void setString3(String string3) {
+        this.string3 = string3;
+    }
+
+    public int getArg11() {
+        return arg11;
+    }
+
+    public void setArg11(int arg11) {
+        this.arg11 = arg11;
     }
 }
