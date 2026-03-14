@@ -200,6 +200,18 @@ public class UserLocal {
         return outPacket;
     }
 
+
+    public static OutPacket startNavication(int mapId, int value1, String text, int questID) {
+
+        OutPacket var4 = new OutPacket(OutHeader.START_NAVIGATION);
+        var4.encodeInt(mapId);
+        var4.encodeInt(value1);
+        var4.encodeString(text);
+        var4.encodeInt(questID);
+        return var4;
+
+    }
+
     public static OutPacket resultStealSkillList(Set<Skill> targetSkillsList, int phantomStealResult, int targetChrId, int targetJobId) {
         OutPacket outPacket = new OutPacket(OutHeader.RESULT_STEAL_SKILL_LIST);
         outPacket.encodeByte(0); //Set Excl Request

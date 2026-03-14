@@ -61,7 +61,7 @@ public interface PyQuestAPI extends DwangScriptBaseApi {
         if (qm.canStartQuest(id)) {
             qm.addQuest(QuestData.createQuestFromId(id));
         } else {
-            String s = "quest: [" + id +"]: 您不符合开始此任务的要求，如果您认为这是意外情况，请在Bug中报告。.";
+            String s = "py - quest: [" + id +"]: 您不符合开始此任务的要求，如果您认为这是意外情况，请在Bug中报告。.";
             log.info(s);
             getInitData(). getChr().chatMessage(s);
         }

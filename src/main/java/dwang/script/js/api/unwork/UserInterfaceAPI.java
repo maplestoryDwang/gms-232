@@ -84,7 +84,9 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * @param npc
          * @出自类 UserInterfaceAPI
          */
-    default void openUIWithOption(int type, int npc) { }
+    default void openUIWithOption(int type, int npc) {
+        getChr().write(FieldPacket.openUIWithOption(type, npc));
+    }
 
 
 

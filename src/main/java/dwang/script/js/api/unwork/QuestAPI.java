@@ -6,6 +6,7 @@ import net.swordie.ms.client.character.quest.Quest;
 import net.swordie.ms.client.character.quest.QuestManager;
 import net.swordie.ms.connection.packet.WvsContext;
 import net.swordie.ms.connection.packet.model.MessagePacket;
+import net.swordie.ms.enums.QuestStatus;
 import net.swordie.ms.loaders.QuestData;
 
 public interface QuestAPI extends DwangScriptBaseApi {
@@ -89,7 +90,17 @@ public interface QuestAPI extends DwangScriptBaseApi {
     /**
          * @出自类 QuestAPI
     */
-    default void completeQuest(int idd) { }
+    default void completeQuest(int questID) {
+        if (hasQuest(questID) && isComplete(questID)) {
+            forceCompleteQuest(questID);
+        }
+    }
+    default boolean isComplete(int questID) {
+        return getChr().getQuestManager().isComplete(questID);
+    }
+    default boolean hasQuest(int id) {
+        return getChr().getQuestManager().hasQuestInProgress(id);
+    }
 
 
 
@@ -100,7 +111,9 @@ public interface QuestAPI extends DwangScriptBaseApi {
          * @param quest
          * @出自类 QuestAPI
          */
-    default void endQuestClock(int action, int quest) { }
+    default void endQuestClock(int action, int quest) {
+
+    }
 
 
 
@@ -118,7 +131,10 @@ public interface QuestAPI extends DwangScriptBaseApi {
     /**
          * @出自类 QuestAPI
     */
-    default void forceCompleteQuest() { }
+    default void forceCompleteQuest() {
+        getChr().getQuestManager().completeQuest(getParentID());
+
+    }
 
 
 
@@ -155,7 +171,10 @@ public interface QuestAPI extends DwangScriptBaseApi {
          * 强制开始当前任务
          * @出自类 QuestAPI
          */
-    default void forceStartQuest() { }
+    default void forceStartQuest() {
+        QuestManager qm = getChr().getQuestManager();
+        qm.addQuest(QuestData.createQuestFromId(getParentID()));
+    }
 
 
 
@@ -179,8 +198,17 @@ public interface QuestAPI extends DwangScriptBaseApi {
          * @param customData 对应wz里没有关联到exVariable的value，不少任务、NPC变动依赖特定任务的CustomData值
          * @出自类 QuestAPI
          */
-    default void forceStartQuest(int id, String customData) {
+    default void forceStartQuest(int questId, String qrValue) {
 
+        QuestManager qm = getChr().getQuestManager();
+        Quest quest = qm.getQuestById(questId);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questId);
+            quest.setQrValue(qrValue);
+            qm.addCustomQuest(quest);
+        }
+        quest.setQrValue(qrValue);
+        updateQRValue(questId, true);
     }
 
 
@@ -301,7 +329,13 @@ public interface QuestAPI extends DwangScriptBaseApi {
          * @return 0=未开始 1=进行中 2=已结束
          * @出自类 QuestAPI
          */
-    default void getQuestStatus(int id) { }
+    default byte getQuestStatus(int id) {
+        QuestManager qm = getChr().getQuestManager();
+        Quest quest = qm.getQuestById(id);
+        QuestStatus status = quest.getStatus();
+        return status.getVal();
+
+    }
 
 
 
@@ -334,7 +368,10 @@ public interface QuestAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 QuestAPI
          */
-    default void isQuestActive(int id) { }
+    default boolean isQuestActive(int id) {
+        return getChr().getQuestManager().hasQuestInProgress(id);
+
+    }
 
 
 
@@ -438,7 +475,7 @@ public interface QuestAPI extends DwangScriptBaseApi {
         if (qm.canStartQuest(id)) {
             qm.addQuest(QuestData.createQuestFromId(id));
         } else {
-            String s = "quest: [" + id +"]: 您不符合开始此任务的要求，如果您认为这是意外情况，请在Bug中报告。.";
+            String s = "JS - quest: [" + id +"]: 您不符合开始此任务的要求，如果您认为这是意外情况，请在Bug中报告。.";
             log.info(s);
             getInitData(). getChr().chatMessage(s);
         }    }

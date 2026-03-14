@@ -185,7 +185,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @see #playerMessage(int type, String message)
          * @出自类 MessageAPI
          */
-    default void playerMessage(String message) { }
+    default void playerMessage(String message) {
+
+    }
 
 
 
@@ -222,7 +224,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param message 消息
          * @出自类 MessageAPI
          */
-    default void playerMessage(int type, String message) { }
+    default void playerMessage(int type, String message) {
+
+    }
 
 
 

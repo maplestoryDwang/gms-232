@@ -6,6 +6,7 @@ import net.swordie.ms.client.character.scene.Scene;
 import net.swordie.ms.connection.OutPacket;
 import net.swordie.ms.connection.packet.*;
 import net.swordie.ms.connection.packet.field.FieldPacket;
+import net.swordie.ms.enums.ForcedInputType;
 import net.swordie.ms.enums.Stat;
 import net.swordie.ms.life.npc.Npc;
 import net.swordie.ms.life.npc.NpcMessageType;
@@ -229,7 +230,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param data 地址，如"Effect/Direction15.img/effect/tuto/seal/front"
      * @出自类 MovieEffectAPI
      */
-    default void effect_OnUserEff(String data) {
+    default void effect_OnUserEff(String effectPath) {
+        getChr().write(UserPacket.effect(Effect.avatarOriented(effectPath)));
+
     }
 
 
@@ -819,11 +822,18 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
     /**
      * 角色执行动作
      *
-     * @param action [0=停止移动 1=往左移动 2=往右移动 3=站立起来 4=趴下去 5=往左跳跃 6=往右跳跃 7=往上跳跃
+     * @param type [0=停止移动 1=往左移动 2=往右移动 3=站立起来 4=趴下去 5=往左跳跃 6=往右跳跃 7=往上跳跃
      *               8=趴下起立
      * @出自类 MovieEffectAPI
      */
-    default void inGameDirectionEvent_MoveAction(int action) {
+    default void inGameDirectionEvent_MoveAction(int type) {
+        ForcedInputType fit = ForcedInputType.getByVal(type);
+        if (fit == null) {
+            log.error(String.format("Unknown Forced Input Type %d", type));
+            return;
+        }
+        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.forcedInput(type)));
+
     }
 
 
@@ -858,15 +868,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
 
         getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraMove(back, speed, new Position(x, y))));
-//        Object response = null;
-//        var lastActiveScriptType = getLastActiveScriptType();
-//        if (getInitData().isActive(lastActiveScriptType)) {
-//            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
-//        }
-//        if (response == null) {
-//            throw new NullPointerException(INTENDED_NPE_MSG);
-//        }
-//        return (int) response;
+
     }
 
 
@@ -1062,6 +1064,8 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void OnStartNavigation(int mapId, int mode, String text, int questID) {
+        getChr().write(UserLocal.startNavication(mapId, mode, text, questID));
+
     }
 
 

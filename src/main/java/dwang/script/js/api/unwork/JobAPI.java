@@ -1,6 +1,13 @@
 package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.connection.packet.WvsContext;
+import net.swordie.ms.connection.packet.model.MessagePacket;
+import net.swordie.ms.constants.JobConstants;
+import net.swordie.ms.enums.Stat;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public interface JobAPI extends DwangScriptBaseApi {
 
@@ -10,15 +17,50 @@ public interface JobAPI extends DwangScriptBaseApi {
          * @param job 职业ID
          * @出自类 JobAPI
          */
-    default void changeJob(int job) { }
+    default void changeJob(short jobID) {
+        setJob(jobID);
+        addAP(5); //Standard added AP upon Job Advancing
+        addSP(5); //Standard added SP upon Job Advancing
+    }
 
 
+    default void setJob(short jobID) {
+        getChr().setJob(jobID);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.job, jobID);
+        getChr().write(WvsContext.statChanged(stats, getChr().getSubJob()));
+    }
+    default void addAP(int amount) {
+        int currentAP = getChr().getAvatarData().getCharacterStat().getAp();
+        setAP(currentAP + amount);
+    }
 
-    /**
-         * @出自类 JobAPI
-    */
-    default void changeJobById(int job) { }
+    default void setAP(int amount) {
+        getChr().setStat(Stat.ap, (short) amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.ap, (short) amount);
+        getChr().write(WvsContext.statChanged(stats));
+    }
 
+    default void addSP(int amount) {
+        addSP(amount, false);
+    }
+    default void addSP(int amount, boolean jobAdv) {
+        byte jobLevel = (byte) JobConstants.getJobLevel(getChr().getJob());
+        int currentSP = getChr().getAvatarData().getCharacterStat().getExtendSP().getSpByJobLevel(jobLevel);
+        setSP(currentSP + amount);
+        if (jobAdv) {
+            getChr().write(WvsContext.message(MessagePacket.incSpMessage(getChr().getJob(), (byte) amount)));
+        }
+    }
+
+
+    default void setSP(int amount) {
+        getChr().setSpToCurrentJob(amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.sp, getChr().getAvatarData().getCharacterStat().getExtendSP());
+        getChr().write(WvsContext.statChanged(stats));
+    }
 
 
     /**

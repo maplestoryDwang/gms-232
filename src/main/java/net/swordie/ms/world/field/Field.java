@@ -1275,6 +1275,9 @@ public class Field {
     }
 
     public Mob spawnMob(int id, int x, int y, boolean respawnable, long hp) {
+        return spawnMob(id, x, y, respawnable, hp, 0);
+    }
+    public Mob spawnMob(int id, int x, int y, boolean respawnable, long hp, int level) {
         Mob mob = MobData.getMobDeepCopyById(id);
         Position pos = new Position(x, y);
         mob.setPosition(pos.deepCopy());
@@ -1285,6 +1288,10 @@ public class Field {
             mob.setHp(hp);
             mob.setMaxHp(hp);
         }
+        if (level > 0) {
+            mob.setLevel(level);
+        }
+
         if (mob.getField() == null) {
             mob.setField(this);
         }

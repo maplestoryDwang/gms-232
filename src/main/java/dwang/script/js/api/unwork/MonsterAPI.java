@@ -1,6 +1,15 @@
 package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.connection.packet.MobPool;
+import net.swordie.ms.life.DeathType;
+import net.swordie.ms.life.Life;
+import net.swordie.ms.life.mob.Mob;
+import net.swordie.ms.util.Position;
+import net.swordie.ms.world.field.Field;
+
+import java.awt.*;
+import java.util.Set;
 
 public interface MonsterAPI extends DwangScriptBaseApi {
 
@@ -50,7 +59,18 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * 杀死当前地图所有怪物，掉落
          * @出自类 MonsterAPI
          */
-    default void killAllMob() { }
+    default void killAllMob() {
+        Field field = getField();
+        Set<Mob> mobs = field.getMobs();
+        for (Mob mob : mobs) {
+            removeMobByObjId(mob.getObjectId());
+        }
+    }
+
+    default void removeMobByObjId(int id) {
+        getField().removeLife(id);
+        getField().broadcastPacket(MobPool.leaveField(id, DeathType.ANIMATION_DEATH));
+    }
 
 
 
@@ -58,7 +78,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * 杀死当前地图所有怪物
          * @出自类 MonsterAPI
          */
-    default void killAllMob(int drop) { }
+    default void killAllMob(int drop) {
+
+    }
 
 
 
@@ -66,7 +88,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * 杀死当前地图所有怪物，没有掉落也没有经验
          * @出自类 MonsterAPI
          */
-    default void killAllMobNoExp() { }
+    default void killAllMobNoExp() {
+
+    }
 
 
 
@@ -76,7 +100,15 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param ids 怪物
          * @出自类 MonsterAPI
          */
-    default void killMob(int ids) { }
+    default void killMob(int id) {
+        Field field = getField();
+        Life life = field.getLifeByTemplateId(id);
+        if (life == null) {
+            log.error(String.format("Could not find Mob by template id %d.", id));
+            return;
+        }
+        removeMobByObjId(life.getObjectId());
+    }
 
 
 
@@ -87,7 +119,18 @@ public interface MonsterAPI extends DwangScriptBaseApi {
     default void showCraftingEffect(String effect, int direction, int time, int mode) { }
 
 
-
+    /**
+     * swordie 当前召唤方法
+     * @param id
+     * @param x
+     * @param y
+     * @param respawnable
+     * @param hp
+     * @return
+     */
+    default Mob spawnMob(int id, int x, int y, boolean respawnable, long hp) {
+        return getField().spawnMob(id, x, y, respawnable, hp);
+    }
     /**
          * 刷怪
          *
@@ -96,15 +139,19 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param pos 坐标 java.awt.Point(x,y)
          * @出自类 MonsterAPI
          */
-    default void spawnMob(int id, int qty, Object pos) { }
-
-
+    default void spawnMob(int id, int qty, Point pos) {
+        //没这个方法
+    }
 
     /**
          * 刷怪
          * @出自类 MonsterAPI
          */
-    default void spawnMob(int id, int 数量, int x, int y) { }
+    default void spawnMob(int id, int qty, int x, int y) {
+        for (int i = 0; i < qty; i++) {
+            spawnMob(id,x, y, false, 0);
+        }
+    }
 
 
 
@@ -115,7 +162,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param level 等级
          * @出自类 MonsterAPI
          */
-    default void spawnMobLevel(int mobId, int level) { }
+    default void spawnMobLevel(int mobId, int level) {
+        this.spawnMobLevel(mobId, 1, level, getChr().getPosition());
+    }
 
 
 
@@ -127,7 +176,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param level 等级
          * @出自类 MonsterAPI
          */
-    default void spawnMobLevel(int mobId, int quantity, int level) { }
+    default void spawnMobLevel(int mobId, int quantity, int level) {
+        this.spawnMobLevel(mobId, quantity, level, getChr().getPosition());
+    }
 
 
 
@@ -140,7 +191,12 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param pos 坐标 java.awt.Point(x,y)
          * @出自类 MonsterAPI
          */
-    default void spawnMobLevel(int mobId, int quantity, int level, Object pos) { }
+    default void spawnMobLevel(int mobId, int quantity, int level, Position pos) {
+        for (int i = 0; i < quantity; i++) {
+            getField().spawnMob(mobId, pos.getX(), pos.getY(), false, 0, level);
+        }
+
+    }
 
 
 
@@ -154,7 +210,11 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param y
          * @出自类 MonsterAPI
          */
-    default void spawnMobLevel(int mobId, int quantity, int level, int x, int y) { }
+    default void spawnMobLevel(int mobId, int quantity, int level, int x, int y) {
+        for (int i = 0; i < quantity; i++) {
+            getField().spawnMob(mobId, x, y, false, 0, level);
+        }
+    }
 
 
 
@@ -162,7 +222,15 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * 限定数量刷怪
          * @出自类 MonsterAPI
          */
-    default void spawnMobLimit(int id, int 数量, int x, int y, int 地图内刷怪上限) { }
+    default void spawnMobLimit(int id, int quantity, int x, int y, int limit) {
+
+        int mobSize = getField().getMobs().size();
+
+        if (mobSize< limit) {
+            this.spawnMob(id, quantity, x, y);
+        }
+
+    }
 
 
 

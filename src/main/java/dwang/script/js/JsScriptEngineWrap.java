@@ -189,7 +189,6 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
     }
 
 
-
     public int getParentID() {
         int res = 0;
         for (ScriptType type : ScriptType.values()) {
@@ -360,9 +359,10 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
     @Override
     public void evalAndRunStart(Map<String, CompiledScript> scriptCache, String scriptStr, ScriptInfo si) throws ScriptException {
         String dir = si.getFileDir();
+        String name = si.getScriptName();
         ScriptType scriptType = si.getScriptType();
 
-        boolean startQuestTag = dir.charAt(dir.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
+        boolean startQuestTag = name.charAt(name.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
 
         ScriptEngine scriptEngine = scriptEngineMap.get(dir);
 
@@ -374,14 +374,14 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
             switch (scriptType) {
                 case Npc:
                 case Field:
+                case Portal:
                     inv.invokeFunction("start");
                     break;
-
                 case Quest:
                     Bindings bindings = si.getBindings();
                     Integer npcId = (Integer) bindings.get("npcTemplateID");
                     if (npcId != null) {
-                        si.setParentID(npcId);
+                        si.setNpcTemplateID(npcId);
                     }
 
                     if (startQuestTag) {
@@ -411,7 +411,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         String fileDir = si.getFileDir();
         ScriptEngine scriptEngine = scriptEngineMap.get(fileDir);
         String dir = si.getFileDir();
-        boolean startQuestTag = dir.charAt(dir.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
+        String name = si.getScriptName();
+        boolean startQuestTag = name.charAt(name.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
 
         if (scriptEngine != null) {
             // 4. 调用脚本函数
@@ -423,6 +424,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
                 switch (scriptType) {
                     case Npc:
                     case Field:
+                    case Portal:
                         // lastType
                         inv.invokeFunction("action", response, unused, answer);
                         break;
@@ -470,9 +472,6 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
             getChr().dispose();
         }
     }
-
-
-
 
 
     @Override
@@ -553,9 +552,6 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         initData.getNpcScriptInfo().setMessageType(SayImage);
         return sendGeneralSay("", SayImage);
     }
-
-
-
 
 
     @Override
@@ -1639,7 +1635,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
     @Override
     public void openTrunk(int npcTemplateID) {
         if (getChr() == null || getChr().isOnline() == false) {
-            log.error(String.format("[CharId: %d] tried to open trunk while being offline.",  initData.getChr().getId()));
+            log.error(String.format("[CharId: %d] tried to open trunk while being offline.", initData.getChr().getId()));
             return;
         }
         getChr().write(FieldPacket.trunkDlg(TrunkDlg.open(npcTemplateID, getChr().getAccount().getTrunk())));
@@ -2396,7 +2392,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
     }
 
     public void batchRemoveItems(List<Item> items) {
-        InventoryModule.removeItems( initData.getChr(), items.stream().collect(Collectors.toMap(item -> item, Item::getQuantity)));
+        InventoryModule.removeItems(initData.getChr(), items.stream().collect(Collectors.toMap(item -> item, Item::getQuantity)));
     }
 
 
@@ -2443,7 +2439,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         if (qm.canStartQuest(id)) {
             qm.addQuest(QuestData.createQuestFromId(id));
         } else {
-             initData.getChr().chatMessage("You don't fit the requirements to start this quest, if you think this is unintended, please report this to the Bug-reports channel in the discord.");
+            initData.getChr().chatMessage("You don't fit the requirements to start this quest, if you think this is unintended, please report this to the Bug-reports channel in the discord.");
         }
     }
 
@@ -2822,8 +2818,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
 
     public void addUnionCoin(int amount, boolean fromRaid) {
         if (fromRaid) {
-            if ( initData.getChr().getUnionRaid() != null) {
-                 initData.getChr().getUnionRaid().addUnclaimedCoins( initData.getChr(), -amount);
+            if (initData.getChr().getUnionRaid() != null) {
+                initData.getChr().getUnionRaid().addUnclaimedCoins(initData.getChr(), -amount);
             } else {
                 return;
             }
@@ -2963,8 +2959,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
     }
 
     public void consumeLiver() {
-        if (JobConstants.isShade( initData.getChr().getJob())) {
-            ((Shade)  initData.getChr().getJobHandler()).extendSpiritBondMax();
+        if (JobConstants.isShade(initData.getChr().getJob())) {
+            ((Shade) initData.getChr().getJobHandler()).extendSpiritBondMax();
         }
     }
 
@@ -3171,8 +3167,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
     }
 
     public Clock createStopWatchForChrOnly(int seconds) {
-        if ( initData.getChr() != null) {
-            return new Clock(ClockType.StopWatch,  initData.getChr(), seconds);
+        if (initData.getChr() != null) {
+            return new Clock(ClockType.StopWatch, initData.getChr(), seconds);
         }
 
         return null;
@@ -3226,7 +3222,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
 
     @Override
     public boolean addDamageSkin(int itemID) {
-        return  initData.getChr().addDamageSkin(itemID);
+        return initData.getChr().addDamageSkin(itemID);
     }
 
     @Override
@@ -3865,13 +3861,13 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
 
     @Override
     public boolean levelArcaneSymbol(BodyPart symbolPart, int levelAmount) {
-        Item item =             initData.getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
+        Item item = initData.getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
         if (item != null) {
             Equip symbol = (Equip) item;
             if (symbol.getSymbolLevel() < ItemConstants.MAX_ARCANE_SYMBOL_LEVEL) {
                 symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_ARCANE_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
-                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(),             initData.getChr().getJob());
-                symbol.updateToChar(            initData.getChr());
+                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), initData.getChr().getJob());
+                symbol.updateToChar(initData.getChr());
                 return true;
             }
         } else {
@@ -3887,8 +3883,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
             Equip symbol = (Equip) item;
             if (symbol.getSymbolLevel() < ItemConstants.MAX_AUTH_SYMBOL_LEVEL) {
                 symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_AUTH_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
-                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(),             initData.getChr().getJob());
-                symbol.updateToChar(            initData.getChr());
+                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), initData.getChr().getJob());
+                symbol.updateToChar(initData.getChr());
                 return true;
             }
         } else {

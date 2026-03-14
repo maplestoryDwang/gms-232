@@ -975,6 +975,16 @@ public class FieldPacket {
 
         return outpacket;
     }
+    public static OutPacket openUIWithOption(int uiID, int npc) {
+        OutPacket outpacket = new OutPacket(OutHeader.OPEN_UI_WITH_OPTION);
+
+        outpacket.encodeInt(uiID);
+        outpacket.encodeInt(npc);
+        outpacket.encodeInt(0);
+
+        return outpacket;
+    }
+
 
     public static OutPacket closeUI(UIType uiType) {
         return closeUI(uiType.getVal());

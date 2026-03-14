@@ -165,37 +165,92 @@ public class QuestManager {
      * @param questID The Quest's ID to check.
      * @return Whether or not the Char can start the quest.
      */
+    /**
+     * 判断当前角色是否可以开始指定任务
+     *
+     * 检查逻辑分为三个阶段：
+     *
+     * 1. 前置任务检查
+     *    - 如果任务存在 QuestStartCompletionRequirement
+     *    - 玩家必须完成指定前置任务之一
+     *
+     * 2. 其他任务开启条件检查
+     *    - 等级 / 职业 / 道具 / 地图 等
+     *    - 所有条件必须满足
+     *
+     * 3. 背包空间检查
+     *    - 如果任务在接取时会发放物品奖励
+     *    - 必须确保背包有空间容纳奖励
+     *
+     * @param questID 任务ID
+     * @return
+     * true  - 可以开始任务
+     * false - 不满足任务开启条件
+     */
     public boolean canStartQuest(int questID) {
+
+        // 获取任务配置数据
         QuestInfo qi = QuestData.getQuestInfoById(questID);
+
+        // 如果任务不存在，默认允许开启
         if (qi == null) {
             return true;
         }
+
+        // ------------------------------
+        // 1. 检查前置任务
+        // ------------------------------
+
         Set<QuestStartRequirement> questReqs = qi.getQuestStartRequirements().stream()
                 .filter(qsr -> qsr instanceof QuestStartCompletionRequirement)
                 .collect(Collectors.toSet());
+
+        // 没有前置任务 OR 满足任意一个前置任务
         boolean hasQuest = questReqs.size() == 0 ||
                 questReqs.stream().anyMatch(q -> q.hasRequirements(chr));
 
+        // ------------------------------
+        // 2. 检查任务奖励背包空间
+        // ------------------------------
+
         var items = new ArrayList<Item>();
+
         for (QuestReward qr : qi.getQuestRewards()) {
+
+            // 只检查接任务时发放的物品奖励
             if (qr instanceof QuestItemReward && ((QuestItemReward) qr).getStatus() == 0) {
+
                 var qir = ((QuestItemReward) qr);
+
+                // 只有数量 > 0 才需要检查
                 if (qir.getQuantity() > 0) {
+
                     var item = ItemData.getItemDeepCopy(qir.getId());
                     item.setQuantity(qir.getQuantity());
+
                     items.add(item);
                 }
             }
         }
 
+        // 如果奖励物品背包放不下，则无法接任务
         if (items.size() != 0 && !chr.canHold(items)) {
+
             chr.chatMessage("Your inventory is full. Please make more space before trying to accept this quest.");
+
             return false;
         }
-        boolean b = qi.getQuestStartRequirements().stream()
+
+        // ------------------------------
+        // 3. 检查其他任务开启条件
+        // ------------------------------
+
+        boolean otherRequirements = qi.getQuestStartRequirements().stream()
                 .filter(qsr -> !(qsr instanceof QuestStartCompletionRequirement))
                 .allMatch(qsr -> qsr.hasRequirements(chr));
-        return hasQuest && b;
+
+        // 最终结果：前置任务 + 其他条件
+        return hasQuest && otherRequirements;
     }
 
     public Char getChr() {

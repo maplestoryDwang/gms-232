@@ -2,13 +2,24 @@ package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
 import net.swordie.ms.client.character.Char;
+import net.swordie.ms.connection.packet.WvsContext;
+import net.swordie.ms.connection.packet.field.FieldPacket;
+import net.swordie.ms.constants.JobConstants;
+import net.swordie.ms.enums.Stat;
+import net.swordie.ms.util.Position;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public interface PlayerAPI extends DwangScriptBaseApi {
 
     /**
          * @出自类 PlayerAPI
     */
-    default void addHP(int delta) { }
+    default void addHP(int delta) {
+        getChr().addStatAndSendPacket(Stat.mhp, delta);
+
+    }
 
 
 
@@ -156,8 +167,17 @@ public interface PlayerAPI extends DwangScriptBaseApi {
     /**
          * @出自类 PlayerAPI
     */
-    default void gainAp(int amount) { }
+    default void gainAp(int amount) {
+        int currentAP = getChr().getAvatarData().getCharacterStat().getAp();
+        setAP1(currentAP + amount);
+    }
 
+    default void setAP1(int amount) {
+        getChr().setStat(Stat.ap, (short) amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.ap, (short) amount);
+        getChr().write(WvsContext.statChanged(stats));
+    }
 
 
     /**
@@ -252,8 +272,18 @@ public interface PlayerAPI extends DwangScriptBaseApi {
          * @param amount 数量，可正可负
          * @出自类 PlayerAPI
          */
-    default void gainSp(int amount) { }
+    default void gainSp(int amount) {
+        byte jobLevel = (byte) JobConstants.getJobLevel(getChr().getJob());
+        int currentSP = getChr().getAvatarData().getCharacterStat().getExtendSP().getSpByJobLevel(jobLevel);
+        setSP1(currentSP + amount);
+    }
 
+    default void setSP1(int amount) {
+        getChr().setSpToCurrentJob(amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.sp, getChr().getAvatarData().getCharacterStat().getExtendSP());
+        getChr().write(WvsContext.statChanged(stats));
+    }
 
 
     /**
@@ -562,7 +592,9 @@ public interface PlayerAPI extends DwangScriptBaseApi {
          * @see #onTeleport(byte, byte, int, int, int)
          * @出自类 PlayerAPI
          */
-    default void onTeleport(int value0, int 玩家ID, int x, int y) { }
+    default void onTeleport(int value0, int 玩家ID, int x, int y) {
+        this.onTeleport((byte)0, (byte)value0, 玩家ID, x, y);
+    }
 
 
 
@@ -570,7 +602,9 @@ public interface PlayerAPI extends DwangScriptBaseApi {
          * 人物移动到指定坐标
          * @出自类 PlayerAPI
          */
-    default void onTeleport(int b1, int b2, int 玩家ID, int x, int y) { }
+    default void onTeleport(int b1, int b2, int 玩家ID, int x, int y) {
+        getChr().write(FieldPacket.teleport(new Position(x,y), getChr()));
+    }
 
 
 
@@ -580,7 +614,9 @@ public interface PlayerAPI extends DwangScriptBaseApi {
          * @param name
          * @出自类 PlayerAPI
          */
-    default void onTeleportPortal(String name) { }
+    default void onTeleportPortal(String name) {
+
+    }
 
 
 

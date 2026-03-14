@@ -47,7 +47,7 @@ sm.playVideoByScriptFromWeb("http://127.0.0.1/video/adventurer.webm")
 
 sm.lockInGameUI(False, False)
 
-sm.warp(104000000, 0)
+sm.warp(4000004, 0)
 sm.startQuest(parentID)
 sm.completeQuest(parentID)
 sm.createQuestWithQRValue(1406, str(selection))
