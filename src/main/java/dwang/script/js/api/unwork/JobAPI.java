@@ -1,6 +1,7 @@
 package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.client.character.Char;
 import net.swordie.ms.connection.packet.WvsContext;
 import net.swordie.ms.connection.packet.model.MessagePacket;
 import net.swordie.ms.constants.JobConstants;
@@ -14,13 +15,55 @@ public interface JobAPI extends DwangScriptBaseApi {
     /**
          * 换职业
          *
-         * @param job 职业ID
+         * @param jobID 职业ID
          * @出自类 JobAPI
          */
     default void changeJob(short jobID) {
+        Char chr = getChr();
+        short job = chr.getJob();
+        // 当前是新手重新设置属性
+        if (JobConstants.isBeginnerJob(job)) {
+            setSTR((short) 4);
+            setINT((short) 4);
+            setDEX((short) 4);
+            setLUK((short) 4);
+            setAP(4 + chr.getLevel() * 5);
+        }
+
         setJob(jobID);
         addAP(5); //Standard added AP upon Job Advancing
         addSP(5); //Standard added SP upon Job Advancing
+    }
+
+    default void setSTR(short amount) {
+        getChr().setStat(Stat.str, amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.str, amount);
+        getChr().write(WvsContext.statChanged(stats));
+    }
+
+
+    default void setINT(short amount) {
+        getChr().setStat(Stat.inte, amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.inte, amount);
+        getChr().write(WvsContext.statChanged(stats));
+    }
+
+
+    default void setDEX(short amount) {
+        getChr().setStat(Stat.dex, amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.dex, amount);
+        getChr().write(WvsContext.statChanged(stats));
+    }
+
+
+    default void setLUK(short amount) {
+        getChr().setStat(Stat.luk, amount);
+        Map<Stat, Object> stats = new HashMap<>();
+        stats.put(Stat.luk, amount);
+        getChr().write(WvsContext.statChanged(stats));
     }
 
 

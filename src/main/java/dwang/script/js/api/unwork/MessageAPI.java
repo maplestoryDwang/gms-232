@@ -1,6 +1,8 @@
 package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.connection.packet.UserLocal;
+import net.swordie.ms.enums.ChatType;
 
 public interface MessageAPI extends DwangScriptBaseApi {
 
@@ -186,7 +188,7 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @出自类 MessageAPI
          */
     default void playerMessage(String message) {
-
+        getChr().chatMessage(message);
     }
 
 
@@ -224,8 +226,8 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param message 消息
          * @出自类 MessageAPI
          */
-    default void playerMessage(int type, String message) {
-
+    default void playerMessage(short type, String message) {
+        getChr().chatMessage(message);
     }
 
 

@@ -61,4 +61,16 @@ public enum ChatType {
     public short getVal() {
         return val;
     }
+
+
+    public static ChatType getChatTypeByValue(short val) {
+        ChatType[] values = ChatType.values();
+        for (int i = 0; i < values.length; i++) {
+            if (values[i].val == val) {
+                return values[i];
+            }
+        }
+        return null;
+    }
+
 }

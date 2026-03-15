@@ -251,8 +251,17 @@ public interface QuestAPI extends DwangScriptBaseApi {
          * 获得指定任务的 Info 信息
          * @出自类 QuestAPI
          */
-    default void getInfoQuest(int id) { }
+    default String getInfoQuest(int id) {
+        return getQRValue(getChr(), id);
 
+    }
+    default String getQRValue(Char chr, int questId) {
+        Quest quest = chr.getQuestManager().getQuestById(questId);
+        if (quest == null) {
+            return "";
+        }
+        return quest.getQRValue();
+    }
 
 
     /**
