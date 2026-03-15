@@ -362,7 +362,6 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         String name = si.getScriptName();
         ScriptType scriptType = si.getScriptType();
 
-        boolean startQuestTag = name.charAt(name.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
 
         ScriptEngine scriptEngine = scriptEngineMap.get(dir);
 
@@ -383,6 +382,7 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
                     if (npcId != null) {
                         si.setNpcTemplateID(npcId);
                     }
+                    boolean startQuestTag = name.charAt(name.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
 
                     if (startQuestTag) {
                         Object[] param = {1, 0, 0};
@@ -412,7 +412,6 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
         ScriptEngine scriptEngine = scriptEngineMap.get(fileDir);
         String dir = si.getFileDir();
         String name = si.getScriptName();
-        boolean startQuestTag = name.charAt(name.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
 
         if (scriptEngine != null) {
             // 4. 调用脚本函数
@@ -430,6 +429,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
                         break;
 
                     case Quest:
+                        boolean startQuestTag = name.charAt(name.length() - 1) == ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG.charAt(0);
+
                         // 还是执行
                         if (startQuestTag) {
                             inv.invokeFunction("start", response, unused, answer);

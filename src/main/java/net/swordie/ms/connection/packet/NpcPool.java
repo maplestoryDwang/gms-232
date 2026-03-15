@@ -103,6 +103,17 @@ public class NpcPool {
 		return outPacket;
 	}
 
+	public static OutPacket npcSetSpecialAction2(int npcObjId, String effectName, int duration, byte special) {
+		OutPacket outPacket = new OutPacket(OutHeader.NPC_SET_SPECIAL_ACTION);
+
+		outPacket.encodeInt(npcObjId);
+		outPacket.encodeString(effectName);
+		outPacket.encodeInt(duration);
+		outPacket.encodeByte(special);
+		return outPacket;
+	}
+
+
 	public static OutPacket npcResetSpecialAction(int npcObjId) {
 		OutPacket outPacket = new OutPacket(OutHeader.NPC_RESET_SPECIAL_ACTION);
 

@@ -1,6 +1,7 @@
 package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.world.field.Field;
 
 public interface MapAPI extends DwangScriptBaseApi {
 
@@ -116,7 +117,15 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param mapId 地图
          * @出自类 MapAPI
          */
-    default void resetMap(int mapId) { }
+    default void resetMap(int mapId) {
+        Field field = getField();
+        if (field != null && field.getId() == mapId) {
+            field.clear();
+        } else {
+            getInitData(). getChr().chatMessage("resetMap error!");
+
+        }
+    }
 
 
 

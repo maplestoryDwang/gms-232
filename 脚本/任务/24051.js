@@ -1,0 +1,12 @@
+var status = -1;
+
+function start(c, b, a) {
+    cm.sendNext("I will NEVER give up!");
+    cm.gainExp(2000);
+    cm.forceCompleteQuest();
+    cm.dispose()
+}
+
+function end(c, b, a) {
+    cm.dispose()
+};

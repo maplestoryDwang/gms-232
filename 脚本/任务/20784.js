@@ -1,0 +1,88 @@
+var status = -1;
+var selectionLog = [];
+
+function start(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status == a++) {
+            cm.sendNormalTalk("#b(感觉背后好像有人在盯着自己。)#k\r\n\r\n是谁！", 16, 0, false, true)
+        } else {
+            if (status === a++) {
+                cm.forceStartQuest(20784, "");
+                cm.forceStartQuest(20784, "000");
+                cm.playerMessage(-1, "奇怪的人出现了。");
+                cm.dispose();
+                cm.warp(913070400, 1, false);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 276, 1610, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 110, 2145, 100);
+                cm.spawnMobLimit(9001056, 1, 619, 2085, 100)
+            }
+        }
+    }
+}
+
+function stage0(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }
+    status++;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status == a++) {
+            var e = cm.getQuest();
+            cm.askYesNo("这个任务的依次对话脚本还没有修复哦。它的脚本位于： #b 脚本/任务/20784.js#k\r\n\r\n如果你有兴趣，欢迎一起来修复！\r\n\r\n那么现在，你要立刻开始这个任务吗？")
+        } else {
+            if (status == a++) {
+                cm.forceStartQuest();
+                cm.dispose()
+            }
+        }
+    }
+}
+
+function end(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status == a++) {
+            var e = cm.getQuest();
+            cm.askYesNo("这个任务的结束脚本还没有修复哦。它的脚本位于： #b /脚本/任务/#e" + e + "#n.js#k\r\n\r\n如果你有兴趣，欢迎一起来修复！\r\n\r\n那么现在，你要立刻完成这个任务吗？")
+        } else {
+            if (status == a++) {
+                cm.forceCompleteQuest();
+                cm.dispose()
+            }
+        }
+    }
+};

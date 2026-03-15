@@ -205,6 +205,8 @@ public interface QuestAPI extends DwangScriptBaseApi {
         if (quest == null) {
             quest = QuestData.createQuestFromId(questId);
             quest.setQrValue(qrValue);
+//            quest.setQrValueEx(qrValue);
+            quest.setId(questId); // 需要用到
             qm.addCustomQuest(quest);
         }
         quest.setQrValue(qrValue);
@@ -252,15 +254,15 @@ public interface QuestAPI extends DwangScriptBaseApi {
          * @出自类 QuestAPI
          */
     default String getInfoQuest(int id) {
-        return getQRValue(getChr(), id);
+        return getQRExValue(getChr(), id);
 
     }
-    default String getQRValue(Char chr, int questId) {
+    default String getQRExValue(Char chr, int questId) {
         Quest quest = chr.getQuestManager().getQuestById(questId);
         if (quest == null) {
             return "";
         }
-        return quest.getQRValue();
+        return quest.getQRExValue();
     }
 
 
@@ -341,6 +343,9 @@ public interface QuestAPI extends DwangScriptBaseApi {
     default byte getQuestStatus(int id) {
         QuestManager qm = getChr().getQuestManager();
         Quest quest = qm.getQuestById(id);
+        if (quest == null) {
+            return 0;
+        }
         QuestStatus status = quest.getStatus();
         return status.getVal();
 
@@ -551,7 +556,8 @@ public interface QuestAPI extends DwangScriptBaseApi {
             quest = QuestData.createQuestFromId(questId);
             chr.getQuestManager().addQuest(quest);
         }
-        quest.setQrValue(qrValue);
+//        quest.setQrValue(qrValue);
+        quest.setQrValueEx(qrValue);
         updateQRValue(questId, ex);
     }
 

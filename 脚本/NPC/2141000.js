@@ -1,0 +1,126 @@
+function start() {
+  cm.askAcceptDeclineNoESC("只要有了女神之镜……就可以再次召唤黑魔法师！……\r\n哎，好奇怪……怎么不能召唤黑魔法师呢？这是什么气息？这种气息与黑魔法师完全不同……呃啊啊啊！\r\n\r\n #b（把手放在奇拉的肩膀上。）");
+}
+function action(R, x, W) {
+  if (cm.getMapId() == 270050100) {
+    cm.killAllMobNoExp();
+    cm.resetMap(270050100);
+    cm.resetMap(270050200);
+    var q = 8820002;
+    var H = 1;
+    var f = 8820003;
+    var N = 1;
+    var B = 8820004;
+    var n = 1;
+    var J = 8820005;
+    var C = 1;
+    var i = 8820006;
+    var h = 1;
+    var M = 8820010;
+    var p = cm.getMapId();
+    var y = em.getMapInstance(p);
+    cm.spawnMobLimit(8820008, 1, 5, -42, 1);
+    var g;
+    var U;
+    var s = em.getMonster(q).getMobMaxHp() * H;
+    var Y = em.getMonster(f).getMobMaxHp() * N;
+    var V = em.getMonster(f).getMobMaxHp() * n;
+    var T = em.getMonster(f).getMobMaxHp() * C;
+    var d = em.getMonster(f).getMobMaxHp() * h;
+    var t = s + Y + V + T + d;
+    em.setProperty("BOSShp", t);
+    var c = em.getMonster(M);
+    c.setOverrideStats();
+    c.getChangedStats().hp = t;
+    c.heal();
+    em.registerMonster(c);
+    y.spawnMonsterOnGroundBelow(c, new java.awt.Point(5, -42));
+    g = f;
+    U = em.getMonster(g);
+    U.setOverrideStats();
+    U.getChangedStats().hp = Y;
+    U.setDamageSpongeMob(c);
+    U.heal();
+    em.registerMonster(U);
+    y.spawnMonsterOnGroundBelow(U, new java.awt.Point(5, -42));
+  } else {
+    if (cm.getMapId() == 270051100) {
+      cm.killAllMobNoExp();
+      cm.resetMap(270051100);
+      var q = 8820102;
+      var H = 10;
+      var f = 8820103;
+      var N = 10;
+      var B = 8820104;
+      var n = 10;
+      var J = 8820105;
+      var C = 10;
+      var i = 8820106;
+      var h = 10;
+      var M = 8820114;
+      var p = cm.getMapId();
+      var y = em.getMapInstance(p);
+      cm.spawnMobLimit(8820108, 1, 5, -42, 1);
+      var g;
+      var U;
+      var s = em.getMonster(q).getMobMaxHp() * H;
+      var Y = em.getMonster(f).getMobMaxHp() * N;
+      var V = em.getMonster(f).getMobMaxHp() * n;
+      var T = em.getMonster(f).getMobMaxHp() * C;
+      var d = em.getMonster(f).getMobMaxHp() * h;
+      var t = s + Y + V + T + d;
+      em.setProperty("BOSShp", t);
+      var c = em.getMonster(M);
+      c.setOverrideStats();
+      c.getChangedStats().hp = t;
+      c.heal();
+      em.registerMonster(c);
+      y.spawnMonsterOnGroundBelow(c, new java.awt.Point(5, -42));
+      g = q;
+      U = em.getMonster(g);
+      U.setOverrideStats();
+      U.getChangedStats().hp = Y;
+      U.setDamageSpongeMob(c);
+      U.heal();
+      em.registerMonster(U);
+      y.spawnMonsterOnGroundBelow(U, new java.awt.Point(5, -42));
+      g = f;
+      U = em.getMonster(g);
+      U.setOverrideStats();
+      U.getChangedStats().hp = Y;
+      U.setDamageSpongeMob(c);
+      U.heal();
+      em.registerMonster(U);
+      y.spawnMonsterOnGroundBelow(U, new java.awt.Point(5, -42));
+      g = B;
+      U = em.getMonster(g);
+      U.setOverrideStats();
+      U.getChangedStats().hp = Y;
+      U.setDamageSpongeMob(c);
+      U.heal();
+      em.registerMonster(U);
+      y.spawnMonsterOnGroundBelow(U, new java.awt.Point(5, -42));
+      g = J;
+      U = em.getMonster(g);
+      U.setOverrideStats();
+      U.getChangedStats().hp = Y;
+      U.setDamageSpongeMob(c);
+      U.heal();
+      em.registerMonster(U);
+      y.spawnMonsterOnGroundBelow(U, new java.awt.Point(5, -42));
+      g = i;
+      U = em.getMonster(g);
+      U.setOverrideStats();
+      U.getChangedStats().hp = Y;
+      U.setDamageSpongeMob(c);
+      U.heal();
+      em.registerMonster(U);
+      y.spawnMonsterOnGroundBelow(U, new java.awt.Point(5, -42));
+    }
+  }
+  cm.removeNpc(cm.getMapId(), 2141000);
+  cm.dispose();
+  if (cm.isQuestActive(3522) || cm.isQuestActive(3538)) {
+    cm.forceStartQuest(7402, 1);
+  }
+}

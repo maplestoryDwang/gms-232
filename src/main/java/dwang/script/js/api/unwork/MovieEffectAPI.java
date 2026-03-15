@@ -947,7 +947,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @param doHide 1=隐藏 0=显示
      * @出自类 MovieEffectAPI
      */
-    default void inGameDirectionEvent_SetHideEffect(int doHide) {
+    default void inGameDirectionEvent_SetHideEffect(int hide) {
+        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.vansheeMode(hide == 1)));
+
     }
 
 
@@ -989,9 +991,11 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
         JsInGameDirectionEvent eventObj = new JsInGameDirectionEvent();
         eventObj.effectStr = eventObj.getNextStr(strs);
         String npcTag = eventObj.getNextStr(strs);
-
-        Field field = getField();
-        Npc npc = (Npc) field.getLifeByCustomTag(npcTag);
+        Npc npc = null;
+        if (npcTag != null) {
+            Field field = getField();
+            npc = (Npc) field.getLifeByCustomTag(npcTag);
+        }
 
         eventObj.arg3 = npc == null ? 0 : npc.getObjectId();
         eventObj.arg6 = eventObj.getNextStr(strs); // null

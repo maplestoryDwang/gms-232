@@ -1,0 +1,1 @@
+﻿function start(){cm.dispose();cm.openNpc(1013500,"BOSS_守护天使绿水灵")};

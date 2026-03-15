@@ -45,7 +45,7 @@ public class PlayerCommands {
                 for (BaseStat baseStat : sortedList) {
                     sb.append(String.format("%s = %d, ", baseStat, tbs.getOrDefault(baseStat, 0)));
                 }
-                chr.chatMessage(Notice2, String.format("X=%d, Y=%d, ping=%d, Stats: %s", chr.getPosition().getX(), chr.getPosition().getY(), c.getPing(), sb));
+                chr.chatMessage(Notice2, String.format("当前坐标：X=%d, Y=%d, ping=%d, \n Stats: %s", chr.getPosition().getX(), chr.getPosition().getY(), c.getPing(), sb));
             } else {
                 chr.chatMessage(Notice2, "Servertime: %s, Ping: %d, Str: %d (%d%%), Int: %d (%d%%), Dex: %d (%d%%), Luk: %d (%d%%), " +
                                 "Att: %d (%d%%), Matt: %d (%d%%), HP: %d (%d%%), MP: %d (%d%%), AttSpeed: %d, EXP: %d%%, Mesos: %d%%, Drop: %d%%.",

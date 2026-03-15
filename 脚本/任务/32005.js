@@ -1,0 +1,27 @@
+var status = -1;
+var level = 10;
+var itemId = 1142575;
+
+function start(c, b, a) {
+    if (cm.haveItem(itemId, 1)) {
+        cm.forceCompleteQuest()
+    } else {
+        if (cm.canHold(itemId, 1) && (cm.getJob() >= 3600 && cm.getJob() <= 3612) && cm.getLevel() >= level) {
+            cm.gainItem(itemId, 1);
+            cm.forceCompleteQuest()
+        }
+    }
+    cm.dispose()
+}
+
+function end(c, b, a) {
+    if (cm.haveItem(itemId, 1)) {
+        cm.forceCompleteQuest()
+    } else {
+        if (cm.canHold(itemId, 1) && (cm.getJob() >= 3600 && cm.getJob() <= 3612) && cm.getLevel() >= level) {
+            cm.gainItem(itemId, 1);
+            cm.forceCompleteQuest()
+        }
+    }
+    cm.dispose()
+};

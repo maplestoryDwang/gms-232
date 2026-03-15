@@ -1,0 +1,76 @@
+var status = -1;
+var selectionLog = [];
+
+function start(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status == a++) {
+            cm.askAcceptDecline_Bottom("#face5#既然已经吃饱了，就去#r#m410000201##k接管下一个事件吧。\r\n嘻嘻……事件啊，等着我。", 36, 3001674 + cm.getPlayer().getGender())
+        } else {
+            if (status === a++) {
+                cm.sendNormalTalk_Bottom("#face0#话说，真希望这次能有些怪物出来……\r\n最近饕餮那家伙也很窝火。", 36, 3001674 + cm.getPlayer().getGender(), false, true)
+            } else {
+                if (status === a++) {
+                    cm.forceStartQuest(39524, "");
+                    cm.OnStartNavigation(410000201, 0, "", 39524);
+                    cm.dispose()
+                }
+            }
+        }
+    }
+}
+
+function stage0(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status == a++) {
+            var e = cm.getQuest();
+            cm.askYesNo("这个任务的依次对话脚本还没有修复哦。它的脚本位于： #b 脚本/任务/39524.js#k\r\n\r\n如果你有兴趣，欢迎一起来修复！\r\n\r\n那么现在，你要立刻开始这个任务吗？")
+        } else {
+            if (status == a++) {
+                cm.forceStartQuest();
+                cm.dispose()
+            }
+        }
+    }
+}
+
+function end(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status == a++) {
+            cm.sendNormalTalk_Bottom("#face9#你好啊，卡琳~！\r\n有没有什么适合我天才道士的委托！？", 36, 3001674 + cm.getPlayer().getGender(), false, true)
+        } else {
+            if (status === a++) {
+                cm.sendNormalTalk_Bottom("#face3#嘻嘻，你来了啊，正好我有委托要给虎影解决师，\r\n稍等片刻。", 36, 3001652, true, true)
+            } else {
+                if (status === a++) {
+                    cm.forceCompleteQuest(39524);
+                    cm.gainExp(2660);
+                    cm.dispose()
+                }
+            }
+        }
+    }
+};

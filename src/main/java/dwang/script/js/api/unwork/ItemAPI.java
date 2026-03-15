@@ -154,7 +154,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
             getChr().consumeItem(id, quantity * -1);
             String itemName = StringData.getItemStringById(id);
             if (itemName != null) {
-                getChr().chatMessage(GameDesc, String.format("You've lost items: %s. (-%d)", itemName, quantity));
+                getChr().chatMessage(GameDesc, String.format("You've lost items: %s. (%d)", itemName, quantity));
             }
         }
     }
@@ -488,16 +488,24 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @return
      * @出自类 ItemAPI
      */
-    default void haveItem(int itemId) {
+    default boolean haveItem(int itemId) {
+        return haveItem(itemId, 1);
+
     }
 
 
     /**
      * @出自类 ItemAPI
      */
-    default void haveItem(int itemId, int quantity) {
+    default boolean haveItem(int itemId, int quantity) {
+        return getQuantityOfItem(itemId) >= quantity;
     }
 
+    default int getQuantityOfItem(int id) {
+        var item2 = ItemData.getItemDeepCopy(id);
+        var invType = item2.getInvType();
+        return getChr().getInventoryByType(invType).getQuantity(id);
+    }
 
     /**
      * 检查玩家是否拥有足够物品

@@ -534,6 +534,7 @@ public class Mob extends Life {
         }
 
         // Spread QuestCounter for MobKill throughout the entire party
+        // 任务计数
         if (getMostDamageChar() != null) {
             var handleMobKillForQuestChrList = new ArrayList<Char>() {{
                 add(getMostDamageChar());

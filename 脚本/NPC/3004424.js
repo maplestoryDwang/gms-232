@@ -1,0 +1,1 @@
+function start(){cm.dispose();cm.openNpc(0,"BOSS_塞伦_入场")};

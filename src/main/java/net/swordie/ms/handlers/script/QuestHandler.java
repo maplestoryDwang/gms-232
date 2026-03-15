@@ -22,6 +22,8 @@ import net.swordie.ms.world.field.Field;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static net.swordie.ms.enums.ChatType.Mob;
+
 public class QuestHandler {
 
     private static final Logger log = LogManager.getLogger(QuestHandler.class);
@@ -75,8 +77,14 @@ public class QuestHandler {
         switch (questType) {
             case QuestReq_AcceptQuest:
                 if (qm.canStartQuest(questID)) {
-                    qm.addQuest(QuestData.createQuestFromId(questID));
+                    Quest questFromId = QuestData.createQuestFromId(questID);
+                    qm.addQuest(questFromId);
                     success = true;
+
+                    String format = String.format("Starting system Quest [%s] , questID [%s] Type [Quest].", questID, questFromId.getStatus());
+                    chr.chatMessage(Mob, format);
+                    log.info(String.format(format));
+
                 }
                 break;
             case QuestReq_CompleteQuest:
@@ -85,6 +93,10 @@ public class QuestHandler {
                     if (quest.isComplete(chr)) {
                         if (qm.completeQuest(questID)) {
                             success = true;
+
+                            String format = String.format("Complete system Quest [%s] , questID [%s] Type [Quest].", questID, quest.getStatus());
+                            chr.chatMessage(Mob, format);
+                            log.info(String.format(format));
                         }
                     }
                 }

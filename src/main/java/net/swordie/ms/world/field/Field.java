@@ -1069,7 +1069,7 @@ public class Field {
         drop.setExpireTime(FileTime.fromDate(LocalDateTime.now().plusSeconds(GameConstants.DROP_REMOVE_OWNERSHIP_TIME)));
         drop.setRemoveTime(FileTime.fromDate(LocalDateTime.now().plusSeconds(GameConstants.DROP_REMAIN_ON_GROUND_TIME)));
         for (Char chr : getCharsReadOnly()) {
-            if (chr.hasAnyQuestsInProgress(quests)) {
+            if (chr.hasAnyQuestsInProgress(quests)) { // 掉落任务道具
                 chr.write(DropPool.dropEnterField(drop, posFrom, posTo, ownerId, drop.canBePickedUpBy(chr)));
             }
         }

@@ -35,6 +35,10 @@ function start(d, c, b) {
                                     if (status === a++) {
                                         cm.forceStartQuest(32276, "");
                                         cm.sendNormalTalk("拜托了，请你去找圣地的#b南哈特#k。我现在只相信你了！", 4, 1520008, false, false)
+                                        if(cm.haveItem(4033885)) {
+                                            cm.gainItem(4033885, -1);
+                                        }
+
                                     } else {
                                         if (status === a++) {
                                             cm.dispose()

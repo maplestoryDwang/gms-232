@@ -2557,6 +2557,7 @@ public enum OutHeader {
 //            PRIVATE_SERVER_PACKET,
             MOB_CTRL_ACK,
             MOB_MOVE,
+            FIRST_ENTER_REWARD,
             OPCODE_ENCRYPTION
 
 //            CHAT_MSG,

@@ -86,7 +86,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * 添加临时变量？
          * @出自类 杂项API
          */
-    default void setSessionValue(String key, String value) { }
+    default void setSessionValue(String key, String value) {
+
+    }
 
 
 
