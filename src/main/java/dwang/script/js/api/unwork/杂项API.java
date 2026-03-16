@@ -1,5 +1,6 @@
 package dwang.script.js.api.unwork;
 import dwang.script.DwangScriptBaseApi;
+import net.swordie.ms.connection.packet.WvsContext;
 
 public interface 杂项API extends DwangScriptBaseApi {
 
@@ -87,6 +88,7 @@ public interface 杂项API extends DwangScriptBaseApi {
          * @出自类 杂项API
          */
     default void setSessionValue(String key, String value) {
+        getChr().write(WvsContext.sessionValue(key, value));
 
     }
 

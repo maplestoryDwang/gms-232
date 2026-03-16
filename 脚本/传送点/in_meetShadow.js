@@ -20,11 +20,12 @@ function action(d, c, b) {
     } else {
         if (status === a++) {
             if (cm.isQuestActive(32354)) {
+                cm.dispose()
                 cm.warp(1130000, 0, false)
             } else {
+                cm.dispose()
                 cm.warp(1110000, 1, false)
             }
-            cm.dispose()
         }
     }
 };

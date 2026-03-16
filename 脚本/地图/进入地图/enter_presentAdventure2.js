@@ -6,7 +6,7 @@ function start() {
 }
 
 function action(d, c, b) {
-    if (cm.isQuestFinished(32311)) {
+    if (cm.isQuestFinished(32309)) {
         cm.npc_ChangeController(1520022, "oid=1683669", 600, -310, 31, 550, 650, 1, false, 0, false);
         cm.npc_SetSpecialAction("oid=1683669", "summon", 0, 0);
         cm.npc_ChangeController(1520023, "oid=1683670", 360, -520, 1, 310, 410, 1, false, 0, false);

@@ -1528,6 +1528,16 @@ public class WvsContext {
         return outPacket;
     }
 
+
+    public static OutPacket sessionValue(String key, String value) {
+        OutPacket outPacket = new OutPacket(OutHeader.SESSION_VALUE);
+
+        outPacket.encodeString(key);
+        outPacket.encodeString(value);
+
+        return outPacket;
+    }
+
     public static OutPacket fieldSetVariable(String key, String value) {
         OutPacket outPacket = new OutPacket(OutHeader.FIELD_SET_VARIABLE);
 

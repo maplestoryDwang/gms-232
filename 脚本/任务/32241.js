@@ -12,7 +12,12 @@ function start(d, c, b) {
         cm.dispose()
     } else {
         if (status == a++) {
-            cm.sendNormalTalk("嗯……那么，现在该做什么呢？", 16, 0, false, true)
+            if (cm.getQuestStatus(32266) == 2) {
+                cm.forceCompleteQuest(32241);
+                cm.dispose()
+            } else {
+                cm.sendNormalTalk("嗯……那么，现在该做什么呢？", 16, 0, false, true)
+            }
         } else {
             if (status === a++) {
                 cm.askMenu("\r\n#b#L0#吃饭。#l\r\n#L1#去练级。#l\r\n#L2#睡觉。#l\r\n#L3#学习。#l\r\n#L4#找别的事情做。#l", 25, 0)

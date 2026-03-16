@@ -184,12 +184,14 @@ explorationList = [
 ]
 
 currentMap = sm.getFieldID()
+
 for region in explorationList:
-    if currentMap in region[0]:
-        regionExploration(region[0], region[1], region[2], currentMap, region[3], region[4])
-        # Accept Victoria/Ossyria and Maple Explorer if they have not been started/completed yet
-        if not sm.hasQuest(region[5]) and not sm.hasQuestCompleted(region[5]):
-            sm.startQuest(region[5])
-        if not sm.hasQuest(29013) and not sm.hasQuestCompleted(29013):
-            sm.startQuest(29013)
-        break
+    if sm.getChr().getLevel() >= 40:
+        if currentMap in region[0]:
+            regionExploration(region[0], region[1], region[2], currentMap, region[3], region[4])
+            # Accept Victoria/Ossyria and Maple Explorer if they have not been started/completed yet
+            if not sm.hasQuest(region[5]) and not sm.hasQuestCompleted(region[5]):
+                sm.startQuest(region[5])
+            if not sm.hasQuest(29013) and not sm.hasQuestCompleted(29013):
+                sm.startQuest(29013)
+            break

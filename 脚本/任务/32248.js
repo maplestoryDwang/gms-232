@@ -1,5 +1,6 @@
 var status = -1;
 var selectionLog = [];
+var hatItem
 
 function start(d, c, b) {
     if (status == 0 && d == 0) {
@@ -55,13 +56,26 @@ function end(d, c, b) {
             cm.sendNormalTalk("拿来了吗？快拿来我看看。", 0, 1520001, false, true)
         } else {
             if (status === a++) {
+                if (cm.haveItem(4033883)) {
+                    hatItem = 4033883;
+                } else if (cm.haveItem(4033882)) {
+                    hatItem = 4033882;
+                } else {
+                    hatItem = 4033881;
+                }
+
                 cm.gainExp(3500);
                 cm.forceCompleteQuest(32248);
-                cm.forceStartQuest(32363, "4033882");
-                cm.sendNormalTalk("嗯，虽然这不是我丢的帽子，不过戴上后正好能盖住，那……就这样吧。", 0, 1520001, true, false)
+                if (hatItem == 4033883) {
+                    cm.sendNormalTalk("嗯，这是我丢的帽子，你还不赖。", 0, 1520001, true, false)
+                } else {
+                    cm.sendNormalTalk("嗯，虽然这不是我丢的帽子，不过戴上后正好能盖住，那……就这样吧。", 0, 1520001, true, false)
+                }
+
+                cm.forceStartQuest(32363, String(hatItem));
             } else {
                 if (status === a++) {
-                    cm.gainItem(4033882, -1);
+                    cm.gainItem(hatItem, -1);
                     cm.dispose()
                 }
             }

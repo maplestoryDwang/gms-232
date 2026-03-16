@@ -31,6 +31,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void cancelItem(int id) {
+
     }
 
 

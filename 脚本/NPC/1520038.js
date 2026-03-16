@@ -4,7 +4,7 @@ function start() {
   action(1, 0, 0);
 }
 function action(f, W, U) {
-  if (!cm.haveItem(4033893)) {
+  if (!(cm.haveItem(4033893) || cm.haveItem(4033895))) {
     cm.sendNormalTalk("没有水桶的话，无法盛水。", 16, 0, false, true);
     cm.dispose();
     return;
@@ -28,6 +28,7 @@ function action(f, W, U) {
     } else if (status === V++) {
       cm.gainItem(4033893, -1);
       if (cm.isQuestActive(32318)) {
+        cm.gainItem(4033895, -1);
         cm.gainItem(4033896, 1);
       } else {
         cm.gainItem(4033894, 1);

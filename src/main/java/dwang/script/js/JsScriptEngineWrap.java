@@ -315,8 +315,8 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
                 break;
             }
             case Item -> {
-                String name = si.getScriptName();
-                scriptDir = (new StringBuilder()).insert(0, "脚本/道具/").append(name).append(".js").toString();
+                int itemId = si.getParentID();
+                scriptDir = (new StringBuilder()).insert(0, "脚本/道具/").append(itemId).append(".js").toString();
                 break;
             }
             case Quest -> {
@@ -373,8 +373,14 @@ public class JsScriptEngineWrap implements IScriptEngineWrap, ScriptManager {
             switch (scriptType) {
                 case Npc:
                 case Field:
+                case FirstEnterField:
                 case Portal:
+                case Item:
                     inv.invokeFunction("start");
+                    break;
+                case Reactor:
+                    inv.invokeFunction("act");
+
                     break;
                 case Quest:
                     Bindings bindings = si.getBindings();

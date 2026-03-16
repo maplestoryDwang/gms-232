@@ -139,7 +139,9 @@ public interface MapAPI extends DwangScriptBaseApi {
     /**
          * @出自类 MapAPI
     */
-    default void scheduleWarpTask(int time, int to) { }
+    default void scheduleWarpTask(int time, int to) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

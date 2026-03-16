@@ -80,8 +80,7 @@ public class QuestHandler {
                     Quest questFromId = QuestData.createQuestFromId(questID);
                     qm.addQuest(questFromId);
                     success = true;
-
-                    String format = String.format("Starting system Quest [%s] , questID [%s] Type [Quest].", questID, questFromId.getStatus());
+                    String format = String.format("[System] Quest start, questID [%s] startNPC [%s].", questID, qi.getStartNpc());
                     chr.chatMessage(Mob, format);
                     log.info(String.format(format));
 
@@ -94,7 +93,7 @@ public class QuestHandler {
                         if (qm.completeQuest(questID)) {
                             success = true;
 
-                            String format = String.format("Complete system Quest [%s] , questID [%s] Type [Quest].", questID, quest.getStatus());
+                            String format = String.format("[System] Quest end, questID [%s] startNPC [%s].", questID, qi.getStartNpc());
                             chr.chatMessage(Mob, format);
                             log.info(String.format(format));
                         }
@@ -110,17 +109,25 @@ public class QuestHandler {
                 if (scriptName == null || scriptName.equalsIgnoreCase("")) {
                     scriptName = String.format("%d%s", questID, ScriptManagerImpl.QUEST_START_SCRIPT_END_TAG);
                 }
+
+                String format = String.format("[Script] Quest start, questID [%s] Name [%s].", questID, scriptName);
+                chr.chatMessage(Mob, format);
+                log.info(String.format(format));
                 chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest, npcTemplateID);
                 break;
             case QuestReq_CompleteScript:
                 scriptName = qi.getEndScript();
                 if (!qm.hasQuestInProgress(questID) || !qm.getQuestById(questID).isComplete(chr)) {
-                    log.debug("Could not complete quest, as the prerequisites haven't been met.");
+                    log.debug("[{}]， Could not complete quest, as the prerequisites haven't been met.", questID);
                     return;
                 }
                 if (scriptName == null || scriptName.equalsIgnoreCase("")) {
                     scriptName = String.format("%d%s", questID, ScriptManagerImpl.QUEST_COMPLETE_SCRIPT_END_TAG);
                 }
+
+                String format2 = String.format("[Script] Quest end, questID [%s] Name [%s].", questID, scriptName);
+                chr.chatMessage(Mob, format2);
+                log.info(String.format(format2));
                 chr.getScriptManager().startScriptByScriptNameAndType(questID, scriptName, ScriptType.Quest);
                 break;
             case QuestReq_LaterStep:

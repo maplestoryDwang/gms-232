@@ -1,0 +1,27 @@
+var status = -1;
+var selectionLog = [];
+
+function action(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }
+    status++;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status === a++) {
+            cm.playerMessage(5, "这个地图进入触发事件的脚本尚未修复。脚本位于： 脚本/地图/onFirstUserEnter/Enter_SparringMap.js");
+            cm.dispose()
+        } else {
+            cm.dispose()
+        }
+    }
+}
+
+function start() {
+    status = -1;
+    action(1, 0, 0)
+};

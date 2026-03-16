@@ -246,7 +246,7 @@ public class ScriptManagerImpl {
         scriptInfo.setObjectID(objID);
         getScripts().put(scriptType, scriptInfo);
 
-        if (selectJsCondition(scriptInfo)) {
+         if (selectJsCondition(scriptInfo)) {
             if (!isField()) {
                 String format = String.format("[JS] - Starting script [%s] , templateID [%d] scriptType [%s].", scriptName, parentID, scriptType);
                 chrFromMethods.chatMessage(Mob, format);
@@ -410,6 +410,8 @@ public class ScriptManagerImpl {
                             } else {
                                 pyScriptEngineWrap.runAction(si, lastType, response, answer, text);
                             }
+                        } else {
+                            log.debug("脚本被关闭了，无法运行请检查！");
                         }
                     }
                 }

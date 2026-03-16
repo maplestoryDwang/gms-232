@@ -9,7 +9,7 @@ import java.util.Map;
  * @version 1.0.0
  * @Title
  * @ClassName MapleQuestStatus.java
- * @Description TODO
+ * @Description 包装类脚本使用
  * @createTime 2026-03-16 12:39
  */
 

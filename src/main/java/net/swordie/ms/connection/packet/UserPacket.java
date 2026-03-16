@@ -152,17 +152,22 @@ public class UserPacket {
     }
 
     public static OutPacket progressMessageFont(ProgressMessageFontType fontNameType, int fontSize, ProgressMessageColourType fontColorType, int fadeOutDelay, String message) {
+        return progressMessageFont(fontNameType.getVal(), fontSize, fontColorType.getVal(), fadeOutDelay, message, (byte) 0);
+    }
+
+    public static OutPacket progressMessageFont(int fontNameType, int fontSize, int fontColorType, int fadeOutDelay, String message, byte b1) {
         OutPacket outPacket = new OutPacket(OutHeader.PROGRESS_MESSAGE_FONT);
-        
-        outPacket.encodeInt(fontNameType.getVal());
+
+        outPacket.encodeInt(fontNameType);
         outPacket.encodeInt(fontSize);
-        outPacket.encodeInt(fontColorType.getVal());
+        outPacket.encodeInt(fontColorType);
         outPacket.encodeInt(fadeOutDelay);
-        outPacket.encodeByte(0); // new 209
+        outPacket.encodeByte(b1); // new 209
         outPacket.encodeString(message);
- 
+
         return outPacket;
     }
+
     
     public static OutPacket effect(Effect effect) {
         OutPacket outPacket = new OutPacket(OutHeader.EFFECT);

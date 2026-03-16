@@ -73,6 +73,8 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_AddLayer(String path, int v1, int v2) {
+
+
     }
 
 
@@ -128,6 +130,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_Item(int item) {
+
     }
 
 

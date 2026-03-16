@@ -2,7 +2,9 @@ package dwang.script.js.api.unwork;
 
 import dwang.script.DwangScriptBaseApi;
 import net.swordie.ms.connection.packet.UserLocal;
+import net.swordie.ms.connection.packet.UserPacket;
 import net.swordie.ms.enums.ChatType;
+import net.swordie.ms.enums.ProgressMessageFontType;
 
 public interface MessageAPI extends DwangScriptBaseApi {
 
@@ -61,7 +63,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
     /**
          * @出自类 MessageAPI
     */
-    default void getTopMsgFont(String msg, int nFont, int nFontSizeType, int nFontColorType, int nFadeOutDelay) { }
+    default void getTopMsgFont(String msg, int nFont, int nFontSizeType, int nFontColorType, int nFadeOutDelay) {
+        getTopMsgFont(msg, nFont, nFontSizeType, nFontColorType, nFadeOutDelay, (byte) 0);
+    }
 
 
 
@@ -76,7 +80,11 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param nFadeOutDelay//     淡出延迟
          * @出自类 MessageAPI
          */
-    default void getTopMsgFont(String msg, int nFont, int nFontSizeType, int nFontColorType, int nFadeOutDelay, int b1) { }
+    default void getTopMsgFont(String msg, int nFont, int nFontSizeType, int nFontColorType, int nFadeOutDelay, byte b1) {
+
+        getChr().write(UserPacket.progressMessageFont(nFont, nFontSizeType, nFontColorType, nFadeOutDelay, msg, b1));
+
+    }
 
 
 

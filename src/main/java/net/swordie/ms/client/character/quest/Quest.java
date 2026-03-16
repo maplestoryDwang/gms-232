@@ -133,10 +133,20 @@ public class Quest extends TrackedObject {
     }
 
     public boolean isComplete(Char chr) {
-        return getProgressRequirements().stream().allMatch(pr -> pr.isComplete(chr));
+        return getProgressRequirements().stream().allMatch(pr -> pr.isComplete(chr)) || isCompleteSpecial();
     }
 
-    public void handleMobKill(int mobID) {
+    /**
+     * 部分任务可以直接完成，比如三选一
+     * @return
+     */
+    public boolean isCompleteSpecial() {
+        return QuestManager.SPEICAL_COMPLETE_QUEST.contains(this.QRKey);
+    }
+
+
+
+        public void handleMobKill(int mobID) {
         var mob = MobData.getMobInfoById(mobID);
         if (mob == null) {
             return;

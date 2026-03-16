@@ -10,6 +10,8 @@ import net.swordie.ms.connection.packet.WvsContext;
 import net.swordie.ms.connection.packet.model.MessagePacket;
 import net.swordie.ms.enums.QuestStatus;
 import net.swordie.ms.loaders.QuestData;
+import net.swordie.ms.loaders.containerclasses.QuestInfo;
+import net.swordie.ms.util.FileTime;
 
 public interface QuestAPI extends DwangScriptBaseApi {
 
@@ -234,7 +236,18 @@ public interface QuestAPI extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void forceCompleteQuest(int questID) {
-        getChr().getQuestManager().completeQuest(questID);
+        QuestManager qm = getChr().getQuestManager();
+        Quest quest = qm.getQuestById(questID);
+        QuestInfo questInfo = QuestData.getQuestInfoById(questID);
+        if (questInfo == null) {
+            // 不存在的任务，直接设置任务状态完成即可
+            quest.setStatus(QuestStatus.Completed);
+            quest.setCompletedTime(FileTime.currentTime());
+
+
+        } else {
+            getChr().getQuestManager().completeQuest(questID);
+        }
 
     }
 
@@ -295,11 +308,13 @@ public interface QuestAPI extends DwangScriptBaseApi {
         if (quest == null) {
             quest = QuestData.createQuestFromId(questId);
             quest.setQrValue(customData);
-            quest.setId(questId); // 需要用到
-            qm.addCustomQuest(quest);
+            quest.setQRKey(questId); // 需要用到
+//            qm.addCustomQuest(quest);
+            qm.addQuest(quest);
         }
         quest.setQrValue(customData);
-        updateQROrExValue(quest, false);
+        updateQROrExValue(quest, true);
+//        updateQROrExValue(quest, false);
     }
 
 
@@ -469,7 +484,7 @@ public interface QuestAPI extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default boolean isQuestFinished(int id) {
-        return getChr().getQuestManager().hasQuestCompleted(id);
+         return getChr().getQuestManager().hasQuestCompleted(id);
 
     }
 

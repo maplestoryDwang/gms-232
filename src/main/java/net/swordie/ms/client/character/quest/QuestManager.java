@@ -42,6 +42,9 @@ public class QuestManager {
     private static final Logger log = LogManager.getLogger(QuestManager.class);
     private static final QuestDao questDao = (QuestDao) SworDaoFactory.getByClass(Quest.class);
 
+    // 特殊处理的任务
+    public static final List<Integer> SPEICAL_COMPLETE_QUEST = Arrays.asList(32248);
+
     private long id;
 
     private Map<Integer, Quest> quests;
