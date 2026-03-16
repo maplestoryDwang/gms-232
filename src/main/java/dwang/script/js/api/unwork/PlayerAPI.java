@@ -13,6 +13,19 @@ import java.util.Map;
 
 public interface PlayerAPI extends DwangScriptBaseApi {
 
+
+    /**
+     * *
+     * 解放内在能力效果
+     *
+     * @出自类 QuestAPI
+     */
+    default void showCompleteQuestEffect() {
+
+
+    }
+
+
     /**
          * @出自类 PlayerAPI
     */

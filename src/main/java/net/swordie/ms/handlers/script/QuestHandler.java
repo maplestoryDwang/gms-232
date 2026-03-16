@@ -151,7 +151,7 @@ public class QuestHandler {
                 break;
         }
         if (success) {
-            chr.write(UserLocal.questResult(QuestType.QuestRes_Act_Success, questID, npcTemplateID, 0, false));
+            chr.write(UserLocal.questResultActSuccess(QuestType.QuestRes_Act_Success, questID, npcTemplateID, 0, false));
         }
     }
 

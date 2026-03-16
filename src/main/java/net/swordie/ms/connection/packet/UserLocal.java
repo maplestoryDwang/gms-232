@@ -713,7 +713,7 @@ public class UserLocal {
         return outPacket;
     }
 
-    public static OutPacket questResult(QuestType type, int questID, int npcTemplateID, int secondQuestID, boolean startNavigation) {
+    public static OutPacket questResultActSuccess(QuestType type, int questID, int npcTemplateID, int secondQuestID, boolean startNavigation) {
         OutPacket outPacket = new OutPacket(OutHeader.QUEST_RESULT);
 
         outPacket.encodeByte(type.getVal());
@@ -725,6 +725,26 @@ public class UserLocal {
 
         return outPacket;
     }
+
+    public static OutPacket questResultQuestTimerStart(short action, int quest, int time) {
+        OutPacket outPacket = new OutPacket(OutHeader.QUEST_RESULT);
+
+        outPacket.encodeByte(QuestType.QuestRes_Start_QuestTimer.getVal());
+        outPacket.encodeShort(action);
+        outPacket.encodeInt(quest);
+        outPacket.encodeInt(time); // starts a second quest
+        return outPacket;
+    }
+
+    public static OutPacket questResultQuestTimerEnd(short action, int quest) {
+        OutPacket outPacket = new OutPacket(OutHeader.QUEST_RESULT);
+
+        outPacket.encodeByte(QuestType.QuestRes_End_QuestTimer.getVal());
+        outPacket.encodeShort(action);
+        outPacket.encodeInt(quest);
+        return outPacket;
+    }
+
 
     public static OutPacket medalReissueResult(MedalReissueResultType medalReissueResultType, int itemId) {
         OutPacket outPacket = new OutPacket(OutHeader.MEDAL_REISSUE_RESULT);

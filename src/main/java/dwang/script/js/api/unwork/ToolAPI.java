@@ -3,6 +3,8 @@ package dwang.script.js.api.unwork;
 import dwang.script.DwangScriptBaseApi;
 import net.swordie.ms.world.field.Field;
 
+import java.text.SimpleDateFormat;
+
 public interface ToolAPI extends DwangScriptBaseApi {
 
     /**
@@ -195,7 +197,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
     
          * @出自类 ToolAPI
          */
-    default void getNowTimeString(String format) { }
+    default String getNowTimeString(String format) {
+        return (new SimpleDateFormat(format)).format(System.currentTimeMillis());
+    }
 
 
 
