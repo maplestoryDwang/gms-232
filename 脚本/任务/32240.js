@@ -66,19 +66,19 @@ function end(d, c, b) {
                     cm.inGameDirectionEvent_AskAnswerTime(1800);
 
                     // 判断不同职业获取不同书
-                    if (cm.getQuestCustomData() == "1") {
+                    if (cm.getQuestStatus(1401) == 2) {
                         cm.gainItem(4460000, 1)
 
-                    } else if (cm.getQuestCustomData() == "2") {
+                    } else if (cm.getQuestStatus(1402) == 2) {
                         cm.gainItem(4460001, 1)
 
-                    } else if (cm.getQuestCustomData() == "3") {
+                    } else if (cm.getQuestStatus(1403) == 2) {
                         cm.gainItem(4460002, 1)
 
-                    } else if (cm.getQuestCustomData() == "4") {
+                    } else if (cm.getQuestStatus(1404) == 2) {
                         cm.gainItem(4460003, 1)
 
-                    } else if (cm.getQuestCustomData() == "5") {
+                    } else if (cm.getQuestStatus(1405) == 2) {
                         cm.gainItem(4460004, 1)
                     }
 

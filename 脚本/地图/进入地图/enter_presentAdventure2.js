@@ -49,7 +49,7 @@ function action(d, c, b) {
             cm.setSessionValue("void", "1678103");
             cm.curNodeEventEnd(true);
             cm.setInGameDirectionMode(true, true, false);
-            cm.inGameDirectionEvent_头顶图片(["Effect/Direction12.img/effect/story/BalloonMsg1/0"], [1200, 0, -120, 0, 0, 0, 0, 0, 0]);
+            cm.inGameDirectionEvent_头顶图片(["Effect/Direction12.img/effect/story/BalloonMsg1/0"], [1200, -928, -220, 0, 0, 0, 0, 0, 0]);
             cm.inGameDirectionEvent_PushMoveInfo(0, 200, 0, -500)
         } else {
             if (status === a++) {
@@ -66,7 +66,7 @@ function action(d, c, b) {
                             cm.inGameDirectionEvent_AskAnswerTime(0)
                         } else {
                             if (status === a++) {
-                                cm.inGameDirectionEvent_头顶图片(["Effect/Direction3.img/effect/story/BalloonMsg0/0"], [1200, 300, -120, 0, 0, 0, 0, 0, 0]);
+                                cm.inGameDirectionEvent_头顶图片(["Effect/Direction3.img/effect/story/BalloonMsg0/0"], [1200, -928, -220, 0, 0, 0, 0, 0, 0]);
                                 cm.inGameDirectionEvent_AskAnswerTime(2000)
                             } else {
                                 if (status === a++) {

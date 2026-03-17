@@ -307,7 +307,7 @@ function action32354(d, c, b) {
                                                                     cm.npc_LeaveField("oid=1951547");
                                                                     cm.dispose();
                                                                     cm.warp(1130010, 0, false);
-                                                                    cm.getPlayer().scheduleWarpTask(1 * 1 * 25, cm.getMap(1130000))
+                                                                    cm.scheduleWarpTask(1 * 1 * 25, cm.getMap(1130000))
                                                                 }
                                                             }
                                                         }

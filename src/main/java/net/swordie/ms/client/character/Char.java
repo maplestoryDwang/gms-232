@@ -1,6 +1,7 @@
 package net.swordie.ms.client.character;
 
 import net.swordie.ms.Server;
+import net.swordie.ms.ServerConfig;
 import net.swordie.ms.client.Account;
 import net.swordie.ms.client.Client;
 import net.swordie.ms.client.LinkSkill;
@@ -2199,7 +2200,7 @@ public class Char {
     public void warp(int fieldId, int portalId) {
         Field field = getOrCreateFieldByCurrentInstanceType(fieldId);
         if (field == null && getInstance() == null) {
-            field = getOrCreateFieldByCurrentInstanceType(100000000);
+            field = getOrCreateFieldByCurrentInstanceType(ServerConfig.DEFAULT_fieldID); // 被迫返回的地图
         }
         Portal portal = field.getInfo().getPortalByID(portalId);
         if (portal == null) {
@@ -2226,7 +2227,7 @@ public class Char {
      */
     public void warp(Field toField, boolean characterData) {
         if (toField == null) {
-            toField = getOrCreateFieldByCurrentInstanceType(100000000);
+            toField = getOrCreateFieldByCurrentInstanceType(ServerConfig.DEFAULT_fieldID);
         }
         warp(toField, toField.getInfo().getPortalByName("sp"), characterData);
     }

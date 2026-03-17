@@ -83,7 +83,8 @@ public class Quest extends TrackedObject {
 
     @Override
     public int getTransactionalHash() {
-        return Objects.hash(QRKey, customQrValue, status, completedTime);
+//        return Objects.hash(QRKey, customQrValue, status, completedTime);
+        return Objects.hash(QRKey, customQrValue, customQrExValue, status, completedTime);
     }
 
     public List<QuestProgressRequirement> getProgressRequirements() {

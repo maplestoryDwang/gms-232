@@ -103,13 +103,23 @@
 // * @description 所有python能用的方法
 // */
 //public interface PythonAllFun extends DwangScriptBaseApi , ScriptManager {
+//
+//    String[] fieldEventMethodNames = new String[]{
+//            "createObstacleAtom",
+//            "createObstacleAtomToFoothold",
+//    };
+//
+//    private static boolean isFieldEventMethodName(String methodName) {
+//        return Arrays.asList(fieldEventMethodNames).contains(methodName);
+//    }
+//
 //    /**
 //     * 脚本执行方法
 //     */
 //
 //    // Start of the sends/asks -----------------------------------------------------------------------------------------
 //    @Override
-//    public int sendSay(String text) {
+//    default int sendSay(String text) {
 //        if (getLastActiveScriptType() == ScriptType.None) {
 //            return 0;
 //        }
@@ -122,8 +132,8 @@
 //     * @param text
 //     * @param nmt
 //     */
-//    private int sendGeneralSay(String text, NpcMessageType nmt) throws NullPointerException {
-//        var npcScriptInfo = initData.getNpcScriptInfo();
+//    default int sendGeneralSay(String text, NpcMessageType nmt) throws NullPointerException {
+//        var npcScriptInfo = getInitData().getNpcScriptInfo();
 //        npcScriptInfo.setText(text);
 //        String checkText = text.replaceAll("[\r\n]", "");
 //        if (listPattern.matcher(checkText).matches()) {
@@ -136,50 +146,50 @@
 //    }
 //
 //    @Override
-//    public int sendNext(String text) {
+//    default int sendNext(String text) {
 //        return sendGeneralSay(text, SayNext);
 //    }
 //
 //    @Override
-//    public int sendPrev(String text) {
+//    default int sendPrev(String text) {
 //        return sendGeneralSay(text, SayPrev);
 //    }
 //
 //    @Override
-//    public int sendSayOkay(String text) {
+//    default int sendSayOkay(String text) {
 //        return sendGeneralSay(text, SayOk);
 //    }
 //
 //    @Override
-//    public int sendSayImage(String image) {
+//    default int sendSayImage(String image) {
 //        return sendSayImage(new String[]{image});
 //    }
 //
 //    @Override
-//    public int sendSayImage(String[] images) {
-//        initData.getNpcScriptInfo().setImages(images);
-//        initData.getNpcScriptInfo().setMessageType(SayImage);
+//    default int sendSayImage(String[] images) {
+//        getInitData().getNpcScriptInfo().setImages(images);
+//        getInitData().getNpcScriptInfo().setMessageType(SayImage);
 //        return sendGeneralSay("", SayImage);
 //    }
 //
 //
 //    @Override
-//    public boolean sendAskYesNo(String text) {
+//    default boolean sendAskYesNo(String text) {
 //        return sendGeneralSay(text, AskYesNo) != 0;
 //    }
 //
 //    @Override
-//    public boolean sendAskAccept(String text) {
+//    default boolean sendAskAccept(String text) {
 //        return sendGeneralSay(text, AskAccept) != 0;
 //    }
 //
-//    public boolean sendAskAccept2(String text) {
+//    default boolean sendAskAccept2(String text) {
 //        return sendGeneralSay(text, AskAccept2) != 0;
 //    }
 //
 //    @Override
-//    public String sendAskText(String text, String defaultText, short minLength, short maxLength) throws NullPointerException {
-//        var npcScriptInfo = initData.getNpcScriptInfo();
+//    default String sendAskText(String text, String defaultText, short minLength, short maxLength) throws NullPointerException {
+//        var npcScriptInfo = getInitData().getNpcScriptInfo();
 //        npcScriptInfo.setMin(minLength);
 //        npcScriptInfo.setMax(maxLength);
 //        npcScriptInfo.setDefaultText(defaultText);
@@ -189,7 +199,7 @@
 //        getMemory().addMemoryInfo(npcScriptInfo);
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -199,10 +209,10 @@
 //    }
 //
 //    @Override
-//    public int sendAskNumber(String text, int defaultNum, int min, int max) {
-//        initData.getNpcScriptInfo().setDefaultNumber(defaultNum);
-//        initData.getNpcScriptInfo().setMin(min);
-//        initData.getNpcScriptInfo().setMax(max);
+//    default int sendAskNumber(String text, int defaultNum, int min, int max) {
+//        getInitData().getNpcScriptInfo().setDefaultNumber(defaultNum);
+//        getInitData().getNpcScriptInfo().setMin(min);
+//        getInitData().getNpcScriptInfo().setMax(max);
 //        var num = sendGeneralSay(text, AskNumber);
 //
 //        if (num < min || num > max) {
@@ -213,8 +223,8 @@
 //    }
 //
 //    @Override
-//    public int sendInitialQuiz(byte type, String title, String problem, String hint, int min, int max, int time) {
-//        NpcScriptInfo nsi = initData.getNpcScriptInfo();
+//    default int sendInitialQuiz(byte type, String title, String problem, String hint, int min, int max, int time) {
+//        NpcScriptInfo nsi = getInitData().getNpcScriptInfo();
 //        nsi.setType(type);
 //        if (type != 1) {
 //            nsi.setTitle(title);
@@ -228,8 +238,8 @@
 //    }
 //
 //    @Override
-//    public int sendInitialSpeedQuiz(byte type, int quizType, int answer, int correctAnswers, int remaining, int time) {
-//        NpcScriptInfo nsi = initData.getNpcScriptInfo();
+//    default int sendInitialSpeedQuiz(byte type, int quizType, int answer, int correctAnswers, int remaining, int time) {
+//        NpcScriptInfo nsi = getInitData().getNpcScriptInfo();
 //        nsi.setType(type);
 //        if (type != 1) {
 //            nsi.setQuizType(quizType);
@@ -242,15 +252,15 @@
 //    }
 //
 //    @Override
-//    public int sendICQuiz(byte type, String text, String hintText, int time) {
-//        initData.getNpcScriptInfo().setType(type);
-//        initData.getNpcScriptInfo().setHintText(hintText);
-//        initData.getNpcScriptInfo().setTime(time);
+//    default int sendICQuiz(byte type, String text, String hintText, int time) {
+//        getInitData().getNpcScriptInfo().setType(type);
+//        getInitData().getNpcScriptInfo().setHintText(hintText);
+//        getInitData().getNpcScriptInfo().setTime(time);
 //        return sendGeneralSay(text, ICQuiz);
 //    }
 //
 //    @Override
-//    public int sendAskAvatar(String text, boolean angelicBuster, boolean zeroBeta, int... options) {
+//    default int sendAskAvatar(String text, boolean angelicBuster, boolean zeroBeta, int... options) {
 //        List<Integer> safeOptions = new ArrayList<>();
 //        for (var opt : options) {
 //            if (ItemConstants.isSkin(opt) || ItemData.getItemDeepCopy(opt) != null) {
@@ -259,9 +269,9 @@
 //        }
 //
 //        if (safeOptions.size() > 0) {
-//            initData.getNpcScriptInfo().setAngelicBuster(angelicBuster);
-//            initData.getNpcScriptInfo().setZeroBeta(zeroBeta);
-//            initData.getNpcScriptInfo().setOptions(safeOptions.stream().mapToInt(i -> i).toArray());
+//            getInitData().getNpcScriptInfo().setAngelicBuster(angelicBuster);
+//            getInitData().getNpcScriptInfo().setZeroBeta(zeroBeta);
+//            getInitData().getNpcScriptInfo().setOptions(safeOptions.stream().mapToInt(i -> i).toArray());
 //            var safeIdx = sendGeneralSay(text, AskAvatar);
 //            return safeOptions.get(safeIdx);
 //        } else {
@@ -270,111 +280,111 @@
 //        }
 //    }
 //
-//    public int sendAskSlideMenu(int dlgType) {
-//        initData.getNpcScriptInfo().setDlgType(dlgType);
+//    default int sendAskSlideMenu(int dlgType) {
+//        getInitData().getNpcScriptInfo().setDlgType(dlgType);
 //        return sendGeneralSay("", AskSlideMenu);
 //    }
 //
-//    public int sendAskSelectMenu(int dlgType, int defaultSelect) {
+//    default int sendAskSelectMenu(int dlgType, int defaultSelect) {
 //        return sendAskSelectMenu(dlgType, defaultSelect, new String[]{});
 //    }
 //
-//    public int sendAskSelectMenu(int dlgType, int defaultSelect, String[] text) {
-//        initData.getNpcScriptInfo().setDlgType(dlgType);
-//        initData.getNpcScriptInfo().setDefaultSelect(defaultSelect);
-//        initData.getNpcScriptInfo().setSelectText(text);
+//    default int sendAskSelectMenu(int dlgType, int defaultSelect, String[] text) {
+//        getInitData().getNpcScriptInfo().setDlgType(dlgType);
+//        getInitData().getNpcScriptInfo().setDefaultSelect(defaultSelect);
+//        getInitData().getNpcScriptInfo().setSelectText(text);
 //        return sendGeneralSay("", AskSelectMenu);
 //    }
 //
 //    // Start of param methods ------------------------------------------------------------------------------------------
 //
-//    public void setParam(int param) {
-//        initData.getNpcScriptInfo().setParam((short) param);
+//    default void setParam(int param) {
+//        getInitData().getNpcScriptInfo().setParam((short) param);
 //    }
 //
-//    public void setColor(int color) {
-//        initData.getNpcScriptInfo().setColor((byte) color);
+//    default void setColor(int color) {
+//        getInitData().getNpcScriptInfo().setColor((byte) color);
 //    }
 //
-//    public void resetParam() {
-//        initData.getNpcScriptInfo().resetParam();
+//    default void resetParam() {
+//        getInitData().getNpcScriptInfo().resetParam();
 //    }
 //
-//    public void removeEscapeButton() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.NotCancellable);
+//    default void removeEscapeButton() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.NotCancellable);
 //    }
 //
-//    public void addEscapeButton() {
-//        if (initData.getNpcScriptInfo().hasParam(NpcScriptInfo.Param.NotCancellable)) {
-//            initData.getNpcScriptInfo().removeParam(NpcScriptInfo.Param.NotCancellable);
+//    default void addEscapeButton() {
+//        if (getInitData().getNpcScriptInfo().hasParam(NpcScriptInfo.Param.NotCancellable)) {
+//            getInitData().getNpcScriptInfo().removeParam(NpcScriptInfo.Param.NotCancellable);
 //        }
 //    }
 //
-//    public void flipSpeaker() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipSpeaker);
+//    default void flipSpeaker() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipSpeaker);
 //    }
 //
 //
-//    public void cancelFlipDialogue() {
-//        initData.getNpcScriptInfo().removeParam(NpcScriptInfo.Param.OverrideSpeakerID);
+//    default void cancelFlipDialogue() {
+//        getInitData().getNpcScriptInfo().removeParam(NpcScriptInfo.Param.OverrideSpeakerID);
 //    }
 //
 //    /**
 //     * 是否覆盖说话人的ID
 //     */
-//    public void flipDialogue() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.OverrideSpeakerID);
+//    default void flipDialogue() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.OverrideSpeakerID);
 //    }
 //
 //    /**
 //     * 是否play作为说话者 + 反转
 //     */
-//    public void flipDialoguePlayerAsSpeaker() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
+//    default void flipDialoguePlayerAsSpeaker() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
 //    }
 //
-//    public void setPlayerAsSpeaker() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeaker);
+//    default void setPlayerAsSpeaker() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.PlayerAsSpeaker);
 //    }
 //
-//    public void setBoxChat() {
+//    default void setBoxChat() {
 //        setBoxChat(true);
 //    }
 //
-//    public void setBoxChat(boolean color) { // true = Standard BoxChat  |  false = Zero BoxChat
-//        initData.getNpcScriptInfo().setColor((byte) (color ? 1 : 0));
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChat);
+//    default void setBoxChat(boolean color) { // true = Standard BoxChat  |  false = Zero BoxChat
+//        getInitData().getNpcScriptInfo().setColor((byte) (color ? 1 : 0));
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChat);
 //    }
 //
-//    public void flipBoxChat() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChat);
+//    default void flipBoxChat() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChat);
 //    }
 //
-//    public void boxChatPlayerAsSpeaker() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChatAsPlayer);
+//    default void boxChatPlayerAsSpeaker() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.BoxChatAsPlayer);
 //    }
 //
-//    public void flipBoxChatPlayerAsSpeaker() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayer);
+//    default void flipBoxChatPlayerAsSpeaker() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayer);
 //    }
 //
-//    public void flipBoxChatPlayerNoEscape() {
-//        initData.getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayerNoEscape);
+//    default void flipBoxChatPlayerNoEscape() {
+//        getInitData().getNpcScriptInfo().addParam(NpcScriptInfo.Param.FlipBoxChatAsPlayerNoEscape);
 //    }
 //
 //
 //    // Start helper methods for scripts --------------------------------------------------------------------------------
 //
 //    @Override
-//    public void dispose() {
+//    default void dispose() {
 //        dispose(true);
 //    }
 //
-//    public void dispose(boolean stop) {
+//    default void dispose(boolean stop) {
 //        if (getChr() != null) {
 //            getChr().setTalkingToNpc(false);
 //        }
-//        initData.getNpcScriptInfo().reset();
+//        getInitData().getNpcScriptInfo().reset();
 //        getMemory().clear();
 //        stopJs(ScriptType.Npc);
 //        stopJs(ScriptType.Portal);
@@ -393,12 +403,12 @@
 //        setCurNodeEventEnd(false);
 //    }
 //
-//    public void dispose(ScriptType scriptType) {
+//    default void dispose(ScriptType scriptType) {
 //        getMemory().clear();
 //        stopJs(scriptType);
 //    }
 //
-//    public Position getPosition(int objId) {
+//    default Position getPosition(int objId) {
 //        return getField().getLifeByObjectID(objId).getPosition();
 //    }
 //
@@ -406,19 +416,19 @@
 //    // Character Stat-related methods ----------------------------------------------------------------------------------
 //
 //    @Override
-//    public void setJob(short jobID) {
+//    default void setJob(short jobID) {
 //        getChr().setJob(jobID);
 //        Map<Stat, Object> stats = new HashMap<>();
 //        stats.put(Stat.job, jobID);
 //        getChr().write(WvsContext.statChanged(stats, getChr().getSubJob()));
 //    }
 //
-//    public void addSP(int amount) {
+//    default void addSP(int amount) {
 //        addSP(amount, false);
 //    }
 //
 //    @Override
-//    public void addSP(int amount, boolean jobAdv) {
+//    default void addSP(int amount, boolean jobAdv) {
 //        byte jobLevel = (byte) JobConstants.getJobLevel(getChr().getJob());
 //        int currentSP = getChr().getAvatarData().getCharacterStat().getExtendSP().getSpByJobLevel(jobLevel);
 //        setSP(currentSP + amount);
@@ -428,7 +438,7 @@
 //    }
 //
 //    @Override
-//    public void setSP(int amount) {
+//    default void setSP(int amount) {
 //        getChr().setSpToCurrentJob(amount);
 //        Map<Stat, Object> stats = new HashMap<>();
 //        stats.put(Stat.sp, getChr().getAvatarData().getCharacterStat().getExtendSP());
@@ -436,13 +446,13 @@
 //    }
 //
 //    @Override
-//    public void addAP(int amount) {
+//    default void addAP(int amount) {
 //        int currentAP = getChr().getAvatarData().getCharacterStat().getAp();
 //        setAP(currentAP + amount);
 //    }
 //
 //    @Override
-//    public void setAP(int amount) {
+//    default void setAP(int amount) {
 //        getChr().setStat(Stat.ap, (short) amount);
 //        Map<Stat, Object> stats = new HashMap<>();
 //        stats.put(Stat.ap, (short) amount);
@@ -450,7 +460,7 @@
 //    }
 //
 //    @Override
-//    public void setSTR(short amount) {
+//    default void setSTR(short amount) {
 //        getChr().setStat(Stat.str, amount);
 //        Map<Stat, Object> stats = new HashMap<>();
 //        stats.put(Stat.str, amount);
@@ -458,7 +468,7 @@
 //    }
 //
 //    @Override
-//    public void setINT(short amount) {
+//    default void setINT(short amount) {
 //        getChr().setStat(Stat.inte, amount);
 //        Map<Stat, Object> stats = new HashMap<>();
 //        stats.put(Stat.inte, amount);
@@ -466,7 +476,7 @@
 //    }
 //
 //    @Override
-//    public void setDEX(short amount) {
+//    default void setDEX(short amount) {
 //        getChr().setStat(Stat.dex, amount);
 //        Map<Stat, Object> stats = new HashMap<>();
 //        stats.put(Stat.dex, amount);
@@ -474,19 +484,19 @@
 //    }
 //
 //    @Override
-//    public void setLUK(short amount) {
+//    default void setLUK(short amount) {
 //        getChr().setStat(Stat.luk, amount);
 //        Map<Stat, Object> stats = new HashMap<>();
 //        stats.put(Stat.luk, amount);
 //        getChr().write(WvsContext.statChanged(stats));
 //    }
 //
-//    public void addMaxHP(int amount) {
+//    default void addMaxHP(int amount) {
 //        getChr().addStatAndSendPacket(Stat.mhp, amount);
 //    }
 //
 //    @Override
-//    public void setMaxHP(int amount) {
+//    default void setMaxHP(int amount) {
 //        getChr().setStat(Stat.mhp, amount);
 //        getChr().setStat(Stat.hp, amount);
 //        Map<Stat, Object> stats = new HashMap<>();
@@ -495,12 +505,12 @@
 //        getChr().write(WvsContext.statChanged(stats));
 //    }
 //
-//    public void addMaxMP(int amount) {
+//    default void addMaxMP(int amount) {
 //        getChr().addStatAndSendPacket(Stat.mmp, amount);
 //    }
 //
 //    @Override
-//    public void setMaxMP(int amount) {
+//    default void setMaxMP(int amount) {
 //        getChr().setStat(Stat.mmp, amount);
 //        getChr().setStat(Stat.mp, amount);
 //        Map<Stat, Object> stats = new HashMap<>();
@@ -510,24 +520,24 @@
 //    }
 //
 //    @Override
-//    public void jobAdvance(short jobID) {
+//    default void jobAdvance(short jobID) {
 //        setJob(jobID);
 //        addAP(5); //Standard added AP upon Job Advancing
 //        addSP(5); //Standard added SP upon Job Advancing
 //    }
 //
 //    @Override
-//    public void giveExp(long expGiven) {
+//    default void giveExp(long expGiven) {
 //        getChr().addExp(expGiven);
 //    }
 //
 //    @Override
-//    public void giveExpNoMsg(long expGiven) {
+//    default void giveExpNoMsg(long expGiven) {
 //        getChr().addExpNoMsg(expGiven);
 //    }
 //
 //    @Override
-//    public void changeCharacterLook(int look) {
+//    default void changeCharacterLook(int look) {
 //        AvatarLook al = getChr().getAvatarData().getAvatarLook();
 //        boolean isBeta = getChr().isZeroBeta();
 //        if (isBeta) {
@@ -565,59 +575,59 @@
 //        }
 //    }
 //
-//    public void giveSkill(int skillId) {
+//    default void giveSkill(int skillId) {
 //        giveSkill(skillId, 1);
 //    }
 //
-//    public void giveSkill(int skillId, int slv) {
+//    default void giveSkill(int skillId, int slv) {
 //        giveSkill(skillId, slv, slv);
 //    }
 //
 //    @Override
-//    public void giveSkill(int skillId, int slv, int maxLvl) {
+//    default void giveSkill(int skillId, int slv, int maxLvl) {
 //        getChr().addSkill(skillId, slv, maxLvl);
 //    }
 //
-//    public void removeBuff(CharacterTemporaryStat cts) {
+//    default void removeBuff(CharacterTemporaryStat cts) {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        tsm.removeStat(cts);
 //    }
 //
-//    public void removeAllBuffs() {
+//    default void removeAllBuffs() {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        tsm.removeAllStats();
 //    }
 //
-//    public void removeSkill(int skillId) {
+//    default void removeSkill(int skillId) {
 //        getChr().removeSkillAndSendPacket(skillId);
 //    }
 //
-//    public int getSkillByItem() {
+//    default int getSkillByItem() {
 //        return getSkillByItem(getParentID());
 //    }
 //
-//    public int getSkillByItem(int itemId) {
+//    default int getSkillByItem(int itemId) {
 //        ItemInfo itemInfo = ItemData.getItemInfoByID(itemId);
 //        return itemInfo.getSkillId();
 //    }
 //
-//    public boolean hasSkill(int skillId) {
+//    default boolean hasSkill(int skillId) {
 //        return getChr().hasSkill(skillId);
 //    }
 //
-//    public void heal() {
+//    default void heal() {
 //        getChr().heal(getChr().getMaxHP());
 //        getChr().healMP(getChr().getMaxMP());
 //    }
 //
-//    public void setLevel(int level) {
+//    default void setLevel(int level) {
 //        getChr().setStatAndSendPacket(Stat.level, level);
 //        getChr().setStatAndSendPacket(Stat.exp, 0);
 //        getChr().getJobHandler().handleLevelUp();
 //        getField().broadcastPacket(UserRemote.effect(getChr().getId(), Effect.levelUpEffect()));
 //    }
 //
-//    public void addLevel(int level) {
+//    default void addLevel(int level) {
 //        int curLevel = getChr().getLevel();
 //        for (int i = curLevel + 1; i <= curLevel + level; i++) {
 //            getChr().setStat(Stat.level, i);
@@ -630,26 +640,26 @@
 //        }
 //    }
 //
-//    public void lockInGameUI(boolean lock) {
+//    default void lockInGameUI(boolean lock) {
 //        lockInGameUI(lock, true);
 //    }
 //
-//    public void lockInGameUI(boolean lock, boolean blackFrame) {
+//    default void lockInGameUI(boolean lock, boolean blackFrame) {
 //        if (getChr() != null) {
 //            getChr().write(UserLocal.setInGameDirectionMode(lock, blackFrame, false));
 //        }
 //    }
 //
-//    public void curNodeEventEnd(boolean enable) {
+//    default void curNodeEventEnd(boolean enable) {
 //        setCurNodeEventEnd(enable);
 //        getChr().write(FieldPacket.curNodeEventEnd(enable));
 //    }
 //
-//    public void setCurNodeEventEnd(boolean curNodeEventEnd) {
+//    default void setCurNodeEventEnd(boolean curNodeEventEnd) {
 //        this.initData.setCurNodeEventEnd(curNodeEventEnd);
 //    }
 //
-//    public void progressMessageFont(int fontNameType, int fontSize, int fontColorType, int fadeOutDelay, String message) {
+//    default void progressMessageFont(int fontNameType, int fontSize, int fontColorType, int fadeOutDelay, String message) {
 //        ProgressMessageFontType type = ProgressMessageFontType.getByVal(fontNameType);
 //        ProgressMessageColourType colour = ProgressMessageColourType.getByVal(fontColorType);
 //        if (colour == null || type == null) {
@@ -659,51 +669,51 @@
 //        progressMessageFont(type, fontSize, colour, fadeOutDelay, message);
 //    }
 //
-//    public void progressMessageFont(ProgressMessageFontType fontType, int fontSize, ProgressMessageColourType colour, int fadeOutDelay, String msg) {
+//    default void progressMessageFont(ProgressMessageFontType fontType, int fontSize, ProgressMessageColourType colour, int fadeOutDelay, String msg) {
 //        getChr().write(UserPacket.progressMessageFont(fontType, fontSize, colour, fadeOutDelay, msg));
 //    }
 //
-//    public void localEmotion(int emotion, int duration, boolean byItemOption) {
+//    default void localEmotion(int emotion, int duration, boolean byItemOption) {
 //        getChr().write(UserLocal.emotion(emotion, duration, byItemOption));
 //    }
 //
 //
 //    // Field-related methods -------------------------------------------------------------------------------------------
 //
-//    public void warpField(int fieldId, int portalId) {
+//    default void warpField(int fieldId, int portalId) {
 //        for (Char chrz : new HashSet<>(getField().getChars())) {
 //            chrz.warp(fieldId, portalId);
 //        }
 //    }
 //
-//    public void warpField(int fieldId) {
+//    default void warpField(int fieldId) {
 //        for (Char chrz : new HashSet<>(getField().getChars())) {
 //            chrz.warp(fieldId, 0);
 //        }
 //    }
 //
 //    @Override
-//    public void warp(int fieldId) {
+//    default void warp(int fieldId) {
 //        getChr().warp(fieldId, 0);
 //
 //    }
 //
-//    public void warp(int fieldId, boolean executeAfterScript) {
+//    default void warp(int fieldId, boolean executeAfterScript) {
 //        warp(fieldId, 0, executeAfterScript, false);
 //    }
 //
 //    @Override
-//    public void warp(int fieldId, int portalId) {
+//    default void warp(int fieldId, int portalId) {
 //        warp(fieldId, portalId, true, false);
 //    }
 //
-//    public void warp(int fieldId, int portalId, boolean instanceField) {
+//    default void warp(int fieldId, int portalId, boolean instanceField) {
 //        warp(fieldId, portalId, true, instanceField);
 //    }
 //
-//    public void warp(int fieldId, int portalId, boolean executeAfterScript, boolean instanceField) {
+//    default void warp(int fieldId, int portalId, boolean executeAfterScript, boolean instanceField) {
 //        if (executeAfterScript) {
-//            FieldTransferInfo fti = initData.getFieldTransferInfo();
+//            FieldTransferInfo fti = getInitData().getFieldTransferInfo();
 //            fti.setFieldId(fieldId);
 //            fti.setPortal(portalId);
 //            fti.setIsInstanceField(instanceField);
@@ -712,9 +722,9 @@
 //        }
 //    }
 //
-//    public void changeChannelAndWarp(int channel, int fieldID, boolean executeAfterScript, boolean instanceField) {
+//    default void changeChannelAndWarp(int channel, int fieldID, boolean executeAfterScript, boolean instanceField) {
 //        if (executeAfterScript) {
-//            FieldTransferInfo fti = initData.getFieldTransferInfo();
+//            FieldTransferInfo fti = getInitData().getFieldTransferInfo();
 //            fti.setChannel(channel);
 //            fti.setFieldId(fieldID);
 //            fti.setIsInstanceField(instanceField);
@@ -725,42 +735,42 @@
 //        }
 //    }
 //
-//    public void changeChannelAndWarp(int channel, int fieldID) {
+//    default void changeChannelAndWarp(int channel, int fieldID) {
 //        changeChannelAndWarp(channel, fieldID, true, false);
 //    }
 //
 //    @Override
-//    public int getFieldID() {
+//    default int getFieldID() {
 //        return getField().getId();
 //    }
 //
-//    public void warpInstanceOut() {
+//    default void warpInstanceOut() {
 //        warpInstance(-1, false, 0, false);
 //    }
 //
-//    public void warpInstanceIn(int id, int portal) {
+//    default void warpInstanceIn(int id, int portal) {
 //        warpInstance(id, true, portal, false);
 //    }
 //
-//    public void warpInstanceIn(int id, int portalId, boolean partyAllowed) {
+//    default void warpInstanceIn(int id, int portalId, boolean partyAllowed) {
 //        warpInstance(id, true, portalId, partyAllowed);
 //    }
 //
-//    public void warpInstanceOut(int id, int portal) {
+//    default void warpInstanceOut(int id, int portal) {
 //        warpInstance(id, false, portal, false);
 //    }
 //
 //    @Override
-//    public void warpInstanceIn(int id) {
+//    default void warpInstanceIn(int id) {
 //        warpInstance(id, true, 0, false);
 //    }
 //
 //    @Override
-//    public void warpInstanceOut(int id) {
+//    default void warpInstanceOut(int id) {
 //        warpInstance(id, false, 0, false);
 //    }
 //
-//    private void warpInstance(int fieldId, boolean in, int portalId, boolean partyAllowed) {
+//    default void warpInstance(int fieldId, boolean in, int portalId, boolean partyAllowed) {
 //        getChr().getBossInfo().reset();
 //
 //        Instance instance;
@@ -799,11 +809,11 @@
 //        }
 //    }
 //
-//    public void setInstanceTime(int seconds) {
+//    default void setInstanceTime(int seconds) {
 //        setInstanceTime(seconds, 0);
 //    }
 //
-//    public void setInstanceTime(int seconds, int forcedReturnFieldId) {
+//    default void setInstanceTime(int seconds, int forcedReturnFieldId) {
 //        Instance instance = getChr().getInstance();
 //        if (instance != null) {
 //            if (forcedReturnFieldId != 0) {
@@ -817,9 +827,9 @@
 //    }
 //
 //    @Override
-//    public int getReturnField() {
+//    default int getReturnField() {
 //        // Do this to prevent infinite returnField Loop
-//        int returnField = initData.getReturnField();
+//        int returnField = getInitData().getReturnField();
 //        if (getField().getId() == returnField || returnField < 100000000) {
 //            return 100000000;
 //        }
@@ -827,53 +837,53 @@
 //    }
 //
 //    @Override
-//    public void setReturnField(int returnField) {
-//        initData.setReturnField(returnField);
+//    default void setReturnField(int returnField) {
+//        getInitData().setReturnField(returnField);
 //    }
 //
 //    @Override
-//    public void setReturnField() {
+//    default void setReturnField() {
 //        setReturnField(getFieldID());
 //    }
 //
 //    @Override
-//    public boolean hasMobsInField() {
+//    default boolean hasMobsInField() {
 //        return getAmountOfMobsInField() > 0;
 //    }
 //
-//    public boolean hasMobsInField(int fieldId) {
+//    default boolean hasMobsInField(int fieldId) {
 //        return getAmountOfMobsInField(fieldId) > 0;
 //    }
 //
-//    public boolean hasMobsInField(int fieldId, int templateId) {
+//    default boolean hasMobsInField(int fieldId, int templateId) {
 //        return getAmountOfMobsInField(fieldId, templateId) > 0;
 //    }
 //
 //    @Override
-//    public int getAmountOfMobsInField() {
+//    default int getAmountOfMobsInField() {
 //        return getField().getMobs().size();
 //    }
 //
-//    public int getAmountOfMobsInField(int fieldId) {
+//    default int getAmountOfMobsInField(int fieldId) {
 //        var field = getChr().getOrCreateFieldByCurrentInstanceType(fieldId);
 //        return field.getMobs().size();
 //    }
 //
-//    public int getAmountOfMobsInField(int fieldId, int templateId) {
+//    default int getAmountOfMobsInField(int fieldId, int templateId) {
 //        var field = getChr().getOrCreateFieldByCurrentInstanceType(fieldId);
 //        return (int) field.getMobs().stream()
 //                .filter(m -> m.getTemplateId() == templateId)
 //                .count();
 //    }
 //
-//    public void killMobs() {
+//    default void killMobs() {
 //        List<net.swordie.ms.life.mob.Mob> mobs = new ArrayList<>(getField().getMobs());
 //        for (Mob mob : mobs) {
 //            mob.die(false);
 //        }
 //    }
 //
-//    public void killMobs(int templateId) {
+//    default void killMobs(int templateId) {
 //        List<Mob> mobs = new ArrayList<>(getField().getMobs());
 //        for (Mob mob : mobs) {
 //            if (mob.getTemplateId() == templateId) {
@@ -882,126 +892,126 @@
 //        }
 //    }
 //
-//    public void showWeatherNoticeToField(String text, WeatherEffNoticeType type) {
+//    default void showWeatherNoticeToField(String text, WeatherEffNoticeType type) {
 //        showWeatherNoticeToField(text, type, 7000); // 7 seconds
 //    }
 //
-//    public void showWeatherNoticeToField(String text, WeatherEffNoticeType type, int duration) {
+//    default void showWeatherNoticeToField(String text, WeatherEffNoticeType type, int duration) {
 //        Field field = getField();
 //        field.broadcastPacket(WvsContext.weatherEffectNotice(type, text, duration));
 //    }
 //
-//    public void showEffectToField(String dir) {
+//    default void showEffectToField(String dir) {
 //        showEffectToField(dir, 0);
 //    }
 //
-//    public void showEffectToField(String dir, int delay) {
+//    default void showEffectToField(String dir, int delay) {
 //        Field field = getField();
 //        field.broadcastPacket(UserPacket.effect(Effect.effectFromWZ(dir, false, delay, 4, 0)));
 //    }
 //
-//    public void showFieldEffect(String dir) {
+//    default void showFieldEffect(String dir) {
 //        showFieldEffect(dir, 0);
 //    }
 //
 //    @Override
-//    public void showFieldEffect(String dir, int delay) {
+//    default void showFieldEffect(String dir, int delay) {
 //        getField().broadcastPacket(FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromWz(dir, delay)));
 //    }
 //
 //    @Override
-//    public void showObjectFieldEffect(String objectEffectName) {
+//    default void showObjectFieldEffect(String objectEffectName) {
 //        getField().broadcastPacket(FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromObject(objectEffectName)));
 //    }
 //
 //    @Override
-//    public void setPortalEnabled(String portalName, boolean enabled) {
+//    default void setPortalEnabled(String portalName, boolean enabled) {
 //        Portal portal = getField().getInfo().getPortalByName(portalName);
 //        if (portal != null) {
 //            portal.setEnabled(enabled);
 //        }
 //    }
 //
-//    public void showFieldEffectToField(String dir) {
+//    default void showFieldEffectToField(String dir) {
 //        showFieldEffect(dir, 0);
 //    }
 //
-//    public void showFieldEffectToField(String dir, int delay) {
+//    default void showFieldEffectToField(String dir, int delay) {
 //        Field field = getField();
 //        field.broadcastPacket(FieldPacket.fieldEffect(FieldEffect.getFieldEffectFromWz(dir, delay)));
 //    }
 //
-//    public void showOffFieldEffect(String dir) {
+//    default void showOffFieldEffect(String dir) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.getOffFieldEffectFromWz(dir, 0)));
 //    }
 //
-//    public void changeBGM(String dir, int startTime, int idk) {
+//    default void changeBGM(String dir, int startTime, int idk) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.changeBGM(dir, startTime, idk)));
 //    }
 //
-//    public void bgmVolumeOnly(boolean volumeOnly) {
+//    default void bgmVolumeOnly(boolean volumeOnly) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.bgmVolumeOnly(volumeOnly)));
 //    }
 //
-//    public void bgmVolume(int volume, int fadingDuration) {
+//    default void bgmVolume(int volume, int fadingDuration) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.bgmVolume(volume, fadingDuration)));
 //    }
 //
-//    public void showFieldBackgroundEffect(String dir) {
+//    default void showFieldBackgroundEffect(String dir) {
 //        showFieldBackgroundEffect(dir, 0);
 //    }
 //
-//    public void showFieldBackgroundEffect(String dir, int delay) {
+//    default void showFieldBackgroundEffect(String dir, int delay) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.getFieldBackgroundEffectFromWz(dir, delay)));
 //    }
 //
-//    public void showFadeTransition(int duration, int fadeInTime, int fadeOutTime) {
+//    default void showFadeTransition(int duration, int fadeInTime, int fadeOutTime) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.takeSnapShotOfClient2(fadeInTime, duration, fadeOutTime, true)));
 //    }
 //
-//    public void showFade(int duration) {
+//    default void showFade(int duration) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.takeSnapShotOfClient(duration)));
 //    }
 //
-//    public void setFieldColour(GreyFieldType colorFieldType, short red, short green, short blue, int time) {
+//    default void setFieldColour(GreyFieldType colorFieldType, short red, short green, short blue, int time) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.setFieldColor(colorFieldType, red, green, blue, time)));
 //    }
 //
-//    public void setFieldGrey(GreyFieldType colorFieldType, boolean show) {
+//    default void setFieldGrey(GreyFieldType colorFieldType, boolean show) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.setFieldGrey(colorFieldType, show)));
 //    }
 //
-//    public void removeOverlapScreen(int duration) {
+//    default void removeOverlapScreen(int duration) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.removeOverlapScreen(duration)));
 //    }
 //
-//    public void onLayer(int duration, String key, int x, int y, int z, String origin, int org, boolean postRender, int idk, boolean repeat) {
+//    default void onLayer(int duration, String key, int x, int y, int z, String origin, int org, boolean postRender, int idk, boolean repeat) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.onOffLayer(0, duration, key, x, y, z, origin, org, postRender, idk, repeat)));
 //    }
 //
-//    public void moveLayer(int duration, String key, int x, int y) {
+//    default void moveLayer(int duration, String key, int x, int y) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.onOffLayer(1, duration, key, x, y, 0, null, 0, false, 0, false)));
 //    }
 //
-//    public void offLayer(int duration, String key, boolean repeat) {
+//    default void offLayer(int duration, String key, boolean repeat) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.onOffLayer(2, duration, key, 0, 0, 0, null, 0, false, 0, repeat)));
 //    }
 //
-//    public void spineScreen(boolean binary, boolean loop, boolean postRender, int endDelay, String path,
+//    default void spineScreen(boolean binary, boolean loop, boolean postRender, int endDelay, String path,
 //                            String animationName, String keyName) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.spineScreen(binary, loop, postRender, endDelay, path, animationName, keyName)));
 //    }
 //
-//    public void offSpineScreen(String keyName, int type, String aniName, int alphaTime) {
+//    default void offSpineScreen(String keyName, int type, String aniName, int alphaTime) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.offSpineScreen(keyName, type, aniName, alphaTime)));
 //    }
 //
 //    @Override
-//    public void dropItem(int itemId, int x, int y) {
+//    default void dropItem(int itemId, int x, int y) {
 //        dropItem(itemId, 1, x, y);
 //    }
 //
-//    public void dropItem(int itemId, int quantity, int x, int y) {
+//    default void dropItem(int itemId, int quantity, int x, int y) {
 //        Field field = getField();
 //        Drop drop = new Drop(-1);
 //        drop.setItem(ItemData.getItemDeepCopy(itemId));
@@ -1012,7 +1022,7 @@
 //    }
 //
 //    @Override
-//    public void dropItems(Set<Tuple<Integer, Integer>> dropInfos, int x, int y, int ownerId) {
+//    default void dropItems(Set<Tuple<Integer, Integer>> dropInfos, int x, int y, int ownerId) {
 //        Set<DropInfo> dropInfoSet = new HashSet<>();
 //        for (Tuple<Integer, Integer> dropInfo : dropInfos) {
 //            int itemid = dropInfo.getLeft(); // itemId
@@ -1025,7 +1035,7 @@
 //        getField().drop(dropInfoSet, new Position(x, y), ownerId);
 //    }
 //
-//    public void dropItemsWithQuantity(List<List<Integer>> drops, int x, int y, int ownerId) {
+//    default void dropItemsWithQuantity(List<List<Integer>> drops, int x, int y, int ownerId) {
 //        Set<DropInfo> dropInfoSet = new HashSet<>();
 //        for (var drop : drops) {
 //            var itemid = drop.get(0);
@@ -1041,7 +1051,7 @@
 //    }
 //
 //    @Override
-//    public Set<DropInfo> genDropInfoFromPyTuples(List<PyTuple> tuples) {
+//    default Set<DropInfo> genDropInfoFromPyTuples(List<PyTuple> tuples) {
 //        Set<DropInfo> dropInfos = new HashSet<>();
 //        for (PyTuple tuple : tuples) {
 //            int itemId = (int) tuple.get(0);
@@ -1053,7 +1063,7 @@
 //        return dropInfos;
 //    }
 //
-//    public Set<DropInfo> genDropInfoQuantityFromPyTuples(List<List<Integer>> tuples) {
+//    default Set<DropInfo> genDropInfoQuantityFromPyTuples(List<List<Integer>> tuples) {
 //        Set<DropInfo> dropInfos = new HashSet<>();
 //        for (var tuple : tuples) {
 //            int itemId = tuple.get(0);
@@ -1066,22 +1076,22 @@
 //    }
 //
 //    @Override
-//    public Position newPosition(int x, int y) {
+//    default Position newPosition(int x, int y) {
 //        return new Position(x, y);
 //    }
 //
 //    @Override
-//    public void teleportInField(Position position) {
+//    default void teleportInField(Position position) {
 //        getChr().write(FieldPacket.teleport(position, getChr()));
 //    }
 //
 //    @Override
-//    public void teleportInField(int x, int y) {
+//    default void teleportInField(int x, int y) {
 //        teleportInField(new Position(x, y));
 //    }
 //
 //    @Override
-//    public void teleportToPortal(int portalId) {
+//    default void teleportToPortal(int portalId) {
 //        Portal portal = getField().getInfo().getPortalByID(portalId);
 //        if (portal != null) {
 //            Position position = new Position(portal.getX(), portal.getY());
@@ -1089,7 +1099,7 @@
 //        }
 //    }
 //
-//    public Drop getDropInRect(int itemID, Rect rect) {
+//    default Drop getDropInRect(int itemID, Rect rect) {
 //        Field field = getField();
 //        if (field == null) {
 //            field = getField();
@@ -1100,7 +1110,7 @@
 //    }
 //
 //    @Override
-//    public Drop getDropInRect(int itemID, int rectRange) {
+//    default Drop getDropInRect(int itemID, int rectRange) {
 //        return getDropInRect(itemID, new Rect(
 //                new Position(
 //                        getChr().getPosition().getX() - rectRange,
@@ -1112,15 +1122,15 @@
 //
 //    }
 //
-//    public void changeFoothold(String footholdName, boolean show) {
+//    default void changeFoothold(String footholdName, boolean show) {
 //        changeFoothold(footholdName, show, 0, 0);
 //    }
 //
-//    public void changeFoothold(String footholdName, boolean show, int x, int y) {
+//    default void changeFoothold(String footholdName, boolean show, int x, int y) {
 //        getChr().getField().broadcastPacket(FieldPacket.footholdAppear(footholdName, show, new Position(x, y)));
 //    }
 //
-//    public void createFallingCatcher(String templateStr, int hpR, int amount, int chance) {
+//    default void createFallingCatcher(String templateStr, int hpR, int amount, int chance) {
 //        Field field = getField();
 //        List<Position> positions = new ArrayList<>();
 //        for (int i = 0; i < amount; i++) {
@@ -1131,7 +1141,7 @@
 //        createFallingCatcher(templateStr, hpR, positions);
 //    }
 //
-//    public void createFallingCatcher(String templateStr, int hpR, List<Position> positions) {
+//    default void createFallingCatcher(String templateStr, int hpR, List<Position> positions) {
 //        FallingCatcher fallingCatcher = new FallingCatcher(templateStr, hpR, positions);
 //        getField().broadcastPacket(LucidFieldPacket.createFallingCatcher(fallingCatcher));
 //    }
@@ -1141,7 +1151,7 @@
 //
 //    // NPC methods
 //    @Override
-//    public void spawnNpc(int npcId, int x, int y) {
+//    default void spawnNpc(int npcId, int x, int y) {
 //        Npc npc = NpcData.getNpcDeepCopyById(npcId);
 //        Position position = new Position(x, y);
 //        npc.setPosition(position);
@@ -1158,7 +1168,7 @@
 //    }
 //
 //    @Override
-//    public void npc_ChangeController(int npcId, String npcTag, int x, int y, short fh, short rx0, short rx1, int faceLeft, boolean canMove, short fadeInTime, boolean forceSpawnNew) {
+//    default void npc_ChangeController(int npcId, String npcTag, int x, int y, short fh, short rx0, short rx1, int faceLeft, boolean canMove, short fadeInTime, boolean forceSpawnNew) {
 //        Npc var12 = NpcData.getNpcDeepCopyById(npcId);
 //
 //        if (var12 != null) {
@@ -1180,7 +1190,7 @@
 //    }
 //
 //    @Override
-//    public void spawnNpc(int npcId, int x, int y, boolean flip) {
+//    default void spawnNpc(int npcId, int x, int y, boolean flip) {
 //        Npc npc = NpcData.getNpcDeepCopyById(npcId);
 //        Position position = new Position(x, y);
 //        npc.setPosition(position);
@@ -1194,14 +1204,14 @@
 //        }
 //        npc.setNotRespawnable(true);
 //        if (npc.getField() == null) {
-//            npc.setField(initData.getField());
+//            npc.setField(getInitData().getField());
 //        }
 //
 //        getField().spawnLife(npc, getChr());
 //    }
 //
 //    @Override
-//    public void removeNpc(int npcId) {
+//    default void removeNpc(int npcId) {
 //        var npc = getField().getNpcs().stream()
 //                .filter(n -> n.getTemplateId() == npcId)
 //                .findFirst()
@@ -1212,7 +1222,7 @@
 //    }
 //
 //    @Override
-//    public void openNpc(int npcId) {
+//    default void openNpc(int npcId) {
 //        Npc npc = NpcData.getNpcDeepCopyById(npcId);
 //        String script;
 //        if (npc.getScripts().size() > 0) {
@@ -1224,7 +1234,7 @@
 //    }
 //
 //    @Override
-//    public void openShop(int shopID) {
+//    default void openShop(int shopID) {
 //        NpcShopDlg nsd = NpcData.getShopById(shopID);
 //        if (nsd != null) {
 //            if (getChr().getShop() == null) {
@@ -1242,17 +1252,17 @@
 //    }
 //
 //    @Override
-//    public void openTrunk(int npcTemplateID) {
+//    default void openTrunk(int npcTemplateID) {
 //        if (getChr() == null || getChr().isOnline() == false) {
-//            log.error(String.format("[CharId: %d] tried to open trunk while being offline.", initData.getChr().getId()));
+//            log.error(String.format("[CharId: %d] tried to open trunk while being offline.", getInitData().getChr().getId()));
 //            return;
 //        }
 //        getChr().write(FieldPacket.trunkDlg(TrunkDlg.open(npcTemplateID, getChr().getAccount().getTrunk())));
 //    }
 //
 //    @Override
-//    public void setSpeakerID(int templateID) {
-//        NpcScriptInfo nsi = initData.getNpcScriptInfo();
+//    default void setSpeakerID(int templateID) {
+//        NpcScriptInfo nsi = getInitData().getNpcScriptInfo();
 //        nsi.removeParam(NpcScriptInfo.Param.PlayerAsSpeaker);
 //        nsi.removeParam(NpcScriptInfo.Param.PlayerAsSpeakerFlip);
 //        boolean isNotCancellable = nsi.hasParam(NpcScriptInfo.Param.NotCancellable);
@@ -1262,22 +1272,22 @@
 //        }
 //    }
 //
-//    public void setInnerOverrideSpeakerTemplateID(int templateID) {
-//        initData.getNpcScriptInfo().setInnerOverrideSpeakerTemplateID(templateID);
+//    default void setInnerOverrideSpeakerTemplateID(int templateID) {
+//        getInitData().getNpcScriptInfo().setInnerOverrideSpeakerTemplateID(templateID);
 //    }
 //
 //    @Override
-//    public void setSpeakerType(byte speakerType) {
-//        NpcScriptInfo nsi = initData.getNpcScriptInfo();
+//    default void setSpeakerType(byte speakerType) {
+//        NpcScriptInfo nsi = getInitData().getNpcScriptInfo();
 //        nsi.setSpeakerType(speakerType);
 //    }
 //
-//    public void hideNpcByTemplateId(int npcTemplateId, boolean hide) {
+//    default void hideNpcByTemplateId(int npcTemplateId, boolean hide) {
 //        hideNpcByTemplateId(npcTemplateId, hide, hide);
 //    }
 //
 //    @Override
-//    public void hideNpcByTemplateId(int npcTemplateId, boolean hideTemplate, boolean hideNameTag) {
+//    default void hideNpcByTemplateId(int npcTemplateId, boolean hideTemplate, boolean hideNameTag) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(npcTemplateId);
 //        if (!(life instanceof Npc)) {
@@ -1287,12 +1297,12 @@
 //        getChr().write(NpcPool.npcViewOrHide(life.getObjectId(), !hideTemplate, !hideNameTag));
 //    }
 //
-//    public void hideNpcByObjectId(int npcObjId, boolean hide) {
+//    default void hideNpcByObjectId(int npcObjId, boolean hide) {
 //        hideNpcByObjectId(npcObjId, hide, hide);
 //    }
 //
 //    @Override
-//    public void hideNpcByObjectId(int npcObjId, boolean hideTemplate, boolean hideNameTag) {
+//    default void hideNpcByObjectId(int npcObjId, boolean hideTemplate, boolean hideNameTag) {
 //        Field field = getField();
 //        Life life = field.getLifeByObjectID(npcObjId);
 //        if (!(life instanceof Npc)) {
@@ -1303,7 +1313,7 @@
 //    }
 //
 //    @Override
-//    public void moveNpcByTemplateId(int npcTemplateId, boolean left, int distance, int speed) {
+//    default void moveNpcByTemplateId(int npcTemplateId, boolean left, int distance, int speed) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(npcTemplateId);
 //        if (!(life instanceof Npc)) {
@@ -1314,7 +1324,7 @@
 //    }
 //
 //    @Override
-//    public void moveNpcByObjectId(int npcObjId, boolean left, int distance, int speed) {
+//    default void moveNpcByObjectId(int npcObjId, boolean left, int distance, int speed) {
 //        Field field = getField();
 //        Life life = field.getLifeByObjectID(npcObjId);
 //        if (!(life instanceof Npc)) {
@@ -1325,7 +1335,7 @@
 //    }
 //
 //    @Override
-//    public void flipNpcByTemplateId(int npcTemplateId, boolean left) {
+//    default void flipNpcByTemplateId(int npcTemplateId, boolean left) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(npcTemplateId);
 //        if (!(life instanceof Npc)) {
@@ -1336,7 +1346,7 @@
 //    }
 //
 //    @Override
-//    public void flipNpcByObjectId(int npcObjId, boolean left) {
+//    default void flipNpcByObjectId(int npcObjId, boolean left) {
 //        Field field = getField();
 //        Life life = field.getLifeByObjectID(npcObjId);
 //        if (!(life instanceof Npc)) {
@@ -1346,12 +1356,12 @@
 //        getChr().write(NpcPool.npcSetForceFlip(life.getObjectId(), left));
 //    }
 //
-//    public void showNpcSpecialActionByTemplateId(int npcTemplateId, String effectName) {
+//    default void showNpcSpecialActionByTemplateId(int npcTemplateId, String effectName) {
 //        showNpcSpecialActionByTemplateId(npcTemplateId, effectName, 0);
 //    }
 //
 //    @Override
-//    public void showNpcSpecialActionByTemplateId(int npcTemplateId, String effectName, int duration) {
+//    default void showNpcSpecialActionByTemplateId(int npcTemplateId, String effectName, int duration) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(npcTemplateId);
 //        if (!(life instanceof Npc)) {
@@ -1361,13 +1371,13 @@
 //        getChr().write(NpcPool.npcSetSpecialAction(life.getObjectId(), effectName, duration));
 //    }
 //
-//    public void showNpcSpecialActionByObjectId(int npcObjId, String effectName) {
+//    default void showNpcSpecialActionByObjectId(int npcObjId, String effectName) {
 //        showNpcSpecialActionByObjectId(npcObjId, effectName, 0);
 //
 //    }
 //
 //    @Override
-//    public void showNpcSpecialActionByObjectId(int npcObjId, String effectName, int duration) {
+//    default void showNpcSpecialActionByObjectId(int npcObjId, String effectName, int duration) {
 //        Field field = getField();
 //        Life life = field.getLifeByObjectID(npcObjId);
 //        if (!(life instanceof Npc)) {
@@ -1377,7 +1387,7 @@
 //        getChr().write(NpcPool.npcSetSpecialAction(life.getObjectId(), effectName, duration));
 //    }
 //
-//    public void resetNpcSpecialActionByTemplateId(int templateId) {
+//    default void resetNpcSpecialActionByTemplateId(int templateId) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(templateId);
 //        if (!(life instanceof Npc)) {
@@ -1387,11 +1397,11 @@
 //        resetNpcSpecialActionByObjectId(life.getObjectId());
 //    }
 //
-//    public void resetNpcSpecialActionByObjectId(int objectId) {
+//    default void resetNpcSpecialActionByObjectId(int objectId) {
 //        getChr().write(NpcPool.npcResetSpecialAction(objectId));
 //    }
 //
-//    public int getNpcObjectIdByTemplateId(int npcTemplateId) {
+//    default int getNpcObjectIdByTemplateId(int npcTemplateId) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(npcTemplateId);
 //        if (!(life instanceof Npc)) {
@@ -1404,54 +1414,54 @@
 //
 //    // Mob methods
 //    @Override
-//    public Mob spawnMob(int id) {
+//    default Mob spawnMob(int id) {
 //        return spawnMob(id, 0, 0, false);
 //    }
 //
 //    @Override
-//    public Mob spawnMob(int id, boolean respawnable) {
+//    default Mob spawnMob(int id, boolean respawnable) {
 //        return spawnMob(id, 0, 0, respawnable);
 //    }
 //
 //    @Override
-//    public Mob spawnMobOnChar(int id) {
+//    default Mob spawnMobOnChar(int id) {
 //        return spawnMob(id, getChr().getPosition().getX(), getChr().getPosition().getY(), false);
 //    }
 //
 //    @Override
-//    public Mob spawnMobOnChar(int id, boolean respawnable) {
+//    default Mob spawnMobOnChar(int id, boolean respawnable) {
 //        return spawnMob(id, getChr().getPosition().getX(), getChr().getPosition().getY(), respawnable);
 //    }
 //
 //    @Override
-//    public Mob spawnMob(int id, int x, int y, boolean respawnable) {
+//    default Mob spawnMob(int id, int x, int y, boolean respawnable) {
 //        return spawnMob(id, x, y, respawnable, 0);
 //    }
 //
-//    public Mob spawnMob(int id, int x, int y) {
+//    default Mob spawnMob(int id, int x, int y) {
 //        return spawnMob(id, x, y, false, 0);
 //    }
 //
-//    public Mob spawnMob(int id, int x, int y, long hp) {
+//    default Mob spawnMob(int id, int x, int y, long hp) {
 //        return spawnMob(id, x, y, false, hp);
 //    }
 //
-//    public Mob spawnMob(int id, int x, int y, boolean respawnable, long hp) {
+//    default Mob spawnMob(int id, int x, int y, boolean respawnable, long hp) {
 //        return getField().spawnMob(id, x, y, respawnable, hp);
 //    }
 //
-//    public Mob spawnMobWithAppearType(int id, int x, int y, int appearType, int option) {
+//    default Mob spawnMobWithAppearType(int id, int x, int y, int appearType, int option) {
 //        return getField().spawnMobWithAppearType(id, x, y, appearType, option);
 //    }
 //
 //    @Override
-//    public void removeMobByObjId(int id) {
+//    default void removeMobByObjId(int id) {
 //        getField().removeLife(id);
 //        getField().broadcastPacket(MobPool.leaveField(id, DeathType.ANIMATION_DEATH));
 //    }
 //
 //    @Override
-//    public void removeMobByTemplateId(int id) {
+//    default void removeMobByTemplateId(int id) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(id);
 //        if (life == null) {
@@ -1461,7 +1471,7 @@
 //        removeMobByObjId(life.getObjectId());
 //    }
 //
-//    public boolean isFinishedEscort(int templateID) {
+//    default boolean isFinishedEscort(int templateID) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(templateID);
 //        if (!(life instanceof Mob)) {
@@ -1477,7 +1487,7 @@
 //    }
 //
 //    @Override
-//    public void showHP(int templateID) {
+//    default void showHP(int templateID) {
 //        getField().getMobs().stream()
 //                .filter(m -> m.getTemplateId() == templateID)
 //                .findFirst()
@@ -1485,7 +1495,7 @@
 //    }
 //
 //    @Override
-//    public void showHP() {
+//    default void showHP() {
 //        getField().getMobs().stream()
 //                .filter(m -> m.getHp() > 0)
 //                .findFirst()
@@ -1495,7 +1505,7 @@
 //
 //    // Reactor methods
 //    @Override
-//    public void removeReactor() {
+//    default void removeReactor() {
 //        Field field = getField();
 //        Life life = field.getLifeByObjectID(getObjectIDByScriptType(ScriptType.Reactor));
 //        if (life instanceof Reactor) {
@@ -1504,7 +1514,7 @@
 //    }
 //
 //    @Override
-//    public void spawnReactor(int reactorId, int x, int y) {
+//    default void spawnReactor(int reactorId, int x, int y) {
 //        Field field = getField();
 //        Reactor reactor = ReactorData.getReactorByID(reactorId);
 //        reactor.setPosition(new Position(x, y));
@@ -1512,19 +1522,19 @@
 //    }
 //
 //    @Override
-//    public boolean hasReactors() {
+//    default boolean hasReactors() {
 //        Field field = getField();
 //        return field.getReactors().size() > 0;
 //    }
 //
 //    @Override
-//    public int getReactorQuantity() {
+//    default int getReactorQuantity() {
 //        Field field = getField();
 //        return field.getReactors().size();
 //    }
 //
 //
-//    public int getReactorState(int reactorId) {
+//    default int getReactorState(int reactorId) {
 //        Field field = getField();
 //        Life life = field.getLifeByTemplateId(reactorId);
 //        if (life != null && life instanceof Reactor) {
@@ -1534,11 +1544,11 @@
 //        return -1;
 //    }
 //
-//    public void increaseReactorState(int reactorId, int stateLength) {
+//    default void increaseReactorState(int reactorId, int stateLength) {
 //        getField().increaseReactorState(getChr(), reactorId, stateLength);
 //    }
 //
-//    public void changeReactorStateByTemplateId(int templateId, byte state, short delay, byte stateLength) {
+//    default void changeReactorStateByTemplateId(int templateId, byte state, short delay, byte stateLength) {
 //        Field field = getField();
 //        Set<Reactor> reactors = field.getReactors().stream()
 //                .filter(r -> r.getTemplateId() == templateId)
@@ -1554,12 +1564,12 @@
 //    // Party-related methods -------------------------------------------------------------------------------------------
 //
 //    @Override
-//    public Party getParty() {
+//    default Party getParty() {
 //        return getChr().getParty();
 //    }
 //
 //    @Override
-//    public Party createSoloParty() {
+//    default Party createSoloParty() {
 //        Party party = Party.createNewParty(
 //                false,
 //                true,
@@ -1573,26 +1583,26 @@
 //    }
 //
 //    @Override
-//    public int getPartySize() {
+//    default int getPartySize() {
 //        return getParty().getMembers().size();
 //    }
 //
 //    @Override
-//    public boolean isPartyLeader() {
+//    default boolean isPartyLeader() {
 //        return getChr().getParty() != null && getChr().getParty().getPartyLeaderID() == getChr().getId();
 //    }
 //
-//    public boolean checkParty() {
+//    default boolean checkParty() {
 //        return checkParty(null);
 //    }
 //
 //    @Override
-//    public boolean checkParty(BossCooldown bossCooldown) {
+//    default boolean checkParty(BossCooldown bossCooldown) {
 //        return checkParty(bossCooldown, 0);
 //    }
 //
 //    @Override
-//    public boolean checkParty(BossCooldown bossCooldown, int reqLevel) {
+//    default boolean checkParty(BossCooldown bossCooldown, int reqLevel) {
 //        if (getChr().getParty() == null) {
 //            chat("You are not in a party.");
 //            return false;
@@ -1638,7 +1648,7 @@
 //        return res;
 //    }
 //
-//    public List<Char> getOnlinePartyMembers() {
+//    default List<Char> getOnlinePartyMembers() {
 //        Party party = getParty();
 //        if (party == null) {
 //            return new ArrayList<>();
@@ -1646,7 +1656,7 @@
 //        return party.getOnlineChars();
 //    }
 //
-//    public List<Char> getPartyMembersInSameField(Char chr) {
+//    default List<Char> getPartyMembersInSameField(Char chr) {
 //        Party party = getParty();
 //        if (party == null) {
 //            return new ArrayList<>();
@@ -1660,23 +1670,23 @@
 //    // Guild/Alliance related methods -------------------------------------------------------------------------------------------
 //
 //    @Override
-//    public void showGuildCreateWindow() {
+//    default void showGuildCreateWindow() {
 //        getChr().write(WvsContext.guildResult(GuildResult.msg(GuildType.Req_InputGuildName)));
 //    }
 //
 //    @Override
-//    public boolean checkAllianceName(String name) {
+//    default boolean checkAllianceName(String name) {
 //        World world = getChr().getClient().getWorld();
 //        return world.getAlliance(name) == null;
 //    }
 //
-//    public void incrementMaxGuildMembers(int amount) {
+//    default void incrementMaxGuildMembers(int amount) {
 //        Guild guild = getChr().getGuild();
 //        guild.setMaxMembers(guild.getMaxMembers() + amount);
 //        guild.broadcast(WvsContext.guildResult(GuildResult.incMaxMemberNum(guild)));
 //    }
 //
-//    public void createAlliance(String name, Char other) {
+//    default void createAlliance(String name, Char other) {
 //        Alliance alliance = new Alliance(true);
 //        alliance.setName(name);
 //        alliance.addGuild(getChr().getGuild());
@@ -1698,35 +1708,35 @@
 //    // Chat-related methods --------------------------------------------------------------------------------------------
 //
 //    @Override
-//    public void chat(String text) {
+//    default void chat(String text) {
 //        chatRed(text);
 //    }
 //
 //    @Override
-//    public void chatRed(String text) {
+//    default void chatRed(String text) {
 //        getChr().chatMessage(SystemNotice, text);
 //    }
 //
 //    @Override
-//    public void chatBlue(String text) {
+//    default void chatBlue(String text) {
 //        getChr().chatMessage(Notice2, text);
 //    }
 //
-//    public void systemMessage(String message) {
+//    default void systemMessage(String message) {
 //        getChr().write(WvsContext.message(MessagePacket.systemMessage(message)));
 //    }
 //
 //    @Override
-//    public void chatScript(String text) {
+//    default void chatScript(String text) {
 //        getChr().chatScriptMessage(text);
 //    }
 //
-//    public void showWeatherNotice(String text, WeatherEffNoticeType type) {
+//    default void showWeatherNotice(String text, WeatherEffNoticeType type) {
 //        showWeatherNotice(text, type, 7000); // 7 seconds
 //    }
 //
 //    @Override
-//    public void showWeatherNotice(String text, WeatherEffNoticeType type, int duration) {
+//    default void showWeatherNotice(String text, WeatherEffNoticeType type, int duration) {
 //        getField().broadcastPacket(WvsContext.weatherEffectNotice(type, text, duration));
 //    }
 //
@@ -1734,29 +1744,29 @@
 //    // Inventory-related methods ---------------------------------------------------------------------------------------
 //
 //    @Override
-//    public void giveMesos(long mesos) {
+//    default void giveMesos(long mesos) {
 //        getChr().addMoney(mesos);
 //        getChr().write(WvsContext.message(MessagePacket.incMoneyMessage(mesos)));
 //    }
 //
 //    @Override
-//    public void deductMesos(long mesos) {
+//    default void deductMesos(long mesos) {
 //        getChr().deductMoney(mesos);
 //        getChr().write(WvsContext.message(MessagePacket.incMoneyMessage(-mesos)));
 //    }
 //
 //    @Override
-//    public long getMesos() {
+//    default long getMesos() {
 //        return getChr().getMoney();
 //    }
 //
 //    @Override
-//    public void giveItem(int id) {
+//    default void giveItem(int id) {
 //        giveItem(id, 1);
 //    }
 //
 //    @Override
-//    public void giveItem(int id, int quantity) {
+//    default void giveItem(int id, int quantity) {
 //        getChr().addItemToInventory(id, quantity);
 //        String itemName = StringData.getItemStringById(id);
 //        if (itemName != null) {
@@ -1764,7 +1774,7 @@
 //        }
 //    }
 //
-//    public void giveItemWithExpiry(int id, int hours) {
+//    default void giveItemWithExpiry(int id, int hours) {
 //        var item = ItemData.getItemDeepCopy(id);
 //        item.setDateExpire(FileTime.fromDate(LocalDateTime.now().plusHours(hours)));
 //        item.setQuantity(1);
@@ -1776,7 +1786,7 @@
 //        }
 //    }
 //
-//    public void giveAndEquip(int id) {
+//    default void giveAndEquip(int id) {
 //        if (!ItemConstants.isEquip(id)) {
 //            giveItem(id);
 //        }
@@ -1800,7 +1810,7 @@
 //        equip.updateToChar(getChr());
 //    }
 //
-//    public void giveNewSecondary(int id) {
+//    default void giveNewSecondary(int id) {
 //        if (!ItemConstants.isEquip(id)) {
 //            giveItem(id);
 //        }
@@ -1823,7 +1833,7 @@
 //        newEquip.updateToChar(getChr());
 //    }
 //
-//    public String enumerateInventory(InvType invType) {
+//    default String enumerateInventory(InvType invType) {
 //        var inv = getChr().getInventoryByType(invType);
 //
 //        StringBuilder sb = new StringBuilder();
@@ -1836,7 +1846,7 @@
 //        return sb.toString();
 //    }
 //
-//    public String enumerateList(String[] strings) {
+//    default String enumerateList(String[] strings) {
 //        var sb = new StringBuilder();
 //        var i = 0;
 //        for (var str : strings) {
@@ -1847,27 +1857,27 @@
 //    }
 //
 //    @Override
-//    public boolean hasItem(int id) {
+//    default boolean hasItem(int id) {
 //        return hasItem(id, 1);
 //    }
 //
 //    @Override
-//    public boolean isEquipped(int id) {
+//    default boolean isEquipped(int id) {
 //        return getChr().getInventoryByType(InvType.EQUIPPED).getItems().stream()
 //                .anyMatch(item -> item.getItemId() == id);
 //    }
 //
 //    @Override
-//    public boolean hasItem(int id, int quantity) {
+//    default boolean hasItem(int id, int quantity) {
 //        return getQuantityOfItem(id) >= quantity;
 //    }
 //
-//    public void consumeItem() {
+//    default void consumeItem() {
 //        consumeItem(getScriptInfoByType(ScriptType.Item).getParentID());
 //    }
 //
 //    @Override
-//    public void consumeItem(int itemID) {
+//    default void consumeItem(int itemID) {
 //        getChr().consumeItem(itemID, 1);
 //        String itemName = StringData.getItemStringById(itemID);
 //        if (itemName != null) {
@@ -1876,7 +1886,7 @@
 //    }
 //
 //    @Override
-//    public void consumeItem(int itemID, int amount) {
+//    default void consumeItem(int itemID, int amount) {
 //        getChr().consumeItem(itemID, amount);
 //        String itemName = StringData.getItemStringById(itemID);
 //        if (itemName != null) {
@@ -1884,7 +1894,7 @@
 //        }
 //    }
 //
-//    public void consumeItem(Item item, int amount) {
+//    default void consumeItem(Item item, int amount) {
 //        getChr().consumeItem(item, amount);
 //        String itemName = StringData.getItemStringById(item.getItemId());
 //        if (itemName != null) {
@@ -1892,7 +1902,7 @@
 //        }
 //    }
 //
-//    public void unequip(Item item) {
+//    default void unequip(Item item) {
 //        if (item instanceof Equip) {
 //            var equip = (Equip) item;
 //            int oldBagIndex = item.getBagIndex();
@@ -1907,33 +1917,33 @@
 //    }
 //
 //    @Override
-//    public void useItem(int id) {
+//    default void useItem(int id) {
 //        ItemBuffs.giveItemBuffsFromItemID(getChr(), getChr().getTemporaryStatManager(), id);
 //    }
 //
 //    @Override
-//    public int getQuantityOfItem(int id) {
+//    default int getQuantityOfItem(int id) {
 //        var item2 = ItemData.getItemDeepCopy(id);
 //        var invType = item2.getInvType();
 //        return getChr().getInventoryByType(invType).getQuantity(id);
 //    }
 //
 //    @Override
-//    public boolean canHold(int id) {
+//    default boolean canHold(int id) {
 //        return getChr().canHoldItem(id, 1);
 //    }
 //
 //    @Override
-//    public boolean canHold(int id, int quantity) {
+//    default boolean canHold(int id, int quantity) {
 //        return getChr().canHold(id, quantity);
 //    }
 //
 //    @Override
-//    public int getEmptyInventorySlots(InvType invType) {
+//    default int getEmptyInventorySlots(InvType invType) {
 //        return getChr().getInventoryByType(invType).getEmptySlots();
 //    }
 //
-//    public boolean hasAnyFullInventory() {
+//    default boolean hasAnyFullInventory() {
 //        for (var inv : getChr().getInventories()) {
 //            if (inv.isFull()) {
 //                return true;
@@ -1943,7 +1953,7 @@
 //        return false;
 //    }
 //
-//    public boolean itemHasWantedStats(Map<String, Integer> wantedStats, int bagIndex, boolean bonus) {
+//    default boolean itemHasWantedStats(Map<String, Integer> wantedStats, int bagIndex, boolean bonus) {
 //        if (wantedStats.isEmpty()) {
 //            return false;
 //        }
@@ -2000,27 +2010,27 @@
 //        return true;
 //    }
 //
-//    public void batchRemoveItems(List<Item> items) {
-//        InventoryModule.removeItems(initData.getChr(), items.stream().collect(Collectors.toMap(item -> item, Item::getQuantity)));
+//    default void batchRemoveItems(List<Item> items) {
+//        InventoryModule.removeItems(getInitData().getChr(), items.stream().collect(Collectors.toMap(item -> item, Item::getQuantity)));
 //    }
 //
 //
 //    // Quest-related methods -------------------------------------------------------------------------------------------
 //
 //    @Override
-//    public void completeQuest(int questID) {
+//    default void completeQuest(int questID) {
 //        if (hasQuest(questID) && isComplete(questID)) {
 //            completeQuestNoCheck(questID);
 //        }
 //    }
 //
 //    @Override
-//    public void completeQuestNoCheck(int questID) {
+//    default void completeQuestNoCheck(int questID) {
 //        getChr().getQuestManager().completeQuest(questID);
 //    }
 //
 //    @Override
-//    public void completeQuestNoRewards(int id) {
+//    default void completeQuestNoRewards(int id) {
 //        QuestManager qm = getChr().getQuestManager();
 //        Quest quest = qm.getQuestById(id);
 //        if (quest == null) {
@@ -2036,49 +2046,49 @@
 //    }
 //
 //    @Override
-//    public void startQuestNoCheck(int id) {
+//    default void startQuestNoCheck(int id) {
 //        QuestManager qm = getChr().getQuestManager();
 //        qm.addQuest(QuestData.createQuestFromId(id));
 ////        chr.chatMessage(String.format("Quest %d started by startQuestNoCheck", id));
 //    }
 //
 //    @Override
-//    public void startQuest(int id) {
+//    default void startQuest(int id) {
 //        QuestManager qm = getChr().getQuestManager();
 //        if (qm.canStartQuest(id)) {
 //            qm.addQuest(QuestData.createQuestFromId(id));
 //        } else {
-//            initData.getChr().chatMessage("You don't fit the requirements to start this quest, if you think this is unintended, please report this to the Bug-reports channel in the discord.");
+//            getInitData().getChr().chatMessage("You don't fit the requirements to start this quest, if you think this is unintended, please report this to the Bug-reports channel in the discord.");
 //        }
 //    }
 //
 //    @Override
-//    public boolean hasQuest(int id) {
+//    default boolean hasQuest(int id) {
 //        return getChr().getQuestManager().hasQuestInProgress(id);
 //    }
 //
 //    @Override
-//    public boolean hasQuestCompleted(int id) {
+//    default boolean hasQuestCompleted(int id) {
 //        return getChr().getQuestManager().hasQuestCompleted(id);
 //    }
 //
-//    public boolean hasHadQuest(int id) {
+//    default boolean hasHadQuest(int id) {
 //        return hasQuest(id) || hasQuestCompleted(id);
 //    }
 //
-//    public void createQuestWithQRValue(int questId, String qrValue, boolean ex) {
+//    default void createQuestWithQRValue(int questId, String qrValue, boolean ex) {
 //        createQuestWithQRValue(getChr(), questId, qrValue, ex);
 //    }
 //
-//    public void createQuestWithQRValue(int questId, String qrValue) {
+//    default void createQuestWithQRValue(int questId, String qrValue) {
 //        createQuestWithQRValue(getChr(), questId, qrValue, true);
 //    }
 //
-//    public void createQuestWithQRValue(Char chr, int questId, String qrValue) {
+//    default void createQuestWithQRValue(Char chr, int questId, String qrValue) {
 //        createQuestWithQRValue(chr, questId, qrValue, true);
 //    }
 //
-//    public void createQuestWithQRValue(Char character, int questId, String qrValue, boolean ex) {
+//    default void createQuestWithQRValue(Char character, int questId, String qrValue, boolean ex) {
 //        QuestManager qm = character.getQuestManager();
 //        Quest quest = qm.getQuestById(questId);
 //        if (quest == null) {
@@ -2090,11 +2100,11 @@
 //        updateQRValue(questId, ex);
 //    }
 //
-//    public void deleteQuest(int questId) {
+//    default void deleteQuest(int questId) {
 //        deleteQuest(getChr(), questId);
 //    }
 //
-//    public void deleteQuest(Char chr, int questId) {
+//    default void deleteQuest(Char chr, int questId) {
 //        QuestManager qm = chr.getQuestManager();
 //        Quest quest = qm.getQuestById(questId);
 //        if (quest == null) {
@@ -2103,11 +2113,11 @@
 //        qm.removeQuest(quest.getQRKey());
 //    }
 //
-//    public String getQRValue(int questId) {
+//    default String getQRValue(int questId) {
 //        return getQRValue(getChr(), questId);
 //    }
 //
-//    public String getQRValue(int questId, String questKey) {
+//    default String getQRValue(int questId, String questKey) {
 //        Quest quest = getChr().getQuestManager().getQuestById(questId);
 //        if (quest == null) {
 //            return "";
@@ -2115,7 +2125,7 @@
 //        return quest.getProperty(questKey);
 //    }
 //
-//    public String getQRValue(Char chr, int questId) {
+//    default String getQRValue(Char chr, int questId) {
 //        Quest quest = chr.getQuestManager().getQuestById(questId);
 //        if (quest == null) {
 //            return "";
@@ -2123,7 +2133,7 @@
 //        return quest.getQRValue();
 //    }
 //
-//    public boolean hasQuestWithValue(int qrKey, String str) {
+//    default boolean hasQuestWithValue(int qrKey, String str) {
 //        Quest quest = getChr().getQuestManager().getQuestById(qrKey);
 //        if (quest == null) {
 //            return false;
@@ -2131,11 +2141,11 @@
 //        return quest.getQRValue().contains(str);
 //    }
 //
-//    public void setQRValue(int questId, String qrValue) {
+//    default void setQRValue(int questId, String qrValue) {
 //        setQRValue(questId, qrValue, true);
 //    }
 //
-//    public void setQRValue(int questId, String key, String value) {
+//    default void setQRValue(int questId, String key, String value) {
 //        QuestManager qm = getChr().getQuestManager();
 //        Quest quest = qm.getQuestById(questId);
 //        if (quest == null) {
@@ -2146,11 +2156,11 @@
 //        getChr().write(WvsContext.message(MessagePacket.questRecordExMessage(quest)));
 //    }
 //
-//    public void setQRValue(int questId, String qrValue, boolean ex) {
+//    default void setQRValue(int questId, String qrValue, boolean ex) {
 //        setQRValue(getChr(), questId, qrValue, ex);
 //    }
 //
-//    public void setQRValue(Char chr, int questId, String qrValue, boolean ex) {
+//    default void setQRValue(Char chr, int questId, String qrValue, boolean ex) {
 //        Quest quest = chr.getQuestManager().getQuestById(questId);
 //        if (quest == null) {
 //            quest = QuestData.createQuestFromId(questId);
@@ -2160,11 +2170,11 @@
 //        updateQRValue(questId, ex);
 //    }
 //
-//    public void addQRValue(int questId, String qrValue) {
+//    default void addQRValue(int questId, String qrValue) {
 //        addQRValue(questId, qrValue, true);
 //    }
 //
-//    public void addQRValue(int questId, String qrValue, boolean ex) {
+//    default void addQRValue(int questId, String qrValue, boolean ex) {
 //        String qrVal = getQRValue(questId);
 //        if (qrVal.equals("")) {
 //            createQuestWithQRValue(questId, qrValue);
@@ -2174,11 +2184,11 @@
 //        updateQRValue(questId, ex);
 //    }
 //
-//    public boolean isComplete(int questID) {
+//    default boolean isComplete(int questID) {
 //        return getChr().getQuestManager().isComplete(questID);
 //    }
 //
-//    public void updateQRValue(int questId, boolean ex) {
+//    default void updateQRValue(int questId, boolean ex) {
 //        Quest quest = getChr().getQuestManager().getQuestById(questId);
 //        if (quest == null) {
 //            log.error(String.format("The user does not have the quest %d.", questId));
@@ -2192,35 +2202,35 @@
 //        }
 //    }
 //
-//    public String getCurrentDateAsString() {
+//    default String getCurrentDateAsString() {
 //        return FileTime.currentTime().toYYMMDD();
 //    }
 //
 //
 //    // Party Quest-related methods -------------------------------------------------------------------------------------
 //
-//    public String getDay() {
+//    default String getDay() {
 //        return new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
 //    }
 //
-//    public int getMPExpByMobId(int templateId) {
+//    default int getMPExpByMobId(int templateId) {
 //        return MonsterPark.getExpByMobId(templateId);
 //    }
 //
-//    public int getMPReward() {
+//    default int getMPReward() {
 //        return MonsterPark.getRewardByDay();
 //    }
 //
-//    public long getPQExp() {
+//    default long getPQExp() {
 //        return getPQExp(getChr());
 //    }
 //
-//    public long getPQExp(Char chr) {
+//    default long getPQExp(Char chr) {
 //        return GameConstants.PARTY_QUEST_EXP_FORMULA(chr);
 //    }
 //
 //    // true if everyone is good. false is someone is above max floors per day
-//    public boolean checkOzFloorRequirement(Char chr, Party party) {
+//    default boolean checkOzFloorRequirement(Char chr, Party party) {
 //        if (party == null) {
 //            var q = chr.getQuestManager().getOrCreateQuestById(QuestConstants.TOWER_OF_OZ_DAILY_CLEARS);
 //            return q.getIntProperty("tf") < OzConstants.MAX_FLOORS_PER_DAY;
@@ -2239,7 +2249,7 @@
 //    // Boss-related methods --------------------------------------------------------------------------------------------
 //
 //    @Override
-//    public void setDeathCount(int deathCount) {
+//    default void setDeathCount(int deathCount) {
 //        Instance info = getChr().getInstance();
 //        if (info == null) {
 //            getChr().setDeathCount(deathCount);
@@ -2252,7 +2262,7 @@
 //        }
 //    }
 //
-//    public void setDeathCount2(int deathCount) {
+//    default void setDeathCount2(int deathCount) {
 //        Instance info = getChr().getInstance();
 //        if (info == null) {
 //            getChr().setDeathCount(deathCount);
@@ -2265,12 +2275,12 @@
 //        }
 //    }
 //
-//    public void createObstacleAtom(ObstacleAtomEnum oae, int key, int damage, int velocity, int amount, int proc) {
+//    default void createObstacleAtom(ObstacleAtomEnum oae, int key, int damage, int velocity, int amount, int proc) {
 //        createObstacleAtom(oae, key, damage, velocity, 0, amount, proc);
 //    }
 //
 //    @Override
-//    public void createObstacleAtom(ObstacleAtomEnum oae, int key, int damage, int velocity, int angle, int amount, int proc) {
+//    default void createObstacleAtom(ObstacleAtomEnum oae, int key, int damage, int velocity, int angle, int amount, int proc) {
 //        Field field = getField();
 //        var fieldInfo = field.getInfo();
 //        int xLeft = fieldInfo.getVrLeft();
@@ -2299,7 +2309,7 @@
 //        field.broadcastPacket(FieldPacket.createObstacle(ObstacleAtomCreateType.NORMAL, obstacleInRowInfo, obstacleRadianInfo, obstacleAtomInfosSet));
 //    }
 //
-//    public void createObstacleAtomToFoothold(ObstacleAtomEnum oae, Rect allowedFhsRect, int damage, int velocity, int angle, int amount, int chance) {
+//    default void createObstacleAtomToFoothold(ObstacleAtomEnum oae, Rect allowedFhsRect, int damage, int velocity, int angle, int amount, int chance) {
 //        var oact = ObstacleAtomCreateType.NORMAL;
 //
 //        ObstacleInRowInfo oiri = null;
@@ -2318,7 +2328,7 @@
 //    }
 //
 //    @Override
-//    public void stopFieldEvents() {
+//    default void stopFieldEvents() {
 //        var events = getEvents();
 //        if (events.size() <= 0) {
 //            return;
@@ -2339,7 +2349,7 @@
 //        }
 //    }
 //
-//    public void stopEvents() {
+//    default void stopEvents() {
 //        var events = getEvents();
 //        for (ScheduledFuture st : events.keySet()) {
 //            EventManager.stopTimer(st);
@@ -2357,19 +2367,19 @@
 //        }
 //    }
 //
-//    private Map<ScheduledFuture, Boolean> getEvents() {
-//        return initData.getEvents();
+//    default Map<ScheduledFuture, Boolean> getEvents() {
+//        return getInitData().getEvents();
 //    }
 //
-//    public void addEvent(ScheduledFuture event) {
+//    default void addEvent(ScheduledFuture event) {
 //        addEvent(event, false);
 //    }
 //
-//    public void addEvent(ScheduledFuture event, boolean isFieldEvent) {
+//    default void addEvent(ScheduledFuture event, boolean isFieldEvent) {
 //        getEvents().put(event, isFieldEvent);
 //    }
 //
-//    public void showGolluxMiniMap() {
+//    default void showGolluxMiniMap() {
 //        List<Integer> fieldIdList = Arrays.asList(
 //                863010100,    // Road to Gollux
 //
@@ -2414,21 +2424,21 @@
 //        getChr().getInstance().broadcast(GiantBossFieldPacket.golluxMiniMap(gFieldMap));
 //    }
 //
-//    public void golluxPortalOpen(String happeningName) {
+//    default void golluxPortalOpen(String happeningName) {
 //        getField().broadcastPacket(GiantBossFieldPacket.golluxPortalOpen(happeningName));
 //    }
 //
 //
 //    // Union-related methods -------------------------------------------------------------------------------------------
 //
-//    public int getUnionCoin() {
+//    default int getUnionCoin() {
 //        return getChr().getUnion().getUnionCoin();
 //    }
 //
-//    public void addUnionCoin(int amount, boolean fromRaid) {
+//    default void addUnionCoin(int amount, boolean fromRaid) {
 //        if (fromRaid) {
-//            if (initData.getChr().getUnionRaid() != null) {
-//                initData.getChr().getUnionRaid().addUnclaimedCoins(initData.getChr(), -amount);
+//            if (getInitData().getChr().getUnionRaid() != null) {
+//                getInitData().getChr().getUnionRaid().addUnclaimedCoins(getInitData().getChr(), -amount);
 //            } else {
 //                return;
 //            }
@@ -2437,37 +2447,37 @@
 //        union.addUnionCoin(amount);
 //    }
 //
-//    public int getUnionRank() {
+//    default int getUnionRank() {
 //        return getChr().getUnion().getUnionRank();
 //    }
 //
-//    private int getUnionRankIndex() {
+//    default int getUnionRankIndex() {
 //        int high = getUnionRank() / 100;
 //        int low = getUnionRank() % 100;
 //        return (low - 1) + (high - 1) * 5;
 //    }
 //
-//    private boolean isMaxUnionRank() {
+//    default boolean isMaxUnionRank() {
 //        return getUnionRank() == 405;
 //    }
 //
-//    public String getUnionRankName() {
+//    default String getUnionRankName() {
 //        return UnionMember.ranks[getUnionRankIndex()];
 //    }
 //
-//    public String getUnionNextRankName() {
+//    default String getUnionNextRankName() {
 //        return UnionMember.ranks[isMaxUnionRank() ? getUnionRankIndex() : getUnionRankIndex() + 1];
 //    }
 //
-//    public int getUnionCoinReq() {
+//    default int getUnionCoinReq() {
 //        return UnionMember.reqCoin[getUnionRankIndex()];
 //    }
 //
-//    public int getUnionLevelReq() {
+//    default int getUnionLevelReq() {
 //        return UnionMember.reqLev[getUnionRankIndex()];
 //    }
 //
-//    public int getUnionLevel() {
+//    default int getUnionLevel() {
 //        int total = 0;
 //        for (Char chr : getChr().getUnion().getEligibleUnionChars()) {
 //            total += chr.getLevel();
@@ -2475,27 +2485,27 @@
 //        return total;
 //    }
 //
-//    public int getUnionCharacterCount() {
+//    default int getUnionCharacterCount() {
 //        return getChr().getUnion().getEligibleUnionChars().size();
 //    }
 //
-//    public int getUnionAssignedCharacterCount() {
+//    default int getUnionAssignedCharacterCount() {
 //        return getChr().getUnion().getActiveUnionChars(getChr().getActiveUnionPreset()).size();
 //    }
 //
-//    public int getUnionAssignedMaxCharacterCount() {
+//    default int getUnionAssignedMaxCharacterCount() {
 //        return UnionMember.attackerCount[getUnionRankIndex()];
 //    }
 //
-//    public int getUnionAssignedNextMaxCharacterCount() {
+//    default int getUnionAssignedNextMaxCharacterCount() {
 //        return UnionMember.attackerCount[isMaxUnionRank() ? getUnionRankIndex() : getUnionRankIndex() + 1];
 //    }
 //
-//    public void incrementUnionRank() {
+//    default void incrementUnionRank() {
 //        getChr().incrementUnionRank();
 //    }
 //
-//    public void spawnDragonWhelps() {
+//    default void spawnDragonWhelps() {
 //        if (FieldConstants.isUnionRaidField(getFieldID()) && getChr().getInstance() != null) {
 //            Field field = getField();
 //
@@ -2522,7 +2532,7 @@
 //    // Character Temporary Stat-related methods ------------------------------------------------------------------------
 //
 //    @Override
-//    public void giveCTS(CharacterTemporaryStat cts, int nOption, int rOption, int time) {
+//    default void giveCTS(CharacterTemporaryStat cts, int nOption, int rOption, int time) {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        Option o = new Option();
 //        o.nOption = nOption;
@@ -2533,31 +2543,31 @@
 //    }
 //
 //    @Override
-//    public void removeCTS(CharacterTemporaryStat cts) {
+//    default void removeCTS(CharacterTemporaryStat cts) {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        tsm.removeStat(cts);
 //    }
 //
 //    @Override
-//    public void removeBuffBySkill(int skillId) {
+//    default void removeBuffBySkill(int skillId) {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        tsm.removeStatsBySkill(skillId);
 //    }
 //
 //    @Override
-//    public boolean hasCTS(CharacterTemporaryStat cts) {
+//    default boolean hasCTS(CharacterTemporaryStat cts) {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        return tsm.hasStat(cts);
 //    }
 //
 //    @Override
-//    public int getnOptionByCTS(CharacterTemporaryStat cts) {
+//    default int getnOptionByCTS(CharacterTemporaryStat cts) {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        return hasCTS(cts) ? tsm.getOption(cts).nOption : 0;
 //    }
 //
 //    @Override
-//    public void rideVehicle(int mountID) {
+//    default void rideVehicle(int mountID) {
 //        TemporaryStatManager tsm = getChr().getTemporaryStatManager();
 //        TemporaryStatBase tsb = tsm.getTSBByTSIndex(TSIndex.RideVehicle);
 //
@@ -2567,9 +2577,9 @@
 //        tsm.sendSetStatPacket();
 //    }
 //
-//    public void consumeLiver() {
-//        if (JobConstants.isShade(initData.getChr().getJob())) {
-//            ((Shade) initData.getChr().getJobHandler()).extendSpiritBondMax();
+//    default void consumeLiver() {
+//        if (JobConstants.isShade(getInitData().getChr().getJob())) {
+//            ((Shade) getInitData().getChr().getJobHandler()).extendSpiritBondMax();
 //        }
 //    }
 //
@@ -2577,13 +2587,13 @@
 //    // InGameDirectionEvent methods ------------------------------------------------------------------------------------
 //
 //    @Override
-//    public int moveCamera(boolean back, int speed, int x, int y) {
+//    default int moveCamera(boolean back, int speed, int x, int y) {
 //
-//        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+//        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraMove(back, speed, new Position(x, y))));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -2592,24 +2602,24 @@
 //        return (int) response;
 //    }
 //
-//    public void moveCamera(int speed, int x, int y) {
+//    default void moveCamera(int speed, int x, int y) {
 //        moveCamera(false, speed, x, y);
 //    }
 //
-//    public void moveCameraBack(int speed) {
+//    default void moveCameraBack(int speed) {
 //        moveCamera(true, speed, getChr().getPosition().getX(), getChr().getPosition().getY());
 //    }
 //
-//    public void zoomCameraNoResponse(int time, int scale, int timePos, int x, int y) {
+//    default void zoomCameraNoResponse(int time, int scale, int timePos, int x, int y) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraZoom(time, scale, timePos, new Position(x, y))));
 //    }
 //
-//    public int zoomCamera(int time, int scale, int timePos, int x, int y) {
-//        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+//    default int zoomCamera(int time, int scale, int timePos, int x, int y) {
+//        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraZoom(time, scale, timePos, new Position(x, y))));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -2619,12 +2629,12 @@
 //    }
 //
 //    @Override
-//    public int zoomCamera(int inZoomDuration, int scale, int x, int y) {
-//        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+//    default int zoomCamera(int inZoomDuration, int scale, int x, int y) {
+//        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraZoom(inZoomDuration, scale, 1000, new Position(x, y))));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -2633,26 +2643,26 @@
 //        return (int) response;
 //    }
 //
-//    public void zoomCameraNoResponse(int zoomInDuration, int scale, int x, int y) {
+//    default void zoomCameraNoResponse(int zoomInDuration, int scale, int x, int y) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraZoom(zoomInDuration, scale, 1000, new Position(x, y))));
 //    }
 //
 //    @Override
-//    public void resetCamera() {
+//    default void resetCamera() {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraOnCharacter(0))); // 0 resets the Camera
 //    }
 //
-//    public void setCameraOnNpc(int npcTemplateId) {
+//    default void setCameraOnNpc(int npcTemplateId) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.cameraOnCharacter(npcTemplateId)));
 //    }
 //
 //    @Override
-//    public int sendDelay(int delay) {
-//        initData.getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
+//    default int sendDelay(int delay) {
+//        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.AskIngameDirection);
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.delay(delay)));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -2662,28 +2672,28 @@
 //    }
 //
 //    @Override
-//    public void doEventAndSendDelay(int delay, String methodName, Object... args) {
+//    default void doEventAndSendDelay(int delay, String methodName, Object... args) {
 //        invoke(getChr().getScriptManager(), methodName, args);
 //        sendDelay(delay);
 //    }
 //
 //    @Override
-//    public void forcedMove(boolean left, int distance) {
+//    default void forcedMove(boolean left, int distance) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.forcedMove(left, distance)));
 //    }
 //
 //    @Override
-//    public void forcedFlip(boolean left) {
+//    default void forcedFlip(boolean left) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.forcedFlip(left)));
 //    }
 //
 //    @Override
-//    public void forcedAction(int type, int duration) {
+//    default void forcedAction(int type, int duration) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.forcedAction(type, duration)));
 //    }
 //
 //    @Override
-//    public void forcedInput(int type) {
+//    default void forcedInput(int type) {
 //        ForcedInputType fit = ForcedInputType.getByVal(type);
 //        if (fit == null) {
 //            log.error(String.format("Unknown Forced Input Type %d", type));
@@ -2692,58 +2702,58 @@
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.forcedInput(type)));
 //    }
 //
-//    public void patternInputRequest(String pattern, int act, int requestCount, int time) {
+//    default void patternInputRequest(String pattern, int act, int requestCount, int time) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.patternInputRequest(pattern, act, requestCount, time)));
 //    }
 //
 //    @Override
-//    public void hideUser(boolean hide) {
+//    default void hideUser(boolean hide) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.vansheeMode(hide)));
 //    }
 //
-//    public void showEffect(String path, int duration, int x, int y) {
+//    default void showEffect(String path, int duration, int x, int y) {
 //        showEffect(path, duration, x, y, 0, 0, true, 0);
 //    }
 //
 //    @Override
-//    public void showEffect(String path, int duration, int x, int y, int z, int npcIdForExtend, boolean onUser, int idk2) {
+//    default void showEffect(String path, int duration, int x, int y, int z, int npcIdForExtend, boolean onUser, int idk2) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.effectPlay(path, duration, new Position(x, y), z, npcIdForExtend, onUser, idk2)));
 //    }
 //
-//    public void showEffectOnPosition(String path, int duration, int x, int y) {
+//    default void showEffectOnPosition(String path, int duration, int x, int y) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.effectPlay(path, duration,
 //                new Position(x, y), 0, 1, false, 0)));
 //    }
 //
-//    public void showBalloonMsgOnNpc(String path, int duration, int x, int y, int templateID) {
+//    default void showBalloonMsgOnNpc(String path, int duration, int x, int y, int templateID) {
 //        int objectID = getNpcObjectIdByTemplateId(templateID);
 //        if (objectID == 0) return;
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.effectPlay(path, duration,
 //                new Position(x, y), 0, objectID, false, 0)));
 //    }
 //
-//    public void showBalloonMsgOnNpc(String path, int duration, int templateID) {
+//    default void showBalloonMsgOnNpc(String path, int duration, int templateID) {
 //        showBalloonMsgOnNpc(path, duration, 0, -100, templateID);
 //    }
 //
-//    public void showNpcEffectOnPosition(String path, int x, int y, int templateID) {
+//    default void showNpcEffectOnPosition(String path, int x, int y, int templateID) {
 //        int objectID = getNpcObjectIdByTemplateId(templateID);
 //        if (objectID == 0) return;
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.effectPlay(path, 0,
 //                new Position(x, y), 0, objectID, false, 0)));
 //    }
 //
-//    public void showBalloonMsg(String path, int duration) {
+//    default void showBalloonMsg(String path, int duration) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.effectPlay(path, duration,
 //                new Position(0, -100), 0, 0, true, 0)));
 //    }
 //
-//    public int sayMonologue(String text, boolean isEnd) {
-//        initData.getNpcScriptInfo().setMessageType(NpcMessageType.Monologue);
+//    default int sayMonologue(String text, boolean isEnd) {
+//        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.Monologue);
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.monologue(text, isEnd)));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -2752,51 +2762,51 @@
 //        return (int) response;
 //    }
 //
-//    public void avatarLookSet(int[] equipIDs) {
+//    default void avatarLookSet(int[] equipIDs) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.avatarLookSet(equipIDs)));
 //    }
 //
-//    public void removeAdditionalEffect() {
+//    default void removeAdditionalEffect() {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.removeAdditionalEffect()));
 //    }
 //
-//    public void faceOff(int faceItemID) {
+//    default void faceOff(int faceItemID) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.faceOff(faceItemID)));
 //    }
 //
-//    public void monologueScroll(String msg, boolean stayModal, short align, int updateSpeedTime, int decTic) {
+//    default void monologueScroll(String msg, boolean stayModal, short align, int updateSpeedTime, int decTic) {
 //        getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.monologueScroll(msg, stayModal, align,
 //                updateSpeedTime, decTic)));
 //    }
 //
 //    // Clock methods ---------------------------------------------------------------------------------------------------
 //
-//    public Clock createStopWatch(int seconds) {
+//    default Clock createStopWatch(int seconds) {
 //        return new Clock(ClockType.StopWatch, getField(), seconds);
 //    }
 //
-//    public Clock createStopWatchForChrOnly(int seconds) {
-//        if (initData.getChr() != null) {
-//            return new Clock(ClockType.StopWatch, initData.getChr(), seconds);
+//    default Clock createStopWatchForChrOnly(int seconds) {
+//        if (getInitData().getChr() != null) {
+//            return new Clock(ClockType.StopWatch, getInitData() .getChr(), seconds);
 //        }
 //
 //        return null;
 //    }
 //
-//    public Clock createClock(int seconds) {
+//    default Clock createClock(int seconds) {
 //        return new Clock(ClockType.SecondsClock, getField(), seconds);
 //    }
 //
-//    public void createClock(int hours, int minutes, int seconds) {
+//    default void createClock(int hours, int minutes, int seconds) {
 //        getChr().write(FieldPacket.clock(ClockPacket.hmsClock((byte) hours, (byte) minutes, (byte) seconds)));
 //        addEvent(EventManager.addEvent(this::removeClock, seconds + minutes * 60 + hours * 3600, TimeUnit.SECONDS));
 //    }
 //
-//    public void removeClock() {
+//    default void removeClock() {
 //        getChr().write(FieldPacket.clock(ClockPacket.removeClock()));
 //    }
 //
-//    public void createDojoClock(int seconds) {
+//    default void createDojoClock(int seconds) {
 //        if (getChr().getInstance().getClockPacket() == null) {
 //            getChr().getInstance().setDojoTimer(seconds);
 //            getChr().getInstance().getField(925070000).setProperty("StartTime", System.currentTimeMillis());
@@ -2804,11 +2814,11 @@
 //        }
 //    }
 //
-//    public void setDojoClockPaused(boolean isPaused) {
+//    default void setDojoClockPaused(boolean isPaused) {
 //        getChr().write(FieldPacket.clock(ClockPacket.pauseTimer(false, 0)));
 //    }
 //
-//    public String getCurClockTime() {
+//    default String getCurClockTime() {
 //        if (getChr().getInstance().getClockPacket() != null) {
 //            long time = getChr().getInstance().getClockPacket().getCurDuration();
 //            long seconds = (time / 1000) % 60;
@@ -2818,7 +2828,7 @@
 //        return "";
 //    }
 //
-//    public long getCurClockTimeSec() {
+//    default long getCurClockTimeSec() {
 //        long seconds = -1;
 //        if (getChr().getInstance().getClockPacket() != null) {
 //            long time = getChr().getInstance().getClockPacket().getCurDuration();
@@ -2830,98 +2840,98 @@
 //    // Other methods ---------------------------------------------------------------------------------------------------
 //
 //    @Override
-//    public boolean addDamageSkin(int itemID) {
-//        return initData.getChr().addDamageSkin(itemID);
+//    default boolean addDamageSkin(int itemID) {
+//        return getInitData().getChr().addDamageSkin(itemID);
 //    }
 //
 //    @Override
-//    public void openUI(UIType uiType) {
+//    default void openUI(UIType uiType) {
 //        int id = uiType.getVal();
 //        openUI(id);
 //    }
 //
-//    public void openUI(int id) {
+//    default void openUI(int id) {
 //        getChr().write(FieldPacket.openUI(id));
 //    }
 //
 //    @Override
-//    public void openDimensionalMirror() {
+//    default void openDimensionalMirror() {
 //        getChr().write(FieldPacket.openDimensionalMirror());
 //    }
 //
 //    @Override
-//    public void closeUI(UIType uiType) {
+//    default void closeUI(UIType uiType) {
 //        int id = uiType.getVal();
 //        closeUI(id);
 //    }
 //
-//    public void closeUI(int id) {
+//    default void closeUI(int id) {
 //        getChr().write(FieldPacket.closeUI(id));
 //    }
 //
 //    @Override
-//    public void showClearStageExpWindow(long expGiven) {
+//    default void showClearStageExpWindow(long expGiven) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.showClearStageExpWindow((int) expGiven)));
 //        giveExpNoMsg(expGiven);
 //    }
 //
-//    public void removeBlowWeather() {
+//    default void removeBlowWeather() {
 //        getChr().write(FieldPacket.removeBlowWeather());
 //    }
 //
-//    public void blowWeather(int itemID, String message) {
+//    default void blowWeather(int itemID, String message) {
 //        removeBlowWeather();// removing old one if exists.
 //        getChr().write(FieldPacket.blowWeather(itemID, message));
 //    }
 //
-//    public void playSound(String sound) {
+//    default void playSound(String sound) {
 //        playSound(sound, 100);
 //    }// default
 //
-//    public void playSound(String sound, int vol) {
+//    default void playSound(String sound, int vol) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.playSound(sound, vol)));
 //    }
 //
-//    public void blind(int enable, int x, int color, int time) {
+//    default void blind(int enable, int x, int color, int time) {
 //        blind(enable, x, color, 0, 0, time);
 //    }
 //
-//    public void blind(int enable, int x, int color, int unk1, int unk2, int time) {
+//    default void blind(int enable, int x, int color, int unk1, int unk2, int time) {
 //        getChr().write(FieldPacket.fieldEffect(FieldEffect.blind(enable, x, color, unk1, unk2, time)));
 //    }
 //
 //    @Override
-//    public int getRandomIntBelow(int upBound) {
+//    default int getRandomIntBelow(int upBound) {
 //        return random.nextInt(upBound);
 //    }
 //
-//    public int getRandomIntBetween(int lowerBound, int inclUpperBound) {
+//    default int getRandomIntBetween(int lowerBound, int inclUpperBound) {
 //        return random.nextInt((inclUpperBound - lowerBound) + 1) + lowerBound;
 //    }
 //
-//    public void showEffect(String dir) {
+//    default void showEffect(String dir) {
 //        showEffect(dir, 0);
 //    }
 //
-//    public void showEffect(String dir, int delay) {
+//    default void showEffect(String dir, int delay) {
 //        showEffect(dir, 4, delay);
 //    }
 //
-//    public void showScene(String xmlPath, String sceneName, String sceneNumber) {
+//    default void showScene(String xmlPath, String sceneName, String sceneNumber) {
 //        Scene scene = new Scene(getChr(), xmlPath, sceneName, sceneNumber);
 //        scene.createScene();
 //    }
 //
 //    @Override
-//    public void showEffect(String dir, int placement, int delay) {
+//    default void showEffect(String dir, int placement, int delay) {
 //        getChr().write(UserPacket.effect(Effect.effectFromWZ(dir, false, delay, placement, 0)));
 //    }
 //
-//    public void avatarOriented(String effectPath) {
+//    default void avatarOriented(String effectPath) {
 //        getChr().write(UserPacket.effect(Effect.avatarOriented(effectPath)));
 //    }
 //
-//    public void reservedEffect(String effectPath) {
+//    default void reservedEffect(String effectPath) {
 //        getChr().write(UserPacket.effect(Effect.reservedEffect(effectPath)));
 //
 //        String[] splitted = effectPath.split("/");
@@ -2933,35 +2943,35 @@
 //        scene.setTransferField();
 //    }
 //
-//    public void reservedEffect(boolean screenCoord, int x, int y, String effectName) {
+//    default void reservedEffect(boolean screenCoord, int x, int y, String effectName) {
 //        getChr().write(UserPacket.effect(Effect.reservedEffect(screenCoord, x, y, effectName)));
 //    }
 //
-//    public void reservedEffectRepeat(String effectPath, boolean start) {
+//    default void reservedEffectRepeat(String effectPath, boolean start) {
 //        getChr().write(UserPacket.effect(Effect.reservedEffectRepeat(effectPath, start)));
 //    }
 //
-//    public void reservedEffectRepeat(String effectName, boolean idk, boolean show, int x, int y, int duration) {
+//    default void reservedEffectRepeat(String effectName, boolean idk, boolean show, int x, int y, int duration) {
 //        getChr().write(UserPacket.effect(Effect.reservedEffectRepeat(effectName, idk, show, x, y, duration)));
 //    }
 //
-//    public void reservedEffectRepeat(String effectPath) {
+//    default void reservedEffectRepeat(String effectPath) {
 //        reservedEffectRepeat(effectPath, true);
 //    }
 //
-//    public void playExclSoundWithDownBGM(String soundPath, int volume) {
+//    default void playExclSoundWithDownBGM(String soundPath, int volume) {
 //        getChr().write(UserPacket.effect(Effect.playExclSoundWithDownBGM(soundPath, volume)));
 //    }
 //
-//    public void blindEffect(boolean blind) {
+//    default void blindEffect(boolean blind) {
 //        getChr().write(UserPacket.effect(Effect.blindEffect(blind)));
 //    }
 //
-//    public void fadeInOut(int fadeIn, int delay, int fadeOut, int alpha) {
+//    default void fadeInOut(int fadeIn, int delay, int fadeOut, int alpha) {
 //        getChr().write(UserPacket.effect(Effect.fadeInOut(fadeIn, delay, fadeOut, alpha)));
 //    }
 //
-//    public void createFieldTextEffect(String msg, int letterDelay, int showTime, int clientPosition,
+//    default void createFieldTextEffect(String msg, int letterDelay, int showTime, int clientPosition,
 //                                      int x, int y, int align, int lineSpace, int type,
 //                                      int enterType, int leaveType) {
 //        TextEffectType tet = TextEffectType.values()[type];
@@ -2969,38 +2979,38 @@
 //                align, lineSpace, tet, enterType, leaveType)));
 //    }
 //
-//    public void speechBalloon(boolean normal, int idx, int linkType, String speech, int time, int align, int x,
+//    default void speechBalloon(boolean normal, int idx, int linkType, String speech, int time, int align, int x,
 //                              int y, int z, int lineSpace, int npcTemplateId, int idk) {
 //        getChr().write(UserPacket.effect(Effect.speechBalloon(normal, idx, linkType, speech, time, align, x, y, z, lineSpace, npcTemplateId, idk)));
 //    }
 //
-//    public String formatNumber(String number) {
+//    default String formatNumber(String number) {
 //        return Util.formatNumber(number);
 //    }
 //
-//    public String formatNumber(int number) {
+//    default String formatNumber(int number) {
 //        return formatNumber(String.valueOf(number));
 //    }
 //
-//    public String formatItem(Item item) {
+//    default String formatItem(Item item) {
 //        return String.format("#b#L%d##i%d##z%dl#\r\n", item.getBagIndex(), item.getItemId(), item.getItemId());
 //    }
 //
-//    public String formatInlineItem(Item item) {
+//    default String formatInlineItem(Item item) {
 //        return formatInlineItem(item.getItemId());
 //    }
 //
-//    public String formatInlineItem(int itemId) {
+//    default String formatInlineItem(int itemId) {
 //        return String.format("#i%d# #z%d#", itemId, itemId);
 //    }
 //
-//    public String join(String... args) {
+//    default String join(String... args) {
 //        final String[] s = {""};
 //        Arrays.stream(args).forEach(a -> s[0] += a);
 //        return s[0];
 //    }
 //
-//    public String formatString(String line, PyDictionary dict) {
+//    default String formatString(String line, PyDictionary dict) {
 //        var copyLine = line;
 //        for (var key : dict.keys()) {
 //            var value = dict.get(key).toString();
@@ -3011,7 +3021,7 @@
 //        return copyLine;
 //    }
 //
-//    public String selectionString(String line, List<PyDictionary> dicts) {
+//    default String selectionString(String line, List<PyDictionary> dicts) {
 //        StringBuilder str = new StringBuilder();
 //        var newLine = "\r\n";
 //
@@ -3036,7 +3046,7 @@
 //        return str.toString();
 //    }
 //
-//    private Object invoke(Object invokeOn, String methodName, Object... args) {
+//    default Object invoke(Object invokeOn, String methodName, Object... args) {
 //        List<Class<?>> classList = Arrays.stream(args).map(Object::getClass).collect(Collectors.toList());
 //        Class<?>[] classes = classList.stream().map(Util::convertBoxedToPrimitiveClass).toArray(Class<?>[]::new);
 //        Method func;
@@ -3049,7 +3059,7 @@
 //        return null;
 //    }
 //
-//    public void invokeForParty(String methodName, Object... args) {
+//    default void invokeForParty(String methodName, Object... args) {
 //        for (PartyMember pm : getChr().getParty().getMembers()) {
 //            boolean fromDB = false;
 //            Char chr = pm.getChr();
@@ -3065,7 +3075,7 @@
 //        }
 //    }
 //
-//    public ScheduledFuture invokeAfterDelay(long delay, String methodName, Object... args) {
+//    default ScheduledFuture invokeAfterDelay(long delay, String methodName, Object... args) {
 //        Object[] funcArgs = args;
 //        if ("warp".equals(methodName) || "warpParty".equalsIgnoreCase(methodName)) {
 //            // kinda hacky method to make warps execute immediately when invoking after delay
@@ -3082,7 +3092,7 @@
 //        return sf;
 //    }
 //
-//    public ScheduledFuture invokeAtFixedRate(long initialDelay, long delayBetweenExecutions,
+//    default ScheduledFuture invokeAtFixedRate(long initialDelay, long delayBetweenExecutions,
 //                                             int executes, String methodName, Object... args) {
 //        ScheduledFuture scheduledFuture;
 //        if (executes == 0) {
@@ -3100,12 +3110,12 @@
 //    }
 //
 //    @Override
-//    public int playVideoByScript(String videoPath) {
-//        initData.getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClip);
+//    default int playVideoByScript(String videoPath) {
+//        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClip);
 //        getChr().write(UserLocal.videoByScript(videoPath, true));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -3115,12 +3125,12 @@
 //    }
 //
 //    @Override
-//    public int playVideoByScriptFromWeb(String videlUrl) {
-//        initData.getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
+//    default int playVideoByScriptFromWeb(String videlUrl) {
+//        getInitData().getNpcScriptInfo().setMessageType(NpcMessageType.PlayMovieClipURL);
 //        getChr().write(UserLocal.videoByScriptWeb(videlUrl));
 //        Object response = null;
 //        var lastActiveScriptType = getLastActiveScriptType();
-//        if (initData.isActive(lastActiveScriptType)) {
+//        if (getInitData().isActive(lastActiveScriptType)) {
 //            response = getScriptInfoByType(lastActiveScriptType).awaitResponse();
 //        }
 //        if (response == null) {
@@ -3129,28 +3139,28 @@
 //        return (int) response;
 //    }
 //
-//    public void setFuncKeyByScript(boolean add, int action, int key) {
+//    default void setFuncKeyByScript(boolean add, int action, int key) {
 //        getChr().write(UserLocal.setFuncKeyByScript(add, action, key));
 //        getChr().getFuncKeyMap().get(0).putKeyBinding(key, add ? (byte) 1 : (byte) 0, action);
 //    }
 //
-//    public void setActionBar(boolean show, ActionBarType type) {
+//    default void setActionBar(boolean show, ActionBarType type) {
 //        getChr().write(UserLocal.setActionBar(show, type));
 //    }
 //
-//    public void setMapTaggedObjectVisible(String key, boolean visible, int manual, int delay) {
+//    default void setMapTaggedObjectVisible(String key, boolean visible, int manual, int delay) {
 //        getChr().write(MapLoadable.setMapTaggedObjectVisible(new MapTaggedObject(key, visible, manual, delay)));
 //    }
 //
-//    public void addPopUpSay(int npcID, int duration, String message, String effect) {
+//    default void addPopUpSay(int npcID, int duration, String message, String effect) {
 //        getChr().write(UserLocal.addPopupSay(npcID, duration, message, effect));
 //    }
 //
-//    public void moveParticleEff(String type, int startX, int startY, int endX, int endY, int moveTime, int totalCount, int oneSprayMin, int oneSprayMax) {
+//    default void moveParticleEff(String type, int startX, int startY, int endX, int endY, int moveTime, int totalCount, int oneSprayMin, int oneSprayMax) {
 //        getChr().write(UserLocal.moveParticleEff(type, new Position(startX, startY), new Position(endX, endY), moveTime, totalCount, oneSprayMin, oneSprayMax));
 //    }
 //
-//    public void levelUntil(int toLevel) {
+//    default void levelUntil(int toLevel) {
 //        short level = getChr().getLevel();
 //        if (level >= toLevel) {
 //            return;
@@ -3161,11 +3171,11 @@
 //        }
 //    }
 //
-//    public void balloonMsg(String message) {
+//    default void balloonMsg(String message) {
 //        getChr().write(UserLocal.balloonMsg(message, 100, 3, null));
 //    }
 //
-//    public boolean openNodestone(int id) {
+//    default boolean openNodestone(int id) {
 //        if (!getChr().getQuestManager().hasQuestCompleted(QuestConstants.FIFTH_JOB_QUEST)) {
 //            getChr().chatMessage("You need to be 5th job to open this item.");
 //            return false;
@@ -3180,7 +3190,7 @@
 //        return true;
 //    }
 //
-//    public void openMultiNodestones(int id, int amount) {
+//    default void openMultiNodestones(int id, int amount) {
 //        if (!getChr().getQuestManager().hasQuestCompleted(QuestConstants.FIFTH_JOB_QUEST)) {
 //            getChr().chatMessage("You need to be 5th job to open this item.");
 //            getChr().dispose();
@@ -3212,31 +3222,31 @@
 //        consumeItem(id, consumeAmount);
 //    }
 //
-//    public void hireTutor(boolean set) {
+//    default void hireTutor(boolean set) {
 //        getChr().hireTutor(set);
 //    }
 //
-//    public void tutorAutomatedMsg(int id) {
+//    default void tutorAutomatedMsg(int id) {
 //        tutorAutomatedMsg(id, 10000);
 //    }
 //
-//    public void tutorAutomatedMsg(int id, int duration) {
+//    default void tutorAutomatedMsg(int id, int duration) {
 //        getChr().tutorAutomatedMsg(id, duration);
 //    }
 //
-//    public void tutorCustomMsg(String message, int width, int duration) {
+//    default void tutorCustomMsg(String message, int width, int duration) {
 //        getChr().tutorCustomMsg(message, width, duration);
 //    }
 //
-//    public boolean hasTutor() {
+//    default boolean hasTutor() {
 //        return getChr().hasTutor();
 //    }
 //
-//    public int getMakingSkillLevel(int skillID) {
+//    default int getMakingSkillLevel(int skillID) {
 //        return getChr().getMakingSkillLevel(skillID);
 //    }
 //
-//    public boolean isAbleToLevelUpMakingSkill(int skillID) {
+//    default boolean isAbleToLevelUpMakingSkill(int skillID) {
 //        int neededProficiency = SkillConstants.getNeededProficiency(getChr().getMakingSkillLevel(skillID));
 //        if (neededProficiency <= 0) {
 //            return false;
@@ -3244,15 +3254,15 @@
 //        return getChr().getMakingSkillProficiency(skillID) >= neededProficiency;
 //    }
 //
-//    public void makingSkillLevelUp(int skillID) {
+//    default void makingSkillLevelUp(int skillID) {
 //        getChr().makingSkillLevelUp(skillID);
 //    }
 //
-//    private ScriptMemory getMemory() {
-//        return initData.getMemory();
+//    default ScriptMemory getMemory() {
+//        return getInitData().getMemory();
 //    }
 //
-//    public void setBossCooldown(BossCooldown bc) {
+//    default void setBossCooldown(BossCooldown bc) {
 //        // Only for entry
 //        if (getChr().getParty() != null) {
 //            for (var pm : getChr().getParty().getOnlineMembers()) {
@@ -3265,11 +3275,11 @@
 //        }
 //    }
 //
-//    public boolean isOnBossCooldown(BossCooldown bc) {
+//    default boolean isOnBossCooldown(BossCooldown bc) {
 //        return getChr().getAccount().isOnBossCooldown(bc);
 //    }
 //
-//    public int getRemainingBossCooldownMinutes(BossCooldown bc) {
+//    default int getRemainingBossCooldownMinutes(BossCooldown bc) {
 //        AccountBossCooldown abc = getChr().getAccount().getBossCooldown(bc);
 //        FileTime nextEntry = abc == null ? null : abc.getNextEntryTime();
 //        if (nextEntry == null || nextEntry.isExpired()) {
@@ -3283,7 +3293,7 @@
 //
 //    // Will methods
 //
-//    public void incrementMoonlight() {
+//    default void incrementMoonlight() {
 //        for (var chr : getField().getChars()) {
 //            var hardMode = FieldConstants.isHardWillField(getFieldID());
 //            var bossInfo = chr.getBossInfo();
@@ -3291,15 +3301,15 @@
 //        }
 //    }
 //
-//    public void startWillTriggerTimer() {
+//    default void startWillTriggerTimer() {
 //        addEvent(EventManager.addFixedRateEvent(this::doTriggerBlockCheck, 90, 120, TimeUnit.SECONDS));
 //    }
 //
-//    public void startWillWebTimer() {
+//    default void startWillWebTimer() {
 //        addEvent(EventManager.addFixedRateEvent(() -> WillModule.spawnNarrowWeb(getField()), 6, 6, TimeUnit.SECONDS));
 //    }
 //
-//    private void doTriggerBlockCheck() {
+//    default void doTriggerBlockCheck() {
 //        switch (getFieldID()) {
 //            case BossConstants.WILL_FIELD_P1:
 //            case BossConstants.WILL_HARD_FIELD_P1:
@@ -3317,7 +3327,7 @@
 //
 //    // Papulatus
 //
-//    public void startTweezerTimers() {
+//    default void startTweezerTimers() {
 //        var tweezers = new ArrayList<PapulatusTweezerInfo>();
 //        for (int i = 0; i < 5; i++) {
 //            tweezers.add(new PapulatusTweezerInfo(i, 1, 0, 0));
@@ -3326,7 +3336,7 @@
 //        getField().broadcastPacket(PapulatusFieldPacket.papulatusFieldObjectChanged(PapulatusFieldObject.tweezers(tweezers)));
 //    }
 //
-//    public void startPapulatusAlarmClockTimer() {
+//    default void startPapulatusAlarmClockTimer() {
 //        var papulatusLife = getField().getLifeByTemplateIds(BossConstants.PAPULATUS_EASY_P1, BossConstants.PAPULATUS_EASY_P2,
 //                BossConstants.PAPULATUS_NORMAL_P1, BossConstants.PAPULATUS_NORMAL_P2,
 //                BossConstants.PAPULATUS_CHAOS_P1, BossConstants.PAPULATUS_CHAOS_P2
@@ -3343,7 +3353,7 @@
 //        addEvent(EventManager.addEvent(this::papulatusAlarmClockActivate, BossConstants.PAPULATUS_ALARM_CLOCK_COOLTIME_MILLIS));
 //    }
 //
-//    public void papulatusAlarmClockActivate() {
+//    default void papulatusAlarmClockActivate() {
 //        var papulatusLife = getField().getLifeByTemplateIds(BossConstants.PAPULATUS_EASY_P1, BossConstants.PAPULATUS_EASY_P2,
 //                BossConstants.PAPULATUS_NORMAL_P1, BossConstants.PAPULATUS_NORMAL_P2,
 //                BossConstants.PAPULATUS_CHAOS_P1, BossConstants.PAPULATUS_CHAOS_P2
@@ -3376,11 +3386,11 @@
 //        addEvent(EventManager.addEvent(this::startPapulatusAlarmClockTimer, BossConstants.PAPULATUS_ALARM_CLOCK_MILLIS));
 //    }
 //
-//    public void startPapulatusLaserCooltimeTimerInit() {
+//    default void startPapulatusLaserCooltimeTimerInit() {
 //        addEvent(EventManager.addEvent(this::startPapulatusLaserTimer, BossConstants.PAPULATUS_LASER_INIT_COOLTIME_MILLIS));
 //    }
 //
-//    public void startPapulatusLaserCooltimeTimer() {
+//    default void startPapulatusLaserCooltimeTimer() {
 //        var laserInfo = new PapulatusLaserInfo(0, false, 0, 0);
 //        var laserInfo2 = new PapulatusLaserInfo(1, false, 0, 0);
 //        var list = new ArrayList<PapulatusLaserInfo>();
@@ -3391,7 +3401,7 @@
 //        addEvent(EventManager.addEvent(this::startPapulatusLaserTimer, BossConstants.PAPULATUS_LASER_COOLTIME_MILLIS));
 //    }
 //
-//    public void startPapulatusLaserTimer() {
+//    default void startPapulatusLaserTimer() {
 //        // this is not how it's supposed to work lmao
 //        var randIdx = Util.getRandom(0, 4) * 2;
 //        var randAngle1 = Util.getRandom(BossConstants.PAPULATUS_LASER_MIN, BossConstants.PAPULATUS_LASER_MAX);
@@ -3409,7 +3419,7 @@
 //        addEvent(EventManager.addEvent(this::startPapulatusLaserCooltimeTimer, BossConstants.PAPULATUS_LASER_MILLIS));
 //    }
 //
-//    public void changePapulatusTime(boolean divide) {
+//    default void changePapulatusTime(boolean divide) {
 //        var tsm = getChr().getTemporaryStatManager();
 //        var option = tsm.getOption(PapulatusTimeLock);
 //        if (option != null && tsm.hasStat(PapulatusTimeLock)) {
@@ -3436,7 +3446,7 @@
 //
 //    // Professions
 //
-//    public void increaseMasteryAndShowSuccess(int reqLevel, boolean herb) {
+//    default void increaseMasteryAndShowSuccess(int reqLevel, boolean herb) {
 //        var skillId = herb ? SkillConstants.HERBALISM_SKILL : SkillConstants.MINING_SKILL;
 //        var slv = getChr().getMakingSkillLevel(skillId);
 //        var chanceToSucceed = 100 - ((reqLevel - slv) * 10);
@@ -3451,53 +3461,53 @@
 //
 //
 //    // San Commerci | Voyage
-//    public void finishVoyageHorde() {
+//    default void finishVoyageHorde() {
 //        Voyage.finishHorde(getChr());
 //    }
 //
 //    //DailyEntry methods
-//    public int getRemainingDailyEntries(DailyEntry de) {
+//    default int getRemainingDailyEntries(DailyEntry de) {
 //        return getChr().getAccount().getRemainingEntries(de);
 //    }
 //
-//    public void addDailyEntry(DailyEntry de) {
+//    default void addDailyEntry(DailyEntry de) {
 //        getChr().getAccount().addDailyEntry(de);
 //    }
 //
-//    public void reduceDailyEntry(DailyEntry de) {
+//    default void reduceDailyEntry(DailyEntry de) {
 //        getChr().getAccount().reduceDailyEntry(de);
 //    }
 //
 //    @Override
-//    public boolean levelArcaneSymbol(BodyPart symbolPart, int levelAmount) {
-//        Item item = initData.getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
+//    default boolean levelArcaneSymbol(BodyPart symbolPart, int levelAmount) {
+//        Item item = getInitData().getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
 //        if (item != null) {
 //            Equip symbol = (Equip) item;
 //            if (symbol.getSymbolLevel() < ItemConstants.MAX_ARCANE_SYMBOL_LEVEL) {
 //                symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_ARCANE_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
-//                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), initData.getChr().getJob());
-//                symbol.updateToChar(initData.getChr());
+//                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), getInitData().getChr().getJob());
+//                symbol.updateToChar(getInitData().getChr());
 //                return true;
 //            }
 //        } else {
-//            initData.getChr().chatMessage("Please equip your symbol before you try to complete the weekly.");
+//            getInitData().getChr().chatMessage("Please equip your symbol before you try to complete the weekly.");
 //        }
 //        return false;
 //    }
 //
 //    @Override
-//    public boolean levelAuthSymbol(BodyPart symbolPart, int levelAmount) {
-//        Item item = initData.getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
+//    default boolean levelAuthSymbol(BodyPart symbolPart, int levelAmount) {
+//        Item item = getInitData().getChr().getEquippedInventory().getFirstItemByBodyPart(symbolPart);
 //        if (item != null) {
 //            Equip symbol = (Equip) item;
 //            if (symbol.getSymbolLevel() < ItemConstants.MAX_AUTH_SYMBOL_LEVEL) {
 //                symbol.setSymbolLevel((short) (Math.min(ItemConstants.MAX_AUTH_SYMBOL_LEVEL, symbol.getSymbolLevel() + levelAmount)));
-//                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), initData.getChr().getJob());
-//                symbol.updateToChar(initData.getChr());
+//                symbol.initSymbolStats(symbol.getSymbolLevel(), symbol.getSymbolExp(), getInitData().getChr().getJob());
+//                symbol.updateToChar(getInitData().getChr());
 //                return true;
 //            }
 //        } else {
-//            initData.getChr().chatMessage("Please equip your symbol before you try to complete the weekly.");
+//            getInitData().getChr().chatMessage("Please equip your symbol before you try to complete the weekly.");
 //        }
 //        return false;
 //    }

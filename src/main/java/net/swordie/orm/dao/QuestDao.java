@@ -36,15 +36,17 @@ public class QuestDao implements SworDao<Quest> {
             query = "INSERT INTO quests(" +
                     "QRKey, " +
                     "qrValue, " +
+                    "qrExValue, " +
                     "status, " +
                     "completedTime, " +
                     "questmanager_id, " +
                     "id " +
-                    ") VALUES (?, ?, ?, ?, ?, ?)";
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?)";
         } else {
             query = "UPDATE quests SET " +
                     "QRKey = ?," +
                     "qrValue = ?," +
+                    "qrExValue = ?," +
                     "status = ?," +
                     "completedTime = ?," +
                     "questmanager_id = ?" +
@@ -55,6 +57,7 @@ public class QuestDao implements SworDao<Quest> {
         queryHolder.setArgs(
                 quest.getQRKey(),
                 quest.getCustomQrValue(),
+                quest.getCustomQrValueEx(),
                 quest.getStatus().ordinal(),
                 FileTimeConverter.toDbColumn(quest.getCompletedTime()),
                 qm.getId(),
@@ -82,6 +85,7 @@ public class QuestDao implements SworDao<Quest> {
             q.setId(resultSet.getLong(alias + ".id"));
             q.setQRKey(resultSet.getInt(alias + ".qrkey"));
             q.setQrValue(resultSet.getString(alias + ".qrvalue"));
+            q.setQrValueEx(resultSet.getString(alias + ".qrExValue"));
             q.setStatus(QuestStatus.values()[resultSet.getInt(alias + ".status")]);
             q.setCompletedTime(FileTimeConverter.fromDbColumn(resultSet.getTimestamp(alias + ".completedtime")));
             q.setLastSavedHash();
