@@ -39,11 +39,14 @@ function start(d, c, b) {
                                             cm.askYesNo("那么，我就指引你们去边境吧。准备好了吗？\r\n\r\n#b#e<接受后，立即移动到战场地图。>#n#k", 0, 3000000)
                                         } else {
                                             if (status === a++) {
-                                                cm.sendNormalTalk("那么，我来为你们指引战场的方向。如果返回得稍晚，就有可能会陷入危险之中，所以请你们不要逗留太久，尽早回来。", 1, 3000000, false, true)
+                                                // cm.sendNormalTalk("那么，我来为你们指引战场的方向。如果返回得稍晚，就有可能会陷入危险之中，所以请你们不要逗留太久，尽早回来。", 1, 3000000, false, true)
+                                                cm.sendNormalTalk("Event未完成，当前直接完成任务（dwang）", 1, 3000000, false, true)
                                             } else {
                                                 if (status === a++) {
                                                     cm.forceStartQuest(32250, "");
-                                                    cm.forceJoinEvent("冒险家_法师_战斗1");
+                                                    // cm.forceJoinEvent("冒险家_法师_战斗1");
+                                                    cm.warp(400000000, 0);
+                                                    cm.forceStartQuest(32364, "1")
                                                     cm.dispose()
                                                 }
                                             }

@@ -1,4 +1,4 @@
-  var status = -1;
+var status = -1;
 
 function start(d, c, b) {
     if (d == 1) {
@@ -64,7 +64,25 @@ function end(d, c, b) {
                     cm.setInGameDirectionMode(true, false, true);
                     cm.fieldEffect_ScreenMsg("adventureStory/mapleLeaf/0");
                     cm.inGameDirectionEvent_AskAnswerTime(1800);
-                    cm.gainItem(4460000, 1)
+
+                    // 判断不同职业获取不同书
+                    if (cm.getQuestCustomData() == "1") {
+                        cm.gainItem(4460000, 1)
+
+                    } else if (cm.getQuestCustomData() == "2") {
+                        cm.gainItem(4460001, 1)
+
+                    } else if (cm.getQuestCustomData() == "3") {
+                        cm.gainItem(4460002, 1)
+
+                    } else if (cm.getQuestCustomData() == "4") {
+                        cm.gainItem(4460003, 1)
+
+                    } else if (cm.getQuestCustomData() == "5") {
+                        cm.gainItem(4460004, 1)
+                    }
+
+
                 } else {
                     if (status === a++) {
                         cm.setInGameDirectionMode(false, true, false);
