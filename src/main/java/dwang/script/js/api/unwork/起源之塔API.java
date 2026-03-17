@@ -7,7 +7,9 @@ public interface 起源之塔API extends DwangScriptBaseApi {
          * 不知道为什么 22F的陷阱传送点也无法触发，只能人肉触发了
          * @出自类 起源之塔API
          */
-    default void 起源之塔_22F陷阱() { }
+    default void 起源之塔_22F陷阱() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -15,7 +17,9 @@ public interface 起源之塔API extends DwangScriptBaseApi {
          * 不知道为什么 4F的陷阱传送点全部无法触发，只能人肉触发了
          * @出自类 起源之塔API
          */
-    default void 起源之塔_4F陷阱() { }
+    default void 起源之塔_4F陷阱() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -25,7 +29,9 @@ public interface 起源之塔API extends DwangScriptBaseApi {
          * @param centerX
          * @出自类 起源之塔API
          */
-    default void 起源之塔_均衡点数(int centerX) { }
+    default void 起源之塔_均衡点数(int centerX) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -33,21 +39,27 @@ public interface 起源之塔API extends DwangScriptBaseApi {
          * 起源之塔，显示奖励统计UI
          * @出自类 起源之塔API
          */
-    default void 起源之塔_奖励UI(int floor, int time, int point, int exp, int box, int best) { }
+    default void 起源之塔_奖励UI(int floor, int time, int point, int exp, int box, int best) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 起源之塔API
     */
-    default void 起源之塔_更新记录(int end) { }
+    default void 起源之塔_更新记录(int end) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 起源之塔API
     */
-    default void 起源之塔_获得戒指(int itemId, int period) { }
+    default void 起源之塔_获得戒指(int itemId, int period) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

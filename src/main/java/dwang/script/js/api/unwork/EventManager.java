@@ -9,42 +9,54 @@ public interface EventManager extends DwangScriptBaseApi {
     /**
          * @出自类 EventManager
     */
-    default void addNumberProperty(String key, int value) { }
+    default void addNumberProperty(String key, int value) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void broadcastPlayerMsg(int type, String msg) { }
+    default void broadcastPlayerMsg(int type, String msg) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void broadcastServerMsg(String msg) { }
+    default void broadcastServerMsg(String msg) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void broadcastServerMsg(int type, String msg, int weather) { }
+    default void broadcastServerMsg(int type, String msg, int weather) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void broadcastShip(int mapId, int effect) { }
+    default void broadcastShip(int mapId, int effect) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void broadcastYellowMsg(String msg) { }
+    default void broadcastYellowMsg(String msg) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -52,133 +64,171 @@ public interface EventManager extends DwangScriptBaseApi {
          * 停止所有定时任务
          * @出自类 EventManager
          */
-    default void cancelSchedlue() { }
+    default void cancelSchedlue() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void dispose() { }
+    default void dispose() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void disposeIfPlayerBelow(int size, int towarp) { }
+    default void disposeIfPlayerBelow(int size, int towarp) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void disposeIfPlayerBelow(int size, int towarp, int portal) { }
+    default void disposeIfPlayerBelow(int size, int towarp, int portal) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getChannel() { }
+    default void getChannel() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getDisconnected() { }
+    default void getDisconnected() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getIv() { }
+    default void getIv() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getMapFactoryMap(int mapId) { }
+    default void getMapFactoryMap(int mapId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getMapIds() { }
+    default void getMapIds() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getMapInstance(int args) { }
+    default void getMapInstance(int args) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getMobs() { }
+    default void getMobs() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getMonster(int id) { }
+    default void getMonster(int id) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getName() { }
+    default void getName() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getNumberProperty(String key) { }
+    default void getNumberProperty(String key) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getPlayerCount() { }
+    default void getPlayerCount() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getPlayers() { }
+    default void getPlayers() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getProperties() { }
+    default void getProperties() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getProperty(String key) { }
+    default void getProperty(String key) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void getTimeLeft() { }
+    default void getTimeLeft() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -194,42 +244,54 @@ public interface EventManager extends DwangScriptBaseApi {
          * @param width
          * @出自类 EventManager
          */
-    default void initMaze(int style, int height, int width) { }
+    default void initMaze(int style, int height, int width) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void initPropArrayRandom(String name, int min, int max, int amount) { }
+    default void initPropArrayRandom(String name, int min, int max, int amount) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void isTimerStarted() { }
+    default void isTimerStarted() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onItemPickedUp(Character chr, int itemID) { }
+    default void onItemPickedUp(Character chr, int itemID) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onMapChanged(Character chr, int mapId) { }
+    default void onMapChanged(Character chr, int mapId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onMonsterDamaged(Character chr, Mob mob, int realDamage, int attackDamage) { }
+    default void onMonsterDamaged(Character chr, Mob mob, int realDamage, int attackDamage) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -243,42 +305,54 @@ public interface EventManager extends DwangScriptBaseApi {
          * @param mob
          * @出自类 EventManager
          */
-    default void onMonsterKilled(Character chr, Mob mob) { }
+    default void onMonsterKilled(Character chr, Mob mob) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onPartyDisbanded() { }
+    default void onPartyDisbanded() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onPlayerDisconnected(Character chr, int idz) { }
+    default void onPlayerDisconnected(Character chr, int idz) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onPlayerKilled(Character chr) { }
+    default void onPlayerKilled(Character chr) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onPlayerRevived(Character chr) { }
+    default void onPlayerRevived(Character chr) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void onTimeOut(int delay) { }
+    default void onTimeOut(int delay) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -294,7 +368,9 @@ public interface EventManager extends DwangScriptBaseApi {
          * @return long[]
          * @出自类 EventManager
          */
-    default void randArray(Object arr, int amout) { }
+    default void randArray(Object arr, int amout) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -312,42 +388,54 @@ public interface EventManager extends DwangScriptBaseApi {
          * @return long[]
          * @出自类 EventManager
          */
-    default void randArray(int min, int max, int amout) { }
+    default void randArray(int min, int max, int amout) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void registerParty(Object party, Field map) { }
+    default void registerParty(Object party, Field map) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void restartEventTimer(int time) { }
+    default void restartEventTimer(int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void restartEventTimer(int time, int inSecond) { }
+    default void restartEventTimer(int time, int inSecond) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void schedule(String methodName, int delay) { }
+    default void schedule(String methodName, int delay) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void scheduleAtTimestamp(String methodName, int timestamp) { }
+    default void scheduleAtTimestamp(String methodName, int timestamp) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -361,63 +449,81 @@ public interface EventManager extends DwangScriptBaseApi {
          * @param showInSecond 默认显示为 分秒
          * @出自类 EventManager
          */
-    default void showClockEffect(Character chr, int time, int showInSecond) { }
+    default void showClockEffect(Character chr, int time, int showInSecond) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void startEventTimer(int time) { }
+    default void startEventTimer(int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void startEventTimerInSecond(int time) { }
+    default void startEventTimerInSecond(int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void startInstance(Character character) { }
+    default void startInstance(Character character) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void startInstance(Character character, String leader) { }
+    default void startInstance(Character character, String leader) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void startInstance(Object party, Field map, int maxLevel) { }
+    default void startInstance(Object party, Field map, int maxLevel) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void unregisterMonster(Mob mob) { }
+    default void unregisterMonster(Mob mob) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void unregisterPlayer(Character chr) { }
+    default void unregisterPlayer(Character chr) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 EventManager
     */
-    default void 乌鲁斯_更新分数() { }
+    default void 乌鲁斯_更新分数() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -429,7 +535,9 @@ public interface EventManager extends DwangScriptBaseApi {
          * @param period 关卡前后的间隔时长，单位ms
          * @出自类 EventManager
          */
-    default void 拼图大师_初始化(int keepSize, int totalStage, int period) { }
+    default void 拼图大师_初始化(int keepSize, int totalStage, int period) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

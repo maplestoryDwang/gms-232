@@ -17,6 +17,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void disableNPC(Object ids) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -27,6 +28,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void hideNpc(int npcId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -80,6 +82,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void npc_ChangeController(int npcid, String npcTag, int x, int y, int faceLeft, boolean canMove, boolean forceSpawnNew, Object avatar) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -140,7 +143,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void npc_ChangeController(int npcid, String npcTag, int x, int y, int fh, int rx0, int rx1, int faceLeft, int canMove, int fadeInTime, int forceSpawnNew, Object avatar) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -153,6 +156,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void Npc_Fadeout(String npcTag, int value0, int value1) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -181,6 +185,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void npc_setForceFlip(String npcTag, int value) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -259,6 +264,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void npcMove(int npc, int x, int y, int 移动时间) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -271,6 +277,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void npcSetSize(String npcTag, int value0, int value1) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -284,6 +291,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void onSetNpcScript(String npcTag, int b1, Object scripts, Object params) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -291,6 +299,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void onViewOrHide(String npcTag, int bView, int bViewNameTag) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -304,6 +313,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void openNpc(String filename) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -315,6 +325,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void openNpc(int npc, int mode) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -322,6 +333,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void openNpc(Object client, int npc, int mode, String filename) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -331,6 +343,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void openShop(int id) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -338,6 +351,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void openShopNPC(int id) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -349,6 +363,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void playNpcEff(int id) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -359,6 +374,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void removeNpc(int npcId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -370,6 +386,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void removeNpc(int mapId, int npcId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -379,6 +396,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void sendStorage() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -389,6 +407,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void setNPC_Fadein(int npcId, int fadeIn) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -396,6 +415,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void setNPCNoticeBoardInfo(String npcTag, int nNoticeBoardType, int nNoticeBoardValue) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -406,6 +426,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void setNpcSpecialActionReset(String npcTag) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -416,6 +437,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void spawnNpc(int npcId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -427,6 +449,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void spawnNpc(int npcId, Object pos) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -439,6 +462,7 @@ public interface NpcAPI extends DwangScriptBaseApi {
      * @出自类 NpcAPI
      */
     default void spawnNpc(int npcId, int x, int y) {
+        throw new RuntimeException("not implemented");
     }
 
 

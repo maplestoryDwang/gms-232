@@ -109,7 +109,9 @@ public interface JobAPI extends DwangScriptBaseApi {
     /**
          * @出自类 JobAPI
     */
-    default void getBeginner() { }
+    default void getBeginner() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -117,7 +119,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * 获得玩家当前职业ID
          * @出自类 JobAPI
          */
-    default void getJob() { }
+    default void getJob() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -125,7 +129,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * 获得玩家当前职业名称
          * @出自类 JobAPI
          */
-    default void getJobName() { }
+    default void getJobName() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -135,28 +141,36 @@ public interface JobAPI extends DwangScriptBaseApi {
          * @param jobId 职业ID
          * @出自类 JobAPI
          */
-    default void getJobName(int jobId) { }
+    default void getJobName(int jobId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 JobAPI
     */
-    default void getMasteryBooksByJob(String job) { }
+    default void getMasteryBooksByJob(String job) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 JobAPI
     */
-    default void is3转() { }
+    default void is3转() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 JobAPI
     */
-    default void isBeginnerJob() { }
+    default void isBeginnerJob() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -164,7 +178,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * 神之子切换
          * @出自类 JobAPI
          */
-    default void onZeroInfo(int type) { }
+    default void onZeroInfo(int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -172,7 +188,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * 显示神之子武器晋升UI
          * @出自类 JobAPI
          */
-    default void openZeroUpgradeUI() { }
+    default void openZeroUpgradeUI() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -184,7 +202,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 JobAPI
          */
-    default void zeroLearnProfessionSkill(int skill, int resultLevel, int exp, int levelup) { }
+    default void zeroLearnProfessionSkill(int skill, int resultLevel, int exp, int levelup) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -194,7 +214,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * @param count
          * @出自类 JobAPI
          */
-    default void zeroReadBook(int count) { }
+    default void zeroReadBook(int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -211,7 +233,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * @param s2
          * @出自类 JobAPI
          */
-    default void zeroReadBookResult(int v1, int v2, int v3, String text, int npc, int v4, int s1, int s2) { }
+    default void zeroReadBookResult(int v1, int v2, int v3, String text, int npc, int v4, int s1, int s2) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -219,7 +243,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * 适用于强化失败后恢复装备
          * @出自类 JobAPI
          */
-    default void zeroRestoreWeapon() { }
+    default void zeroRestoreWeapon() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -227,14 +253,18 @@ public interface JobAPI extends DwangScriptBaseApi {
          * 检查玩家当前职业是否匹配对应转职数，比如1转、2转……
          * @出自类 JobAPI
          */
-    default void 匹配转职数(int 转数) { }
+    default void 匹配转职数(int 转数) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 JobAPI
     */
-    default void 神之子_完成剧情任务() { }
+    default void 神之子_完成剧情任务() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

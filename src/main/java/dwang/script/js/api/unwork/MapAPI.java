@@ -8,7 +8,9 @@ public interface MapAPI extends DwangScriptBaseApi {
     /**
          * @出自类 MapAPI
     */
-    default void destroyReactor(int mapId, int id) { }
+    default void destroyReactor(int mapId, int id) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -19,7 +21,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param id    反应堆
          * @出自类 MapAPI
          */
-    default void forceStartReactor(int mapId, int id) { }
+    default void forceStartReactor(int mapId, int id) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -27,7 +31,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * 获得玩家当前地图实例
          * @出自类 MapAPI
          */
-    default void getMap() { }
+    default void getMap() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -35,7 +41,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * 获得指定地图实例
          * @出自类 MapAPI
          */
-    default void getMap(int map) { }
+    default void getMap(int map) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -56,7 +64,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 MapAPI
          */
-    default void getPlayerCount(int mapId) { }
+    default void getPlayerCount(int mapId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -67,7 +77,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param id    反应堆
          * @出自类 MapAPI
          */
-    default void hitReactor(int mapId, int id) { }
+    default void hitReactor(int mapId, int id) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -77,14 +89,18 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param Portal
          * @出自类 MapAPI
          */
-    default void instantMapWarp(int Portal) { }
+    default void instantMapWarp(int Portal) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MapAPI
     */
-    default void isAllReactorState(int reactorId, int state) { }
+    default void isAllReactorState(int reactorId, int state) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -92,22 +108,19 @@ public interface MapAPI extends DwangScriptBaseApi {
          * 重复陨石掉落事件，直到没有人
          * @出自类 MapAPI
          */
-    default void obstacleFallRepeat(int count, String type, int delay) { }
+    default void obstacleFallRepeat(int count, String type, int delay) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MapAPI
     */
-    default void obstacleFallRepeat(int count, String typeMin, String typeMax, int delay) { }
+    default void obstacleFallRepeat(int count, String typeMin, String typeMax, int delay) {
+        throw new RuntimeException("not implemented");
+    }
 
-
-
-    /**
-         * V172新复古，魔王皮洛克专用版本
-         * @出自类 MapAPI
-         */
-    default void obstacleFall魔王皮洛克(int delay) { }
 
 
 
@@ -132,14 +145,7 @@ public interface MapAPI extends DwangScriptBaseApi {
     /**
          * @出自类 MapAPI
     */
-    default void scheduleOpenNpcTask(int time, int npc, String filename) { }
-
-
-
-    /**
-         * @出自类 MapAPI
-    */
-    default void scheduleWarpTask(int time, int to) {
+    default void scheduleOpenNpcTask(int time, int npc, String filename) {
         throw new RuntimeException("not implemented");
     }
 
@@ -148,21 +154,40 @@ public interface MapAPI extends DwangScriptBaseApi {
     /**
          * @出自类 MapAPI
     */
-    default void scheduleWarpTask(int time, int to, int portal) { }
+    default void scheduleWarpTask(int time, int to) {
+        scheduleWarpTask(time, to, 0);
+    }
 
 
 
     /**
          * @出自类 MapAPI
     */
-    default void scheduleWarpTask(int time, int to, int portal, int show) { }
+    default void scheduleWarpTask(int time, int to, int portal) {
+        scheduleWarpTask(time, to, portal, true);
+    }
 
 
 
     /**
          * @出自类 MapAPI
     */
-    default void scheduleWarpTask(int time, int to, int portal, int show, int fadeOut) { }
+    default void scheduleWarpTask(int time, int to, int portal, boolean show) {
+        scheduleWarpTask(time, to, portal, true, false);
+    }
+
+
+    /**
+     *
+     * @param time
+     * @param to
+     * @param portal
+     * @param show 是否显示头顶的时间
+     * @param fadeOut
+     */
+    default void scheduleWarpTask(int time, int to, int portal, boolean show, boolean fadeOut) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -174,7 +199,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param y
          * @出自类 MapAPI
          */
-    default void spawnReactorOnGroundBelow(int id, int x, int y) { }
+    default void spawnReactorOnGroundBelow(int id, int x, int y) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -223,7 +250,7 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @出自类 MapAPI
          */
     default void warpMap(int mapId, int portal) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -232,7 +259,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * 传送玩家所在团队到指定地点
          * @出自类 MapAPI
          */
-    default void warpParty(int mapId) { }
+    default void warpParty(int mapId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -243,7 +272,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param portal 传送门
          * @出自类 MapAPI
          */
-    default void warpParty(int mapId, int portal) { }
+    default void warpParty(int mapId, int portal) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -251,14 +282,18 @@ public interface MapAPI extends DwangScriptBaseApi {
          * 戴米安墓碑
          * @出自类 MapAPI
          */
-    default void 戴米安墓碑() { }
+    default void 戴米安墓碑() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MapAPI
     */
-    default void 戴米安未知() { }
+    default void 戴米安未知() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -268,7 +303,9 @@ public interface MapAPI extends DwangScriptBaseApi {
          * @param delay
          * @出自类 MapAPI
          */
-    default void 戴米安飞箭(int delay) { }
+    default void 戴米安飞箭(int delay) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

@@ -7,7 +7,9 @@ public interface 痛苦迷宫API extends DwangScriptBaseApi {
          * 泰捏布利斯，痛苦迷宫地图事件
          * @出自类 痛苦迷宫API
          */
-    default void enterMaze() { }
+    default void enterMaze() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -15,7 +17,9 @@ public interface 痛苦迷宫API extends DwangScriptBaseApi {
          * 通过传送门
          * @出自类 痛苦迷宫API
          */
-    default void enterMazePortal(int type) { }
+    default void enterMazePortal(int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -25,7 +29,9 @@ public interface 痛苦迷宫API extends DwangScriptBaseApi {
          * @return
          * @出自类 痛苦迷宫API
          */
-    default void getMazeDestination() { }
+    default void getMazeDestination() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -40,7 +46,9 @@ public interface 痛苦迷宫API extends DwangScriptBaseApi {
          * @return
          * @出自类 痛苦迷宫API
          */
-    default void lightUpCandle(int v1, int v2, int v3, int v4, int v5) { }
+    default void lightUpCandle(int v1, int v2, int v3, int v4, int v5) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

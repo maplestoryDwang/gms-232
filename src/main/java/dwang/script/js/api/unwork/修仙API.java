@@ -8,7 +8,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 设置玩家修为等级
          * @出自类 修仙API
          */
-    default void addPlayeramuont() { }
+    default void addPlayeramuont() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -16,7 +18,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 获得转生次数+1
          * @出自类 修仙API
          */
-    default void gainRepairquency() { }
+    default void gainRepairquency() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -24,7 +28,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 获取玩家修为等级
          * @出自类 修仙API
          */
-    default void getPlayeramuont() { }
+    default void getPlayeramuont() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -32,7 +38,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 获取系统设置的修为点数
          * @出自类 修仙API
          */
-    default void getRepairpointXT(int ID) { }
+    default void getRepairpointXT(int ID) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -40,7 +48,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 获取转生次数
          * @出自类 修仙API
          */
-    default void getRepairquency() { }
+    default void getRepairquency() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -48,7 +58,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 获取玩家修为点数
          * @出自类 修仙API
          */
-    default void getRepairXW() { }
+    default void getRepairXW() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -56,7 +68,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 获取玩家称号
          * @出自类 修仙API
          */
-    default void getXiuxianname() { }
+    default void getXiuxianname() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -64,7 +78,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 获取系统称号
          * @出自类 修仙API
          */
-    default void getXiuxianname(int amuont) { }
+    default void getXiuxianname(int amuont) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -72,7 +88,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 判断是否 已经注册过修仙
          * @出自类 修仙API
          */
-    default void isRegistedXiuxian() { }
+    default void isRegistedXiuxian() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -80,7 +98,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 注册修仙
          * @出自类 修仙API
          */
-    default void registXiuxian() { }
+    default void registXiuxian() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -88,7 +108,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 设置玩家修为等级
          * @出自类 修仙API
          */
-    default void setPlayeramuont(int number) { }
+    default void setPlayeramuont(int number) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -96,7 +118,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 设置转生次数
          * @出自类 修仙API
          */
-    default void setRepairquency(int number) { }
+    default void setRepairquency(int number) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -104,7 +128,9 @@ public interface 修仙API extends DwangScriptBaseApi {
          * 设置玩家修为点数
          * @出自类 修仙API
          */
-    default void setRepairXW(int number) { }
+    default void setRepairXW(int number) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

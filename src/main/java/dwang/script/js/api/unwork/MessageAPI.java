@@ -16,21 +16,27 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param text 说话内容
          * @出自类 MessageAPI
          */
-    default void addPopupSay(int id, int time, String text) { }
+    default void addPopupSay(int id, int time, String text) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void addPopupSay(int id, int time, String text, String text2) { }
+    default void addPopupSay(int id, int time, String text, String text2) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void addPopupSay(int id, int time, String text, String text2, int v2) { }
+    default void addPopupSay(int id, int time, String text, String text2, int v2) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -42,21 +48,27 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param height 固定高度
          * @出自类 MessageAPI
          */
-    default void balloonMsg(String msg, int width, int height) { }
+    default void balloonMsg(String msg, int width, int height) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void broadcastServerMsg(int type, String msg, int weather) { }
+    default void broadcastServerMsg(int type, String msg, int weather) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void channelMessage(int type, String message) { }
+    default void channelMessage(int type, String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -97,7 +109,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param bForced
          * @出自类 MessageAPI
          */
-    default void getWeatherEffectNotice(String msg, int type, int time, int bForced) { }
+    default void getWeatherEffectNotice(String msg, int type, int time, int bForced) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -107,7 +121,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param message
          * @出自类 MessageAPI
          */
-    default void guildMessage(String message) { }
+    default void guildMessage(String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -119,7 +135,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @see #playerMessage(int, String)
          * @出自类 MessageAPI
          */
-    default void guildMessage(int type, String message) { }
+    default void guildMessage(int type, String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -129,7 +147,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param message 信息
          * @出自类 MessageAPI
          */
-    default void mapMessage(String message) { }
+    default void mapMessage(String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -141,14 +161,18 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @see #playerMessage(int, String)
          * @出自类 MessageAPI
          */
-    default void mapMessage(int type, String message) { }
+    default void mapMessage(int type, String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void midMsg(int index, String msg, int keep) { }
+    default void midMsg(int index, String msg, int keep) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -184,7 +208,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
     
          * @出自类 MessageAPI
          */
-    default void partyMessage(int type, String msg) { }
+    default void partyMessage(int type, String msg) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -243,7 +269,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
     /**
          * @出自类 MessageAPI
     */
-    default void spouseMessage(int op, String msg) { }
+    default void spouseMessage(int op, String msg) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -253,28 +281,36 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param msg 信息
          * @出自类 MessageAPI
          */
-    default void systemMessage(String msg) { }
+    default void systemMessage(String msg) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void topMsg(String message) { }
+    default void topMsg(String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void topMsgByItem(int itemId, String message) { }
+    default void topMsgByItem(int itemId, String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void topMsgBySoul(String message) { }
+    default void topMsgBySoul(String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -284,7 +320,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param message 消息
          * @出自类 MessageAPI
          */
-    default void worldMessage(String message) { }
+    default void worldMessage(String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -296,7 +334,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @see #playerMessage(int, String)
          * @出自类 MessageAPI
          */
-    default void worldMessage(int type, String message) { }
+    default void worldMessage(int type, String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -308,7 +348,9 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param item    道具
          * @出自类 MessageAPI
          */
-    default void worldMessageItem(String title, String message, Object item) { }
+    default void worldMessageItem(String title, String message, Object item) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -318,14 +360,18 @@ public interface MessageAPI extends DwangScriptBaseApi {
          * @param msg 消息
          * @出自类 MessageAPI
          */
-    default void worldMessageYellow(String msg) { }
+    default void worldMessageYellow(String msg) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MessageAPI
     */
-    default void worldSpouseMessage(int type, String message) { }
+    default void worldSpouseMessage(int type, String message) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

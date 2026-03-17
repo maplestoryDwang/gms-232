@@ -1,4 +1,4 @@
-package dwang.script.js.npc;
+package dwang.script.js.api.bean;
 
 public enum NPCTalkMode {
    默认样式(0),

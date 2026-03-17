@@ -9,7 +9,9 @@ public interface 赏金猎人API extends DwangScriptBaseApi {
          * @param lengths 每轮动作数量，1366*768分辨率下不建议超过16
          * @出自类 赏金猎人API
          */
-    default void loveDanceInit(Object lengths) { }
+    default void loveDanceInit(Object lengths) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -19,7 +21,9 @@ public interface 赏金猎人API extends DwangScriptBaseApi {
          * @param status
          * @出自类 赏金猎人API
          */
-    default void loveDanceStatus(int status) { }
+    default void loveDanceStatus(int status) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -29,7 +33,9 @@ public interface 赏金猎人API extends DwangScriptBaseApi {
          * @param hp
          * @出自类 赏金猎人API
          */
-    default void protectWallLife(int hp) { }
+    default void protectWallLife(int hp) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -39,7 +45,9 @@ public interface 赏金猎人API extends DwangScriptBaseApi {
          * @param wave
          * @出自类 赏金猎人API
          */
-    default void protectWallWave(int wave) { }
+    default void protectWallWave(int wave) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

@@ -12,7 +12,9 @@ public interface SearchAPI extends DwangScriptBaseApi {
          * @return 匹配上的ID列表
          * @出自类 SearchAPI
          */
-    default void searchForIds(int type, String search) { }
+    default void searchForIds(int type, String search) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -24,7 +26,9 @@ public interface SearchAPI extends DwangScriptBaseApi {
          * @return 带有完整格式的对话文本
          * @出自类 SearchAPI
          */
-    default void searchForText(int type, String search) { }
+    default void searchForText(int type, String search) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

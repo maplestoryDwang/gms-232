@@ -6,14 +6,18 @@ public interface 外星异次元API extends DwangScriptBaseApi {
     /**
          * @出自类 外星异次元API
     */
-    default void 外星异次元_击杀提示(int cur, int total) { }
+    default void 外星异次元_击杀提示(int cur, int total) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 外星异次元API
     */
-    default void 外星异次元_显示UI(int show) { }
+    default void 外星异次元_显示UI(int show) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

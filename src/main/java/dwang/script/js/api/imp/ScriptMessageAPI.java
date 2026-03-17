@@ -1,7 +1,7 @@
 package dwang.script.js.api.imp;
 
 import dwang.script.DwangScriptBaseApi;
-import dwang.script.js.npc.NPCTalkMode;
+import dwang.script.js.api.bean.NPCTalkMode;
 import net.swordie.ms.connection.packet.ScriptMan;
 import net.swordie.ms.constants.ItemConstants;
 import net.swordie.ms.life.npc.NpcMessageType;

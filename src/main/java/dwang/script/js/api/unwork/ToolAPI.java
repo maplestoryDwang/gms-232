@@ -10,7 +10,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
     /**
          * @出自类 ToolAPI
     */
-    default void checkDrop(int mobId) { }
+    default void checkDrop(int mobId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -18,14 +20,18 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 简易的桩接口，用来阻塞脚本运行在低版本端上
          * @出自类 ToolAPI
          */
-    default void checkURDVNMOOKGD() { }
+    default void checkURDVNMOOKGD() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void deleteCharacter(int cid) { }
+    default void deleteCharacter(int cid) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -33,21 +39,27 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 在玩家当前位置掉落物体
          * @出自类 ToolAPI
          */
-    default void dropSingleItem(int itemId) { }
+    default void dropSingleItem(int itemId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void enableActions() { }
+    default void enableActions() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void enableActionsLight() { }
+    default void enableActionsLight() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -59,7 +71,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return 字符串
          * @出自类 ToolAPI
          */
-    default void format(String format, Object toFormat) { }
+    default void format(String format, Object toFormat) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -70,7 +84,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return "1,234"
          * @出自类 ToolAPI
          */
-    default void formatNumberWithComma(int num) { }
+    default void formatNumberWithComma(int num) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -78,7 +94,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 一键生成道具脚本
          * @出自类 ToolAPI
          */
-    default void genItemScript(int start, int end) { }
+    default void genItemScript(int start, int end) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -86,14 +104,18 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 一键生成地图脚本
          * @出自类 ToolAPI
          */
-    default void genMapScript(int start, int end) { }
+    default void genMapScript(int start, int end) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void genPortalScript(Field map) { }
+    default void genPortalScript(Field map) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -101,7 +123,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 一键生成任务脚本
          * @出自类 ToolAPI
          */
-    default void genQuestScript(int start, int end) { }
+    default void genQuestScript(int start, int end) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -111,42 +135,54 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return 所有玩家
          * @出自类 ToolAPI
          */
-    default void getAllCharacters() { }
+    default void getAllCharacters() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void getChannelNumber() { }
+    default void getChannelNumber() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void getChannelServer() { }
+    default void getChannelServer() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void getCharacterList() { }
+    default void getCharacterList() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void getCharacterName(int characterid) { }
+    default void getCharacterName(int characterid) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void getConstantScriptContent(String name) { }
+    default void getConstantScriptContent(String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -156,14 +192,18 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 ToolAPI
          */
-    default void getCurrentTime() { }
+    default void getCurrentTime() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void getLeftPadded(String param_in, Object padchar, int length) { }
+    default void getLeftPadded(String param_in, Object padchar, int length) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -206,7 +246,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
     /**
          * @出自类 ToolAPI
     */
-    default void getReadableMillis(int startMillis, int endMillis) { }
+    default void getReadableMillis(int startMillis, int endMillis) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -216,7 +258,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 ToolAPI
          */
-    default void getServerName() { }
+    default void getServerName() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -224,7 +268,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 查看修复日志
          * @出自类 ToolAPI
          */
-    default void getUpdateLog() { }
+    default void getUpdateLog() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -234,7 +280,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 ToolAPI
          */
-    default void getzhizunvip() { }
+    default void getzhizunvip() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -242,7 +290,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 纯粹测试接口
          * @出自类 ToolAPI
          */
-    default void get服务器启动时间() { }
+    default void get服务器启动时间() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -251,7 +301,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @param Text    包内容
          * @出自类 ToolAPI
          */
-    default void mplewPacket(String opcodes, String Text) { }
+    default void mplewPacket(String opcodes, String Text) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -259,21 +311,27 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 让传送点和反应堆直接引用对话脚本
          * @出自类 ToolAPI
          */
-    default void openScriptNpc() { }
+    default void openScriptNpc() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void rand(Object nums) { }
+    default void rand(Object nums) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void rand(int min, int max) { }
+    default void rand(int min, int max) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -285,7 +343,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return long[]
          * @出自类 ToolAPI
          */
-    default void randArray(Object arr, int amout) { }
+    default void randArray(Object arr, int amout) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -298,14 +358,18 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @return long[]
          * @出自类 ToolAPI
          */
-    default void randArray(int min, int max, int amout) { }
+    default void randArray(int min, int max, int amout) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 ToolAPI
     */
-    default void randInt(int arg0) { }
+    default void randInt(int arg0) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -313,7 +377,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * 纯粹测试接口
          * @出自类 ToolAPI
          */
-    default void test() { }
+    default void test() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -323,7 +389,9 @@ public interface ToolAPI extends DwangScriptBaseApi {
          * @param test 文本
          * @出自类 ToolAPI
          */
-    default void test(String test) { }
+    default void test(String test) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

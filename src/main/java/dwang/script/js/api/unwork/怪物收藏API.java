@@ -7,7 +7,9 @@ public interface 怪物收藏API extends DwangScriptBaseApi {
          * 获得所有怪物收藏
          * @出自类 怪物收藏API
          */
-    default void gainAllMobCollection() { }
+    default void gainAllMobCollection() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -17,7 +19,9 @@ public interface 怪物收藏API extends DwangScriptBaseApi {
          * @param mobId 怪物ID
          * @出自类 怪物收藏API
          */
-    default void gainOneMobCollection(int mobId) { }
+    default void gainOneMobCollection(int mobId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -25,7 +29,9 @@ public interface 怪物收藏API extends DwangScriptBaseApi {
          * 获得随机的精英怪物收藏
          * @出自类 怪物收藏API
          */
-    default void gainRandomEliteMobCollection() { }
+    default void gainRandomEliteMobCollection() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -33,7 +39,9 @@ public interface 怪物收藏API extends DwangScriptBaseApi {
          * 获得随机的怪物收藏
          * @出自类 怪物收藏API
          */
-    default void gainRandomMobCollection() { }
+    default void gainRandomMobCollection() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -41,7 +49,9 @@ public interface 怪物收藏API extends DwangScriptBaseApi {
          * 获得指定地区的随机怪物收藏
          * @出自类 怪物收藏API
          */
-    default void gainRandomMobCollectionByRegion(int category) { }
+    default void gainRandomMobCollectionByRegion(int category) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -49,7 +59,9 @@ public interface 怪物收藏API extends DwangScriptBaseApi {
          * 获得随机的一星怪物收藏
          * @出自类 怪物收藏API
          */
-    default void gainRandomNormalMobCollection() { }
+    default void gainRandomNormalMobCollection() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

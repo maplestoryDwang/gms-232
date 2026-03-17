@@ -19,6 +19,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void addNumberForAccountQuestInfo(int questId, String key, int diff) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -28,6 +29,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void addNumberForAccountQuestInfo(int questId, String key, int diff, int min, int max) {
+        throw new RuntimeException("not implemented");
     }
 
     /**
@@ -36,6 +38,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void getAccountQuestInfo(int questId) {
+        throw new RuntimeException("not implemented");
     }
 
     /**
@@ -44,6 +47,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void getNumberFromAccountQuestInfo(int questId, String key, int value) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -53,6 +57,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void getStringFromAccountQuestInfo(int questId, String key, String value) {
+        throw new RuntimeException("not implemented");
     }
 
     /**
@@ -61,6 +66,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void setAccountQuestInfo(int questId, String info) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -70,6 +76,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void setNumberForAccountQuestInfo(int questId, String key, int val) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -80,6 +87,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void setStringForAccountQuestInfo(int questId, String key, String val) {
+        throw new RuntimeException("not implemented");
     }
 
     /**
@@ -88,6 +96,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void synchFromAccountQuestInfo(int questInfo) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -97,6 +106,7 @@ public interface QuestInAccountApi extends DwangScriptBaseApi {
      * @出自类 QuestAPI
      */
     default void synchToAccountQuestInfo(int questInfo) {
+        throw new RuntimeException("not implemented");
     }
 
 }

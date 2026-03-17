@@ -12,7 +12,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * @param expires
          * @出自类 杂项API
          */
-    default void addStickerGroup(int groudId, Object stickers, Object expires) { }
+    default void addStickerGroup(int groudId, Object stickers, Object expires) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -20,7 +22,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * 活动信封
          * @出自类 杂项API
          */
-    default void getEventEnvelope(int questid, int time) { }
+    default void getEventEnvelope(int questid, int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -28,7 +32,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * 退出射击模式
          * @出自类 杂项API
          */
-    default void onClearGun() { }
+    default void onClearGun() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -36,7 +42,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * 激活枪械模式
          * @出自类 杂项API
          */
-    default void onCreateGun() { }
+    default void onCreateGun() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -46,7 +54,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * @param count
          * @出自类 杂项API
          */
-    default void onSetAmmo(int count) { }
+    default void onSetAmmo(int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -63,7 +73,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * @param y2
          * @出自类 杂项API
          */
-    default void onSetGun(String type, String type2, int v1, int v2, int x1, int y1, int x2, int y2) { }
+    default void onSetGun(String type, String type2, int v1, int v2, int x1, int y1, int x2, int y2) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -71,7 +83,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * 出现于希拉的剩余复活次数UI
          * @出自类 杂项API
          */
-    default void setFieldValue(String key, String value) { }
+    default void setFieldValue(String key, String value) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -79,7 +93,9 @@ public interface 杂项API extends DwangScriptBaseApi {
          * 临时团队变量？
          * @出自类 杂项API
          */
-    default void setPartyValue(String key, String value) { }
+    default void setPartyValue(String key, String value) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -98,14 +114,18 @@ public interface 杂项API extends DwangScriptBaseApi {
          * 自动坐下
          * @出自类 杂项API
          */
-    default void SitOnDummyPortableChair(int itemId, int on) { }
+    default void SitOnDummyPortableChair(int itemId, int on) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 杂项API
     */
-    default void 每日任务_制作星星() { }
+    default void 每日任务_制作星星() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

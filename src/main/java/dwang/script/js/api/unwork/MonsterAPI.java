@@ -20,7 +20,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 MonsterAPI
          */
-    default void getMonsterByID(int mobid) { }
+    default void getMonsterByID(int mobid) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -31,7 +33,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 MonsterAPI
          */
-    default void getMonsterCount(int mapId) { }
+    default void getMonsterCount(int mapId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -40,7 +44,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @return 
          * @出自类 MonsterAPI
          */
-    default void getNumMonsters() { }
+    default void getNumMonsters() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -51,7 +57,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 MonsterAPI
          */
-    default void haveMonster(int mobid) { }
+    default void haveMonster(int mobid) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -79,7 +87,7 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @出自类 MonsterAPI
          */
     default void killAllMob(int drop) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -89,7 +97,7 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @出自类 MonsterAPI
          */
     default void killAllMobNoExp() {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -116,7 +124,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * 活动怪的特效
          * @出自类 MonsterAPI
          */
-    default void showCraftingEffect(String effect, int direction, int time, int mode) { }
+    default void showCraftingEffect(String effect, int direction, int time, int mode) {
+        throw new RuntimeException("not implemented");
+    }
 
 
     /**
@@ -241,7 +251,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param multipler 倍率
          * @出自类 MonsterAPI
          */
-    default void spawnMobMultipler(int mobId, int multipler) { }
+    default void spawnMobMultipler(int mobId, int multipler) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -253,7 +265,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param multipler 倍率
          * @出自类 MonsterAPI
          */
-    default void spawnMobMultipler(int mobId, int quantity, int multipler) { }
+    default void spawnMobMultipler(int mobId, int quantity, int multipler) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -266,7 +280,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param pos 坐标 java.awt.Point(x,y)
          * @出自类 MonsterAPI
          */
-    default void spawnMobMultipler(int mobId, int quantity, int multipler, Object pos) { }
+    default void spawnMobMultipler(int mobId, int quantity, int multipler, Object pos) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -280,7 +296,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param y
          * @出自类 MonsterAPI
          */
-    default void spawnMobMultipler(int mobId, int quantity, int multipler, int x, int y) { }
+    default void spawnMobMultipler(int mobId, int quantity, int multipler, int x, int y) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -290,7 +308,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param time 单位 ms
          * @出自类 MonsterAPI
          */
-    default void spawnMobSchedule(int id, int qty, int x, int y, int time) { }
+    default void spawnMobSchedule(int id, int qty, int x, int y, int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -300,56 +320,72 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * @param time 单位 ms
          * @出自类 MonsterAPI
          */
-    default void spawnMobSchedule(int id, int qty, int x, int y, int time, int level) { }
+    default void spawnMobSchedule(int id, int qty, int x, int y, int time, int level) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MonsterAPI
     */
-    default void spawnMobStats(int mobId, int newhp, int newExp) { }
+    default void spawnMobStats(int mobId, int newhp, int newExp) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MonsterAPI
     */
-    default void spawnMobStats(int mobId, int quantity, int newhp, int newExp) { }
+    default void spawnMobStats(int mobId, int quantity, int newhp, int newExp) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MonsterAPI
     */
-    default void spawnMobStats(int mobId, int quantity, int newhp, int newExp, Object pos) { }
+    default void spawnMobStats(int mobId, int quantity, int newhp, int newExp, Object pos) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MonsterAPI
     */
-    default void spawnMobStats(int mobId, int quantity, int newhp, int newExp, int x, int y) { }
+    default void spawnMobStats(int mobId, int quantity, int newhp, int newExp, int x, int y) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MonsterAPI
     */
-    default void spawnMonster(int id) { }
+    default void spawnMonster(int id) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MonsterAPI
     */
-    default void spawnMonster(int id, int qty) { }
+    default void spawnMonster(int id, int qty) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 MonsterAPI
     */
-    default void spawnMonster(int id, int qty, int hp, Object pos) { }
+    default void spawnMonster(int id, int qty, int hp, Object pos) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -357,7 +393,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * 怪物护送完整路径
          * @出自类 MonsterAPI
          */
-    default void updateMobEscortFullPath(int oid, Object vs, int s) { }
+    default void updateMobEscortFullPath(int oid, Object vs, int s) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -365,7 +403,9 @@ public interface MonsterAPI extends DwangScriptBaseApi {
          * 闹钟技能_顶部夹子 mode 2=顶部夹子,4=定时满血
          * @出自类 MonsterAPI
          */
-    default void 闹钟技能_顶部夹子() { }
+    default void 闹钟技能_顶部夹子() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

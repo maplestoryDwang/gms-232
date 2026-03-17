@@ -11,7 +11,9 @@ public interface 镜世界API extends DwangScriptBaseApi {
          * @param descs
          * @出自类 镜世界API
          */
-    default void setMirrorDungeonInfo(Object names, Object ids, Object descs) { }
+    default void setMirrorDungeonInfo(Object names, Object ids, Object descs) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -27,7 +29,9 @@ public interface 镜世界API extends DwangScriptBaseApi {
          * @param v1
          * @出自类 镜世界API
          */
-    default void showMirrorDungeonReward(int cur, int best, int count, int exp, int wp, int s1, int v1) { }
+    default void showMirrorDungeonReward(int cur, int best, int count, int exp, int wp, int s1, int v1) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -38,7 +42,9 @@ public interface 镜世界API extends DwangScriptBaseApi {
          * @param boss
          * @出自类 镜世界API
          */
-    default void updateMirrorDungeonBoss(int type, int boss) { }
+    default void updateMirrorDungeonBoss(int type, int boss) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -50,7 +56,9 @@ public interface 镜世界API extends DwangScriptBaseApi {
          * @param maps
          * @出自类 镜世界API
          */
-    default void updateMirrorDungeonMap(int type, int count, Object maps) { }
+    default void updateMirrorDungeonMap(int type, int count, Object maps) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

@@ -12,7 +12,9 @@ public interface 黎曼API extends DwangScriptBaseApi {
          * @param time       单位毫秒
          * @出自类 黎曼API
          */
-    default void upShowHoleSchedule(int holeBottom, int holeTop, int orca, int time) { }
+    default void upShowHoleSchedule(int holeBottom, int holeTop, int orca, int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -24,7 +26,9 @@ public interface 黎曼API extends DwangScriptBaseApi {
          * @param time  单位毫秒
          * @出自类 黎曼API
          */
-    default void upShowStepSchedule(Object names, Object shows, int time) { }
+    default void upShowStepSchedule(Object names, Object shows, int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -32,7 +36,9 @@ public interface 黎曼API extends DwangScriptBaseApi {
          * 黎曼 上一百层小游戏
          * @出自类 黎曼API
          */
-    default void upStart() { }
+    default void upStart() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -40,7 +46,9 @@ public interface 黎曼API extends DwangScriptBaseApi {
          * 艾尔达瀑布小游戏，初始化
          * @出自类 黎曼API
          */
-    default void 艾尔达瀑布_初始化() { }
+    default void 艾尔达瀑布_初始化() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -48,7 +56,9 @@ public interface 黎曼API extends DwangScriptBaseApi {
          * 艾尔达瀑布小游戏，开始冲击
          * @出自类 黎曼API
          */
-    default void 艾尔达瀑布_即将冲击() { }
+    default void 艾尔达瀑布_即将冲击() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

@@ -15,6 +15,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void addFromDrop(Object statsSel) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -22,6 +23,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void addFromDrop(Object item, int show) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -31,7 +33,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void cancelItem(int id) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -42,6 +44,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void canHold() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -53,6 +56,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void canHold(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -65,6 +69,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void canHold(int itemId, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -72,6 +77,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void canHoldSlots(int slot) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -82,6 +88,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void changeLimitBreak(int amount) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -95,6 +102,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void changePotential(int slot, int potline, int potId, int show) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -102,6 +110,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void dropItem(int slot, int invType, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -109,6 +118,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void equipOrDrop(int src) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -118,6 +128,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void forceSetEquipment(int id, int slot) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -125,6 +136,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void forceUpdateItem(Object item) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -134,6 +146,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void forceUpgradeStarForce(Object equip) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -194,8 +207,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void gainItem(int id, int quantity, int randomStats, int 升级次数) {
-
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -210,6 +222,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void gainItem(int id, int quantity, int randomStats, int period, int slots) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -226,6 +239,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void gainItem(int id, int quantity, int randomStats, int period, int hours, int 升级次数, String owner) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -243,6 +257,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void gainItem(int id, int quantity, int randomStats, int period, int hours, int 升级次数, String owner, Object cg) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -256,6 +271,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void gainItemPeriod(int id, int quantity, int period, String owner) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -270,6 +286,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void gainItemPeriod(int id, int quantity, int period, int hours, String owner) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -281,6 +298,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void gainItemSilent(int id, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -288,6 +306,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getEquip(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -299,6 +318,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getEquipBySlot(int slot) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -306,6 +326,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getEquipLevelById(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -313,6 +334,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getFamiliarCard(int quantity, int maxGrade) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -324,6 +346,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getInventory(int type) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -335,6 +358,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getInvType(int i) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -342,6 +366,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getItemall(Character chr) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -351,6 +376,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getItemByPosition(int Position) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -361,6 +387,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getItemInfo() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -372,6 +399,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getItemName(int id) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -383,6 +411,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getItemQuantity(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -390,6 +419,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getItemQuantity(int itemId, int checkEquipped) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -397,6 +427,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getNaturalStats(int itemId, String it) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -406,6 +437,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getRandomDamageSkin() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -413,6 +445,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getReqLevel(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -420,6 +453,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getSpace(int type) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -427,6 +461,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void getTotalStat(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -439,6 +474,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @see @givePartyItems(int, short, boolean)
      */
     default void givePartyItems(int id, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -451,6 +487,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void givePartyItems(int id, int quantity, int removeAll) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -461,6 +498,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void givePartyNX(int amount) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -472,6 +510,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void givePartyNX(int amount, Object party) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -479,6 +518,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void hasEquipped(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -519,6 +559,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void haveItem(int itemId, int quantity, int checkEquipped, int greaterOrEquals) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -526,6 +567,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void haveSpace(int type) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -533,6 +575,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void isCash(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -542,6 +585,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void itemExists(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -549,6 +593,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void Item类型武器(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -556,6 +601,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void Item类型现金(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -566,6 +612,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeAll(int id) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -573,6 +620,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeAll(int id, int show) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -580,6 +628,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeAllItem(int sel) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -590,6 +639,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeFromParty(int id) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -601,6 +651,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeFromParty(int id, Object party) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -611,7 +662,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeItem(int id) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -622,6 +673,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeItem(int id, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -635,6 +687,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeItem(int slot, int invType, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -648,6 +701,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void removeSlot(int invType, int slot, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -657,6 +711,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void runItemScript(int itemId) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -664,6 +719,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void scrollItem(int scroll, int item) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -671,6 +727,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void setExpiration(Object statsSel, int expire) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -678,6 +735,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void used(int id, int quantity) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -688,6 +746,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void useItem(int id) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -699,6 +758,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void useItem(int id, int show) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -708,6 +768,7 @@ public interface ItemAPI extends DwangScriptBaseApi {
      * @出自类 ItemAPI
      */
     default void 装备创世武器() {
+        throw new RuntimeException("not implemented");
     }
 
 

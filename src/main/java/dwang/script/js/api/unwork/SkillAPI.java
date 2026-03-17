@@ -7,21 +7,27 @@ public interface SkillAPI extends DwangScriptBaseApi {
     /**
          * @出自类 SkillAPI
     */
-    default void addSkillPoint(int sp) { }
+    default void addSkillPoint(int sp) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void canUseSkillBook(int skillId, int masterLevel) { }
+    default void canUseSkillBook(int skillId, int masterLevel) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void clearAllBuffs() { }
+    default void clearAllBuffs() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -31,7 +37,9 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * @param skillId
          * @出自类 SkillAPI
          */
-    default void dispelBuff(int skillId) { }
+    default void dispelBuff(int skillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -39,7 +47,9 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * 获得指定的BUFF，如果找不到技能BUFF就搜索道具BUFF
          * @出自类 SkillAPI
          */
-    default void gainSkillBuff(int skill) { }
+    default void gainSkillBuff(int skill) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -47,7 +57,9 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * 获得指定的BUFF，如果找不到技能BUFF就搜索道具BUFF
          * @出自类 SkillAPI
          */
-    default void gainSkillBuff(int skill, int level, int newDuration) { }
+    default void gainSkillBuff(int skill, int level, int newDuration) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -57,63 +69,81 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 SkillAPI
          */
-    default void getProfessions() { }
+    default void getProfessions() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void getSkillLevel(int skillId) { }
+    default void getSkillLevel(int skillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void getSkillMaxLevel(int skillId) { }
+    default void getSkillMaxLevel(int skillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void getSkillMenu(int skillMaster, int job) { }
+    default void getSkillMenu(int skillMaster, int job) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void getSkillName(int skillId) { }
+    default void getSkillName(int skillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void get内面技能列表() { }
+    default void get内面技能列表() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void giveMountSkill(int itemId, int mountSkillId) { }
+    default void giveMountSkill(int itemId, int mountSkillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void giveMountSkill(int itemId, int mountSkillId, int period) { }
+    default void giveMountSkill(int itemId, int mountSkillId, int period) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void giveMountSkill(int itemId, int mountSkillId, int period, int test) { }
+    default void giveMountSkill(int itemId, int mountSkillId, int period, int test) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -121,7 +151,9 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * 对应任务：39382 任务名称： [向导任务]能手册
          * @出自类 SkillAPI
          */
-    default void has4thSkillReach30() { }
+    default void has4thSkillReach30() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -129,21 +161,27 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * 对应任务：39377 任务名称： [向导任务]内在能力
          * @出自类 SkillAPI
          */
-    default void hasAInnerSkill() { }
+    default void hasAInnerSkill() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void hasBuff(int skillId) { }
+    default void hasBuff(int skillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void hasSkill(int skillId) { }
+    default void hasSkill(int skillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -151,7 +189,9 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * V5满5转技能
          * @出自类 SkillAPI
          */
-    default void maxV5skill() { }
+    default void maxV5skill() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -163,7 +203,9 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 SkillAPI
          */
-    default void resizeCharacterBuff(int size, int time) { }
+    default void resizeCharacterBuff(int size, int time) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -213,28 +255,36 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * @param level 等级
          * @出自类 SkillAPI
          */
-    default void useSkill(int skill, int level) { }
+    default void useSkill(int skill, int level) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void useSkillBook(int skillId, int masterLevel) { }
+    default void useSkillBook(int skillId, int masterLevel) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void 更新美洲豹(int id) { }
+    default void 更新美洲豹(int id) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void 满剩余技能() { }
+    default void 满剩余技能() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -242,28 +292,36 @@ public interface SkillAPI extends DwangScriptBaseApi {
          * 满当前职业及所有前置职业的技能
          * @出自类 SkillAPI
          */
-    default void 满技能() { }
+    default void 满技能() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void 满技能(int job) { }
+    default void 满技能(int job) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void 移除内面技能(int skillId) { }
+    default void 移除内面技能(int skillId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 SkillAPI
     */
-    default void 获得V技能(int coreId) { }
+    default void 获得V技能(int coreId) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

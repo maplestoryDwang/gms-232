@@ -7561,6 +7561,11 @@ public class Char {
         return record;
     }
 
+    /**
+     * ===================以下方法适配JS脚本出现===================
+     *
+     */
+
     // 升级
     public void levelUp() {
         int curLevel = getLevel();
@@ -7575,4 +7580,8 @@ public class Char {
             getField().broadcastPacket(UserRemote.effect(getId(), Effect.levelUpEffect()));
         }
     }
+
+
+
+
 }

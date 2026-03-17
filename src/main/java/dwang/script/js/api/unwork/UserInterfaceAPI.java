@@ -19,14 +19,18 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void enter商城() { }
+    default void enter商城() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void enter拍卖() { }
+    default void enter拍卖() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -37,14 +41,18 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * @param v2
          * @出自类 UserInterfaceAPI
          */
-    default void onActionBarResult(int v1, int v2) { }
+    default void onActionBarResult(int v1, int v2) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void onActionBarResult(int v1, int v2, int v3, int v4, int v5) { }
+    default void onActionBarResult(int v1, int v2, int v3, int v4, int v5) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -55,14 +63,18 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * @param name 字符串
          * @出自类 UserInterfaceAPI
          */
-    default void openNewUI(int mode, String name) { }
+    default void openNewUI(int mode, String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void openPackageDeliverer() { }
+    default void openPackageDeliverer() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -96,7 +108,9 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * @param web 网址
          * @出自类 UserInterfaceAPI
          */
-    default void openWeb(String web) { }
+    default void openWeb(String web) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -108,7 +122,9 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * @param url  完整网址
          * @出自类 UserInterfaceAPI
          */
-    default void openWeb(int type, String path, String url) { }
+    default void openWeb(int type, String path, String url) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -118,7 +134,9 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * @param web 网址
          * @出自类 UserInterfaceAPI
          */
-    default void openWebNew(int b1, int b2, String web) { }
+    default void openWebNew(int b1, int b2, String web) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -126,28 +144,36 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * 武陵道场，通关一层后，暂停计时器10s
          * @出自类 UserInterfaceAPI
          */
-    default void pauseTimer() { }
+    default void pauseTimer() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void sendOpenJobChangeUI() { }
+    default void sendOpenJobChangeUI() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void sendProfessionWindow() { }
+    default void sendProfessionWindow() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void sendUltimateExplorer() { }
+    default void sendUltimateExplorer() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -160,14 +186,18 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
     
          * @出自类 UserInterfaceAPI
          */
-    default void uiChangeStage(int stage) { }
+    default void uiChangeStage(int stage) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void updateEventUI(int ui, int on) { }
+    default void updateEventUI(int ui, int on) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -182,35 +212,45 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * @param 关联任务ID
          * @出自类 UserInterfaceAPI
          */
-    default void updateHeaderUI(int 类型, int 动作, int 总时间, int 零, int 剩余时间, int 关联任务ID) { }
+    default void updateHeaderUI(int 类型, int 动作, int 总时间, int 零, int 剩余时间, int 关联任务ID) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void 剪刀石头布_开始() { }
+    default void 剪刀石头布_开始() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void 次元之镜UI() { }
+    default void 次元之镜UI() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void 神秘河快速通道(int show) { }
+    default void 神秘河快速通道(int show) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 UserInterfaceAPI
     */
-    default void 组队任务_世界排行榜() { }
+    default void 组队任务_世界排行榜() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -230,7 +270,9 @@ public interface UserInterfaceAPI extends DwangScriptBaseApi {
          * 潜能重置_S级升SS级成功率提高 : 100
          * @出自类 UserInterfaceAPI
          */
-    default void 魔方奇迹时间_提示() { }
+    default void 魔方奇迹时间_提示() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

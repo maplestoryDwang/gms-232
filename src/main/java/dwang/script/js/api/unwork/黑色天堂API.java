@@ -7,7 +7,9 @@ public interface 黑色天堂API extends DwangScriptBaseApi {
          * 黑色天堂 激战长空
          * @出自类 黑色天堂API
          */
-    default void 黑色天堂_开始空战() { }
+    default void 黑色天堂_开始空战() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -29,14 +31,18 @@ public interface 黑色天堂API extends DwangScriptBaseApi {
     
          * @出自类 黑色天堂API
          */
-    default void 黑色天堂_空战刷怪(int start) { }
+    default void 黑色天堂_空战刷怪(int start) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
     /**
          * @出自类 黑色天堂API
     */
-    default void 黑色天堂_空战失败() { }
+    default void 黑色天堂_空战失败() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 

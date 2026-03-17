@@ -24,6 +24,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void cameraSwitch_CameraSwitchBack() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -31,6 +32,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void cameraSwitch_PushSwitchMoveInfo(String str0, int value0) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -38,6 +40,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void cameraSwitch_PushSwitchMoveToPos(int value0, int value1, int value2) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -45,6 +48,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void cameraSwitch_SetCameraMoveByCID(String str0, int value0, int value1, int value2) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -73,8 +77,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_AddLayer(String path, int v1, int v2) {
-
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -86,6 +89,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_DarkenPlayer(int v1, int v2) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -120,6 +124,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_GainExpGold(int exp) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -130,7 +135,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_Item(int item) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -138,6 +143,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_item_maker_success(String str0) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -151,6 +157,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_LastingEff(String str0, int v1, int v2, int v3) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -161,6 +168,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_Lightness(int dark) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -171,6 +179,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_NormalSpeechBalloon(String data) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -182,6 +191,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_NormalSpeechBalloon(String data, int borderStyle) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -194,6 +204,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_NormalSpeechBalloon(String data, int borderStyle, int colorStyle) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -210,6 +221,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_NormalSpeechBalloon(String data, int borderStyle, int colorStyle, int nameHeight, int time, int npcID, int playerID) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -217,6 +229,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_NormalSpeechBalloon(String data, int borderStyle, int colorStyle, int nameHeight, int time, int v5, int v6, int v7, int v8, int v9, int npcID, int playerID) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -224,6 +237,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_NormalSpeechBalloon(String data, int borderStyle, int colorStyle, int nameHeight, int time, int v5, int v6, int v7, int v8, int v9, int npcID, String npcTag, int playerID) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -246,6 +260,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_PlayMusic(String path) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -256,6 +271,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_REPEAT(String str0, int v1, int v2, int v3, int v4, int v5) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -266,6 +282,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @see EffectTextParam
      */
     default void effect_Text(Object strs, Object nums) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -279,6 +296,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_Voice(String data) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -286,6 +304,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_Voice(String data, int value0) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -293,6 +312,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_准心瞄准效果(Object nums) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -300,6 +320,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void effect_唐云料理_火焰怪猎人() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -311,6 +332,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void emotion(int expression, int duration) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -321,6 +343,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void eventEmergencySound(String msg) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -437,7 +460,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_InsertCanvas11(int value0, int value1, int value2, int value3, int value4, int value5) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -534,7 +557,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * todo 没有调用了现在
      */
     default void fieldEffect_PlaySummonSound(int value0, int value1, int value2) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -686,6 +709,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_屏幕渐入插图A(Object strs, Object nums) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -693,6 +717,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_屏幕渐入插图B(Object strs, Object nums) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -700,6 +725,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_屏幕渐入插图消失A(Object strs, Object nums) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -707,6 +733,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void fieldEffect_屏幕渐入插图消失B(Object strs, Object nums) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -714,6 +741,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void funckeySetByScript(int type, int skillID, int keyIndex) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -724,6 +752,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void getClock(int time) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -731,6 +760,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void getClockSeconds(int ms) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -738,7 +768,9 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * 在对话中，延迟一段时间后触发等同于[下一步]的效果
      * <p>
      * <p>
-     * 注意，搭配其他效果方法时，一定要保障同一个状态内[if(status==x){}]有且只有一个方法可以触发进入下一轮状态，否则会有不可预测后果
+     * 注意，搭配其他效果方法时，一定要保障同一个状态内[if(status==x){
+        throw new RuntimeException("not implemented");
+    }]有且只有一个方法可以触发进入下一轮状态，否则会有不可预测后果
      *
      * @param delay 等待时间，单位毫秒
      * @出自类 MovieEffectAPI
@@ -768,6 +800,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_BreakEffect(String text, int v1, int v2, int v3) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -777,6 +810,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_ChangeEquipment(Object values) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -784,6 +818,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_ForcedFlip(int value0) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -805,6 +840,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_Monologue(String text, int doNewDialogue) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -819,6 +855,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_MonologueScroll(String text, int value0, int alignment, int updateInterval, int speed) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -846,6 +883,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_OneTimeAction(int action, int time) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -889,6 +927,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_PushScaleInfo(int moveTime, int ratio, int playTime, int x, int y) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -896,6 +935,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_PushScaleInfo(int moveTime, int b1, int ratio, int playTime, int x, int y) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -906,6 +946,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_QTE(int type) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -913,6 +954,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_SetAdditionalEffectVisibleForInGameDirection() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -920,6 +962,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_SetAdditionalEffectVisibleForInGameDirection2() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -930,6 +973,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_SetFaceOff(int value0) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -941,6 +985,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_SetFaceOff(int value0, int value1) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -960,6 +1005,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_SlideText(String str0, int b1, int b2) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -967,6 +1013,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_Unknown9(int value0) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -974,6 +1021,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_同时移动镜头和人(int value0, int value1) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -981,6 +1029,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_同时移动镜头和人(int value0, int value1, int v2) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1023,7 +1072,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void inGameDirectionEvent_隐藏头顶图片(String tag) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1035,6 +1084,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void onCameraTilt(int v1, int v2) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1047,7 +1097,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void onHireTutorById(int bSet, int nSkillID, int dwAbleFieldId) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1057,7 +1107,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void onNewSpecialEffect(int type, int args) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1090,6 +1140,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void openCamera(int b1, int b2, Object npcs, Object mobs, int d, int e, int f, int b3) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1115,6 +1166,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void playSoundEffDirectly(String text) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1137,7 +1189,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void playVideoByScript(String data) {
-
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1147,6 +1199,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void resetForcedStat() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1157,6 +1210,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void sendNewEffects(int type, Object ints) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1169,6 +1223,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void setAmbience(String text, int value0, int value1) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1193,6 +1248,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void setForcedStat() {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1212,6 +1268,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void setForcedStat(int str, int dex, int _int, int luk, int watk, int matk, int acc, int avoid, int speed, int jump) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1279,6 +1336,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void setMobImage(String text, int scale) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1295,6 +1353,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void setPartner(int show, int dwNPCID, int nSkillID, int nCount) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1310,6 +1369,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void setPartnerAction(int pPartner, int dwNPCID, int nSkillID, int x, int y, int end) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1336,6 +1396,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void userSetFieldFloating(int mapId, int nX, int nY, int tTerm) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1345,6 +1406,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void 特效_角色强制跳跃(int x, int y, int b1, int 隐藏脚底气体特效) {
+        throw new RuntimeException("not implemented");
     }
 
 
@@ -1355,6 +1417,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
      * @出自类 MovieEffectAPI
      */
     default void 特效_角色改变相对位置(int x, int y, int timeInMs) {
+        throw new RuntimeException("not implemented");
     }
 
 

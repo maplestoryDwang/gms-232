@@ -10,7 +10,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param name 日志名称
          * @出自类 EventAPI
          */
-    default void addAccountLog(String name) { }
+    default void addAccountLog(String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -21,7 +23,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type 0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void addAccountLog(String name, int type) { }
+    default void addAccountLog(String name, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -33,7 +37,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param count 次数
          * @出自类 EventAPI
          */
-    default void addAccountLog(String name, int type, int count) { }
+    default void addAccountLog(String name, int type, int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -43,7 +49,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param name 日志名称
          * @出自类 EventAPI
          */
-    default void addPlayerLog(String name) { }
+    default void addPlayerLog(String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -54,7 +62,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type 0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void addPlayerLog(String name, int type) { }
+    default void addPlayerLog(String name, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -66,7 +76,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param count 次数
          * @出自类 EventAPI
          */
-    default void addPlayerLog(String name, int type, int count) { }
+    default void addPlayerLog(String name, int type, int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -74,7 +86,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * 强制加入指定事件，不经过任何检查
          * @出自类 EventAPI
          */
-    default void forceJoinEvent(String name) { }
+    default void forceJoinEvent(String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -84,7 +98,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param name 日志名称
          * @出自类 EventAPI
          */
-    default void getAccountLog(String name) { }
+    default void getAccountLog(String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -95,7 +111,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type 0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void getAccountLog(String name, int type) { }
+    default void getAccountLog(String name, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -103,7 +121,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * 获取活动事件（过时）
          * @出自类 EventAPI
          */
-    default void getEvent(String loc) { }
+    default void getEvent(String loc) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -111,7 +131,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * 获得玩家当前所在事件的EventManager
          * @出自类 EventAPI
          */
-    default void getEventInstance() { }
+    default void getEventInstance() {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -122,7 +144,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @return
          * @出自类 EventAPI
          */
-    default void getEventManager(String event) { }
+    default void getEventManager(String event) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -132,7 +156,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param name 日志名称
          * @出自类 EventAPI
          */
-    default void getPlayerLog(String name) { }
+    default void getPlayerLog(String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -143,7 +169,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type 0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void getPlayerLog(String name, int type) { }
+    default void getPlayerLog(String name, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -154,7 +182,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param count 次数
          * @出自类 EventAPI
          */
-    default void party_addAccountLog(String name, int count) { }
+    default void party_addAccountLog(String name, int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -166,7 +196,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type  0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void party_addAccountLog(String name, int count, int type) { }
+    default void party_addAccountLog(String name, int count, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -177,7 +209,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param count 次数
          * @出自类 EventAPI
          */
-    default void party_addPlayerLog(String name, int count) { }
+    default void party_addPlayerLog(String name, int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -189,7 +223,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type  0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void party_addPlayerLog(String name, int count, int type) { }
+    default void party_addPlayerLog(String name, int count, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -201,7 +237,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @return 不满足要求的队友的名称列表
          * @出自类 EventAPI
          */
-    default void party_CheckFailed_AccountLog(String name, int times) { }
+    default void party_CheckFailed_AccountLog(String name, int times) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -214,7 +252,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @return 不满足要求的队友的名称列表
          * @出自类 EventAPI
          */
-    default void party_CheckFailed_AccountLog(String name, int times, int type) { }
+    default void party_CheckFailed_AccountLog(String name, int times, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -226,7 +266,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @return 不满足要求的队友的名称列表
          * @出自类 EventAPI
          */
-    default void party_CheckFailed_PlayerLog(String name, int times) { }
+    default void party_CheckFailed_PlayerLog(String name, int times) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -239,7 +281,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @return 不满足要求的队友的名称列表
          * @出自类 EventAPI
          */
-    default void party_CheckFailed_PlayerLog(String name, int times, int type) { }
+    default void party_CheckFailed_PlayerLog(String name, int times, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -249,7 +293,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param name 日志名称
          * @出自类 EventAPI
          */
-    default void resetAccountLog(String name) { }
+    default void resetAccountLog(String name) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -260,7 +306,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type 0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void resetAccountLog(String name, int type) { }
+    default void resetAccountLog(String name, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -271,7 +319,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param type 0=永久 other=记录保存时间
          * @出自类 EventAPI
          */
-    default void resetPlayerLog(String name, int type) { }
+    default void resetPlayerLog(String name, int type) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -283,7 +333,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param count 次数
          * @出自类 EventAPI
          */
-    default void setAccountLog(String name, int type, int count) { }
+    default void setAccountLog(String name, int type, int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
@@ -295,7 +347,9 @@ public interface EventAPI extends DwangScriptBaseApi {
          * @param count 次数
          * @出自类 EventAPI
          */
-    default void setPlayerLog(String name, int type, int count) { }
+    default void setPlayerLog(String name, int type, int count) {
+        throw new RuntimeException("not implemented");
+    }
 
 
 
