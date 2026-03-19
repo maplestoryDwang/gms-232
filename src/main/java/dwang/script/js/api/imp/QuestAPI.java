@@ -238,13 +238,14 @@ public interface QuestAPI extends DwangScriptBaseApi {
     default void forceCompleteQuest(int questID) {
         QuestManager qm = getChr().getQuestManager();
         Quest quest = qm.getQuestById(questID);
+        if (quest == null) {
+            quest = QuestData.createQuestFromId(questID);
+        }
         QuestInfo questInfo = QuestData.getQuestInfoById(questID);
         if (questInfo == null) {
             // 不存在的任务，直接设置任务状态完成即可
             quest.setStatus(QuestStatus.Completed);
             quest.setCompletedTime(FileTime.currentTime());
-
-
         } else {
             getChr().getQuestManager().completeQuest(questID);
         }

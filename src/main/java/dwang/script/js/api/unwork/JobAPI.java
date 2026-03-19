@@ -119,8 +119,9 @@ public interface JobAPI extends DwangScriptBaseApi {
          * 获得玩家当前职业ID
          * @出自类 JobAPI
          */
-    default void getJob() {
-        throw new RuntimeException("not implemented");
+    default short getJob() {
+        return getChr().getJob();
+
     }
 
 

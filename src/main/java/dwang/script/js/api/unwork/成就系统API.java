@@ -7,7 +7,7 @@ public interface 成就系统API extends DwangScriptBaseApi {
          * @出自类 成就系统API
     */
     default void finishAchievement(int achievementId) {
-        throw new RuntimeException("not implemented");
+//        throw new RuntimeException("not implemented");
     }
 
 

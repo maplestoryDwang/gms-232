@@ -1,0 +1,31 @@
+function enter() {
+    cm.openScriptNpc()
+}
+var status = -1;
+var selectionLog = [];
+
+function start() {
+    action(1, 0, 0)
+}
+
+function action(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status === a++) {
+            cm.askYesNo("在黑暗洞穴中感觉到了动静。要进入到洞穴里面吗？", 0, 2133005)
+        } else {
+            if (status === a++) {
+                cm.dispose();
+                cm.warp(300010420, 0, false);
+                cm.spawnMobLimit(5250004, 1, 409, 93, 1)
+            }
+        }
+    }
+};

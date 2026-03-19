@@ -1,0 +1,7 @@
+function start() {
+    if (cm.isAllReactorState(1008010, 5) == true) {
+        cm.openNpc(10310)
+    } else {
+        cm.topMsg("涓??村???????剧??璇?锛???娉?绂诲???")
+    }
+};

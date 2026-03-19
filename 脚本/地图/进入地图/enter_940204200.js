@@ -1,0 +1,100 @@
+var status = -1;
+var selectionLog = [];
+function action(f, E, e) {
+  if (status == 0 && f == 0) {
+    cm.dispose();
+    return;
+  }
+  status++;
+  selectionLog[status] = e;
+  var V = -1;
+  if (status <= V++) {
+    cm.dispose();
+  } else if (status === V++) {
+    cm.spawnMobLimit(2400261, 1, 296, -978, 100);
+    cm.spawnMobLimit(2400260, 1, 159, -978, 100);
+    cm.spawnMobLimit(2400261, 1, 47, -978, 100);
+    cm.spawnMobLimit(2400260, 1, -81, -978, 100);
+    cm.spawnMobLimit(2400261, 1, -236, -978, 100);
+    cm.spawnMobLimit(2400260, 1, -473, -1053, 100);
+    cm.spawnMobLimit(2400261, 1, -620, -1053, 100);
+    cm.spawnMobLimit(2400260, 1, -776, -1053, 100);
+    cm.spawnMobLimit(2400261, 1, 468, -1381, 100);
+    cm.spawnMobLimit(2400260, 1, 350, -1381, 100);
+    cm.spawnMobLimit(2400261, 1, 206, -1381, 100);
+    cm.spawnMobLimit(2400260, 1, 82, -1381, 100);
+    cm.spawnMobLimit(2400261, 1, -166, -1332, 100);
+    cm.spawnMobLimit(2400260, 1, -297, -1332, 100);
+    cm.spawnMobLimit(2400261, 1, -428, -1332, 100);
+    cm.spawnMobLimit(2400260, 1, -994, -1382, 100);
+    cm.spawnMobLimit(2400261, 1, -873, -1382, 100);
+    cm.spawnMobLimit(2400260, 1, -732, -1382, 100);
+    cm.spawnMobLimit(2400261, 1, -602, -1382, 100);
+    cm.setPartner(1, 3002110, 80002360, 0);
+    cm.addPopupSay(3002110, 2500, "#face0#狐神应该就在树顶上吧？", '', 0);
+    cm.addPopupSay(3002110, 2500, "#face8#呼呼……竟然这么高。真累！", '', 0);
+    cm.addPopupSay(0, 2500, "看不到尽头。", '', 0);
+    cm.addPopupSay(3002110, 2500, "#face5#我是尖耳守备队长，不能在这里放弃！", '', 0);
+    cm.spawnMobLimit(2400261, 1, -50, -2184, 100);
+    cm.spawnMobLimit(2400260, 1, 20, -2184, 100);
+    cm.spawnMobLimit(2400261, 1, 505, -2184, 100);
+    cm.spawnMobLimit(2400260, 1, 428, -2184, 100);
+    cm.spawnMobLimit(2400261, 1, 407, -2184, 100);
+    cm.spawnMobLimit(2400260, 1, -653, -2017, 100);
+    cm.spawnMobLimit(2400261, 1, -736, -2017, 100);
+    cm.spawnMobLimit(2400260, 1, -951, -2017, 100);
+    cm.spawnMobLimit(2400261, 1, -723, -1707, 100);
+    cm.spawnMobLimit(2400260, 1, -683, -1707, 100);
+    cm.spawnMobLimit(2400261, 1, -205, -1707, 100);
+    cm.spawnMobLimit(2400260, 1, -187, -1707, 100);
+    cm.spawnMobLimit(2400261, 1, -466, -1707, 100);
+    cm.spawnMobLimit(2400260, 1, 300, -1769, 100);
+    cm.spawnMobLimit(2400261, 1, 194, -1769, 100);
+    cm.spawnMobLimit(2400260, 1, 197, -1769, 100);
+    cm.spawnMobLimit(2400261, 1, -750, -2792, 100);
+    cm.spawnMobLimit(2400260, 1, -703, -2792, 100);
+    cm.spawnMobLimit(2400261, 1, -246, -2595, 100);
+    cm.spawnMobLimit(2400260, 1, -328, -2595, 100);
+    cm.spawnMobLimit(2400261, 1, -316, -2595, 100);
+    cm.spawnMobLimit(2400260, 1, 328, -2517, 100);
+    cm.spawnMobLimit(2400261, 1, 333, -2517, 100);
+    cm.spawnMobLimit(2400260, 1, 198, -2517, 100);
+    cm.spawnMobLimit(2400261, 1, -765, -2292, 100);
+    cm.spawnMobLimit(2400260, 1, -329, -2292, 100);
+    cm.spawnMobLimit(2400261, 1, -554, -2292, 100);
+    cm.spawnMobLimit(2400260, 1, -268, -2292, 100);
+    cm.spawnMobLimit(2400261, 1, -111, -3254, 100);
+    cm.spawnMobLimit(2400260, 1, 47, -3254, 100);
+    cm.spawnMobLimit(2400261, 1, 24, -3254, 100);
+    cm.spawnMobLimit(2400260, 1, -439, -3205, 100);
+    cm.spawnMobLimit(2400261, 1, -593, -3205, 100);
+    cm.spawnMobLimit(2400260, 1, -639, -3205, 100);
+    cm.spawnMobLimit(2400260, 1, 354, -2898, 100);
+    cm.spawnMobLimit(2400261, 1, 147, -2898, 100);
+    cm.spawnMobLimit(2400260, 1, 519, -2898, 100);
+    cm.spawnMobLimit(2400261, 1, -474, -2850, 100);
+    cm.spawnMobLimit(2400260, 1, -15, -2850, 100);
+    cm.spawnMobLimit(2400261, 1, -409, -2850, 100);
+    cm.spawnMobLimit(2400260, 1, -427, -2850, 100);
+    cm.spawnMobLimit(2400260, 1, -773, -1382, 100);
+    cm.spawnMobLimit(2400261, 1, 77, -3254, 100);
+    cm.spawnMobLimit(2400260, 1, 89, -3254, 100);
+    cm.spawnMobLimit(2400261, 1, -146, -3254, 100);
+    cm.spawnMobLimit(2400260, 1, -481, -3205, 100);
+    cm.spawnMobLimit(2400261, 1, -769, -3205, 100);
+    cm.spawnMobLimit(2400260, 1, -609, -3205, 100);
+    cm.spawnMobLimit(2400260, 1, 513, -2898, 100);
+    cm.spawnMobLimit(2400261, 1, 383, -2898, 100);
+    cm.spawnMobLimit(2400260, 1, 282, -2898, 100);
+    cm.spawnMobLimit(2400261, 1, -350, -2850, 100);
+    cm.spawnMobLimit(2400260, 1, -15, -2850, 100);
+    cm.spawnMobLimit(2400261, 1, -279, -2850, 100);
+    cm.spawnMobLimit(2400260, 1, -451, -2850, 100);
+    cm.dispose();
+  }
+}
+function start() {
+  status = -1;
+  action(1, 0, 0);
+}
+;

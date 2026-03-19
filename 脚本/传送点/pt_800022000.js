@@ -1,0 +1,51 @@
+function enter() {
+    if (cm.isQuestFinished(58752)) {
+        cm.sendNormalTalk("(鵺已经从这里搬走了，里面空空荡荡，没什么好看的了。)", 16, 0, true, false)
+    } else {
+        if (cm.isQuestFinished(58751)) {
+            cm.warp(800022520, 1, false)
+        } else {
+            if (cm.isQuestFinished(58750)) {
+                cm.warp(800022009, 2, false)
+            } else {
+                if (cm.isQuestFinished(58749)) {
+                    cm.warp(800022300, 0, false)
+                } else {
+                    if (cm.isQuestFinished(58747)) {
+                        cm.warp(800022200, 0, false)
+                    } else {
+                        if (cm.isQuestFinished(58740)) {
+                            cm.warp(800022003, 0, false)
+                        } else {
+                            cm.warp(800022001, 0, false)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+var status = -1;
+var selectionLog = [];
+
+function start() {
+    action(1, 0, 0)
+}
+
+function action(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status === a++) {
+            cm.sendOk("这个传送点的脚本尚未修复。\r\n脚本位于： 脚本/传送点/pt_800022000.js ", 0)
+        } else {
+            cm.dispose()
+        }
+    }
+};

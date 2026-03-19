@@ -1,0 +1,34 @@
+function enter() {
+    var b = cm.getPortal().getId();
+    var a = cm.getPortal().getName();
+    if (cm.getNumberFromQuestInfo(33226, "check1450") > 0) {
+        cm.addPopupSay(1540451, 1500, "我们已经拿到出入证了. 不需要返回了.", "", 0)
+    } else {
+        cm.addPopupSay(1540451, 1500, "我们不知道气窗通道究竟是通向什么地方的. ", "", 0);
+        cm.addPopupSay(1540451, 1500, "现在好像从下面的路走比较好. ", "", 0)
+    }
+}
+var status = -1;
+var selectionLog = [];
+
+function start() {
+    action(1, 0, 0)
+}
+
+function action(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status === a++) {
+            cm.sendOk("这个传送点的脚本尚未修复。\r\n脚本位于： 脚本/传送点/goto_maze1450a.js ", 0)
+        } else {
+            cm.dispose()
+        }
+    }
+};

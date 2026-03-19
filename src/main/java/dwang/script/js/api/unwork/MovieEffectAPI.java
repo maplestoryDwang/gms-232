@@ -1061,6 +1061,14 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
         eventObj.arg5 = eventObj.getNextInt(nums) > 0;
         eventObj.haveArg6 = eventObj.getNextInt(nums) > 0;
 
+
+        if (eventObj.pointX == 0 && eventObj.pointY == 0) {
+            Position position = getChr().getPosition();
+            eventObj.pointX = position.getX();
+            eventObj.pointY = position.getY() - 120;
+        }
+
+
         int idk2 = eventObj.arg5 ? 1 : 0;
         getChr().write(UserLocal.inGameDirectionEvent(InGameDirectionEvent.effectPlay(eventObj.effectStr, eventObj.arg1, new Position(eventObj.pointX, eventObj.pointY), eventObj.arg2, eventObj.arg3, eventObj.arg4, idk2)));
 

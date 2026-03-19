@@ -1,0 +1,27 @@
+function enter() {
+    cm.openScriptNpc()
+}
+var status = -1;
+var selectionLog = [];
+
+function start() {
+    action(1, 0, 0)
+}
+
+function action(d, c, b) {
+    if (status == 0 && d == 0) {
+        cm.dispose();
+        return
+    }(d == 1) ? status++ : status--;
+    selectionLog[status] = b;
+    var a = -1;
+    if (status <= a++) {
+        cm.dispose()
+    } else {
+        if (status === a++) {
+            cm.dispose();
+            cm.playerMessage(5, "你必须消灭所有怪兽才能前往下一区域。");
+            cm.openNpc("克拉齐亚_第四幕_战斗2")
+        }
+    }
+};

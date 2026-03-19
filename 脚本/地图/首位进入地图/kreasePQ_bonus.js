@@ -1,0 +1,107 @@
+var status = -1;
+var selectionLog = [];
+function start() {
+  action(1, 0, 0);
+}
+function action(Y, Q, l) {
+  if (status == 0 && Y == 0) {
+    cm.dispose();
+    return;
+  }
+  status++;
+  selectionLog[status] = l;
+  var E = -1;
+  if (status <= E++) {
+    cm.dispose();
+  } else if (status === E++) {
+    cm.dispose();
+    cm.getMap().spawnAutoDrop(4001844, 1140, 990);
+    cm.getMap().spawnAutoDrop(4001844, 1060, 910);
+    cm.getMap().spawnAutoDrop(4001844, 100, 830);
+    cm.getMap().spawnAutoDrop(4001844, 340, 670);
+    cm.getMap().spawnAutoDrop(4001844, 180, 670);
+    cm.getMap().spawnAutoDrop(4001844, 740, 510);
+    cm.getMap().spawnAutoDrop(4001844, -60, 350);
+    cm.getMap().spawnAutoDrop(4001844, 100, 670);
+    cm.getMap().spawnAutoDrop(4001844, 900, 750);
+    cm.getMap().spawnAutoDrop(4001844, 20, 430);
+    cm.getMap().spawnAutoDrop(4001844, 20, 750);
+    cm.getMap().spawnAutoDrop(4001844, 980, 350);
+    cm.getMap().spawnAutoDrop(4001844, -140, 910);
+    cm.getMap().spawnAutoDrop(4001844, 500, 670);
+    cm.getMap().spawnAutoDrop(4001844, 1140, 350);
+    cm.getMap().spawnAutoDrop(4001844, 740, 350);
+    cm.getMap().spawnAutoDrop(4001844, -300, 830);
+    cm.getMap().spawnAutoDrop(4001844, 340, 990);
+    cm.getMap().spawnAutoDrop(4001844, 820, 830);
+    cm.getMap().spawnAutoDrop(4001844, 500, 990);
+    cm.getMap().spawnAutoDrop(4001844, 980, 910);
+    cm.getMap().spawnAutoDrop(4001844, 900, 350);
+    cm.getMap().spawnAutoDrop(4001844, 100, 750);
+    cm.getMap().spawnAutoDrop(4001844, 900, 990);
+    cm.getMap().spawnAutoDrop(4001844, 20, 510);
+    cm.getMap().spawnAutoDrop(4001844, 1060, 510);
+    cm.getMap().spawnAutoDrop(4001844, -300, 590);
+    cm.getMap().spawnAutoDrop(4001844, 660, 430);
+    cm.getMap().spawnAutoDrop(4001844, 20, 830);
+    cm.getMap().spawnAutoDrop(4001844, 1140, 590);
+    cm.getMap().spawnAutoDrop(4001844, 580, 430);
+    cm.getMap().spawnAutoDrop(4001844, 20, 590);
+    cm.getMap().spawnAutoDrop(4001844, 260, 350);
+    cm.getMap().spawnAutoDrop(4001844, -140, 830);
+    cm.getMap().spawnAutoDrop(4001844, -220, 670);
+    cm.getMap().spawnAutoDrop(4001844, -60, 590);
+    cm.getMap().spawnAutoDrop(4001844, 1060, 590);
+    cm.getMap().spawnAutoDrop(4001844, -220, 910);
+    cm.getMap().spawnAutoDrop(4001844, -140, 750);
+    cm.getMap().spawnAutoDrop(4001844, 20, 670);
+    cm.getMap().spawnAutoDrop(4001844, 740, 750);
+    cm.getMap().spawnAutoDrop(4001844, 660, 350);
+    cm.getMap().spawnAutoDrop(4001844, 1060, 430);
+    cm.getMap().spawnAutoDrop(4001844, 580, 670);
+    cm.getMap().spawnAutoDrop(4001844, 260, 990);
+    cm.getMap().spawnAutoDrop(4001844, 1140, 510);
+    cm.getMap().spawnAutoDrop(4001844, 660, 990);
+    cm.getMap().spawnAutoDrop(4001844, -140, 510);
+    cm.getMap().spawnAutoDrop(4001844, 660, 510);
+    cm.getMap().spawnAutoDrop(4001844, 180, 590);
+    cm.getMap().spawnAutoDrop(4001844, 20, 910);
+    cm.getMap().spawnAutoDrop(4001844, 1060, 670);
+    cm.getMap().spawnAutoDrop(4001844, 260, 430);
+    cm.getMap().spawnAutoDrop(4001844, 820, 590);
+    cm.getMap().spawnAutoDrop(4001844, 500, 430);
+    cm.getMap().spawnAutoDrop(4001844, 500, 830);
+    cm.getMap().spawnAutoDrop(4001844, 260, 670);
+    cm.getMap().spawnAutoDrop(4001844, 180, 430);
+    cm.getMap().spawnAutoDrop(4001844, 740, 990);
+    cm.getMap().spawnAutoDrop(4001844, -220, 430);
+    cm.getMap().spawnAutoDrop(4001844, 420, 670);
+    cm.getMap().spawnAutoDrop(4001844, 180, 990);
+    cm.getMap().spawnAutoDrop(4001844, 820, 910);
+    cm.getMap().spawnAutoDrop(4001844, 980, 590);
+    cm.getMap().spawnAutoDrop(4001844, 100, 910);
+    cm.getMap().spawnAutoDrop(4001844, 900, 430);
+    cm.getMap().spawnAutoDrop(4001844, 420, 510);
+    cm.getMap().spawnAutoDrop(4001844, 260, 830);
+    cm.getMap().spawnAutoDrop(4001844, 180, 910);
+    cm.getMap().spawnAutoDrop(4001844, 580, 750);
+    cm.getMap().spawnAutoDrop(4001844, 740, 830);
+    cm.getMap().spawnAutoDrop(4001844, 1140, 430);
+    cm.getMap().spawnAutoDrop(4001844, -220, 750);
+    cm.getMap().spawnAutoDrop(4001844, 740, 670);
+    cm.getMap().spawnAutoDrop(4001844, -300, 990);
+    cm.getMap().spawnAutoDrop(4001844, -300, 910);
+    cm.getMap().spawnAutoDrop(4001844, 340, 510);
+    cm.getMap().spawnAutoDrop(4001844, 500, 510);
+    cm.getMap().spawnAutoDrop(4001844, 580, 830);
+    cm.getMap().spawnAutoDrop(4001844, 420, 590);
+    cm.getMap().spawnAutoDrop(4001844, -140, 990);
+    cm.getMap().spawnAutoDrop(4001844, -140, 670);
+    cm.getMap().spawnAutoDrop(4001844, -140, 350);
+    cm.getMap().spawnAutoDrop(4001844, -300, 430);
+    cm.getMap().spawnAutoDrop(4001844, 420, 990);
+    cm.getMap().spawnAutoDrop(4001844, 100, 350);
+    cm.getMap().spawnAutoDrop(4001844, 180, 830);
+    cm.getMap().spawnAutoDrop(4001844, 340, 590);
+  }
+}

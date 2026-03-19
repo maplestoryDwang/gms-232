@@ -1,0 +1,22 @@
+var status = -1; // status: 当前聊天交互轮数
+var selectionLog = []; // 记录每一轮的选择
+function start() {
+	action(1, 0, 0);
+}
+function action(mode, type, selection) {
+	if (status == 0 && mode == 0) {
+		cm.dispose();
+		return;
+	}
+	status++;
+	selectionLog[status] = selection;
+	var i = -1;
+	if (status <= i++) {
+		cm.dispose();
+	} else if (status === i++) {
+		cm.fieldEffect_PlayBGM("Bgm44.img/WildFury");
+		var a = cm.getEventManager("亚克斯旅馆_战斗2");
+		a.startInstance(cm.getPlayer(), cm.getMap())
+		cm.dispose();
+	}
+}
