@@ -128,9 +128,9 @@ function end(d, c, b) {
                 if (status === a++) {
                     cm.gainItem(1472061, 1);
                     cm.gainItem(1332063, 1);
-                    cm.gainItem(2070015, 1);
-                    cm.gainItem(2070015, 1);
-                    cm.gainItem(2070015, 1);
+                    cm.gainItem(2070000, 1);
+                    cm.gainItem(2070000, 1);
+                    cm.gainItem(2070000, 1);
                     cm.gainItem(1142107, 1);
                     cm.effect_OnUserEff("Effect/OnUserEff.img/RecordClear_BT/clear");
                     cm.openUIWithOption(3, 4001334);

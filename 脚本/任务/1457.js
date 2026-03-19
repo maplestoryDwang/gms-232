@@ -32,7 +32,6 @@ function start(d, c, b) {
                             } else {
                                 if (status === a++) {
                                     cm.dispose();
-                                    cm.openNpc(2081400)
                                 }
                             }
                         }
