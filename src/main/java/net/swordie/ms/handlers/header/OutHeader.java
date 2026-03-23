@@ -251,7 +251,7 @@ public enum OutHeader {
     RESULT_SET_STEAL_SKILL(239), // check 232
     UNK_GMS232_240(240),
     SLASH_COMMAND(241),  // check 232
-    START_NAVIGATION(242),
+    START_NAVIGATION(242),// check 232
 
 
 //    UNK205_234(242),

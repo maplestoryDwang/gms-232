@@ -33,14 +33,15 @@ function action(d, c, b) {
                         } else {
                             if (cm.getInfoQuest(32344).equals("4")) {
                                 cm.dispose();
+                                cm.warp(910142200, 1, false);
                                 return
                             }
                         }
                     }
                 }
             }
-            cm.warp(910142200, 1, false);
             cm.dispose()
+            cm.warp(910142200, 1, false);
         }
     }
 };

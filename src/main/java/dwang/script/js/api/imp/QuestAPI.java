@@ -351,6 +351,9 @@ public interface QuestAPI extends DwangScriptBaseApi {
      */
     default long getNumberFromQuestCustomData(int quest) {
         String questCustomData = getQuestCustomData(getParentID());
+        if (questCustomData == null || questCustomData.isEmpty()) {
+            return 0;
+        }
         return Long.parseLong(questCustomData);
     }
 

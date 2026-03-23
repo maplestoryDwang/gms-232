@@ -1061,7 +1061,7 @@ public interface MovieEffectAPI extends DwangScriptBaseApi {
         eventObj.arg5 = eventObj.getNextInt(nums) > 0;
         eventObj.haveArg6 = eventObj.getNextInt(nums) > 0;
 
-
+        // 适配，如果是0 0 就在人头上
         if (eventObj.pointX == 0 && eventObj.pointY == 0) {
             Position position = getChr().getPosition();
             eventObj.pointX = position.getX();
